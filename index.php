@@ -1069,7 +1069,7 @@
             <form class="mu-subscription-form">
               <h4>É nosso cliente? Cadastre-se para postar as fotos de sua visita!</h4>
               <input type="text" placeholder="Entre com seu e-mail para cadastro">
-              <button class="mu-readmore-btn" type="Submit">CADASTRO</button>
+              <a href="sistema/cadastro.php" class="mu-readmore-btn">CADASTRO</a>
             </form>
           </div>
         </div>
