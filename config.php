@@ -28,10 +28,10 @@ $senha = '';
 $banco = 'restaurante';
 
 //VARIÁVEIS PARA BANCO DE DADOS HOSPEDADO
-//$servidor = 'myshared0307';
+//$servidor = 'restaurantelor.mysql.dbaas.com.br';
 //$usuario = 'restaurantelor';
-//$senha = 'MarmitaBoa321#';
-//$banco = 'restaurantelor'; -->
+//$senha = 'Mandalor45@';
+//$banco = 'restaurantelor';
 
 ?>
 

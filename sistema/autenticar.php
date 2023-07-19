@@ -1,5 +1,5 @@
 <?php
-require_once("conexao.php");
+require_once("../conexao.php");
 @session_start();
 $nome = $_POST['nome'];
 $senha = $_POST['senha'];
@@ -21,7 +21,7 @@ if ($total_reg > 0) {
     if($res[0]['cargo'] == '1'){
         echo "<script language='javascript'> window.location='painel-adm' </script>";
     }else{
-        echo "<script language='javascript'>window.location='index.php'</script>";
+        echo "<script language='javascript'> window.location='index.php'</script>";
     }
 
 };

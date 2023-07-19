@@ -1,4 +1,4 @@
-<?php require_once("conexao.php");
+<?php require_once("../conexao.php");
 
 $query = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '1' ");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -24,8 +24,10 @@ if ($total_reg == 0) {
     <link rel="shortcut icon" href="../assets/imagens/ico.ico" type="image/x-icon">
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!-- -->
     <link href="vendor/css/login.css" rel="stylesheet">
-
+    <!-- Theme color -->
+    <link id="switcher" href="../assets/css/theme-color/default-theme.css" rel="stylesheet">
 </head>
 
 <body>
