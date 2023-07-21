@@ -6,7 +6,7 @@ $total_reg = @count($res);
 
 if ($total_reg == 0) {
     //INSERIR UM USUARIO/FUNCIONARIO NA TABELA CASO NÃO EXISTA NENHUM
-    $pdo->query("INSERT INTO funcionarios SET nome = 'Isaias', cpf = '24707435831', email = 'isaias.lourenco@outlook.com', telefone = '19996745466', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '1', datacad = curDate(), imagem = ''");
+    $pdo->query("INSERT INTO funcionarios SET nome = 'Isaias', cpf = '24707435831', email = 'isaias.lourenco@outlook.com', telefone = '19996745466', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '1', datacad = curDate(), datanasc = '1977-08-08', imagem = ''");
 }
 
 
@@ -28,6 +28,7 @@ if ($total_reg == 0) {
     <link href="vendor/css/login.css" rel="stylesheet">
     <!-- Theme color -->
     <link id="switcher" href="../assets/css/theme-color/default-theme.css" rel="stylesheet">
+    
 </head>
 
 <body>

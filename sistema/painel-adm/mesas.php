@@ -1,5 +1,5 @@
 <?php
-$pagina = 'cargos';
+$pagina = 'mesas';
 require_once("verificar.php");
 ?>
 <!DOCTYPE html>
@@ -12,20 +12,21 @@ require_once("verificar.php");
 </head>
 
 <body>
-    <h2>CARGOS</h2>
-    <a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Novo Cargo</a>
+    <h2>MESAS</h2>
+    <a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Nova Mesa</a>
 
     <small>
         <table id="example" class="table table-hover table-sm my-4" style="width:98%;">
             <thead>
                 <tr>
                     <th>Nome</th>
+                    <th>Descrição</th>
                     <th style="text-align:center">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $query = $pdo->query("SELECT * FROM cargos ORDER BY id ASC");
+                $query = $pdo->query("SELECT * FROM mesas ORDER BY id ASC");
                 $res = $query->fetchAll(PDO::FETCH_ASSOC);
                 for ($i = 0; $i < @count($res); $i++) {
                     foreach ($res[$i] as $key => $value) {
@@ -34,6 +35,7 @@ require_once("verificar.php");
                 ?>
                     <tr>
                         <td><?php echo $res[$i]['nome'] ?></td>
+                        <td><?php echo $res[$i]['descricao'] ?></td>
                         <td style="text-align:center">
                             <a href="index.php?pag=<?php echo $pagina ?>&funcao=editar&id=<?php echo $id_reg ?>" title="Editar Registro">
                                 <i class="bi bi-pencil-square mr-1 text-primary"></i></a>
@@ -59,9 +61,10 @@ require_once("verificar.php");
                     } else {
                         $titulo_modal = 'Editar Registro';
                         $id = @$_GET['id'];
-                        $query = $pdo->query("SELECT * FROM cargos WHERE  id = '$id'");
+                        $query = $pdo->query("SELECT * FROM mesas WHERE  id = '$id'");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                        $nome_cargo = @$res[0]['nome'];
+                        $nome_mesa = @$res[0]['nome'];
+                        $descricao_mesa = @$res[0]['descricao'];
                     }
                     ?>
                     <h5 class="modal-title" id="exampleModalLabel"><?php echo $titulo_modal ?></h5>
@@ -73,7 +76,12 @@ require_once("verificar.php");
 
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Nome </label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?php echo @$nome_cargo ?>" required>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?php echo @$nome_mesa ?>" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Descrição </label>
+                            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Nome" value="<?php echo @$descricao_mesa ?>" required>
                         </div>
 
                         <input type="hidden" name="id" value="<?php echo @$id ?>">

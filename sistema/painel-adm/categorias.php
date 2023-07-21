@@ -1,5 +1,5 @@
 <?php
-$pagina = 'cargos';
+$pagina = 'categorias';
 require_once("verificar.php");
 ?>
 <!DOCTYPE html>
@@ -12,8 +12,8 @@ require_once("verificar.php");
 </head>
 
 <body>
-    <h2>CARGOS</h2>
-    <a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Novo Cargo</a>
+    <h2>CATEGORIAS</h2>
+    <a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Nova Categoria</a>
 
     <small>
         <table id="example" class="table table-hover table-sm my-4" style="width:98%;">
@@ -25,7 +25,7 @@ require_once("verificar.php");
             </thead>
             <tbody>
                 <?php
-                $query = $pdo->query("SELECT * FROM cargos ORDER BY id ASC");
+                $query = $pdo->query("SELECT * FROM categorias ORDER BY id ASC");
                 $res = $query->fetchAll(PDO::FETCH_ASSOC);
                 for ($i = 0; $i < @count($res); $i++) {
                     foreach ($res[$i] as $key => $value) {
@@ -48,7 +48,7 @@ require_once("verificar.php");
         </table>
     </small>
 
-    <!-- Modal para Inserção ou Edição -->
+    <!-- Modal Inserção/Edição-->
     <div class="modal fade" id="cadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -59,9 +59,9 @@ require_once("verificar.php");
                     } else {
                         $titulo_modal = 'Editar Registro';
                         $id = @$_GET['id'];
-                        $query = $pdo->query("SELECT * FROM cargos WHERE  id = '$id'");
+                        $query = $pdo->query("SELECT * FROM categorias WHERE  id = '$id'");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                        $nome_cargo = @$res[0]['nome'];
+                        $nome_cat = @$res[0]['nome'];
                     }
                     ?>
                     <h5 class="modal-title" id="exampleModalLabel"><?php echo $titulo_modal ?></h5>
@@ -73,15 +73,18 @@ require_once("verificar.php");
 
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Nome </label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?php echo @$nome_cargo ?>" required>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?php echo @$nome_cat ?>" required>
                         </div>
 
+
                         <input type="hidden" name="id" value="<?php echo @$id ?>">
+
 
                         <small>
                             <div align="center" id="mensagem">
                             </div>
                         </small>
+
 
                     </div>
                     <div class="modal-footer">
@@ -93,7 +96,9 @@ require_once("verificar.php");
         </div>
     </div>
 
-    <!-- Modal para Exclusão -->
+
+
+    <!-- Modal Exclusão-->
     <div class="modal fade" id="excluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -104,6 +109,8 @@ require_once("verificar.php");
                 <form method="post" id="form-excluir">
                     <div class="modal-body">
 
+
+
                         <input type="hidden" name="id" value="<?php echo @$id ?>">
 
                         <span class="mb-2">Deseja Realmente Excluir este Registro?</span>
@@ -112,6 +119,7 @@ require_once("verificar.php");
                             <div align="center" id="mensagem-excluir">
                             </div>
                         </small>
+
 
                     </div>
                     <div class="modal-footer">
@@ -126,7 +134,8 @@ require_once("verificar.php");
 
 </html>
 
-<!--Script para adicionar arquivo -->
+
+
 <?php
 if (@$_GET['funcao'] == 'novo') { ?>
     <script type="text/javascript">
@@ -137,9 +146,8 @@ if (@$_GET['funcao'] == 'novo') { ?>
         myModal.show();
     </script>
 <?php } ?>
-<!--Final Script para adicionar arquivo -->
 
-<!--Script para editar arquivo -->
+
 <?php
 if (@$_GET['funcao'] == 'editar') { ?>
     <script type="text/javascript">
@@ -150,9 +158,8 @@ if (@$_GET['funcao'] == 'editar') { ?>
         myModal.show();
     </script>
 <?php } ?>
-<!--Fim Script para editar arquivo -->
 
-<!--Script para excluir arquivo -->
+
 <?php
 if (@$_GET['funcao'] == 'excluir') { ?>
     <script type="text/javascript">
@@ -163,9 +170,10 @@ if (@$_GET['funcao'] == 'excluir') { ?>
         myModal.show();
     </script>
 <?php } ?>
-<!--Fim Script para excluir arquivo -->
 
-<!-- Ajax para renderizar datatable -->
+
+
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example').DataTable({
@@ -173,7 +181,9 @@ if (@$_GET['funcao'] == 'excluir') { ?>
         });
     });
 </script>
-<!-- Fim Ajax para renderizar datatable -->
+
+
+
 
 <!-- Ajax para inserir ou editar dados -->
 <script type="text/javascript">
@@ -215,7 +225,7 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 
     });
 </script>
-<!-- Fim Ajax para inserir ou editar dados -->
+
 
 
 <!-- Ajax para excluir dados -->
@@ -258,12 +268,3 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 
     });
 </script>
-<!-- Fim Ajax para excluir dados -->
-
-<!-- Ajax para focar no nome 
-    <script>
-        document.getElementById("submit").onclick = function() {
-            document.getElementById("nome").focus();
-        }
-    </script>
-    Fim Ajax para focar no nome -->

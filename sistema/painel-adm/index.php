@@ -9,6 +9,8 @@ $menu1 = 'home';
 $menu2 = 'funcionarios';
 $menu3 = 'fornecedores';
 $menu4 = 'cargos';
+$menu5 = 'mesas';
+$menu6 = 'categorias';
 
 if(@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos'){
   $classeMenu = 'text-dark';
@@ -21,7 +23,7 @@ $query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_usuario'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if ($total_reg > 0) {
-  $nome_usu = $res[0]['nome'];
+  $nome = $res[0]['nome'];
   $email_usu = $res[0]['email'];
   $cpf_usu = $res[0]['cpf'];
   $telefone_usu = $res[0]['telefone'];
@@ -31,16 +33,12 @@ if ($total_reg > 0) {
   $bairro_usu = $res[0]['bairro'];
   $cidade_usu = $res[0]['cidade'];
   $estado_usu = $res[0]['estado'];
-  $datanasc_usu = $res[0]['datanasc'];
+  $datanasc = $res[0]['datanasc'];
   $datacad_usu = $res[0]['datacad'];
   $senha_usu = $res[0]['senha'];
   $nivel_usu = $res[0]['cargo'];
 }
 
-// Usa o ID do usuário em questão para buscar os dados na tabela do Funcionario
-$query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_usuario'");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-$total_reg = @count($res);
 if ($total_reg > 0) {
   $imagem_perfil = $res[0]['imagem'];
 
@@ -76,7 +74,7 @@ if ($total_reg > 0) {
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../../assets/css/index_p_adm.css">
-
+  <script src="../../assets/js/buscaCep.js" type="module" defer></script>
 </head>
 
 <body>
@@ -129,14 +127,14 @@ if ($total_reg > 0) {
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Produtos / Pratos
+              Estoque
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu8 ?>">Produtos</a></li>
 
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu9 ?>">Pratos</a></li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>">Categorias</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu6 ?>">Categorias</a></li>
 
               <li>
                 <hr class="dropdown-divider">
@@ -193,19 +191,16 @@ if ($total_reg > 0) {
 
         <div class="d-flex mr-4">
 
-          <img class="img-profile rounded-circle" src="../img/adm/<?php echo $imagem_perfil ?>" width="40px" height="40px">
+          <img class="img-profile rounded-circle" src="../../assets/imagens/adm/<?php echo $imagem_perfil ?>" width="40px" height="40px">
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <?php echo $nome_usu; ?>
+              <?php echo $nome ?>
             </a>
 
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item <?php echo $classeMenu ?>" href="" data-bs-toggle="modal" data-bs-target="#perfil">
-                  Editar Perfil
-                </a></li>
-              <li>
-                <hr class="dropdown-divider">
+      
+                
               </li>
               <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php">Sair</a></li>
 
@@ -230,6 +225,10 @@ if ($total_reg > 0) {
       require_once($menu3 . '.php');
     }else if (@$_GET['pag'] == $menu4) {
       require_once($menu4 . '.php');
+    }else if (@$_GET['pag'] == $menu5) {
+      require_once($menu5 . '.php');
+    }else if (@$_GET['pag'] == $menu6) {
+      require_once($menu6 . '.php');
     } else {
       require_once($menu1 . '.php');
     }
@@ -239,70 +238,6 @@ if ($total_reg > 0) {
 </body>
 
 </html>
-
-<!-- Modal Edição de Perfil -->
-<div class="modal fade" id="perfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Perfil</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form method="post" id="form-perfil">
-        <div class="modal-body">
-
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Nome </label>
-            <input type="text" class="form-control" id="nome_perfil" name="nome_perfil" placeholder="Nome" value="<?php echo $nome_usu ?>" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Email </label>
-            <input type="email" class="form-control" id="email_perfil" name="email_perfil" placeholder="nome@exemplo.com" required value="<?php echo $email_usu ?>">
-          </div>
-
-          <div class="row">
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">CPF </label>
-                <input type="text" class="form-control" id="cpf" name="cpf_perfil" placeholder="CPF" required value="<?php echo $cpf_usu ?>">
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Senha </label>
-                <input type="text" class="form-control" id="senha_perfil" name="senha_perfil" placeholder="senha" required value="<?php echo $senha_usu ?>">
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Imagem</label>
-            <input type="file" value="<?php echo @$imagem ?>" class="form-control-file" id="imagem-perfil" name="imagem-perfil" onChange="carregarImgPerfil();">
-          </div>
-
-          <div id="divImgContaPerfil" class="mt-4">
-            <img src="../img/adm/<?php echo @$imagem_perfil ?>" width="170px" id="target-perfil">
-          </div>
-
-          <input type="hidden" name="id_perfil" value="<?php echo $id_usuario ?>">
-
-
-          <small>
-            <div align="center" id="mensagem-perfil">
-            </div>
-          </small>
-
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-faded" data-bs-dismiss="modal" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" id="btn-fechar-perfil">Fechar</button>
-          <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Editar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 <!--  Modal Rel Compras-->
 <div class="modal fade" tabindex="-1" id="ModalRelCompras" data-bs-backdrop="static">
