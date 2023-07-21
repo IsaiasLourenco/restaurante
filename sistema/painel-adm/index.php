@@ -11,6 +11,8 @@ $menu3 = 'fornecedores';
 $menu4 = 'cargos';
 $menu5 = 'mesas';
 $menu6 = 'categorias';
+$menu7 = 'produtos';
+$menu8 = 'pratos';
 
 if(@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos'){
   $classeMenu = 'text-dark';
@@ -130,9 +132,9 @@ if ($total_reg > 0) {
               Estoque
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu8 ?>">Produtos</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>">Produtos</a></li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu9 ?>">Pratos</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu8 ?>">Pratos</a></li>
 
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu6 ?>">Categorias</a></li>
 
@@ -229,6 +231,10 @@ if ($total_reg > 0) {
       require_once($menu5 . '.php');
     }else if (@$_GET['pag'] == $menu6) {
       require_once($menu6 . '.php');
+    }else if (@$_GET['pag'] == $menu7) {
+      require_once($menu7 . '.php');
+    }else if (@$_GET['pag'] == $menu8) {
+      require_once($menu8 . '.php');
     } else {
       require_once($menu1 . '.php');
     }
