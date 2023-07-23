@@ -1,7 +1,8 @@
 <?php
-$pagina = 'pratos';
+$pagina = 'banners';
 require_once("verificar.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,65 +13,48 @@ require_once("verificar.php");
 </head>
 
 <body>
-	<h2>PRATOS</h2>
-	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Novo Prato</a>
+	<h2>BANNERS</h2>
+	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Novo Banner</a>
 
+	<!-- Dataset Produtos -->
 	<small>
 		<table id="example" class="table table-hover table-sm my-4" style="width:98%;">
 			<thead>
 				<tr>
-					<th>Nome</th>
-					<th>Valor</th>
-					<th>Categoria</th>
+					<th>Titulo</th>
+					<th>Subtitulo</th>
+					<th>Link</th>
 					<th style="text-align:center">Imagem</th>
 					<th style="text-align:center">Ações</th>
+
 				</tr>
 			</thead>
 			<tbody>
 				<?php
-				$query = $pdo->query("SELECT * FROM pratos ORDER BY id ASC");
+				$query = $pdo->query("SELECT * FROM banners ORDER BY id ASC");
 				$res = $query->fetchAll(PDO::FETCH_ASSOC);
 				for ($i = 0; $i < @count($res); $i++) {
 					foreach ($res[$i] as $key => $value) {
 					}
 					$id_reg = $res[$i]['id'];
 
-					$id_cat = $res[$i]['categoria'];
-
-					//BUSCAR O NOME RELACIONADO
-					$query2 = $pdo->query("SELECT * FROM categorias where id = '$id_cat'");
-					$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-					$nome_cat = $res2[0]['nome'];
-
-					$valor = number_format($res[$i]['valor'], 2, ',', '.');
-
 				?>
 					<tr>
-						<td><?php echo $res[$i]['nome'] ?></td>
-						<td>R$ <?php echo $valor ?></td>
-						<td><?php echo $nome_cat ?></td>
-						<td style="text-align:center"><img src="../../assets/imagens/<?php echo $pagina ?>/<?php echo $res[$i]['imagem'] ?>" height="20px" width="40"></td>
+						<td><?php echo $res[$i]['titulo'] ?></td>
+						<td><?php echo $res[$i]['subtitulo'] ?></td>
+
+						<td><?php echo $res[$i]['link'] ?></td>
+						<td style="text-align:center"><img src="../../assets/imagens/<?php echo $pagina ?>/<?php echo $res[$i]['imagem'] ?>" width="30px"></td>
 						<td style="text-align:center">
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=editar&id=<?php echo $id_reg ?>" title="Editar Registro">
 								<i class="bi bi-pencil-square mr-1 text-primary"></i></a>
 
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Excluir Registro">
 								<i class="bi bi-trash text-danger"></i></a>
+							</a>
 
-							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $valor ?>', '<?php echo $nome_cat ?>', '<?php echo $res[$i]["imagem"] ?>', '<?php echo $res[$i]["descricao"] ?>')" title="Ver Dados">
+							<a href="" onclick="dados('<?php echo $res[$i]["titulo"] ?>', '<?php echo $res[$i]["descricao"] ?>', '<?php echo $res[$i]["imagem"] ?>', '<?php echo $res[$i]["link"] ?>')" title="Ver Dados">
 								<i class="bi bi-info-circle-fill text-secondary"></i></a>
-
-							<?php if ($res[$i]["ativo"] == 'Sim') { ?>
-
-								<a href="" onclick="ativo('<?php echo $res[$i]["id"] ?>', 'Não')" title="Desativar">
-									<i class="bi bi-check-square-fill text-success"></i></a>
-
-							<?php  } else { ?>
-
-								<a href="" onclick="ativo('<?php echo $res[$i]["id"] ?>', 'Sim')" title="Ativar">
-									<i class="bi bi-square text-danger"></i></a>
-
-							<?php  } ?>
 
 						</td>
 					</tr>
@@ -80,8 +64,9 @@ require_once("verificar.php");
 			</tbody>
 		</table>
 	</small>
+	<!-- Fim do Dataset Produtos -->
 
-	<!-- Modal Inserção Edição-->
+	<!-- Modal Inserção ou Edição -->
 	<div class="modal fade" id="cadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -92,14 +77,13 @@ require_once("verificar.php");
 					} else {
 						$titulo_modal = 'Editar Registro';
 						$id = @$_GET['id'];
-						$query = $pdo->query("SELECT * FROM pratos WHERE  id = '$id'");
+						$query = $pdo->query("SELECT * FROM banners WHERE  id = '$id'");
 						$res = $query->fetchAll(PDO::FETCH_ASSOC);
-						$nome_prato = @$res[0]['nome'];
+						$nome_banner = @$res[0]['nome'];
+						$titulo = @$res[0]['titulo'];
+						$subtitulo = @$res[0]['subtitulo'];
 						$descricao = @$res[0]['descricao'];
-						$valor = @$res[0]['valor'];
-
-						$categoria = @$res[0]['categoria'];
-
+						$link = @$res[0]['link'];
 						$imagem = @$res[0]['imagem'];
 					}
 					?>
@@ -110,46 +94,35 @@ require_once("verificar.php");
 					<div class="modal-body">
 
 						<div class="row">
+
 							<div class="col-4">
 								<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Nome </label>
-									<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?php echo @$nome_prato ?>" required>
+									<label for="exampleFormControlInput1" class="form-label">Título </label>
+									<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título do banner" required value="<?php echo @$titulo ?>">
 								</div>
 							</div>
 
 							<div class="col-4">
 								<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Valor </label>
-									<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" required value="<?php echo @$valor ?>">
+									<label for="exampleFormControlInput1" class="form-label">Subtítulo </label>
+									<input type="text" class="form-control" id="subtitulo" name="subtitulo" placeholder="Subtítulo do banner" required value="<?php echo @$subtitulo ?>">
 								</div>
 							</div>
 
 							<div class="col-4">
 								<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Categoria </label>
-									<select class="form-select" aria-label="Default select example" name="categoria">
-										<?php
-										$query = $pdo->query("SELECT * FROM categorias order by nome asc");
-										$res = $query->fetchAll(PDO::FETCH_ASSOC);
-										for ($i = 0; $i < @count($res); $i++) {
-											foreach ($res[$i] as $key => $value) {
-											}
-											$id_item = $res[$i]['id'];
-											$nome_item = $res[$i]['nome'];
-										?>
-											<option <?php if (@$id_item == @$categoria) { ?> selected <?php } ?> value="<?php echo $id_item ?>"><?php echo $nome_item ?></option>
-
-										<?php } ?>
-
-									</select>
+									<label for="exampleFormControlInput1" class="form-label">Link </label>
+									<input type="text" class="form-control" id="link" name="link" placeholder="Link do Banner" value="<?php echo @$link ?>">
 								</div>
 							</div>
 
 						</div>
 
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Descrição </label>
-							<input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição do Produto" value="<?php echo @$descricao ?>">
+							<div class="mb-3">
+								<label for="exampleFormControlInput1" class="form-label">Descrição </label>
+								<input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição do Banner" value="<?php echo @$descricao ?>">
+							</div>
 						</div>
 
 						<div class="form-group">
@@ -162,6 +135,7 @@ require_once("verificar.php");
 								<img src="../../assets/imagens/<?php echo $pagina ?>/<?php echo @$imagem ?>" width="170px" id="target">
 							<?php  } else { ?>
 								<img src="../../assets/imagens/<?php echo $pagina ?>/sem-foto.jpg" width="170px" id="target">
+
 							<?php } ?>
 						</div>
 
@@ -181,7 +155,7 @@ require_once("verificar.php");
 			</div>
 		</div>
 	</div>
-	<!-- Fim Modal Inserção Edição-->
+	<!-- Modal Inserção ou Edição -->
 
 	<!-- Modal Exclusão-->
 	<div class="modal fade" id="excluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -212,57 +186,45 @@ require_once("verificar.php");
 			</div>
 		</div>
 	</div>
-	<!--Fim Modal Exclusão-->
+	<!-- Fim Modal Exclusão-->
 
-	<!-- Modal Dados-->
+	<!-- Modal Dados -->
 	<div class="modal fade" id="modal-dados" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="nome_registro"></h5>
+					<h5 class="modal-title">Dados adicionais</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 
 				<div class="modal-body">
 
-					<div class="row">
-						<div class="col-6">
-							<div class="mb-2">
-								<span><b>Valor : </b></span><span>R$ </span><span id="valor_registro"></span>
-							</div>
-						</div>
-						<div class="col-6">
-
-							<div class="mb-2">
-								<span><b>Categoria : </b></span><span id="categoria_registro"></span>
-							</div>
-
-						</div>
+					<div class="mb-2">
+						<span><b>Descrição do Banner: </b></span><span id="descricao_registro"></span>
 					</div>
 
 					<div class="mb-2">
-						<img src="" id="imagem_registro" width="100%">
+						<span><b>Imagem que aparecerá: </b><br></span><img src="" id="imagem_registro" width="50%">
 					</div>
 
 					<div class="mb-2">
-						<span id="descricao_registro"></span>
-					</div>
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
+						<span><b>Link para visita: </b><br><a target="blank" href="link_registro"><span><b></b></span><span id="link_registro"></span></a>
 					</div>
 
 				</div>
-
+				<div class="modal-footer">
+					<button type="button" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Fim Modal Dados-->
+	<!--Fim Modal Dados -->
+
 </body>
 
 </html>
 
-<!-- Ajax Modal Novo-->
+<!-- Chama modal de cadastro -->
 <?php
 if (@$_GET['funcao'] == 'novo') { ?>
 	<script type="text/javascript">
@@ -273,9 +235,9 @@ if (@$_GET['funcao'] == 'novo') { ?>
 		myModal.show();
 	</script>
 <?php } ?>
-<!-- Fim Ajax Modal Novo-->
+<!-- Fim do Chama modal de cadastro -->
 
-<!-- Ajax Modal Editar-->
+<!-- Chama modal de edição -->
 <?php
 if (@$_GET['funcao'] == 'editar') { ?>
 	<script type="text/javascript">
@@ -286,9 +248,9 @@ if (@$_GET['funcao'] == 'editar') { ?>
 		myModal.show();
 	</script>
 <?php } ?>
-<!-- Fim Ajax Modal Editar-->
+<!-- Fim do Chama modal de cadastro -->
 
-<!-- Ajax Modal Excluir-->
+<!-- Chama modal de exclusão -->
 <?php
 if (@$_GET['funcao'] == 'excluir') { ?>
 	<script type="text/javascript">
@@ -299,9 +261,9 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		myModal.show();
 	</script>
 <?php } ?>
-<!-- Fim Ajax Modal Excluir-->
+<!-- Fim do Chama modal de exclusão -->
 
-<!-- JavaScript-->
+<!-- Ordenação da Datable Produtos -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#example').DataTable({
@@ -309,7 +271,7 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		});
 	});
 </script>
-<!-- Fim JavaScript-->
+<!-- Fim da Ordenação da Datable Produtos -->
 
 <!-- Ajax para inserir ou editar dados -->
 <script type="text/javascript">
@@ -351,7 +313,7 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 
 	});
 </script>
-<!-- Fim Ajax para inserir ou editar dados -->
+<!-- Fim do Ajax para inserir ou editar dados -->
 
 <!-- Ajax para excluir dados -->
 <script type="text/javascript">
@@ -393,28 +355,25 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 
 	});
 </script>
-<!--Dim Ajax para excluir dados -->
+<!-- Fim do Ajax para excluir dados -->
 
-<!-- Ajax para Modal dados -->
+<!-- Ajax para visualizar dados adicionais -->
 <script type="text/javascript">
-	function dados(nome, valor, categoria, imagem, descricao) {
-		var pag = "<?= $pagina ?>";
+	function dados(titulo, descricao, imagem, link) {
+
 		event.preventDefault();
 		var myModal = new bootstrap.Modal(document.getElementById('modal-dados'), {
 
 		});
 
 		myModal.show();
-		$('#nome_registro').text(nome);
-		$('#valor_registro').text(valor);
-
-		$('#categoria_registro').text(categoria);
-
-		$('#imagem_registro').attr('src', '../../assets/imagens/' + pag + '/' + imagem);
+		$('#titulo_registro').text(titulo);
 		$('#descricao_registro').text(descricao);
+		$('#imagem_registro').attr('src', '../../assets/imagens/banners/' + imagem);
+		$('#link_registro').text(link);
 	}
 </script>
-<!--Fim Ajax para Modal dados -->
+<!-- Ajax para visualizar dados adicionais -->
 
 <!--SCRIPT PARA CARREGAR IMAGEM -->
 <script type="text/javascript">
@@ -428,7 +387,7 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		//console.log(resultado[1]);
 
 		if (resultado[1] === 'pdf') {
-			$('#target').attr('src', "../../assets/imagens/produtos/pdf.png");
+			$('#target').attr('src', "../../assets/imagens/banners/pdf.png");
 			return;
 		}
 
@@ -447,36 +406,4 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		}
 	}
 </script>
-<!--FIM DO SCRIPT PARA CARREGAR IMAGEM -->
-
-<!--SCRIPT PARA ATIVAR PRATO -->
-<script type="text/javascript">
-	function ativo(id, ativo) {
-		var pag = "<?= $pagina ?>";
-		event.preventDefault();
-
-		$.ajax({
-			url: pag + "/ativar.php",
-			method: 'POST',
-			data: {
-				id,
-				ativo
-			},
-			dataType: "text",
-
-			success: function(mensagem) {
-
-				console.log(mensagem);
-				if (mensagem.trim() == "Ativado com Sucesso!") {
-
-					window.location = "index.php?pag=" + pag;
-
-				}
-			},
-
-
-		});
-
-	}
-</script>
-<!--FIM DO SCRIPT PARA ATIVAR PRATO -->
+<!--FIM SCRIPT PARA CARREGAR IMAGEM -->

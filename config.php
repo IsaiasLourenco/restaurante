@@ -30,7 +30,7 @@ $banco = 'restaurante';
 //VARIÁVEIS PARA BANCO DE DADOS HOSPEDADO
 //$servidor = 'restaurantelor.mysql.dbaas.com.br';
 //$usuario = 'restaurantelor';
-//$senha = 'Mandalor45@';
+//  $senha = 'Mandalor45@';
 //$banco = 'restaurantelor';
 
 ?>

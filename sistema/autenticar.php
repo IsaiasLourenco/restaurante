@@ -20,6 +20,8 @@ if ($total_reg > 0) {
     //REDIRECIONAR CONFORME CARGO
     if($res[0]['cargo'] == '1'){
         echo "<script language='javascript'> window.location='painel-adm' </script>";
+    }else if ($res[0]['cargo'] == '3'){
+        echo "<script language='javascript'> window.location='painel-chef' </script>";
     }else{
         echo "<script language='javascript'> window.location='index.php'</script>";
     }

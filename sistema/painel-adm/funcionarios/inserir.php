@@ -51,10 +51,36 @@ if ($cpf != $cpf_banco) {
 	}
 }
 
-if ($id == "") {
-	$query = $pdo->prepare("INSERT INTO funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, cargo = :cargo, senha = :senha, datanasc = :datanasc, datacad = curDate()");
+//SCRIPT PARA SUBIR FOTO NO BANCO
+$nome_img = date('d-m-Y H:i:s') . '-' . @$_FILES['imagem']['name'];
+$nome_img = preg_replace('/[ :]+/', '-', $nome_img);
+
+$caminho = '../../../assets/imagens/funcionarios/' . $nome_img;
+if (@$_FILES['imagem']['name'] == "") {
+	$imagem = "sem-foto.jpg";
 } else {
-	$query = $pdo->prepare("UPDATE funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, cargo = :cargo, senha = :senha, datanasc = :datanasc, datacad = curDate() WHERE id = '$id'");
+	$imagem = $nome_img;
+}
+
+$imagem_temp = @$_FILES['imagem']['tmp_name'];
+$ext = pathinfo($imagem, PATHINFO_EXTENSION);
+if ($ext == 'png' or $ext == 'jpg' or $ext == 'JPG' or $ext == 'jpeg' or $ext == 'gif') {
+	move_uploaded_file($imagem_temp, $caminho);
+} else {
+	echo 'Extensão de Imagem não permitida!';
+	exit();
+}
+
+if ($id == "") {
+	$query = $pdo->prepare("INSERT INTO funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, cargo = :cargo, senha = :senha, datanasc = :datanasc, datacad = curDate(), imagem = :imagem");
+	$query->bindValue(":imagem", "$imagem");
+} else {
+	if ($imagem == "sem-foto.jpg") {
+		$query = $pdo->prepare("UPDATE funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, cargo = :cargo, senha = :senha, datanasc = :datanasc, datacad = curDate() WHERE id = '$id'");
+	} else {
+		$query = $pdo->prepare("UPDATE funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, cargo = :cargo, senha = :senha, datanasc = :datanasc, datacad = curDate(), imagem = :imagem WHERE id = '$id'");
+		$query->bindValue(":imagem", "$imagem");
+	}
 }
 
 $query->bindValue(":nome", "$nome");
@@ -67,10 +93,15 @@ $query->bindValue(":numero", "$numero");
 $query->bindValue(":bairro", "$bairro");
 $query->bindValue(":cidade", "$cidade");
 $query->bindValue(":estado", "$estado");
-$query->bindValue(":senha", "$senha");
 $query->bindValue(":cargo", "$cargo");
+$query->bindValue(":senha", "$senha");
 $query->bindValue(":datanasc", "$datanasc");
+$query->execute();
+$id_funcionario = $pdo->lastInsertId();
+
+if($cargo == '3'){
+	$query = $pdo->prepare("INSERT INTO chef SET funcionario = $id_funcionario");
+}
 
 $query->execute();
-
 echo 'Salvo com Sucesso!';

@@ -26,8 +26,7 @@ require_once("verificar.php");
 					<th>CPF</th>
 					<th>Telefone</th>
 					<th>Cargo</th>
-					<th>Data Cadastro</th>
-					<th>Idade</th>
+					<th>Data Cadastro</thstyle=>
 					<th>Ações</th>
 
 				</tr>
@@ -49,14 +48,6 @@ require_once("verificar.php");
 
 					$datacad = implode('/', array_reverse(explode('-', $res[$i]['datacad'])));
 					$datanasc = implode('/', array_reverse(explode('-', $res[$i]['datanasc'])));
-					$nascimento = new DateTime($datanasc);
-					$idadedade = $nascimento->diff(new DateTime(date('Y-m-d')));
-					$idade = $idadedade->format('%Y anos');		
-
-					//$dataNascimento = $datanasc;
-					//$date = new DateTime($dataNascimento);
-					//$interval = $date->diff(new DateTime(date('Y-m-d')));
-					//echo $interval->format('%Y anos');
 
 				?>
 					<tr>
@@ -66,7 +57,6 @@ require_once("verificar.php");
 						<td><?php echo $res[$i]['telefone'] ?></td>
 						<td><?php echo $nome_cargo ?></td>
 						<td><?php echo $datacad ?></td>
-						<td><?php echo $idade ?></td>
 
 						<td>
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=editar&id=<?php echo $id_reg ?>" title="Editar Registro">
@@ -75,7 +65,7 @@ require_once("verificar.php");
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Excluir Registro">
 								<i class="bi bi-trash text-danger"></i></a>
 
-							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $res[$i]["cep"] ?>', '<?php echo $res[$i]["rua"] ?>', '<?php echo $res[$i]["numero"] ?>', '<?php echo $res[$i]["bairro"] ?>', '<?php echo $res[$i]["cidade"] ?>', '<?php echo $res[$i]["estado"] ?>', '<?php echo $res[$i]["senha"] ?>', '<?php echo $datanasc ?>', '<?php echo $res[$i]["imagem"] ?>')" title="Ver Dados">
+							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $res[$i]["cep"] ?>', '<?php echo $res[$i]["rua"] ?>', '<?php echo $res[$i]["numero"] ?>', '<?php echo $res[$i]["bairro"] ?>', '<?php echo $res[$i]["cidade"] ?>', '<?php echo $res[$i]["estado"] ?>', '<?php echo $res[$i]["senha"] ?>', '<?php echo $res[$i]["imagem"] ?>', '<?php echo $datanasc ?>')" title="Ver Dados">
 								<i class="bi bi-info-circle-fill text-secondary"></i></a>
 
 						</td>
@@ -248,9 +238,10 @@ require_once("verificar.php");
 
 							<div id="divImgConta" class="mt-4">
 								<?php if (@$imagem != "") { ?>
-									<img src="../../assets/imagens/adm/<?php echo $pagina ?>/<?php echo @$imagem ?>" width="170px" id="target">
+									<img src="../../assets/imagens/<?php echo $pagina ?>/<?php echo @$imagem ?>" width="170px" id="target">
 								<?php  } else { ?>
-									<img src="../../assets/imagens/adm/sem-foto.jpg" width="170px" id="target">
+									<img src="../../assets/imagens/<?php echo $pagina ?>/sem-foto.jpg" width="170px" id="target">
+
 								<?php } ?>
 							</div>
 
@@ -272,6 +263,7 @@ require_once("verificar.php");
 			</div>
 		</div>
 	</div>
+	<!--Fim Modal Inserção e Edição -->
 
 	<!-- Modal Exclusão-->
 	<div class="modal fade" id="excluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -316,6 +308,10 @@ require_once("verificar.php");
 				<div class="modal-body">
 
 					<div class="mb-2">
+						<img src="" id="imagem_registro" width="50%">
+					</div>
+
+					<div class="mb-2">
 						<span><b>CEP : </b></span><span id="cep_registro"></span>
 					</div>
 
@@ -345,11 +341,6 @@ require_once("verificar.php");
 
 					<div class="mb-2">
 						<span><b>Data Nascimento : </b></span><span id="data_nasc_registro"></span>
-					</div>
-
-					<div class="mb-2">
-						<span><b>Curió : </b></span><span id="imagem"></span>
-						<img src="" id="imagem-registro" width="50%">
 					</div>
 
 				</div>
@@ -501,7 +492,7 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 
 <!-- Ajax para visualizar dados adicionais -->
 <script type="text/javascript">
-	function dados(nome, cep, rua, numero, bairro, cidade, estado, senha, datanasc, imagem) {
+	function dados(nome, cep, rua, numero, bairro, cidade, estado, senha, imagem, datanasc) {
 		event.preventDefault();
 		var myModal = new bootstrap.Modal(document.getElementById('modal-dados'), {
 
@@ -516,8 +507,8 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		$('#cidade_registro').text(cidade);
 		$('#estado_registro').text(estado);
 		$('#senha_registro').text(senha);
+		$('#imagem_registro').attr('src', '../../assets/imagens/funcionarios/' + imagem);
 		$('#data_nasc_registro').text(datanasc);
-		$('#imagem-registro').attr('src', '../img/' + pag + '/' + imagem);
 
 	}
 </script>
@@ -535,7 +526,7 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		//console.log(resultado[1]);
 
 		if (resultado[1] === 'pdf') {
-			$('#target').attr('src', "../img/pdf.png");
+			$('#target').attr('src', "../../assets/imagens/funcionarios/pdf.png");
 			return;
 		}
 

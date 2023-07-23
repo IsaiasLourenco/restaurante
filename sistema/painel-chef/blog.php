@@ -1,5 +1,5 @@
 <?php
-$pagina = 'produtos';
+$pagina = 'blog';
 require_once("verificar.php");
 ?>
 
@@ -13,20 +13,17 @@ require_once("verificar.php");
 </head>
 
 <body>
-	<h2>PRODUTOS</h2>
-	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Novo Produto</a>
+	<h2>BLOG</h2>
+	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Nova Postagem</a>
 
 	<!-- Dataset Produtos -->
 	<small>
 		<table id="example" class="table table-hover table-sm my-4" style="width:98%;">
 			<thead>
 				<tr>
-					<th>Nome</th>
-					<th>Preço de Compra</th>
-					<th>Preço de Venda</th>
-					<th>Categoria</th>
-					<th>Fornecedor</th>
-					<th style="text-align:center">Estoque</th>
+					<th>Titulo</th>
+					<th>Autor</th>
+					<th>Data</th>
 					<th style="text-align:center">Imagem</th>
 					<th style="text-align:center">Ações</th>
 
@@ -34,41 +31,24 @@ require_once("verificar.php");
 			</thead>
 			<tbody>
 				<?php
-				$query = $pdo->query("SELECT * FROM produtos ORDER BY id ASC");
+				$query = $pdo->query("SELECT * FROM blog ORDER BY id ASC");
 				$res = $query->fetchAll(PDO::FETCH_ASSOC);
 				for ($i = 0; $i < @count($res); $i++) {
 					foreach ($res[$i] as $key => $value) {
 					}
 					$id_reg = $res[$i]['id'];
+					$id_autor = $res[$i]['autor'];
 
-					$id_cat = $res[$i]['categoria'];
-					$id_forn = $res[$i]['fornecedor'];
-
-					//BUSCAR O NOME RELACIONADO
-					$query2 = $pdo->query("SELECT * FROM categorias where id = '$id_cat'");
+					//BUSCAR O NOME DO FUNCIONÁRIO RELACIONADO AO ID NA TABELA BLOG	
+					$query2 = $pdo->query("SELECT * FROM funcionarios where id = '$id_autor'");
 					$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-					$nome_cat = $res2[0]['nome'];
-
-					//BUSCAR O NOME RELACIONADO
-					$query2 = $pdo->query("SELECT * FROM fornecedores where id = '$id_forn'");
-					$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-					if (@count($res2) == 0) {
-						$nome_forn = 'Sem Fornecedor';
-					} else {
-						$nome_forn = $res2[0]['nome'];
-					}
-
-					$valor_compra = number_format($res[$i]['valor_compra'], 2, ',', '.');
-					$valor_venda = number_format($res[$i]['valor_venda'], 2, ',', '.');
+					$nome_autor = $res2[0]['nome'];
 
 				?>
 					<tr>
-						<td><?php echo $res[$i]['nome'] ?></td>
-						<td>R$ <?php echo $valor_compra ?></td>
-						<td>R$ <?php echo $valor_venda ?></td>
-						<td><?php echo $nome_cat ?></td>
-						<td><?php echo $nome_forn ?></td>
-						<td style="text-align:center"><?php echo $res[$i]['estoque'] ?></td>
+						<td><?php echo $res[$i]['titulo'] ?></td>
+						<td><?php echo $nome_autor ?></td>
+						<td><?php echo implode('/', array_reverse(explode('-', $res[$i]['data_postagem']))) ?></td>
 						<td style="text-align:center"><img src="../../assets/imagens/<?php echo $pagina ?>/<?php echo $res[$i]['imagem'] ?>" height="20px" width="30px"></td>
 						<td style="text-align:center">
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=editar&id=<?php echo $id_reg ?>" title="Editar Registro">
@@ -76,12 +56,10 @@ require_once("verificar.php");
 
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Excluir Registro">
 								<i class="bi bi-trash text-danger"></i></a>
-
-							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $valor_compra ?>', '<?php echo $valor_venda ?>', '<?php echo $nome_cat ?>', '<?php echo $nome_forn ?>', '<?php echo $res[$i]["estoque"] ?>', '<?php echo $res[$i]["imagem"] ?>', '<?php echo $res[$i]["descricao"] ?>')" title="Ver Dados">
-								<i class="bi bi-info-circle-fill text-secondary"></i></a>
-							<a href="#" onclick="comprarProdutos('<?php echo $res[$i]['id'] ?>')" title="Comprar Produtos" style="text-decoration: none">
-								<i class="bi bi-bag-fill text-success"></i>
 							</a>
+
+							<a href="" onclick="dados('<?php echo $res[$i]['titulo'] ?>', '<?php echo $res[$i]['descricao_1'] ?>', '<?php echo $res[$i]['descricao_2'] ?>', '<?php echo $res[$i]['descricao_3'] ?>', '<?php echo $res[$i]['tag'] ?>', '<?php echo $res[$i]['visitas'] ?>', '<?php echo $res[$i]['url_titulo'] ?>','<?php echo $res[$i]['imagem'] ?>')" title="Ver Dados">
+								<i class="bi bi-info-circle-fill text-secondary"></i></a>
 
 						</td>
 					</tr>
@@ -93,7 +71,7 @@ require_once("verificar.php");
 	</small>
 	<!-- Fim do Dataset Produtos -->
 
-	<!-- Modal Inserção ou Edição -->
+	<!-- Modal Inserir/Editar -->
 	<div class="modal fade" id="cadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -104,15 +82,16 @@ require_once("verificar.php");
 					} else {
 						$titulo_modal = 'Editar Registro';
 						$id = @$_GET['id'];
-						$query = $pdo->query("SELECT * FROM produtos WHERE  id = '$id'");
+						$query = $pdo->query("SELECT * FROM blog WHERE  id = '$id'");
 						$res = $query->fetchAll(PDO::FETCH_ASSOC);
-						$nome_prod = @$res[0]['nome'];
-						$descricao = @$res[0]['descricao'];
-						$valor_compra = @$res[0]['valor_compra'];
-						$valor_venda_prod = @$res[0]['valor_venda'];
-						$categoria = @$res[0]['categoria'];
-						$fornecedor = @$res[0]['fornecedor'];
-						$estoque = @$res[0]['estoque'];
+
+						$titulo_blog = @$res[0]['titulo'];
+						$descricao_1 = @$res[0]['descricao_1'];
+						$descricao_2 = @$res[0]['descricao_2'];
+						$descricao_3 = @$res[0]['descricao_3'];		
+						$author = @$res[0]['autor'];
+						$tag = @$res[0]['tag'];
+						$ddata_postagem = @$res[0]['data_postagem'];
 						$imagem = @$res[0]['imagem'];
 					}
 					?>
@@ -125,44 +104,33 @@ require_once("verificar.php");
 						<div class="row">
 							<div class="col-4">
 								<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Nome </label>
-									<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?php echo @$nome_prod ?>" required>
+									<label for="exampleFormControlInput1" class="form-label">Título </label>
+									<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" value="<?php echo @$titulo_blog ?>" required>
 								</div>
 							</div>
 
-							<div class="col-4">
+							<div class="col-8">
 								<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Valor Venda </label>
-									<input type="text" class="form-control" id="valor_venda" name="valor_venda" placeholder="Valor da Venda" required value="<?php echo @$valor_venda_prod ?>">
-								</div>
-							</div>
-
-							<div class="col-4">
-								<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Categoria </label>
-									<select class="form-select" aria-label="Default select example" name="categoria">
-										<?php
-										$query = $pdo->query("SELECT * FROM categorias order by nome asc");
-										$res = $query->fetchAll(PDO::FETCH_ASSOC);
-										for ($i = 0; $i < @count($res); $i++) {
-											foreach ($res[$i] as $key => $value) {
-											}
-											$id_item = $res[$i]['id'];
-											$nome_item = $res[$i]['nome'];
-										?>
-											<option <?php if (@$id_item == @$categoria) { ?> selected <?php } ?> value="<?php echo $id_item ?>"><?php echo $nome_item ?></option>
-
-										<?php } ?>
-
-									</select>
+									<label for="exampleFormControlInput1" class="form-label">Palavras Chaves </label>
+									<input type="text" class="form-control" id="tag" name="tag" placeholder="Palavras Chaves" value="<?php echo @$tag ?>" required>
 								</div>
 							</div>
 
 						</div>
 
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Descrição </label>
-							<input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição do Produto" value="<?php echo @$descricao ?>">
+							<label for="exampleFormControlInput1" class="form-label">Descrição 1 </label>
+							<textarea maxlength="2000" type="text" class="form-control" id="descricao_1" name="descricao_1"><?php echo @$descricao_1 ?> </textarea>
+						</div>
+
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Descrição 2 </label>
+							<textarea maxlength="2000" type="text" class="form-control" id="descricao_2" name="descricao_2"><?php echo @$descricao_2 ?> </textarea>
+						</div>
+
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Descrição 3 </label>
+							<textarea maxlength="2000" type="text" class="form-control" id="descricao_3" name="descricao_3"><?php echo @$descricao_3 ?> </textarea>
 						</div>
 
 						<div class="form-group">
@@ -174,8 +142,7 @@ require_once("verificar.php");
 							<?php if (@$imagem != "") { ?>
 								<img src="../../assets/imagens/<?php echo $pagina ?>/<?php echo @$imagem ?>" width="170px" id="target">
 							<?php  } else { ?>
-								<img src="../../assets/imagens/<?php echo $pagina ?>/sem-foto.jpg" width="170px" id="target">
-
+								<img src="../../assets/imagens/blog/sem-foto.jpg" width="170px" id="target">
 							<?php } ?>
 						</div>
 
@@ -195,7 +162,7 @@ require_once("verificar.php");
 			</div>
 		</div>
 	</div>
-	<!-- Modal Inserção ou Edição -->
+	<!-- Fim do Modal Inserir/Editar -->
 
 	<!-- Modal Exclusão-->
 	<div class="modal fade" id="excluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -233,38 +200,38 @@ require_once("verificar.php");
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="nome_registro"></h5>
+					<h5 class="modal-title" id="titulo_registro"></h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 
 				<div class="modal-body">
 
 					<div class="mb-2">
-						<span><b>Valor Venda : </b></span><span>R$ </span><span id="venda_registro"></span>
+						<span><b>Primeira Descrição : </b></span><span id="descricao_1_registro"></span>
 					</div>
 
 					<div class="mb-2">
-						<span><b>Valor Compra : </b></span><span>R$ </span><span id="compra_registro"></span>
+						<span><b>Segundo Descrição : </b></span><span id="descricao_2_registro"></span>
 					</div>
 
 					<div class="mb-2">
-						<span><b>Categoria : </b></span><span id="categoria_registro"></span>
+						<span><b>Terceira Descrição : </b></span><span id="descricao_3_registro"></span>
 					</div>
 
 					<div class="mb-2">
-						<span><b>Fornecedor : </b></span><span id="fornecedor_registro"></span>
+						<span><b>Palavras Chave : </b></span><span id="tag_registro"></span>
 					</div>
 
 					<div class="mb-2">
-						<span><b>Estoque : </b></span><span id="estoque_registro"></span>
+						<span><b>Quantidade de Visitas : </b></span><span id="visitas_registro"></span>
+					</div>
+
+					<div class="mb-2">
+						<a target="blank" href="../../"><span id="url_titulo_registro"></span></a>
 					</div>
 
 					<div class="mb-2">
 						<img src="" id="imagem_registro" width="50%">
-					</div>
-
-					<div class="mb-2">
-						<span id="descricao_registro"></span>
 					</div>
 
 					<div class="modal-footer">
@@ -278,66 +245,6 @@ require_once("verificar.php");
 	</div>
 	<!--Fim Modal Dados -->
 
-	<!-- Modal Compras -->
-	<div class="modal fade" id="modal-comprar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="nome-comprar"></h5>
-					<h5 class="modal-title" id="nome-comprar">Comprar</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-
-				<form method="post" id="form-comprar">
-					<div class="modal-body">
-
-						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Quantidade </label>
-							<input type="text" class="form-control" id="quantidade" name="quantidade" placeholder="Quantidade" required>
-						</div>
-
-						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Valor Compra </label>
-							<input type="text" class="form-control" id="valor_compra" name="valor_compra" placeholder="Valor da Compra" required>
-						</div>
-
-						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Fornecedores </label>
-							<select class="form-select" aria-label="Default select example" name="fornecedor">
-								<?php
-								$query = $pdo->query("SELECT * FROM fornecedores order by nome asc");
-								$res = $query->fetchAll(PDO::FETCH_ASSOC);
-								for ($i = 0; $i < @count($res); $i++) {
-									foreach ($res[$i] as $key => $value) {
-									}
-									$id_item = $res[$i]['id'];
-									$nome_item = $res[$i]['nome'];
-								?>
-									<option value="<?php echo $id_item ?>"><?php echo $nome_item ?></option>
-
-								<?php } ?>
-
-							</select>
-						</div>
-
-						<input type="hidden" id="id-comprar" name="id_comprar" value="<?php echo @$id ?>">
-
-						<small>
-							<div align="center" id="mensagem-comprar">
-							</div>
-						</small>
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-comprar">Fechar</button>
-						<button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Comprar</button>
-					</div>
-				</form>
-
-			</div>
-		</div>
-	</div>
-	<!-- Fim Modal Compras -->
 </body>
 
 </html>
@@ -477,22 +384,21 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 
 <!-- Ajax para visualizar dados adicionais -->
 <script type="text/javascript">
-	function dados(nome, valor_compra, valor_venda, categoria, fornecedor, estoque, imagem, descricao) {
-		var pag = "<?= $pagina ?>";
+	function dados(titulo, descricao_1, descricao_2, descricao_3, tag, visitas, url_titulo, imagem) {
 		event.preventDefault();
 		var myModal = new bootstrap.Modal(document.getElementById('modal-dados'), {
 
 		});
 
 		myModal.show();
-		$('#nome_registro').text(nome);
-		$('#compra_registro').text(valor_compra);
-		$('#venda_registro').text(valor_venda);
-		$('#categoria_registro').text(categoria);
-		$('#fornecedor_registro').text(fornecedor);
-		$('#estoque_registro').text(estoque);
-		$('#imagem_registro').attr('src', '../../assets/imagens/' + pag + '/' + imagem);
-		$('#descricao_registro').text(descricao);
+		$('#titulo_registro').text(titulo);
+		$('#descricao_1_registro').text(descricao_1);
+		$('#descricao_2_registro').text(descricao_2);
+		$('#descricao_3_registro').text(descricao_3);
+		$('#tag_registro').text(tag);
+		$('#visitas_registro').text(visitas);
+		$('#url_titulo_registro').text(url_titulo);
+		$('#imagem_registro').attr('src', '../../assets/imagens/blog/' + imagem);
 	}
 </script>
 <!-- Ajax para visualizar dados adicionais -->
@@ -529,63 +435,3 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 	}
 </script>
 <!--FIM SCRIPT PARA CARREGAR IMAGEM -->
-
-<!-- Ajax para chamar modal comprar produtos -->
-<script type="text/javascript">
-	function comprarProdutos(id) {
-		event.preventDefault();
-
-		$('#id-comprar').val(id);
-
-		var myModal = new bootstrap.Modal(document.getElementById('modal-comprar'), {
-
-		});
-
-		myModal.show();
-
-	}
-</script>
-<!--Fim Ajax para chamar modal comprar produtos -->
-
-<!-- Ajax para comprar produtos -->
-<script type="text/javascript">
-	$("#form-comprar").submit(function() {
-		event.preventDefault();
-
-		var formData = new FormData(this);
-		var pag = "<?= $pagina ?>";
-
-		$.ajax({
-			url: pag + "/comprar.php",
-			type: 'POST',
-			data: formData,
-
-			success: function(mensagem) {
-
-				$('#mensagem-comprar').removeClass()
-
-				if (mensagem.trim() == "Salvo com Sucesso!") {
-
-					//$('#nome').val('');
-					//$('#cpf').val('');
-					$('#btn-fechar-comprar').click();
-					window.location = "index.php?pag=" + pag;
-
-				} else {
-
-					$('#mensagem-comprar').addClass('text-danger')
-				}
-
-				$('#mensagem-comprar').text(mensagem)
-
-			},
-
-			cache: false,
-			contentType: false,
-			processData: false,
-
-		});
-
-	});
-</script>
-<!--Fim Ajax para comprar produtos -->
