@@ -16,6 +16,7 @@ $menu8 = 'pratos';
 $menu9 = 'compras';
 $menu10 = 'banners';
 $menu11 = 'blog';
+$menu12 = 'estoque';
 
 if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
   $classeMenu = 'text-dark';
@@ -148,7 +149,7 @@ if ($total_reg > 0) {
 
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu9 ?>">Compras</a></li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu13 ?>">Estoque Baixo</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu12 ?>">Estoque Baixo</a></li>
 
             </ul>
           </li>
@@ -171,11 +172,11 @@ if ($total_reg > 0) {
 
               <li><a target="_blank" class="dropdown-item" href="../rel/rel_pratos_class.php">Pratos</a></li>
 
-              <li><a target="_blank" class="dropdown-item" href="../rel/rel_cardapio_class.php">Cardápio</a></li>
+              <li><a target="_blank" class="dropdown-item" href="">Cardápio</a></li>
 
               <li><a target="_blank" class="dropdown-item" href="../rel/rel_estoque_class.php">Estoque Baixo</a></li>
 
-              <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#ModalRelCompras">Compras</a>
+              <li><a class="dropdown-item" href="../rel/rel_compras_class.php" data-bs-toggle="modal" data-bs-target="#ModalRelCompras">Compras</a>
               </li>
 
             </ul>
@@ -245,7 +246,9 @@ if ($total_reg > 0) {
       require_once($menu10 . '.php');
     }else if (@$_GET['pag'] == $menu11) {
       require_once($menu11 . '.php');
-    } else {
+    }else if (@$_GET['pag'] == $menu12) {
+      require_once($menu12 . '.php');
+    }else {
       require_once($menu1 . '.php');
     }
     ?>
