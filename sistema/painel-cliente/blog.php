@@ -50,6 +50,7 @@ require_once("verificar.php");
 						<td><?php echo $nome_autor ?></td>
 						<td><?php echo implode('/', array_reverse(explode('-', $res[$i]['data_postagem']))) ?></td>
 						<td style="text-align:center"><img src="../../assets/imagens/<?php echo $pagina ?>/<?php echo $res[$i]['imagem'] ?>" height="20px" width="30px"></td>
+						
 						<td style="text-align:center">
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=editar&id=<?php echo $id_reg ?>" title="Editar Registro">
 								<i class="bi bi-pencil-square mr-1 text-primary"></i></a>

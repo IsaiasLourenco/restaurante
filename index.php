@@ -33,7 +33,6 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
 
-
 </head>
 
 <body>
@@ -1068,8 +1067,8 @@
           <div class="mu-subscription-area">
             <form class="mu-subscription-form">
               <h4>É nosso cliente? Cadastre-se para postar as fotos de sua visita!</h4>
-              <input type="text" placeholder="Entre com seu e-mail para cadastro">
-              <a href="sistema/cadastro.php" class="mu-readmore-btn">CADASTRO</a>
+              <input type="text" placeholder="Entre com   seu e-mail para cadastro">
+              <a href="sistema/cadastro.php" target="_blank" class="mu-readmore-btn">CADASTRO</a>
             </form>
           </div>
         </div>

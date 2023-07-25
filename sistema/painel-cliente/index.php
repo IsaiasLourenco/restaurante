@@ -29,7 +29,6 @@ if ($total_reg > 0) {
   $senha_usu = $res[0]['senha'];
   $nivel_usu = $res[0]['cargo'];
 }
-
 if ($total_reg > 0) {
   $imagem_perfil = $res[0]['imagem'];
 
@@ -37,19 +36,6 @@ if ($total_reg > 0) {
     $imagem_perfil = 'sem-foto.jpg';
   }
 }
-
-// Usa o ID do funcionário em questão para buscar os dados na tabela do Chef
-$query = $pdo->query("SELECT * FROM chef WHERE funcionario = '$id_usuario'");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-$total_reg = @count($res);
-if ($total_reg > 0) {
-  $especialidade = $res[0]['especialidade'];
-  $facebook = $res[0]['facebook'];
-  $youtube = $res[0]['youtube'];
-  $linkedin = $res[0]['linkedin'];
-  $instagram = $res[0]['instagram'];
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -147,18 +133,27 @@ if ($total_reg > 0) {
 
 <!--  Modal Editar-->
 <div class="modal fade" tabindex="-1" id="ModalEditar" data-bs-backdrop="static">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <?php
 
-        $query = $pdo->query("SELECT * FROM chef WHERE funcionario = '$id_usuario'");
+        $query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_usuario'");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
-        $facebook = @$res[0]['facebook'];
-        $instagram = @$res[0]['instagram'];
-        $youtube = @$res[0]['youtube'];
-        $linkedin = @$res[0]['linkedin'];
-        $especialidade = @$res[0]['especialidade'];
+        $nome_cli = $res[0]['nome'];
+        $email = $res[0]['email'];
+        $cpf = $res[0]['cpf'];
+        $telefone = $res[0]['telefone'];
+        $cep = $res[0]['cep'];
+        $rua = $res[0]['rua'];
+        $numero = $res[0]['numero'];
+        $bairro = $res[0]['bairro'];
+        $cidade = $res[0]['cidade'];
+        $estado = $res[0]['estado'];
+        $datanasc = $res[0]['datanasc'];
+        $datacad = $res[0]['datacad'];
+        $senha = $res[0]['senha'];
+        $cargo = $res[0]['cargo'];
 
         $titulo_modal = 'Editar Registro';
 
@@ -167,21 +162,28 @@ if ($total_reg > 0) {
         <h5 class="modal-title"><?php echo $titulo_modal ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="post" id="form-chef">
+      <form method="post" id="form-cli">
         <div class="modal-body">
 
           <div class="row">
-            <div class="col-6">
+            <div class="col-4">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Facebook </label>
-                <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" autofocus value="<?php echo @$facebook ?>" required>
+                <label for="exampleFormControlInput1" class="form-label">Nome </label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" autofocus value="<?php echo @$nome_cli ?>" required>
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-4">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Instagram </label>
-                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Instagram" value="<?php echo @$instagram ?>" required>
+                <label for="exampleFormControlInput1" class="form-label">CPF </label>
+                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo @$cpf ?>" required>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email </label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com" value="<?php echo @$email ?>" required>
               </div>
             </div>
 
@@ -189,39 +191,78 @@ if ($total_reg > 0) {
 
           <div class="row">
 
-            <div class="col-6">
+            <div class="col-4">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Youtube </label>
-                <input type="youtube" class="form-control" id="youtube" name="youtube" placeholder="Youtube" value="<?php echo @$youtube ?>" required>
+                <label for="exampleFormControlInput1" class="form-label">Telefone </label>
+                <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(xx)xxxx-xxxx" value="<?php echo @$telefone ?>" required>
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-4">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Linkedin </label>
-                <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="Linkedin" value="<?php echo @$linkedin ?>" required>
+                <label for="exampleFormControlInput1" class="form-label">CEP </label>
+                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" value="<?php echo @$cep ?>">
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Rua </label>
+                <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" value="<?php echo @$rua ?>" readonly>
               </div>
             </div>
 
           </div>
 
-          <div class="col-12">
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Especialidade </label>
-              <input type="text" class="form-control" id="especialidade" name="especialidade" placeholder="Especialidade" value="<?php echo @$especialidade ?>" required>
+          <div class="row">
+
+            <div class="col-2">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Número </label>
+                <input type="text" class="form-control" id="numero" name="numero" placeholder="Número" value="<?php echo @$numero ?>">
+              </div>
             </div>
+
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Bairro </label>
+                <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" value="<?php echo @$bairro ?>" readonly>
+              </div>
+            </div>
+
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Cidade </label>
+                <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" value="<?php echo @$cidade ?>" readonly>
+              </div>
+            </div>
+
+            <div class="col-2">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Estado </label>
+                <input type="text" class="form-control" id="estado" name="estado" placeholder="UF" value="<?php echo @$estado ?>" readonly>
+              </div>
+            </div>
+
+            <div class="col-2">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Senha </label>
+                <input type="text" class="form-control" id="senha" name="senha" placeholder="Senha" value="<?php echo @$senha ?>" required>
+              </div>
+            </div>
+
           </div>
 
-          <input type="hidden" name="id_perfil" value="<?php echo @$id_usuario ?>">
+          <input type="hidden" name="id" value="<?php echo @$id_usuario ?>">
 
           <small>
-            <div align="center" id="mensagem-perfil">
+            <div align="center" id="mensagem">
             </div>
           </small>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-faded" data-bs-dismiss="modal" id="btn-fechar-perfil" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">Fechar</button>
+          <button type="button" class="btn btn-faded" data-bs-dismiss="modal" id="btn-fechar" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">Fechar</button>
           <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Salvar</button>
         </div>
       </form>
@@ -231,9 +272,15 @@ if ($total_reg > 0) {
 </div>
 <!-- Fim Modal Editar-->
 
+<!-- Mascaras JS -->
+<script type="text/javascript" src="../../assets/js/mascaras.js"></script>
+
+<!-- Ajax para funcionar Mascaras JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
 <!-- Ajax para editar dados -->
 <script type="text/javascript">
-  $("#form-chef").submit(function() {
+  $("#form-cli").submit(function() {
     event.preventDefault();
     var formData = new FormData(this);
 
@@ -244,21 +291,21 @@ if ($total_reg > 0) {
 
       success: function(mensagem) {
 
-        $('#mensagem-perfil').removeClass()
+        $('#mensagem').removeClass()
 
         if (mensagem.trim() == "Salvo com Sucesso!") {
 
           //$('#nome').val('');
           //$('#cpf').val('');
-          $('#btn-fechar-perfil').click();
-          //location.reload();
+          $('#btn-fechar').click();
+          location.reload();
 
         } else {
 
-          $('#mensagem-perfil').addClass('text-danger')
+          $('#mensagem').addClass('text-danger')
         }
 
-        $('#mensagem-perfil').text(mensagem)
+        $('#mensagem').text(mensagem)
 
       },
 

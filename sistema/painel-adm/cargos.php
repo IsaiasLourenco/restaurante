@@ -62,7 +62,7 @@ require_once("verificar.php");
                         $id = @$_GET['id'];
                         $query = $pdo->query("SELECT * FROM cargos WHERE  id = '$id'");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                        $nome_cargo = @$res[0]['nome'];
+                        $cargo_edicao = @$res[0]['nome'];
                     }
                     ?>
                     <h5 class="modal-title" id="exampleModalLabel"><?php echo $titulo_modal ?></h5>
@@ -74,7 +74,7 @@ require_once("verificar.php");
 
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Nome </label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?php echo @$nome_cargo ?>" required>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?php echo @$cargo_edicao ?>" required>
                         </div>
 
                         <input type="hidden" name="id" value="<?php echo @$id ?>">
@@ -93,6 +93,7 @@ require_once("verificar.php");
             </div>
         </div>
     </div>
+    <!--Fim  Modal para Inserção ou Edição -->
 
     <!-- Modal para Exclusão -->
     <div class="modal fade" id="excluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

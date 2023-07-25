@@ -6,12 +6,7 @@ require_once("verificar.php");
 
 //MENUS PARA O PAINEL
 $menu1 = 'home';
-$menu2 = 'reservas';
 $menu3 = 'clientes';
-$menu4 = 'pagar';
-$menu5 = 'receber';
-$menu6 = 'compras';
-$menu7 = 'movimentacoes';
 
 if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
   $classeMenu = 'text-dark';

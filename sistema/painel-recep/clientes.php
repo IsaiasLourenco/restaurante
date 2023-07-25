@@ -1,5 +1,5 @@
 <?php
-$pagina = 'fornecedores';
+$pagina = 'clientes';
 require_once("verificar.php");
 ?>
 <!DOCTYPE html>
@@ -14,44 +14,35 @@ require_once("verificar.php");
 </head>
 
 <body>
-	<h2>FORNECEDORES</h2>
-	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Novo Fornecedor</a>
+	<h2>CLIENTES</h2>
+	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Novo Cliente</a>
 
 	<small>
 		<table id="example" class="table table-hover table-sm my-4" style="width:98%;">
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<th>CNPJ</th>
 					<th>Email</th>
 					<th>Telefone</th>
-					<th>Categoria de Produto</th>
+					<th>Senha</th>
 					<th>Ações</th>
 
 				</tr>
 			</thead>
 			<tbody>
 				<?php
-				$query = $pdo->query("SELECT * FROM fornecedores ORDER BY id ASC");
+				$query = $pdo->query("SELECT * FROM clientes ORDER BY id ASC");
 				$res = $query->fetchAll(PDO::FETCH_ASSOC);
 				for ($i = 0; $i < @count($res); $i++) {
 					foreach ($res[$i] as $key => $value) {
 					}
 					$id_reg = $res[$i]['id'];
-					$id_cat = $res[$i]['categoria'];
-
-					//BUSCAR O NOME DA CATEGORIA RELACIONADA AO ID NA TABELA CATEGORIAS
-					$query2 = $pdo->query("SELECT * FROM categorias where id = '$id_cat'");
-					$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-					$nome_cat = $res2[0]['nome'];
-
 				?>
 					<tr>
 						<td><?php echo $res[$i]['nome'] ?></td>
-						<td><?php echo $res[$i]['cnpj'] ?></td>
 						<td><?php echo $res[$i]['email'] ?></td>
 						<td><?php echo $res[$i]['telefone'] ?></td>
-						<td><?php echo $nome_cat ?></td>
+						<td><?php echo $res[$i]['senha'] ?></td>
 
 						<td>
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=editar&id=<?php echo $id_reg ?>" title="Editar Registro">
@@ -83,10 +74,9 @@ require_once("verificar.php");
 					} else {
 						$titulo_modal = 'Editar Registro';
 						$id = @$_GET['id'];
-						$query = $pdo->query("SELECT * FROM fornecedores WHERE  id = '$id'");
+						$query = $pdo->query("SELECT * FROM clientes WHERE  id = '$id'");
 						$res = $query->fetchAll(PDO::FETCH_ASSOC);
-						$nome_forn = @$res[0]['nome'];
-						$cnpj = @$res[0]['cnpj'];
+						$nome_cli = @$res[0]['nome'];
 						$email = @$res[0]['email'];
 						$telefone_forn = @$res[0]['telefone'];
 						$cep = @$res[0]['cep'];
@@ -95,7 +85,7 @@ require_once("verificar.php");
 						$bairro = @$res[0]['bairro'];
 						$cidade = @$res[0]['cidade'];
 						$estado = @$res[0]['estado'];
-						$categoria = @$res[0]['categoria'];
+						$senha = @$res[0]['senha'];
 					}
 					?>
 					<h5 class="modal-title" id="exampleModalLabel"><?php echo $titulo_modal ?></h5>
@@ -108,7 +98,7 @@ require_once("verificar.php");
 							<div class="col-4">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Nome </label>
-									<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?php echo @$nome_forn ?>" required>
+									<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?php echo @$nome_cli ?>" required>
 								</div>
 							</div>
 
@@ -132,13 +122,6 @@ require_once("verificar.php");
 
 							<div class="col-3">
 								<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">CNPJ </label>
-									<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo @$cnpj ?>">
-								</div>
-							</div>
-
-							<div class="col-3">
-								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">CEP </label>
 									<input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" value="<?php echo @$cep ?>">
 								</div>
@@ -150,30 +133,6 @@ require_once("verificar.php");
 									<input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" value="<?php echo @$rua ?>" readonly>
 								</div>
 							</div>
-
-							<div class="col-3">
-								<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Cat Produto Fornecido </label>
-									<select class="form-select" aria-label="Default select example" name="categoria">
-										<?php
-										$query = $pdo->query("SELECT * FROM categorias ORDER BY nome ASC");
-										$res = $query->fetchAll(PDO::FETCH_ASSOC);
-										for ($i = 0; $i < @count($res); $i++) {
-											foreach ($res[$i] as $key => $value) {
-											}
-											$id_cat = $res[$i]['id'];
-											$nome_cat = $res[$i]['nome'];
-										?>
-											<option <?php if (@$id_cat == @$categoria) { ?> selected <?php } ?> value="<?php echo $id_cat ?>"><?php echo $nome_cat ?></option>
-										<?php } ?>
-									</select>
-								</div>
-
-							</div>
-
-						</div>
-
-						<div class="row">
 
 							<div class="col-2">
 								<div class="mb-3">
@@ -189,6 +148,10 @@ require_once("verificar.php");
 								</div>
 							</div>
 
+						</div>
+
+						<div class="row">
+
 							<div class="col-4">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Cidade </label>
@@ -196,10 +159,17 @@ require_once("verificar.php");
 								</div>
 							</div>
 
-							<div class="col-2">
+							<div class="col-4">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Estado </label>
 									<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" value="<?php echo @$estado ?>" readonly>
+								</div>
+							</div>
+
+							<div class="col-4">
+								<div class="mb-3">
+									<label for="exampleFormControlInput1" class="form-label">Senha </label>
+									<input type="text" class="form-control" id="senha" name="senha" placeholder="Senha" value="<?php echo @$senha ?>" required>
 								</div>
 							</div>
 

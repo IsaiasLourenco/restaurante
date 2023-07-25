@@ -35,6 +35,10 @@ if ($total_reg > 0) {
 
         echo "<script language='javascript'> window.location='painel-recep' </script>";
 
+    }else if ($nome_cargo == 'Cliente') {
+
+        echo "<script language='javascript'> window.location='painel-cliente' </script>";
+
     } else {
 
         echo "<script language='javascript'> window.alert ('Você não tem permissão de acesso!')</script>";
