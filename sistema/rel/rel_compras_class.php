@@ -1,9 +1,14 @@
 <?php 
 
 require_once('../../config.php');
+require_once("verificar.php");
+
+$dataInicial = $_POST['dataInicial'];
+$dataFinal = $_POST['dataFinal'];
+$status = $_POST['status'];
 
 //ALIMENTAR OS DADOS NO RELATÓRIO
-$html = file_get_contents($url_local."sistema/rel/rel_produtos.php");
+$html = file_get_contents($url_local."sistema/rel/rel_compras.php?dataInicial=$dataInicial&dataFinal=$dataFinal&status=$status");
 
 if($relatorio_pdf != 'Sim'){
 	echo $html;
@@ -33,6 +38,6 @@ $pdf->render();
 
 //NOMEAR O PDF GERADO
 $pdf->stream(
-'produtos.pdf',
+'compras.pdf',
 array("Attachment" => false)
 );

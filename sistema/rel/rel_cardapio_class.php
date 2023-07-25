@@ -4,7 +4,7 @@ require_once('../../config.php');
 require_once("verificar.php");
 
 //ALIMENTAR OS DADOS NO RELATÓRIO
-$html = file_get_contents($url_local."sistema/rel/rel_produtos.php");
+$html = file_get_contents($url_local."sistema/rel/rel_cardapio.php");
 
 if($relatorio_pdf != 'Sim'){
 	echo $html;
@@ -34,6 +34,6 @@ $pdf->render();
 
 //NOMEAR O PDF GERADO
 $pdf->stream(
-'produtos.pdf',
+'cardapio.pdf',
 array("Attachment" => false)
 );

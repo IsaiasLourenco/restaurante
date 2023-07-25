@@ -13,7 +13,7 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Catálogo de Produtos</title>
+    <title>Catálogo de Pratos</title>
     <link rel="shortcut icon" href="../../assets/imagens/ico.ico" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -169,9 +169,6 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
         </div>
 
 
-        <hr>
-
-
         <table class='table' width='100%' cellspacing='0' cellpadding='3'>
             <tr bgcolor='#f9f9f9'>
                 <th>Nome</th>
@@ -216,12 +213,7 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
                 </tr>
             <?php } ?>
 
-
-
         </table>
-
-        <hr>
-
 
         <div class="row margem-superior">
             <div class="col-md-12">
@@ -233,11 +225,7 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
             </div>
         </div>
 
-        <hr>
-
-
     </div>
-
 
     <div class="footer">
         <p style="font-size:14px" align="center"><?php echo $rodape_relatorios ?></p>

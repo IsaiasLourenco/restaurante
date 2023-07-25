@@ -1,6 +1,7 @@
 <?php 
 
 require_once('../../config.php');
+require_once("verificar.php");
 
 //ALIMENTAR OS DADOS NO RELATÓRIO
 $html = file_get_contents($url_local."sistema/rel/rel_pratos.php");
@@ -33,6 +34,6 @@ $pdf->render();
 
 //NOMEAR O PDF GERADO
 $pdf->stream(
-'produtos.pdf',
+'pratos.pdf',
 array("Attachment" => false)
 );

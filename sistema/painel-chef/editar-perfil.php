@@ -1,5 +1,6 @@
 <?php
 require_once("../../conexao.php");
+require_once("verificar.php");
 
 $especialidade = $_POST['especialidade'];
 $facebook = $_POST['facebook'];

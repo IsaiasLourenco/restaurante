@@ -1,5 +1,6 @@
 <?php
 require_once("../../conexao.php");
+require_once("verificar.php");
 
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
@@ -7,13 +8,13 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Catálogo de Produtos</title>
+    <title>Estoque</title>
     <link rel="shortcut icon" href="../../assets/imagens/ico.ico" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -168,16 +169,14 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
             <span class="titulorel">Produtos com necessidade de compra</span>
         </div>
 
-
-        <hr>
-
-
         <table class='table' width='100%' cellspacing='0' cellpadding='3'>
             <tr bgcolor='#f9f9f9'>
                 <th>Nome</th>
-                <th>Estoque</th>
-                <th>Valor Venda</th>
                 <th>Valor Compra</th>
+                <th>Valor Venda</th>
+                <th>Categoria</th>
+                <th>Fornecedor</th>
+                <th>Estoque</th>
                 <th>Imagem</th>
 
 
@@ -194,13 +193,29 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
                 $nome = $res[$i]['nome'];
                 $valor_compra = $res[$i]['valor_compra'];
                 $valor_venda = $res[$i]['valor_venda'];
+                $id_cat = $res[$i]['categoria'];
+                $id_forn = $res[$i]['fornecedor'];
                 $estoque = $res[$i]['estoque'];
-
                 $foto = $res[$i]['imagem'];
-
-
                 $id = $res[$i]['id'];
 
+                $query = $pdo->query("SELECT * FROM categorias WHERE id = '$id_cat'");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                $totalItens = @count($res);
+                for ($i=0; $i < @count($res) ; $i++) { 
+                    foreach ($res[$i] as $key => $value) {
+                    }
+                    $nome_cat = $res[$i]['nome'];
+                }
+
+                $query = $pdo->query("SELECT * FROM fornecedores WHERE id = '$id_forn'");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                $totalItens = @count($res);
+                for ($i=0 ; $i < @count($res)  ; $i++ ) { 
+                    foreach ($res[$i] as $key => $value) {
+                    }
+                    $nome_forn = $res[$i]['nome'];
+                }
 
                 $valor_compra = number_format($valor_compra, 2, ',', '.');
                 $valor_venda = number_format($valor_venda, 2, ',', '.');
@@ -208,22 +223,19 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
 
                 <tr>
 
-                    <td><?php echo $nome ?> </td>
-                    <td><?php echo $estoque ?> </td>
-                    <td>R$ <?php echo $valor_venda ?> </td>
-                    <td>R$ <?php echo $valor_compra ?> </td>
-                    <td><img src="<?php echo $url_local ?>/assets/imagens/produtos/<?php echo $foto ?>" width="35px"> </td>
+                    <td style="width: auto;"><?php echo $nome ?> </td>
+                    <td style="width: auto;">R$ <?php echo $valor_compra ?> </td>
+                    <td style="width: auto;">R$ <?php echo $valor_venda ?> </td>
+                    <td style="width: auto;"><?php echo $nome_cat ?> </td>
+                    <td style="width: auto;"><?php echo $nome_forn ?> </td>
+                    <td style="width: auto;"><?php echo $estoque ?> </td>
+                    <td style="width: auto;"><img src="<?php echo $url_local ?>/assets/imagens/produtos/<?php echo $foto ?>" width="35px"> </td>
 
 
                 </tr>
             <?php } ?>
 
-
-
         </table>
-
-        <hr>
-
 
         <div class="row margem-superior">
             <div class="col-md-12">
@@ -235,11 +247,7 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
             </div>
         </div>
 
-        <hr>
-
-
     </div>
-
 
     <div class="footer">
         <p style="font-size:14px" align="center"><?php echo $rodape_relatorios ?></p>

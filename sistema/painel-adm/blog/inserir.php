@@ -1,5 +1,7 @@
 <?php
 require_once("../../../conexao.php");
+require_once("../verificar.php");
+
 @session_start();
 $titulo = $_POST['titulo'];
 $descricao_1 = $_POST['descricao_1'];

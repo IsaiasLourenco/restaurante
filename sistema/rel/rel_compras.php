@@ -1,19 +1,45 @@
 <?php
 require_once("../../conexao.php");
+require_once("verificar.php");
 
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
 
+
+$dataInicial = $_GET['dataInicial'];
+$dataFinal = $_GET['dataFinal'];
+$status = $_GET['status'];
+
+$status_like = '%' . $status . '%';
+
+$dataInicialF = implode('/', array_reverse(explode('-', $dataInicial)));
+$dataFinalF = implode('/', array_reverse(explode('-', $dataFinal)));
+
+if ($status == 'Sim') {
+    $status_serv = 'Pagas ';
+} else if ($status == 'Não') {
+    $status_serv = 'Pendentes';
+} else {
+    $status_serv = '';
+}
+
+
+if ($dataInicial != $dataFinal) {
+    $apuracao = $dataInicialF . ' até ' . $dataFinalF;
+} else {
+    $apuracao = $dataInicialF;
+}
+
+
+
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Catálogo de Produtos</title>
+    <title>Relatório de Compras</title>
     <link rel="shortcut icon" href="../../assets/imagens/ico.ico" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -154,65 +180,112 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
             margin-bottom: 15px;
         }
     </style>
+
+
 </head>
 
 <body>
 
+
+    <?php if ($cabecalho_img_rel == 'Sim') { ?>
+
+        
         <div class="img-cabecalho my-4">
-            <img src="<?php echo $url_local ?>/assets/imagens/topo.jpg" width="100%">
-        </div>    
+            <img src="<?php echo $url_local ?>assets/imagens/topo.jpg" width="100%">
+        </div>
+
+    <?php } else { ?>
+
+
+        <div class="cabecalho">
+
+            <div class="row titulos">
+                <div class="col-sm-2 esquerda_float image">
+                    <img src="<?php echo $url_local?>assets/imagens/logo1.png" width="90px" alt="Batman">
+                </div>
+                <div class="col-sm-10 esquerda_float">
+                    <h2 class="titulo"><b><?php echo strtoupper($nome_site) ?></b></h2>
+
+                    <div class="areaSubtituloCab">
+                        <h6 class="subtitulo"><?php echo $endereco . ' Tel: ' . $whatsapp  ?></h6>
+
+                        <p class="subtitulo"><?php echo $data_hoje ?></p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    <?php } ?>
 
     <div class="container">
 
+
         <div align="center" class="">
-            <span class="titulorel">Compras de Produtos </span>
+            <span class="titulorel">Relatório de Compras <?php echo $status_serv  ?> </span>
         </div>
-
-
-        <hr>
-
 
         <table class='table' width='100%' cellspacing='0' cellpadding='3'>
             <tr bgcolor='#f9f9f9'>
-                <th>Nome</th>
-                <th>Estoque</th>
-                <th>Valor Venda</th>
-                <th>Valor Compra</th>
-                <th>Imagem</th>
+                <th>Total</th>
+                <th>Data</th>
+                <th>Funcionário</th>
+                <th>Fornecedor</th>
+                <th>Pago</th>
 
 
             </tr>
             <?php
-
-            $query = $pdo->query("SELECT * FROM compras ORDER BY id ASC");
+            $saldo = 0;
+            $query = $pdo->query("SELECT * FROM compras WHERE data_compra >= '$dataInicial' AND data_compra <= '$dataFinal' AND pago LIKE '$status_like' ORDER BY id ASC");
             $res = $query->fetchAll(PDO::FETCH_ASSOC);
             $totalItens = @count($res);
 
             for ($i = 0; $i < @count($res); $i++) {
                 foreach ($res[$i] as $key => $value) {
                 }
-                $nome = $res[$i]['nome'];
-                $valor_compra = $res[$i]['valor_compra'];
-                $valor_venda = $res[$i]['valor_venda'];
-                $estoque = $res[$i]['estoque'];
-
-                $foto = $res[$i]['imagem'];
+                $total = $res[$i]['total'];
+                $data = $res[$i]['data_compra'];
+                $usuario = $res[$i]['funcionario'];
+                $fornecedor = $res[$i]['fornecedor'];
+                $pago = $res[$i]['pago'];
 
 
                 $id = $res[$i]['id'];
 
+                $saldo = $saldo + $total;
+                $saldoF = number_format($saldo, 2, ',', '.');
 
-                $valor_compra = number_format($valor_compra, 2, ',', '.');
-                $valor_venda = number_format($valor_venda, 2, ',', '.');
+                $total = number_format($total, 2, ',', '.');
+                $data = implode('/', array_reverse(explode('-', $data)));
+
+
+                $query_usu = $pdo->query("SELECT * FROM funcionarios where id = '$usuario'");
+                $res_usu = $query_usu->fetchAll(PDO::FETCH_ASSOC);
+                $nome_usu = $res_usu[0]['nome'];
+
+
+                $query_usu = $pdo->query("SELECT * FROM fornecedores where id = '$fornecedor'");
+                $res_usu = $query_usu->fetchAll(PDO::FETCH_ASSOC);
+                $nome_forn = $res_usu[0]['nome'];
+
+
+                if ($pago == 'Sim') {
+                    $foto = 'verde.jpg';
+                } else {
+                    $foto = 'vermelho.jpg';
+                }
             ?>
 
                 <tr>
 
-                    <td><?php echo $nome ?> </td>
-                    <td><?php echo $estoque ?> </td>
-                    <td>R$ <?php echo $valor_venda ?> </td>
-                    <td>R$ <?php echo $valor_compra ?> </td>
-                    <td><img src="<?php echo $url_local ?>/assets/imagens/produtos/<?php echo $foto ?>" width="35px"> </td>
+                    <td>R$ <?php echo $total ?> </td>
+                    <td><?php echo $data ?> </td>
+                    <td><?php echo $nome_usu ?> </td>
+                    <td><?php echo $nome_forn ?> </td>
+                    <td style="text-align: center;"><img src="<?php echo $url_local ?>assets/imagens/<?php echo $foto ?>" width="13px"> </td>
+
 
 
                 </tr>
@@ -225,15 +298,29 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
         <hr>
 
 
-        <div class="row margem-superior">
-            <div class="col-md-12">
-                <div class="" align="right">
 
-                    <span class=""> <b> Total de Produtos : <?php echo $totalItens ?> </b> </span>
-                </div>
 
+
+        <div class="row">
+            <div class="col-sm-8 esquerda">
+                <span class=""> <b> Período da Apuração </b> </span>
+
+                <span class=""> <?php echo $apuracao ?> </span>
+            </div>
+
+            <?php 
+            if(empty($saldoF)){
+                $saldoF = '0';
+            }
+            ?>
+
+            <div class="col-sm-4 direita" align="right">
+                <span class=""> <b> Total R$ : <?php echo $saldoF ?> </b> </span>
             </div>
         </div>
+
+
+
 
         <hr>
 
@@ -244,6 +331,10 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
     <div class="footer">
         <p style="font-size:14px" align="center"><?php echo $rodape_relatorios ?></p>
     </div>
+
+
+
+
 </body>
 
 </html>

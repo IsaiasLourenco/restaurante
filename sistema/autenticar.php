@@ -15,15 +15,33 @@ if ($total_reg > 0) {
     $_SESSION['cpf'] = $res[0]['cpf'];
     $_SESSION['email'] = $res[0]['email'];
     $_SESSION['cargo'] = $res[0]['cargo'];
+    $id_cargo = $res[0]['cargo'];
     $_SESSION['id'] = $res[0]['id'];
 
-    //REDIRECIONAR CONFORME CARGO
-    if($res[0]['cargo'] == '1'){
-        echo "<script language='javascript'> window.location='painel-adm' </script>";
-    }else if ($res[0]['cargo'] == '3'){
-        echo "<script language='javascript'> window.location='painel-chef' </script>";
-    }else{
-        echo "<script language='javascript'> window.location='index.php'</script>";
-    }
+    $query = $pdo->query("SELECT * FROM cargos WHERE id = '$id_cargo'");
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    $nome_cargo = $res[0]['nome'];
 
+    //REDIRECIONAR CONFORME CARGO
+    if ($nome_cargo == 'Administrador') {
+
+        echo "<script language='javascript'> window.location='painel-adm' </script>";
+
+    }else if ($nome_cargo == 'Chef') {
+
+        echo "<script language='javascript'> window.location='painel-chef' </script>";
+
+    }else if ($nome_cargo == 'Recepcionista') {
+
+        echo "<script language='javascript'> window.location='painel-recep' </script>";
+
+    } else {
+
+        echo "<script language='javascript'> window.alert ('Você não tem permissão de acesso!')</script>";
+
+        echo "<script language='javascript'> window.location='index.php' </script>";
+
+    }
+    
+    echo "<script language='javascript'> window.alert ('Dados incorretos!')</script>";
 };

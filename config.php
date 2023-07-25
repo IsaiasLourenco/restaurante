@@ -2,7 +2,7 @@
 
 //VARIÁVEIS DO PROJETO
 $url_local = 'http://localhost/restaurantesite/';
-$url = 'http://lorenzos.sitepessoal.com/'; //caminho do projeto, url do domínio, sempre por a barra no final
+//$url_local = 'http://lorenzos.sitepessoal.com/';
 $nome_site ='LORENZOS';
 $email_adm ='adm@vetor256.com';
 $email_adm_gm ='isaias.lourenco@gmail.com';
@@ -34,11 +34,15 @@ $banco = 'restaurante';
 //$banco = 'restaurantelor';
 
 //NÍVEL MÍNIMO DO ESTOQUE DE PRODUTOS PARA CÁLCULO DO SISTEMA
-$nivel_estoque = 10;
+$nivel_estoque = 10;    
 
 //SIM PARA RELATÓRIOS EM PDF, NÃO PARA RELATÓRIOS EM HTML
 $relatorio_pdf = 'Sim';
 
+//VARIÁVEL QUE RECEBE OS RODAPÉS DE TODOS OS RELATÓRIOS
 $rodape_relatorios = "Sistema desenvolvido por ®Vetor256. http://vetor256.com. Fone:(19)99674-5466";
+
+//VARIÁVEL QUE RECEBE A IMAGEM DO TOPO DE TODOS OS RELATÓRIOS
+$cabecalho_img_rel = 'Sim';
 ?>
 

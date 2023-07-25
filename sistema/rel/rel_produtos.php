@@ -1,5 +1,6 @@
 <?php
 require_once("../../conexao.php");
+require_once("verificar.php");
 
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
@@ -168,10 +169,6 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
             <span class="titulorel">Catálogo de Produtos </span>
         </div>
 
-
-        <hr>
-
-
         <table class='table' width='100%' cellspacing='0' cellpadding='3'>
             <tr bgcolor='#f9f9f9'>
                 <th>Nome</th>
@@ -179,7 +176,6 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
                 <th>Valor Venda</th>
                 <th>Valor Compra</th>
                 <th>Imagem</th>
-
 
             </tr>
             <?php
@@ -198,9 +194,7 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
 
                 $foto = $res[$i]['imagem'];
 
-
                 $id = $res[$i]['id'];
-
 
                 $valor_compra = number_format($valor_compra, 2, ',', '.');
                 $valor_venda = number_format($valor_venda, 2, ',', '.');
@@ -214,16 +208,10 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
                     <td>R$ <?php echo $valor_compra ?> </td>
                     <td><img src="<?php echo $url_local ?>/assets/imagens/produtos/<?php echo $foto ?>" width="35px"> </td>
 
-
                 </tr>
             <?php } ?>
 
-
-
         </table>
-
-        <hr>
-
 
         <div class="row margem-superior">
             <div class="col-md-12">
@@ -235,11 +223,7 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
             </div>
         </div>
 
-        <hr>
-
-
     </div>
-
 
     <div class="footer">
         <p style="font-size:14px" align="center"><?php echo $rodape_relatorios ?></p>

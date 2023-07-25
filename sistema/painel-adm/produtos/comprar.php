@@ -1,5 +1,7 @@
 <?php
 require_once("../../../conexao.php");
+require_once("../verificar.php");
+
 @session_start();
 
 $quantidade = $_POST['quantidade'];

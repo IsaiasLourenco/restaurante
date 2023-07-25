@@ -1,5 +1,6 @@
 <?php
 require_once("../../../conexao.php");
+require_once("../verificar.php");
 
 $titulo = $_POST['titulo'];
 $subtitulo = $_POST['subtitulo'];

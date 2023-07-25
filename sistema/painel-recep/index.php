@@ -6,17 +6,12 @@ require_once("verificar.php");
 
 //MENUS PARA O PAINEL
 $menu1 = 'home';
-$menu2 = 'funcionarios';
-$menu3 = 'fornecedores';
-$menu4 = 'cargos';
-$menu5 = 'mesas';
-$menu6 = 'categorias';
-$menu7 = 'produtos';
-$menu8 = 'pratos';
-$menu9 = 'compras';
-$menu10 = 'banners';
-$menu11 = 'blog';
-$menu12 = 'estoque';
+$menu2 = 'reservas';
+$menu3 = 'clientes';
+$menu4 = 'pagar';
+$menu5 = 'receber';
+$menu6 = 'compras';
+$menu7 = 'movimentacoes';
 
 if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
   $classeMenu = 'text-dark';
@@ -98,70 +93,39 @@ if ($total_reg > 0) {
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
           <li class="nav-item">
             <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>">Home</a>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Pessoas
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu2 ?>">Funcionários</a></li>
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu3 ?>">Fornecedores</a></li>
-
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu2 ?>">Reservas</a>
           </li>
 
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Cadastros
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu4 ?>">Cargos</a></li>
-
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu5 ?>">Mesas</a></li>
-
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu10 ?>">Banners</a></li>
-
-
-            </ul>
-
+          <li class="nav-item">
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu3 ?>">Clientes</a>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Estoque
+              Financeiro
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>">Produtos</a></li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu8 ?>">Pratos</a></li>
-
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu6 ?>">Categorias</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu4 ?>">Contas a Pagar</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu5 ?>">Contas a Receber</a></li>
 
               <li>
                 <hr class="dropdown-divider">
               </li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu9 ?>">Compras</a></li>
-
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu12 ?>">Estoque Baixo</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu6 ?>">Compras</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>">Movimentações</a></li>
 
             </ul>
           </li>
-
-          <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu11 ?>">Blog</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu14 ?>">Reservas</a>
-          </li>
-
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -238,17 +202,7 @@ if ($total_reg > 0) {
       require_once($menu6 . '.php');
     } else if (@$_GET['pag'] == $menu7) {
       require_once($menu7 . '.php');
-    } else if (@$_GET['pag'] == $menu8) {
-      require_once($menu8 . '.php');
-    } else if (@$_GET['pag'] == $menu9) {
-      require_once($menu9 . '.php');
-    } else if (@$_GET['pag'] == $menu10) {
-      require_once($menu10 . '.php');
-    }else if (@$_GET['pag'] == $menu11) {
-      require_once($menu11 . '.php');
-    }else if (@$_GET['pag'] == $menu12) {
-      require_once($menu12 . '.php');
-    }else {
+    }  else {
       require_once($menu1 . '.php');
     }
     ?>
