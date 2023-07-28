@@ -8,11 +8,17 @@ if (frmCadCli) {
         const dadosForm = new FormData(frmCadCli);
         
         //ENVIAR OS DADOS PARA O ARQUIVO QUE VAI GRAVAR - cadastrar.php
-        const dados = await fetch("inseir.php", {
+        const dados = await fetch("../inserir.php", {
             method: "POST",
             body: dadosForm
         });
         const resposta = await dados.json();
-        alert(resposta);
+        console.log(resposta);
+        
+        if (resposta['status']) {
+            document.getElementById("msgAlerta").innerHTML = resposta['msg']
+        } else {
+            document.getElementById("msgAlerta").innerHTML = resposta['msg']
+        }
     });
 }

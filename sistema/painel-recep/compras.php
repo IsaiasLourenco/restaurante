@@ -19,6 +19,7 @@ require_once("verificar.php");
         <table id="example" class="table table-hover table-sm my-4" style="width:98%;">
             <thead>
                 <tr>
+                    <th style="text-align:center">Pago</th>
                     <th>Total</th>
                     <th>Data da Compra</th>
                     <th>Funcionário</th>
@@ -37,25 +38,37 @@ require_once("verificar.php");
                     $id_func = $res[$i]['funcionario'];
                     $id_forn = $res[$i]['fornecedor'];
 
+                    if ($res[$i]['pago'] == 'Sim') {
+                        $pago = 'text-success';
+                    } else {
+                        $pago = 'text-danger';
+                    }
+
                     //BUSCAR O NOME DO FUCIONÁRIO RELACIONADO AO ID NA TABELA COMPRAS
-					$query2 = $pdo->query("SELECT * FROM funcionarios where id = '$id_func'");
-					$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-					$nome_func = $res2[0]['nome'];
+                    $query2 = $pdo->query("SELECT * FROM funcionarios where id = '$id_func'");
+                    $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+                    $nome_func = $res2[0]['nome'];
 
                     //BUSCAR O NOME DO FORNECEDOR RELACIONADO AO ID NA TABELA COMPRAS
-					$query2 = $pdo->query("SELECT * FROM fornecedores where id = '$id_forn'");
-					$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-					$nome_forn = $res2[0]['nome'];
+                    $query2 = $pdo->query("SELECT * FROM fornecedores where id = '$id_forn'");
+                    $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+                    $nome_forn = $res2[0]['nome'];
                 ?>
                     <tr>
+                        <td style="text-align: center;"><i class="bi bi-square-fill <?php echo $pago ?>"></i></td>
                         <td>R$ <?php echo number_format($res[$i]['total'], 2, ',', '.')  ?></td>
-                        <td><?php echo  implode('/', array_reverse(explode('-', $res[$i]['data_compra']))) ?></td>  
+                        <td><?php echo  implode('/', array_reverse(explode('-', $res[$i]['data_compra']))) ?></td>
                         <td><?php echo $nome_func ?></td>
                         <td><?php echo $nome_forn ?></td>
                         <td style="text-align:center">
+
+                            <?php if ($res[$i]['pago'] != 'Sim') { ?>
+
+                                <a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Excluir Registro">
+                                    <i class="bi bi-trash text-danger"></i></a>
+
+                            <?php } ?>
                             
-                            <a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Excluir Registro">
-                                <i class="bi bi-trash text-danger"></i></a>
                         </td>
                     </tr>
 

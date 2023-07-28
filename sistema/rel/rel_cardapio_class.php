@@ -1,7 +1,6 @@
 <?php 
 
 require_once('../../config.php');
-require_once("verificar.php");
 
 //ALIMENTAR OS DADOS NO RELATÓRIO
 $html = file_get_contents($url_local."sistema/rel/rel_cardapio.php");

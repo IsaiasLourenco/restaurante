@@ -6,7 +6,12 @@ require_once("verificar.php");
 
 //MENUS PARA O PAINEL
 $menu1 = 'home';
+$menu2 = 'reservas';
 $menu3 = 'clientes';
+$menu4 = 'pagar';
+$menu5 = 'receber';
+$menu6 = 'compras';
+$menu7 = 'movimentacoes';
 
 if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
   $classeMenu = 'text-dark';
@@ -51,7 +56,7 @@ if ($total_reg > 0) {
 <html>
 
 <head>
-  <title>PAINEL ADMINISTRATIVO</title>
+  <title>PAINEL RECEPÇÃO</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
   <link rel="shortcut icon" href="../../assets/imagens/ico.ico" type="image/x-icon">
@@ -127,9 +132,9 @@ if ($total_reg > 0) {
               Relatórios
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" target="_blank" href="../rel/rel_produtos_class.php">Produtos</a></li>
+              <li><a class="dropdown-item" target="_blank" href="../rel/rel_mov_class.php">Movimentações</a></li>
 
-              <li><a target="_blank" class="dropdown-item" href="../rel/rel_pratos_class.php">Pratos</a></li>
+              <li><a target="_blank" class="dropdown-item" href="../rel/rel_pagar_class.php">Contas a Pagar</a></li>
 
               <li><a target="_blank" class="dropdown-item" href="../rel/rel_cardapio_class.php">Cardápio</a></li>
 

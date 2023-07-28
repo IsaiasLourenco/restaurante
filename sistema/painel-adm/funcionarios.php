@@ -122,14 +122,14 @@ require_once("verificar.php");
 								</div>
 							</div>
 
-							<div class="col-4">
+							<div class="col-3">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">CPF </label>
 									<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo @$cpf ?>" required>
 								</div>
 							</div>
 
-							<div class="col-4">
+							<div class="col-5">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Email </label>
 									<input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com" value="<?php echo @$email ?>" required>
@@ -140,21 +140,21 @@ require_once("verificar.php");
 
 						<div class="row">
 
-							<div class="col-4">
+							<div class="col-3">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Telefone </label>
 									<input type="text" class="form-control" id="telefone" name="telefone" placeholder="(xx)xxxx-xxxx" value="<?php echo @$telefone_func ?>" required>
 								</div>
 							</div>
 
-							<div class="col-4">
+							<div class="col-2">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">CEP </label>
 									<input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" value="<?php echo @$cep ?>">
 								</div>
 							</div>
 
-							<div class="col-4">
+							<div class="col-7">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Rua </label>
 									<input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" value="<?php echo @$rua ?>" readonly>
@@ -165,21 +165,21 @@ require_once("verificar.php");
 
 						<div class="row">
 
-							<div class="col-4">
+							<div class="col-2">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Número </label>
 									<input type="text" class="form-control" id="numero" name="numero" placeholder="Número" value="<?php echo @$numero ?>">
 								</div>
 							</div>
 
-							<div class="col-4">
+							<div class="col-5">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Bairro </label>
 									<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" value="<?php echo @$bairro ?>" readonly>
 								</div>
 							</div>
 
-							<div class="col-4">
+							<div class="col-5">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Cidade </label>
 									<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" value="<?php echo @$cidade ?>" readonly>
@@ -190,7 +190,7 @@ require_once("verificar.php");
 
 						<div class="row">
 
-							<div class="col-2">
+							<div class="col-1">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Estado </label>
 									<input type="text" class="form-control" id="estado" name="estado" placeholder="UF" value="<?php echo @$estado ?>" readonly>
@@ -211,7 +211,7 @@ require_once("verificar.php");
 								</div>
 							</div>
 
-							<div class="col-4">
+							<div class="col-3">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Cargo </label>
 									<select class="form-select" aria-label="Default select example" name="cargo">

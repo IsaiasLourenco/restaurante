@@ -50,6 +50,7 @@ require_once("../conexao.php");
     </nav>
     <h2>CADASTRO DE CLIENTES</h2>
 
+    <span id="msgAlerta" style="text-align: center;"></span>
     <!-- <form method="post" id="form"> -->
     <form class="form-horizontal" method="post" id="form-cliente">
 
@@ -72,7 +73,7 @@ require_once("../conexao.php");
 
                     <label class="col-md-2 control-label" for="Nome">Nome <h11>*</h11></label>
                     <div class="col-md-5">
-                        <input id="Nome" name="Nome" class="form-control input-md" type="text">
+                        <input id="nome" name="nome" class="form-control input-md" type="text">
                     </div>
 
                     <!-- Prepended text-->
@@ -80,7 +81,7 @@ require_once("../conexao.php");
                     <div class="col-md-2">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input id="prependedtext" name="prependedtext" class="form-control" placeholder="XX XXXXX-XXXX" type="text" maxlength="13" pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$" OnKeyPress="formatar('## #####-####', this)">
+                            <input id="prependedtext" name="telefone" class="form-control" placeholder="XX XXXXX-XXXX" type="text" maxlength="13" pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$" OnKeyPress="formatar('## #####-####', this)">
                         </div>
                     </div>
 
@@ -92,7 +93,7 @@ require_once("../conexao.php");
                     <div class="col-md-5">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="prependedtext" name="prependedtext" class="form-control" placeholder="email@email.com" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                            <input id="prependedtext" name="email" class="form-control" placeholder="email@email.com" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                         </div>
                     </div>
                 </div>

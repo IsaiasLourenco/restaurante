@@ -1,7 +1,6 @@
 <?php 
 
 require_once('../../config.php');
-require_once("verificar.php");
 
 $dataInicial = $_POST['dataInicial'];
 $dataFinal = $_POST['dataFinal'];

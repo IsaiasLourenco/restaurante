@@ -11,6 +11,7 @@ $numero = $_POST['numero'];
 $bairro = $_POST['bairro'];
 $cidade = $_POST['cidade'];
 $estado = $_POST['estado'];
+$senha = $_POST['senha'];
 $id = $_POST['id'];
 
 //BUSCAR O REGISTRO JÁ CADASTRADO NO BANCO
@@ -31,9 +32,9 @@ if ($email != $email_banco) {
 }
 
 if ($id == "") {
-	$query = $pdo->prepare("INSERT INTO clientes SET nome = :nome, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado");
+	$query = $pdo->prepare("INSERT INTO clientes SET nome = :nome, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha");
 } else {
-	$query = $pdo->prepare("UPDATE clientes SET nome = :nome, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado WHERE id = '$id'");
+	$query = $pdo->prepare("UPDATE clientes SET nome = :nome, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha WHERE id = '$id'");
 }
 
 $query->bindValue(":nome", "$nome");
@@ -45,6 +46,7 @@ $query->bindValue(":numero", "$numero");
 $query->bindValue(":bairro", "$bairro");
 $query->bindValue(":cidade", "$cidade");
 $query->bindValue(":estado", "$estado");
+$query->bindValue(":senha", "$senha");
 
 $query->execute();
 

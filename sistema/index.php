@@ -51,7 +51,7 @@ if ($total_reg == 0) {
                                     <input type="password" name="senha" id="senha" class="form-control" required>
                                 </div>
                                 <div class="form-group mt-4">
-                                    <label for="remember-me" class="text-light"><span>Me manter conectado</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                    <br>
                                     <input type="submit" name="submit" class="btn btn-faded btn-md" style="background-color:#c1a35f; border-color:#f5f0f0; color:#333333" value="Logar">
                                 </div>
 
