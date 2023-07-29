@@ -161,7 +161,7 @@ require_once("../conexao.php");
 
                     <input type="submit" name="cadCli" id="cadCli" value="Cancelar" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">
 
-                    <input type="submit" name="cadCli" id="cadCli" value="Cadastrar" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">
+                    <input onclick="" type="submit" name="cadCli" id="cadCli" value="Cadastrar" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">
 
 					<!-- <div class="col-md-8">
 						<button type="button" class="btn btn-faded" data-bs-dismiss="modal" id="btn-fechar" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">Cancelar</button>

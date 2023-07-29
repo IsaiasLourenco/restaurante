@@ -39,6 +39,7 @@ require_once("verificar.php");
 
                     if ($res[$i]['tipo'] == 'Entrada') {
                         $move = 'text-success';
+                        
                     } else {
                         $move = 'text-danger';
                     }
@@ -50,7 +51,7 @@ require_once("verificar.php");
 
                 ?>
                     <tr>
-                        <td style="text-align: center;"><i class="bi bi-square-fill <?php echo $move ?>"></i></td>
+                        <td style="text-align: center;"><i class="bi bi-square-fill <?php echo $move ?> "></i></td>
                         <td><?php echo $res[$i]['descricao'] ?></td>
                         <td>R$ <?php echo number_format($res[$i]['valor'], 2, ',', '.')  ?></td>
                         <td><?php echo $nome_func ?></td>

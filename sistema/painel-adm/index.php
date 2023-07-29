@@ -17,6 +17,7 @@ $menu9 = 'compras';
 $menu10 = 'banners';
 $menu11 = 'blog';
 $menu12 = 'estoque';
+$menu13 = 'reservas';
 
 if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
   $classeMenu = 'text-dark';
@@ -159,7 +160,7 @@ if ($total_reg > 0) {
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu14 ?>">Reservas</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu13 ?>">Reservas</a>
           </li>
 
 
@@ -248,6 +249,9 @@ if ($total_reg > 0) {
       require_once($menu11 . '.php');
     }else if (@$_GET['pag'] == $menu12) {
       require_once($menu12 . '.php');
+    }else if (@$_GET['pag'] == $menu13) {
+      $pag_painel = '../painel-recep/';
+      require_once('../painel-recep/' .$menu13 . '.php');
     }else {
       require_once($menu1 . '.php');
     }

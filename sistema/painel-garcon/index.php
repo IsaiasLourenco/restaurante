@@ -5,14 +5,8 @@ require_once("../../conexao.php");
 require_once("verificar.php");
 
 //MENUS PARA O PAINEL
-$menu1 = 'home';
-$menu2 = 'reservas';
-$menu3 = 'clientes';
-$menu4 = 'pagar';
-$menu5 = 'receber';
-$menu6 = 'compras';
-$menu7 = 'movimentacoes';
-$menu8 = 'pedidos';
+$menu1 = 'pedidos';
+$menu2 = 'conissoes';
 
 if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
   $classeMenu = 'text-dark';
@@ -57,7 +51,7 @@ if ($total_reg > 0) {
 <html>
 
 <head>
-  <title>PAINEL RECEPÇÃO</title>
+  <title>PAINEL DO GARÇOM</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
   <link rel="shortcut icon" href="../../assets/imagens/ico.ico" type="image/x-icon">
@@ -98,70 +92,11 @@ if ($total_reg > 0) {
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>">Home</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>">Pedidos</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu2 ?>">Reservas</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu3 ?>">Clientes</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Financeiro
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu4 ?>">Contas a Pagar</a></li>
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu5 ?>">Contas a Receber</a></li>
-
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu6 ?>">Compras</a></li>
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>">Movimentações</a></li>
-
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu8 ?>">Pedidos</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Relatórios
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelReservas">Reservas</a></li>
-
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelMovimentacoes">Movimentações</a></li>
-
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelPagar">Contas a Pagar</a></li>
-
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelReceber">Contas a Receber</a></li>
-
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelCompras">Compras</a>
-              </li>
-
-            </ul>
-
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Telas
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" target="_blank" href="../painel-tela/tela.php">Tela de Pedidos</a></li>
-
-              <li><a target="_blank" class="dropdown-item" href="../painel-tela/tela-chamada.php">Tela de Chamadas</a></li>
-            </ul>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu2 ?>">Comissões</a>
           </li>
 
         </ul>
@@ -198,19 +133,7 @@ if ($total_reg > 0) {
       require_once($menu1 . '.php');
     } else if (@$_GET['pag'] == $menu2) {
       require_once($menu2 . '.php');
-    } else if (@$_GET['pag'] == $menu3) {
-      require_once($menu3 . '.php');
-    } else if (@$_GET['pag'] == $menu4) {
-      require_once($menu4 . '.php');
-    } else if (@$_GET['pag'] == $menu5) {
-      require_once($menu5 . '.php');
-    } else if (@$_GET['pag'] == $menu6) {
-      require_once($menu6 . '.php');
-    } else if (@$_GET['pag'] == $menu7) {
-      require_once($menu7 . '.php');
-    } else if (@$_GET['pag'] == $menu8) {
-      require_once($menu8 . '.php');
-    } else {
+    }  else {
       require_once($menu1 . '.php');
     }
     ?>
