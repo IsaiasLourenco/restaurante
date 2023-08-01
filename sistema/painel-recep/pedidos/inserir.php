@@ -1,22 +1,25 @@
-<?php
+<?php 
 require_once("../../../conexao.php");
 @session_start();
+$id_usuario = $_SESSION['id'];
 
 $mesa = $_POST['id_mesa'];
 $obs = $_POST['obs'];
-$garcon = $_POST['garcon'];
-$cpf_usuario = $_SESSION['cpf'];
-$query = $pdo->query("SELECT * FROM funcionarios where cpf = '$cpf_usuario'");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-$id_funcionario = $res[0]['id'];
+$garcom = $_POST['garcom'];
 
-$query = $pdo->prepare("INSERT INTO pedidos SET mesa = :mesa, obs = :obs, funcionario = :funcionario, data_ped = curDate(), garcon = :garcon, comissao = '$comissao', couvert = '$couvert', pago = 'Não'");
+// $cpf_funcionario = $$_SESSION['cpf'];
+// $query1 = $pdo->query("SELECT * FROM funcionarios WHERE cpf = '$cpf_funcionario'");
+// $res1 = $query1->fetchAll(PDO::FETCH_ASSOC);
+// $id_funcionario = $res1[0]['id'];
+
+$query = $pdo->prepare("INSERT INTO pedidos SET mesa = :mesa,  obs = :obs, funcionario = :funcionario, data_pedido = curDate(), garcom = :garcom, status_pedido = 'Aberta'");
 
 
-$query->bindValue(":garcon", "$garcon");
+$query->bindValue(":garcom", "$garcom");
 $query->bindValue(":mesa", "$mesa");
 $query->bindValue(":obs", "$obs");
-$query->bindValue(":funcionario", "$id_funcionario");
+$query->bindValue(":funcionario", "$id_usuario");
+
 
 $query->execute();
 
