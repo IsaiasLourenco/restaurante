@@ -1,6 +1,7 @@
 <?php
 $pagina = 'pedidos';
 require_once("verificar.php");
+require_once("../../conexao.php");
 $agora = date('Y-m-d');
 @session_start();
 $id_usuario = $_SESSION['id'];
@@ -195,7 +196,7 @@ $id_usuario = $_SESSION['id'];
 					<div class="row">
 						<div class="col-md-5 col-sm-12">
 							<div class='order py-2'>
-								<p class="background">LISTA DE ITENS</p>
+								<p class="background">CONSUMO</p>
 
 								<span id="listar">
 
@@ -210,17 +211,97 @@ $id_usuario = $_SESSION['id'];
 
 
 						<div id='payment' class='payment col-md-7'>
+							<form method="post" id="form-buscar">
+								<div class="row py-2">
+									<p class="background">PRODUTOS</p>
+									<!-- Dataset Produtos -->
+									<small>
+										<table id="example" class="table table-hover table-sm my-4" style="width:98%;">
+											<thead>
+												<tr>
+													<th>Nome</th>
+													<th>Preço de Compra</th>
+													<th>Preço de Venda</th>
+													<th>Categoria</th>
+													<th>Fornecedor</th>
+													<th style="text-align:center">Estoque</th>
+													<th style="text-align:center">Imagem</th>
+													<th style="text-align:center">Ações</th>
 
-							<div class="row py-2">
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												$query = $pdo->query("SELECT * FROM produtos ORDER BY id ASC");
+												$res = $query->fetchAll(PDO::FETCH_ASSOC);
+												for ($i = 0; $i < @count($res); $i++) {
+													foreach ($res[$i] as $key => $value) {
+													}
+													$id_reg = $res[$i]['id'];
+
+													$id_cat = $res[$i]['categoria'];
+													$id_forn = $res[$i]['fornecedor'];
+
+													//BUSCAR O NOME RELACIONADO
+													$query2 = $pdo->query("SELECT * FROM categorias where id = '$id_cat'");
+													$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+													$nome_cat = $res2[0]['nome'];
+
+													//BUSCAR O NOME RELACIONADO
+													$query2 = $pdo->query("SELECT * FROM fornecedores where id = '$id_forn'");
+													$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+													if (@count($res2) == 0) {
+														$nome_forn = 'Sem Fornecedor';
+													} else {
+														$nome_forn = $res2[0]['nome'];
+													}
+
+													$valor_compra = number_format($res[$i]['valor_compra'], 2, ',', '.');
+													$valor_venda = number_format($res[$i]['valor_venda'], 2, ',', '.');
+
+												?>
+													<tr>
+														<td><?php echo $res[$i]['nome'] ?></td>
+														<td>R$ <?php echo $valor_compra ?></td>
+														<td>R$ <?php echo $valor_venda ?></td>
+														<td><?php echo $nome_cat ?></td>
+														<td><?php echo $nome_forn ?></td>
+														<td style="text-align:center"><?php echo $res[$i]['estoque'] ?></td>
+														<td style="text-align:center"><img src="../../assets/imagens/<?php echo $pagina ?>/<?php echo $res[$i]['imagem'] ?>" height="30px" width="30px"></td>
+														<td style="text-align:center">
+															<a href="index.php?pag=<?php echo $pagina ?>&funcao=editar&id=<?php echo $id_reg ?>" title="Editar Registro">
+																<i class="bi bi-pencil-square mr-1 text-primary"></i></a>
+
+															<a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Excluir Registro">
+																<i class="bi bi-trash text-danger"></i></a>
+
+															<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $valor_compra ?>', '<?php echo $valor_venda ?>', '<?php echo $nome_cat ?>', '<?php echo $nome_forn ?>', '<?php echo $res[$i]["estoque"] ?>', '<?php echo $res[$i]["imagem"] ?>', '<?php echo $res[$i]["descricao"] ?>')" title="Ver Dados">
+																<i class="bi bi-info-circle-fill text-secondary"></i></a>
+															<a href="#" onclick="comprarProdutos('<?php echo $res[$i]['id'] ?>')" title="Comprar Produtos" style="text-decoration: none">
+																<i class="bi bi-bag-fill text-success"></i>
+															</a>
+
+														</td>
+													</tr>
+
+												<?php } ?>
+
+											</tbody>
+										</table>
+									</small>
+									<!-- Fim do Dataset Produtos -->
 
 
-							</div>
+								</div>
+
+							</form>
 
 						</div>
 
 
 					</div>
 				</div>
+
 			</div>
 
 
@@ -228,6 +309,31 @@ $id_usuario = $_SESSION['id'];
 	</div>
 </div>
 <!-- Fim Modal PDV-->
+
+<!-- Ajax para limitar nº de itens no Datable e listar produtos -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "ordering": false,
+            "lengthMenu": [
+                [2, 3, 4, -1],
+                [2, 3, 4, "Todos"]
+            ]
+        });
+        
+    });
+</script>
+<!-- Fim do Ajax para limitar nº de itens no Datable e listar produtos -->
+
+<!-- Ordenação da Datable Produtos -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#example').DataTable({
+			"ordering": false
+		});
+	});
+</script>
+<!-- Fim da Ordenação da Datable Produtos -->
 
 <!-- Ajax para chamar Modal Reservas -->
 <script type="text/javascript">

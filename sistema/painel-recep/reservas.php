@@ -47,7 +47,7 @@ $agora = date('Y-m-d');
 
     <div class="col-lg-8 col-md-7 col-sm-12">
         <div id='listar-reservas'>
-
+            
         </div>
     </div>
 </div>
@@ -280,15 +280,15 @@ $agora = date('Y-m-d');
                     //window.location = "index.php?pag=" + pag;
                     var data = $('#data-reserva').val(data);
                     mudarData(data);
-
+                    
                 } else {
 
                     $('#mensagem-reservas').addClass('text-danger')
                     $('#mensagem-reservas').text(mensagem)
                 }
-
+                
             },
-
+            
             cache: false,
             contentType: false,
             processData: false,
