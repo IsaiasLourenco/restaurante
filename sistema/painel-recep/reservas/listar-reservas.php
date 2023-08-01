@@ -1,7 +1,7 @@
 <?php
 require_once("../../../conexao.php");
 
-echo "<h2>Mesas Reservadas</h2>";
+echo "<h2>MESAS RESERVADAS</h2>";
 
 $data = $_POST['data'];
 
