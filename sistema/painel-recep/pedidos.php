@@ -198,13 +198,8 @@ $id_usuario = $_SESSION['id'];
 
 								</span>
 
-
-
-
 							</div>
 						</div>
-
-
 
 						<div id='payment' class='payment col-md-7'>
 							<form method="post" id="form-buscar">
@@ -251,13 +246,13 @@ $id_usuario = $_SESSION['id'];
 														<td style="text-align: center; width: 10%;"><?php echo $res[$i]['estoque'] ?></td>
 														<td style="text-align: center; width: 20%;">
 
-															<input class="form-control form-control-sm" style="text-align:center; border-style: none;" id="Prat-<?php echo $id_reg ?>" type="number" value="1">
+															<input class="form-control form-control-sm" style="text-align:center; border-style: none;" id="Prod-<?php echo $id_reg ?>" type="number" value="1">
 
 														</td>
 														<td style="text-align: center; width: 10%;"><img src="../../assets/imagens/produtos/<?php echo $res[$i]['imagem'] ?>" height="30px" width="30px"></>
 														<td style="text-align: center; width: 10%;">
 
-															<a href="" onclick="addProduto(<?php echo $id_reg ?>)" title="Adicionar Item">
+															<a href="" onclick="addProduto(<?php echo $id_reg ?>,'Produto')" title="Adicionar Item">
 																<i class="bi bi-cart-plus text-success"></i></a>
 
 														</td>
@@ -311,14 +306,13 @@ $id_usuario = $_SESSION['id'];
 														td>
 														<td style="text-align: center; width: 20%;">
 
-															<input style="text-align: center; width: 50%; border-style:none" type="number" value="1">
+															<input class="form-control form-control-sm" style="text-align:center; border-style: none;" id="Prat-<?php echo $id_reg ?>" type="number" value="1">
 
 														</td>
 														<td style="text-align: center; width: 20%;"><img src="../../assets/imagens/pratos/<?php echo $res[$i]['imagem'] ?>" height="30px" width="30px"></>
 														<td style="text-align: center; width: 20%;">
 
-
-															<a href="" title="Adicionar Item">
+															<a href=""  onclick="addProduto(<?php echo $id_reg ?>,'Prato')" title="Adicionar Item">
 																<i class="bi bi-cart-plus text-success"></i></a>
 
 
@@ -431,39 +425,51 @@ $id_usuario = $_SESSION['id'];
 </script>
 <!-- Fim do Ajax para chamar modalPDV -->
 
-<!-- Ajax para add item -->
+<!-- Ajax para adicoinar item -->
 <script type="text/javascript">
 	var pag = "<?= $pagina ?>";
 
-	function addProduto(id) {
+	function addProduto(id, tipo) {
 		event.preventDefault();
-		var quant = $('#Prat-' + id).val();
+		if(tipo === 'Produto'){	
+			var quantidade = $('#Prod-' + id).val();
+		}else{
+			var quantidade = $('#Prat-' + id).val();
+		}	
 		var pedido = $('#pedido-consumo').val();
-		var mesa = $('#id_mesa_consumo').val();
+		var mesa = $('#nome_mesa_consumo').text();
 
 		$.ajax({
 			url: pag + "/inserir-itens.php",
 			method: 'POST',
 			data: {
 				id,
-				quant,
+				quantidade,
 				pedido,
-				mesa
+				mesa,
+				tipo
 			},
 			dataType: "text",
 
 			success: function(mensagem) {
-				
+
 				if (mensagem.trim() == "Salvo com Sucesso!") {
-					$('#Prat-' + id).val('1');
+					if (tipo === 'Produto') {
+						$('#Prod-' + id).val('1');
+
+					} else {
+						$('#Prat-' + id).val('1');
+
+					}
 				}
 			},
 
 
 		});
+
 	}
 </script>
-<!-- Fim Ajax para add item -->
+<!-- Fim do Ajax para adicoinar item -->
 
 <!-- Ajax para inserir ou editar dados -->
 <script type="text/javascript">
