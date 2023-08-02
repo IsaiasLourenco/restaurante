@@ -437,9 +437,30 @@ $id_usuario = $_SESSION['id'];
 
 	function addProduto(id) {
 		event.preventDefault();
-		var quant = $('#Prat-'+id).val();
-		console.log(quant);
-		
+		var quant = $('#Prat-' + id).val();
+		var pedido = $('#pedido-consumo').val();
+		var mesa = $('#id_mesa_consumo').val();
+
+		$.ajax({
+			url: pag + "/inserir-itens.php",
+			method: 'POST',
+			data: {
+				id,
+				quant,
+				pedido,
+				mesa
+			},
+			dataType: "text",
+
+			success: function(mensagem) {
+				
+				if (mensagem.trim() == "Salvo com Sucesso!") {
+					$('#Prat-' + id).val('1');
+				}
+			},
+
+
+		});
 	}
 </script>
 <!-- Fim Ajax para add item -->
