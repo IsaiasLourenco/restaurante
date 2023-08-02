@@ -185,10 +185,6 @@ $id_usuario = $_SESSION['id'];
 <div class="modal fade" id="modal-pdv" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Itens - Mesa <span id="nome_mesa_consumo_pdv"></span></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
 
 			<div class="modal-body">
 
@@ -196,7 +192,7 @@ $id_usuario = $_SESSION['id'];
 					<div class="row">
 						<div class="col-md-5 col-sm-12">
 							<div class='order py-2'>
-								<p class="background">CONSUMO</p>
+								<p class="background">CONSUMO MESA <span id="nome_mesa_consumo_pdv"></p>
 
 								<span id="listar">
 
@@ -213,24 +209,25 @@ $id_usuario = $_SESSION['id'];
 						<div id='payment' class='payment col-md-7'>
 							<form method="post" id="form-buscar">
 								<div class="row py-2">
-									<p class="background">PRODUTOS</p>
 									<!-- Dataset Produtos -->
+									<p class="background">PRODUTOS</p>
 									<small>
-										<table id="example" class="table table-hover table-sm my-4" style="width:98%;">
+										<table id="produtos" class="table table-hover table-sm my-4" style="width:98%;">
 											<thead>
 												<tr>
 													<th style="display: none;">Categoria</th>
-													<th>Nome</th>
-													<th>Preço</th>
-													<th style="text-align: center;">Estoque</th>
-													<th style="text-align: center;">Imagem</the=>
-													<th style="text-align: center;">Adicionar</thle=>
+													<th style="width: 30%;">Nome</th>
+													<th style="width: 20%;">Preço</th>
+													<th style="text-align: center; width: 10%;">Estoque</th>
+													<th style="text-align: center; width: 20%;">Qtde</th>
+													<th style="text-align: center; width: 10%;">Imagem</th>
+													<th style="text-align: center; width: 10%;">Adicionar</th>
 
 												</tr>
 											</thead>
 											<tbody>
 												<?php
-												$query = $pdo->query("SELECT * FROM produtos ORDER BY id ASC");
+												$query = $pdo->query("SELECT * FROM produtos WHERE estoque > $nivel_estoque ORDER BY id ASC");
 												$res = $query->fetchAll(PDO::FETCH_ASSOC);
 												for ($i = 0; $i < @count($res); $i++) {
 													foreach ($res[$i] as $key => $value) {
@@ -249,14 +246,79 @@ $id_usuario = $_SESSION['id'];
 												?>
 													<tr>
 														<td style="display: none;"><?php echo $nome_cat ?></td>
-														<td><?php echo $res[$i]['nome'] ?></td>
-														<td>R$ <?php echo $valor_venda ?></td>
-														<td style="text-align: center;"><?php echo $res[$i]['estoque'] ?></td>
-														<td style="text-align: center;"><img src="../../assets/imagens/produtos/<?php echo $res[$i]['imagem'] ?>" height="30px" width="30px"></>
-														<td style="text-align:center">
+														<td style="width: 30%;"><?php echo $res[$i]['nome'] ?></td>
+														<td style="width: 20%;">R$ <?php echo $valor_venda ?></td>
+														<td style="text-align: center; width: 10%;"><?php echo $res[$i]['estoque'] ?></td>
+														<td style="text-align: center; width: 20%;">
+
+															<input class="form-control form-control-sm" style="text-align:center; border-style: none;" id="Prat-<?php echo $id_reg ?>" type="number" value="1">
+
+														</td>
+														<td style="text-align: center; width: 10%;"><img src="../../assets/imagens/produtos/<?php echo $res[$i]['imagem'] ?>" height="30px" width="30px"></>
+														<td style="text-align: center; width: 10%;">
+
+															<a href="" onclick="addProduto(<?php echo $id_reg ?>)" title="Adicionar Item">
+																<i class="bi bi-cart-plus text-success"></i></a>
+
+														</td>
+													</tr>
+
+												<?php } ?>
+
+											</tbody>
+										</table>
+									</small>
+									<!-- Fim do Dataset Produtos -->
+
+									<!-- Dataset Pratos -->
+									<p class="background">PRATOS</p>
+									<small>
+										<table id="pratos" class="table table-hover table-sm my-4" style="width:98%;">
+											<thead>
+												<tr>
+													<th style="display: none;">Categoria</th>
+													<th style="width: 40%;">Nome</th>
+													<th style="width: 10%;">Preço</th>
+													<th style="text-align: center; width: 20%;">Qtde</th>
+													<th style="text-align: center; width: 20%;">Imagem</the=>
+													<th style="text-align: center; width: 10%;">Adicionar</thle=>
+
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												$query = $pdo->query("SELECT * FROM pratos ORDER BY id ASC");
+												$res = $query->fetchAll(PDO::FETCH_ASSOC);
+												for ($i = 0; $i < @count($res); $i++) {
+													foreach ($res[$i] as $key => $value) {
+													}
+													$id_reg = $res[$i]['id'];
+
+													$id_cat = $res[$i]['categoria'];
+
+													//BUSCAR O NOME RELACIONADO
+													$query2 = $pdo->query("SELECT * FROM categorias where id = '$id_cat'");
+													$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+													$nome_cat = $res2[0]['nome'];
+
+													$valor = number_format($res[$i]['valor'], 2, ',', '.');
+
+												?>
+													<tr>
+														<td style="display: none;"><?php echo $nome_cat ?></td>
+														<td style="width: 40%;"><?php echo $res[$i]['nome'] ?></td>
+														<td style="width: 20%;">R$ <?php echo $valor ?></td>
+														td>
+														<td style="text-align: center; width: 20%;">
+
+															<input style="text-align: center; width: 50%; border-style:none" type="number" value="1">
+
+														</td>
+														<td style="text-align: center; width: 20%;"><img src="../../assets/imagens/pratos/<?php echo $res[$i]['imagem'] ?>" height="30px" width="30px"></>
+														<td style="text-align: center; width: 20%;">
 
 
-															<a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Adicionar Item">
+															<a href="" title="Adicionar Item">
 																<i class="bi bi-cart-plus text-success"></i></a>
 
 
@@ -269,8 +331,7 @@ $id_usuario = $_SESSION['id'];
 											</tbody>
 										</table>
 									</small>
-									<!-- Fim do Dataset Produtos -->
-
+									<!-- Fim do Dataset Pratos -->
 
 								</div>
 
@@ -293,7 +354,7 @@ $id_usuario = $_SESSION['id'];
 <!-- Ajax para limitar nº de itens no Datable e listar produtos -->
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#example').DataTable({
+		$('#produtos').DataTable({
 			"ordering": false,
 			"lengthMenu": [
 				[2, 3, 4, -1],
@@ -305,15 +366,20 @@ $id_usuario = $_SESSION['id'];
 </script>
 <!-- Fim do Ajax para limitar nº de itens no Datable e listar produtos -->
 
-<!-- Ordenação da Datable Produtos -->
+<!-- Ajax para limitar nº de itens no Datable e listar pratos -->
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#example').DataTable({
-			"ordering": false
+		$('#pratos').DataTable({
+			"ordering": false,
+			"lengthMenu": [
+				[2, 3, 4, -1],
+				[2, 3, 4, "Todos"]
+			]
 		});
+
 	});
 </script>
-<!-- Fim da Ordenação da Datable Produtos -->
+<!-- Fim do Ajax para limitar nº de itens no Datable e listar pratos -->
 
 <!-- Ajax para chamar Modal Reservas -->
 <script type="text/javascript">
@@ -364,6 +430,19 @@ $id_usuario = $_SESSION['id'];
 	}
 </script>
 <!-- Fim do Ajax para chamar modalPDV -->
+
+<!-- Ajax para add item -->
+<script type="text/javascript">
+	var pag = "<?= $pagina ?>";
+
+	function addProduto(id) {
+		event.preventDefault();
+		var quant = $('#Prat-'+id).val();
+		console.log(quant);
+		
+	}
+</script>
+<!-- Fim Ajax para add item -->
 
 <!-- Ajax para inserir ou editar dados -->
 <script type="text/javascript">
