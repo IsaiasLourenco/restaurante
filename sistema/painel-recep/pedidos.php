@@ -51,7 +51,6 @@ $id_usuario = $_SESSION['id'];
 			$texto =  'ABERTA (' . @count($res5) . ')';
 		}
 
-
 		if (@count($res2) > 0) {
 			$classe = 'text-danger';
 			$texto_if =  'RESERVADA';
@@ -63,10 +62,7 @@ $id_usuario = $_SESSION['id'];
 			$nome_cliente = ' - ' . $res3[0]['nome'];
 		}
 
-
-
 	?>
-
 
 		<div class='col-lg-3 col-md-4 col-sm-12 mb-4'>
 			<?php if ($texto_if == 'ABERTA') { ?>
@@ -194,7 +190,7 @@ $id_usuario = $_SESSION['id'];
 							<div class='order py-2'>
 								<p class="background">CONSUMO MESA <span id="nome_mesa_consumo_pdv"></p>
 
-								<span id="listar">
+								<span id="listar-itens-pdv">
 
 								</span>
 
@@ -312,7 +308,7 @@ $id_usuario = $_SESSION['id'];
 														<td style="text-align: center; width: 20%;"><img src="../../assets/imagens/pratos/<?php echo $res[$i]['imagem'] ?>" height="30px" width="30px"></>
 														<td style="text-align: center; width: 20%;">
 
-															<a href=""  onclick="addProduto(<?php echo $id_reg ?>,'Prato')" title="Adicionar Item">
+															<a href="" onclick="addProduto(<?php echo $id_reg ?>,'Prato')" title="Adicionar Item">
 																<i class="bi bi-cart-plus text-success"></i></a>
 
 
@@ -404,6 +400,7 @@ $id_usuario = $_SESSION['id'];
 
 		});
 		myModal.show();
+		listarItensPDV();
 	}
 </script>
 <!-- Fim do Ajax para chamar Modal consumo -->
@@ -431,11 +428,11 @@ $id_usuario = $_SESSION['id'];
 
 	function addProduto(id, tipo) {
 		event.preventDefault();
-		if(tipo === 'Produto'){	
+		if (tipo === 'Produto') {
 			var quantidade = $('#Prod-' + id).val();
-		}else{
+		} else {
 			var quantidade = $('#Prat-' + id).val();
-		}	
+		}
 		var pedido = $('#pedido-consumo').val();
 		var mesa = $('#nome_mesa_consumo').text();
 
@@ -470,6 +467,30 @@ $id_usuario = $_SESSION['id'];
 	}
 </script>
 <!-- Fim do Ajax para adicoinar item -->
+
+
+<!--AJAX PARA MOSTRAR OS PRODUTOS DO ITEM DA VENDA -->
+<script type="text/javascript">
+	var pag = "<?= $pagina ?>";
+
+	function listarItensPDV() {
+		var idpedido = $('#pedido-consumo').val();
+		$.ajax({
+			url: pag + "/listar-itens-pdv.php",
+			method: 'POST',
+			data: {
+				idpedido
+			},
+			dataType: "html",
+
+			success: function(result) {
+				$("#listar-itens-pdv").html(result);
+			}
+
+		});
+	}
+</script>
+<!-- FIMAJAX PARA MOSTRAR OS PRODUTOS DO ITEM DA VENDA -->
 
 <!-- Ajax para inserir ou editar dados -->
 <script type="text/javascript">
