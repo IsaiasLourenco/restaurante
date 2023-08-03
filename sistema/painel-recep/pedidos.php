@@ -258,6 +258,7 @@ $id_usuario = $_SESSION['id'];
 
 											</tbody>
 										</table>
+										<div class="mt-4" id="mensagem-add"></div>
 									</small>
 									<!-- Fim do Dataset Produtos -->
 
@@ -449,6 +450,8 @@ $id_usuario = $_SESSION['id'];
 
 			success: function(mensagem) {
 
+				$('#mensagem-add').removeClass()
+				$('#mensagem-add').text('');
 				if (mensagem.trim() == "Salvo com Sucesso!") {
 					if (tipo === 'Produto') {
 						$('#Prod-' + id).val('1');
@@ -457,6 +460,9 @@ $id_usuario = $_SESSION['id'];
 						$('#Prat-' + id).val('1');
 
 					}
+				} else {
+					$('#mensagem-add').addClass('text-danger')
+					$('#mensagem-add').text(mensagem)
 				}
 			},
 

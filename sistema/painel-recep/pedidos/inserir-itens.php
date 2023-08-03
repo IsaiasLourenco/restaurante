@@ -15,7 +15,20 @@ if ($tipo == 'Produto') {
     $query2 = $pdo->query("SELECT * FROM produtos WHERE id = '$produto'");
     $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
     $valor = $res2[0]['valor_venda'];
+    $estoque = $res2[0]['estoque'];
+    $nome = $res2[0]['nome'];
     $status_item = 'Pronto';
+
+    if($quantidade > $nivel_estoque){
+        echo 'Estoque insuficiente! Existe(m) ' .$estoque. ' ' .$nome. ' no estoque. Contatar compras!';
+        exit();
+    }
+
+    // ABATER DO ESTOQUE
+    $novo_estoque = $estoque - $quantidade;
+    $query = $pdo->prepare("UPDATE produtos SET estoque = :estoque WHERE id = '$produto'");
+    $query->bindValue(":estoque", "$novo_estoque");
+    $query->execute();
 } else {
     $query2 = $pdo->query("SELECT * FROM pratos WHERE id = '$produto'");
     $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
