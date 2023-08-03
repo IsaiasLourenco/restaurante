@@ -66,7 +66,7 @@ $id_usuario = $_SESSION['id'];
 
 		<div class='col-lg-3 col-md-4 col-sm-12 mb-4'>
 			<?php if ($texto_if == 'ABERTA') { ?>
-				<a href="#" onclick="modalConsumo(<?php echo $nome_mesa ?>, <?php echo $id_pedido ?>, '<?php echo $obs ?>')" style="text-decoration: none">
+				<a href="#" onclick="modalPDV(<?php echo $nome_mesa ?>, <?php echo $id_pedido ?>, '<?php echo $obs ?>')" style="text-decoration: none">
 				<?php } else { ?>
 					<a href="#" onclick="modalReservas(<?php echo $nome_mesa ?>)" style="text-decoration: none">
 
@@ -147,36 +147,6 @@ $id_usuario = $_SESSION['id'];
 </div>
 <!-- Fim Modal Reservas-->
 
-<!-- Modal Consumo-->
-<div class="modal fade" id="modalConsumo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Consumo - Mesa <span id="nome_mesa_consumo"></span></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<form method="post" id="form-consumo">
-				<div class="modal-body">
-
-					<input type="hidden" id="id_mesa_consumo" name="id_mesa_consumo">
-					<input type="hidden" id="pedido-consumo" name="pedido-consumo">
-
-					<small>
-						<div align="center" id="mensagem-consumo">
-						</div>
-					</small>
-
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">Fechar</button>
-					<a href="#" onclick="modalPDV()" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Adicionar</a>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<!-- Fim Modal Consumo-->
-
 <!-- Modal PDV-->
 <div class="modal fade" id="modal-pdv" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
@@ -184,11 +154,14 @@ $id_usuario = $_SESSION['id'];
 
 			<div class="modal-body">
 
+				<input type="hidden" id="id_mesa_consumo" name="id_mesa_consumo">
+				<input type="hidden" id="pedido-consumo" name="pedido-consumo">
+
 				<div class='checkout'>
 					<div class="row">
 						<div class="col-md-5 col-sm-12">
 							<div class='order py-2'>
-								<p class="background">CONSUMO MESA <span id="nome_mesa_consumo_pdv"></p>
+								<p class="background">CONSUMO MESA <span id="nome_mesa_consumo"></p>
 
 								<span id="listar-itens-pdv">
 
@@ -387,37 +360,21 @@ $id_usuario = $_SESSION['id'];
 </script>
 <!-- Fim do Ajax para chamar Modal Reservas -->
 
-<!-- Ajax para chamar Modal consumo -->
-<script type="text/javascript">
-	var pag = "<?= $pagina ?>";
-
-	function modalConsumo(id_mesa, pedido) {
-		event.preventDefault();
-		$('#id_mesa_consumo').val(id_mesa);
-		$('#pedido-consumo').val(pedido);
-		$('#nome_mesa_consumo').text(id_mesa);
-		var myModal = new bootstrap.Modal(document.getElementById('modalConsumo'), {
-
-		});
-		myModal.show();
-		listarItensPDV();
-	}
-</script>
-<!-- Fim do Ajax para chamar Modal consumo -->
-
 <!-- Ajax para chamar modalPDV -->
 <script type="text/javascript">
 	var pag = "<?= $pagina ?>";
 
-	id_mesa_consumo
-
-	function modalPDV(pedido) {
+	function modalPDV(id_mesa, pedido) {
 		event.preventDefault();
-		$('#nome_mesa_consumo_pdv').text($('#id_mesa_consumo').val());
+		$('#id_mesa_consumo').val(id_mesa);
+		$('#pedido-consumo').val(pedido);
+		$('#nome_mesa_consumo').text(id_mesa);
+		
 		var myModal = new bootstrap.Modal(document.getElementById('modal-pdv'), {
 
 		});
 		myModal.show();
+		listarItensPDV();
 	}
 </script>
 <!-- Fim do Ajax para chamar modalPDV -->
