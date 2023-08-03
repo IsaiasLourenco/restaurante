@@ -271,8 +271,8 @@ $id_usuario = $_SESSION['id'];
 													<th style="width: 40%;">Nome</th>
 													<th style="width: 10%;">Preço</th>
 													<th style="text-align: center; width: 20%;">Qtde</th>
-													<th style="text-align: center; width: 20%;">Imagem</the=>
-													<th style="text-align: center; width: 10%;">Adicionar</thle=>
+													<th style="text-align: center; width: 20%;">Imagem</th>
+													<th style="text-align: center; width: 10%;">Adicionar</th>
 
 												</tr>
 											</thead>
@@ -299,7 +299,6 @@ $id_usuario = $_SESSION['id'];
 														<td style="display: none;"><?php echo $nome_cat ?></td>
 														<td style="width: 40%;"><?php echo $res[$i]['nome'] ?></td>
 														<td style="width: 20%;">R$ <?php echo $valor ?></td>
-														td>
 														<td style="text-align: center; width: 20%;">
 
 															<input class="form-control form-control-sm" style="text-align:center; border-style: none;" id="Prat-<?php echo $id_reg ?>" type="number" value="1">
@@ -490,7 +489,35 @@ $id_usuario = $_SESSION['id'];
 		});
 	}
 </script>
-<!-- FIMAJAX PARA MOSTRAR OS PRODUTOS DO ITEM DA VENDA -->
+<!-- FIM AJAX PARA MOSTRAR OS PRODUTOS DO ITEM DA VENDA -->
+
+<!-- AJAX PARA DELETAR ITEM -->
+<script type="text/javascript">
+	function excluirItem(id) {
+		event.preventDefault();
+		var pag = "<?= $pagina ?>";
+		console.log(id);
+		$.ajax({
+			url: pag + "/excluir-item.php",
+			method: 'POST',
+			data: {
+				id
+			},
+			dataType: "text",
+
+			success: function(mensagem) {
+
+				if (mensagem.trim() == "Excluído com Sucesso!") {
+					listarItensPDV();
+				}
+			},
+
+
+		});
+
+	}
+</script>
+<!--FIM AJAX PARA DELETAR ITEM -->
 
 <!-- Ajax para inserir ou editar dados -->
 <script type="text/javascript">
