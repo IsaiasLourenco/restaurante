@@ -149,23 +149,27 @@ $id_usuario = $_SESSION['id'];
 
 <!-- Modal PDV-->
 <div class="modal fade" id="modal-pdv" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-xl">
+	<div class="modal-dialog modal-xl" style="overflow-y:initial !important">
 		<div class="modal-content">
 
-			<div class="modal-body">
+			<div class="modal-body" style="max-height:calc(100vh - 40px); overflow-y:auto">
 
 				<input type="hidden" id="id_mesa_consumo" name="id_mesa_consumo">
 				<input type="hidden" id="pedido-consumo" name="pedido-consumo">
+				<input type="hidden" id="obs-pedido" name="obs">
 
 				<div class='checkout'>
 					<div class="row">
 						<div class="col-md-5 col-sm-12">
 							<div class='order py-2'>
-								<p class="background">CONSUMO MESA <span id="nome_mesa_consumo"></p>
 
-								<span id="listar-itens-pdv">
+								<p class="background">CONSUMO MESA <span id="nome_mesa_consumo"></span>
 
-								</span>
+									<a data-bs-toggle="modal" data-bs-target="#modalObs" style="text-decoration:none" class="text-light" href="#" data-bs-toggle="modal" data-bs-target="#modalObs" title="Ver Observações">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-exclamation-circle"></i> <small>OBSERVAÇÕES</small> </a>
+
+								</p>
+
+								<span id="listar-itens-pdv"></span>
 
 							</div>
 						</div>
@@ -314,6 +318,65 @@ $id_usuario = $_SESSION['id'];
 </div>
 <!-- Fim Modal PDV-->
 
+<!-- Modal Observação-->
+<div class="modal fade" id="modalObs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<form method="post" id="form-obs">
+				<div class="modal-body bg-light">
+
+					<div class="mb-3">
+						<label for="exampleFormControlInput1" class="form-label"><strong>Observações</strong></label>
+						<textarea type="text" class="form-control" name="obs-texto" id="obs-texto"></textarea>
+					</div>
+
+
+					<input type="hidden" id="pedido-obs" name="pedido-obs">
+
+
+					<small>
+						<div align="center" id="mensagem-obs">
+						</div>
+					</small>
+
+				</div>
+				<div class="modal-footer bg-light">
+					<button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-obs">Fechar</button>
+					<button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Editar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Fim Modal Observação-->
+
+<!-- Modal Fechar Mesa-->
+<div class="modal fade" id="modalFecharMesa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-body bg-light">
+
+				<h2>Fechamento</h2>
+				<p>Deseja realmente fechar a mesa <strong><span id="nome-mesa"></span></strong>? O valor total consumido foi de <strong>R$ <span id="total-consumido"></span></strong> .</p>
+
+				<small>
+					<div align="center" id="mensagem-fechar">
+					</div>
+				</small>
+
+			</div>
+			<div class="modal-footer bg-light">
+				<a href="index.php?pag=pedidos" type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" id="btn-fechar-fechar">Sair</a>
+				<a href="#" onclick="fecharMesa()" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Fechar Mesa</a>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- Fim Modal Fechar Mesa-->
+
 <!-- Ajax para limitar nº de itens no Datable e listar produtos -->
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -360,16 +423,61 @@ $id_usuario = $_SESSION['id'];
 </script>
 <!-- Fim do Ajax para chamar Modal Reservas -->
 
+<!-- Ajax para inserir ou editar PEDIDOS -->
+<script type="text/javascript">
+	$("#form-reserva").submit(function() {
+		event.preventDefault();
+		var formData = new FormData(this);
+		var pag = "<?= $pagina ?>";
+
+		$.ajax({
+			url: pag + "/inserir.php",
+			type: 'POST',
+			data: formData,
+
+			success: function(mensagem) {
+
+				$('#mensagem-reserva').removeClass()
+				$('#mensagem-reserva').text('')
+
+				if (mensagem.trim() == "Salvo com Sucesso!") {
+
+					window.location = "index.php?pag=" + pag;
+
+				} else {
+
+					$('#mensagem-reserva').addClass('text-danger')
+					$('#mensagem-reserva').text(mensagem)
+				}
+
+
+
+			},
+
+			cache: false,
+			contentType: false,
+			processData: false,
+
+		});
+
+	});
+</script>
+<!-- Fim Ajax para inserir ou editar PEDIDOS -->
+
 <!-- Ajax para chamar modalPDV -->
 <script type="text/javascript">
 	var pag = "<?= $pagina ?>";
 
-	function modalPDV(id_mesa, pedido) {
+	function modalPDV(id_mesa, pedido, obs) {
 		event.preventDefault();
+
 		$('#id_mesa_consumo').val(id_mesa);
 		$('#pedido-consumo').val(pedido);
+		$('#obs-texto').val(obs);
+		$('#pedido-obs').val(pedido);
 		$('#nome_mesa_consumo').text(id_mesa);
-		
+		$('#nome-mesa').text(id_mesa);
+
 		var myModal = new bootstrap.Modal(document.getElementById('modal-pdv'), {
 
 		});
@@ -412,15 +520,16 @@ $id_usuario = $_SESSION['id'];
 				if (mensagem.trim() == "Salvo com Sucesso!") {
 					if (tipo === 'Produto') {
 						$('#Prod-' + id).val('1');
-
+						listarItensPDV();
 					} else {
 						$('#Prat-' + id).val('1');
-
+						listarItensPDV();
 					}
 				} else {
 					$('#mensagem-add').addClass('text-danger')
 					$('#mensagem-add').text(mensagem)
 				}
+				//window.location = "index.php?pag=" + pag;
 			},
 
 
@@ -429,7 +538,6 @@ $id_usuario = $_SESSION['id'];
 	}
 </script>
 <!-- Fim do Ajax para adicoinar item -->
-
 
 <!--AJAX PARA MOSTRAR OS PRODUTOS DO ITEM DA VENDA -->
 <script type="text/javascript">
@@ -446,7 +554,9 @@ $id_usuario = $_SESSION['id'];
 			dataType: "html",
 
 			success: function(result) {
+
 				$("#listar-itens-pdv").html(result);
+				$('#total-consumido').text($('#sub_total').text());
 			}
 
 		});
@@ -471,6 +581,7 @@ $id_usuario = $_SESSION['id'];
 			success: function(mensagem) {
 
 				if (mensagem.trim() == "Excluído com Sucesso!") {
+
 					listarItensPDV();
 				}
 			},
@@ -482,32 +593,31 @@ $id_usuario = $_SESSION['id'];
 </script>
 <!--FIM AJAX PARA DELETAR ITEM -->
 
-<!-- Ajax para inserir ou editar dados -->
+<!-- Ajax para inserir ou editar OBSERVAÇOES -->
 <script type="text/javascript">
-	$("#form-reserva").submit(function() {
+	$("#form-obs").submit(function() {
 		event.preventDefault();
 		var formData = new FormData(this);
 		var pag = "<?= $pagina ?>";
 
 		$.ajax({
-			url: pag + "/inserir.php",
+			url: pag + "/editar-obs.php",
 			type: 'POST',
 			data: formData,
 
 			success: function(mensagem) {
 
-				$('#mensagem-reserva').removeClass()
-				$('#mensagem-reserva').text('')
+				$('#mensagem-obs').removeClass()
+				$('#mensagem-obs').text('')
 
 				if (mensagem.trim() == "Salvo com Sucesso!") {
-					window.location = "index.php?pag=" + pag;
 
-
+					$('#btn-fechar-obs').click();
 
 				} else {
 
-					$('#mensagem-reserva').addClass('text-danger')
-					$('#mensagem-reserva').text(mensagem)
+					$('#mensagem-obs').addClass('text-danger')
+					$('#mensagem-obs').text(mensagem)
 				}
 
 
@@ -522,4 +632,72 @@ $id_usuario = $_SESSION['id'];
 
 	});
 </script>
-<!-- Fim Ajax para inserir ou editar dados -->
+<!-- Fim Ajax para inserir ou editar OBSERVAÇOES -->
+
+<!-- Chama modal OBSERVAÇOES -->
+<script type="text/javascript">
+	var pag = "<?= $pagina ?>";
+
+	function modalOBS() {
+		var myModal = new bootstrap.modal(document.getElementById('modalObs'), {
+			backdrop: 'static'
+		});
+		myModal.show();
+	}
+</script>
+<!-- Fim chama modal OBSERVAÇOES -->
+
+<!-- Ajax para Fechar Mesa -->
+<script type="text/javascript">
+	var pag = "<?= $pagina ?>";
+
+	function fecharMesa() {
+		event.preventDefault();
+		var pedido = $('#pedido-consumo').val();
+
+		$.ajax({
+			url: pag + "/fechar-mesa.php",
+			method: 'POST',
+			data: {
+				pedido
+			},
+			dataType: "text",
+
+			success: function(mensagem) {
+
+				$('#mensagem-fechar-mesa').removeClass()
+				$('#mensagem-fechar-mesa').text('');
+				if (mensagem.trim() == "Salvo com Sucesso!") {
+					let a = document.createElement('a');
+					a.target = '_blank';
+					a.href = '../rel/rel_comprovante_class.php?id=' + pedido;
+					a.click();
+				} else {
+					$('#mensagem-fechar-mesa').addClass('text-danger')
+					$('#mensagem-fechar-mesa').text(mensagem)
+				}
+				//window.location = "index.php?pag=" + pag;
+			},
+
+
+		});
+
+	}
+</script>
+<!-- Fim do Ajax para Fechar Mesa -->
+
+<!-- Ajax para chamar modalFecharNesa -->
+<script type="text/javascript">
+	var pag = "<?= $pagina ?>";
+
+	function modalFecharMesa() {
+		event.preventDefault();
+
+		var myModal = new bootstrap.Modal(document.getElementById('modalFecharMesa'), {
+			backdrop: 'static'
+		});
+		myModal.show();
+		listarItensPDV();
+	}
+</script>
+<!-- Fim do Ajax para chamar modalFecharNesa -->

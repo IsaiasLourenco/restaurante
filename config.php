@@ -3,15 +3,16 @@
 //VARIÁVEIS DO PROJETO
 $url_local = 'http://localhost/restaurantesite/';
 //$url_local = 'http://lorenzos.sitepessoal.com/';
-$nome_site ='LORENZOS';
+$nome_site ="LORENZO'S";
 $email_adm ='adm@vetor256.com';
 $email_adm_gm ='isaiaslourenco2020@gmail.com';
-$endereco ='Avenida 22 de Outubro, nº 1167, - Jardim xxxx - Mogi Mirim - SP - CEP:13800-000';
+$endereco ='Avenida 22 de Outubro, nº 1167, Jardim xxxx - Mogi Mirim - SP - CEP:13800-000';
 $telefone ='(19)3361-4400';
 $whatsapp ='(19)99674-5466';
 $whatsapp_link_web ='5519996745466';
 $email_site ='adm@rest.com.br';
 $site_desenvolvedor = 'http://www.vetor256.com';
+$cnpj = '45.057.703/0001-94';
 
 //VARIÁVEIS PARA REDES SOCIAIS
 $facebook ='https://www.facebook.com/joseisaiaslourenco/';

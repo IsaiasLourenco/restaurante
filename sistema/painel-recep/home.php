@@ -77,6 +77,7 @@ $contas_pagar_hoje = @count($res);
 $entradasM = 0;
 $saidasM = 0;
 $saldoM = 0;
+$saldoMesF = 0;
 $query = $pdo->query("SELECT * from movimentacoes where data_mov >= '$dataInicioMes' and data_mov <= curDate() ");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
@@ -109,6 +110,7 @@ if ($total_reg > 0) {
 }
 
 $totalPagarM = 0;
+$pagarMesF = 0;
 $query = $pdo->query("SELECT * from contas_pagar where data_vencimento >= '$dataInicioMes' and data_vencimento <= curDate()");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $pagarMes = @count($res);
@@ -125,6 +127,7 @@ if ($total_reg > 0) {
 }
 
 $totalReceberM = 0;
+$receberMesF = 0;
 $query = $pdo->query("SELECT * from contas_receber where data_conta >= '$dataInicioMes' and data_conta <= curDate()");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $receberMes = @count($res);

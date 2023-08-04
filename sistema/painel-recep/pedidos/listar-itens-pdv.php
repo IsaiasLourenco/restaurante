@@ -68,4 +68,8 @@ if ($total_reg > 0) {
 
 echo '</ul>';
 echo '<h4 class="total mt-4">Total de ' . $total_reg . ' itens na mesa ' . $nome_mesa . '</h4>';
-echo '<div class="row"><div class="col-md-9"><h1>R$ <span id="sub_total">' . @$total_vendaF . '</span></h1></div><div class="col-md-3" align="right"><a style="text-decoration:none" class="text-danger" href="index.php" title="Fechar Caixa ou Sair do PDV"><i class="bi bi-box-arrow-right"></i> <small>Sair</small> </a></div>';
+echo '<div class="row"><div class="col-md-6"><h1>R$ <span id="sub_total">' . @$total_vendaF . '</span></h1></div>';
+
+echo '<div class="col-md-6" align="right"><a style="text-decoration:none" class="text-primary" href="index.php?pag=pedidos" title="Sair"><i class="bi bi-arrow-return-left"></i> <small>Sair</small> </a>';
+
+echo '<a style="text-decoration:none" class="text-danger ml-2" href="#" onclick="modalFecharMesa()" title="Fechar Mesa"><i class="bi bi-cash-stack"></i> <small>Fechar Mesa</small> </a></div>';
