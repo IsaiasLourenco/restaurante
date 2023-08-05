@@ -219,10 +219,10 @@ if ($dataInicial != $dataFinal) {
         <table class='table' width='100%' cellspacing='0' cellpadding='3'>
             <tr bgcolor='#f9f9f9'>
                 <th>Cliente</th>
-                <th>Telefone</th>
-                <th>Mesa</th>
-                <th>Lugares</th>
-                <th">Data</th>
+                <th style="text-align: center;">Telefone</th>
+                <th style="text-align: center;">Mesa</th>
+                <th style="text-align: center;">Lugares</th>
+                <th style="text-align: center;">Data</th>
 
 
             </tr>
@@ -257,10 +257,10 @@ if ($dataInicial != $dataFinal) {
 
                 <tr>
                     <td><?php echo $nome_cliente ?> </td>
-                    <td><?php echo $telefone_cliente ?> </td>
+                    <td style="text-align: center;"><?php echo $telefone_cliente ?> </td>
                     <td style="text-align: center;"><?php echo $nome_mesa ?> </td>
                     <td style="text-align: center;"><?php echo $qtde_p ?> </td>
-                    <td><?php echo $data ?> </td>
+                    <td style="text-align: center;"><?php echo $data ?> </td>
                 </tr>
             <?php } ?>
 

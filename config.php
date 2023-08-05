@@ -45,5 +45,12 @@ $rodape_relatorios = "Sistema desenvolvido por ®Vetor256. http://vetor256.com. 
 
 //VARIÁVEL QUE RECEBE A IMAGEM DO TOPO DE TODOS OS RELATÓRIOS
 $cabecalho_img_rel = 'Sim';
+
+//COMISSÃO PARA OS GARÇONS
+$comissao = 0.1;
+
+//VALOR REAL DA TAXA DE COUVERT
+$couvert = 10;
+
 ?>
 

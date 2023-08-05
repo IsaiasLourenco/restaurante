@@ -13,6 +13,9 @@ $mesa = $dados[0]['mesa'];
 $garcom = $dados[0]['garcom'];
 $data = $dados[0]['data_pedido'];
 $obs = $dados[0]['obs'];
+$comissao = $dados[0]['comissao'];
+$couvert = $dados[0]['couvert'];
+$subtotal = $dados[0]['subtotal'];
 
 $data = implode('/', array_reverse(explode('-', $data)));
 
@@ -83,15 +86,16 @@ $nome_garcom = $dados[0]['nome'];
     </tr>
 
     <tr>
-        <th colspan="3">Fechamento Mesa <?php echo $mesa ?></th>
+        <th colspan="3">Fechamento Mesa <?php echo $mesa ?> - Garçom: <?php echo $nome_garcom ?></th>
     </tr>
+
     <tr>
         <th colspan="3"><?php echo $agora ?></th>
     </tr>
     <tr>
         <th colspan="3">
-            <?php echo $endereco ?> <br/>
-            <strong>Telefone</strong> <?php echo $telefone ?> <br/> 
+            <?php echo $endereco ?> <br />
+            <strong>Telefone</strong> <?php echo $telefone ?> <br />
             <strong>CNPJ</strong> <?php echo $cnpj ?>
         </th>
     </tr>
@@ -173,32 +177,42 @@ $nome_garcom = $dados[0]['nome'];
         </tr>
 
         <tr>
-            <td colspan="2">Total</td>
+            <td colspan="2">SubTotal</td>
             <td align="right">R$ <?php echo $total ?></td>
         </tr>
 
         <tr>
+            <td colspan="2">Couvert Artístico</td>
+            <td align="right">R$ <?php echo $couvert ?></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">Taxa de Serviço</td>
+            <td align="right">R$ <?php echo $comissao ?></td>
+        </tr>
+
+        <tr>
             <td colspan="3" class="cor">
                 --------------------------------------------------------------------------------------------------------------------------------------------------------------
             </td>
         </tr>
 
         <tr>
-            <td colspan="2">Garçom</td>
-            <td align="right"><?php echo $nome_garcom ?></td>
+            <td colspan="2"><strong>Total</strong></td>
+            <td align="right"><strong>R$ <?php echo $subtotal ?></strong></td>
         </tr>
 
-        <?php if($obs != ""){ ?>
-        <tr>
-            <td colspan="3" class="cor">
-                --------------------------------------------------------------------------------------------------------------------------------------------------------------
-            </td>
-        </tr>
+        <?php if ($obs != "") { ?>
+            <tr>
+                <td colspan="3" class="cor">
+                    --------------------------------------------------------------------------------------------------------------------------------------------------------------
+                </td>
+            </tr>
 
-        <tr>
-            <td colspan="2">Observações</td>
-            <td align="right"><?php echo $obs ?></td>
-        </tr>
+            <tr>
+                <td colspan="2">Observações</td>
+                <td align="right"><?php echo $obs ?></td>
+            </tr>
         <?php } ?>
 
         <tr>

@@ -13,6 +13,7 @@ $menu5 = 'receber';
 $menu6 = 'compras';
 $menu7 = 'movimentacoes';
 $menu8 = 'pedidos';
+$menu9 = 'consultar-pedido';
 
 if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
   $classeMenu = 'text-dark';
@@ -117,13 +118,15 @@ if ($total_reg > 0) {
 
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu4 ?>">Contas a Pagar</a></li>
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu5 ?>">Contas a Receber</a></li>
-
               <li>
                 <hr class="dropdown-divider">
               </li>
-
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu6 ?>">Compras</a></li>
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>">Movimentações</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu9 ?>">Consultar Pedidos</a></li>
 
             </ul>
           </li>
@@ -210,6 +213,8 @@ if ($total_reg > 0) {
       require_once($menu7 . '.php');
     } else if (@$_GET['pag'] == $menu8) {
       require_once($menu8 . '.php');
+    } else if (@$_GET['pag'] == $menu9) {
+      require_once($menu9 . '.php');
     } else {
       require_once($menu1 . '.php');
     }
