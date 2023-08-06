@@ -1,10 +1,24 @@
 <?php
-$pagina = 'pedidos';
-require_once("verificar.php");
+if (@$pag_painel != "") {
+    $pagina = $pag_painel . '/pedidos';
+} else {
+    $pagina = 'pedidos';
+}
 require_once("../../conexao.php");
 $agora = date('Y-m-d');
 @session_start();
 $id_usuario = $_SESSION['id'];
+
+$id_cargo = @$_SESSION['cargo'];
+$query = $pdo->query("SELECT * FROM cargos WHERE id = '$id_cargo'");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$nome_cargo = $res[0]['nome'];
+
+if($nome_cargo != 'Garçom' AND $nome_cargo != 'Administrador' AND $nome_cargo != 'Recepcionista'){
+    echo "<script language='javascript'>window.location='../'</script>";
+    exit();
+}
+
 ?>
 
 
@@ -42,6 +56,7 @@ $id_usuario = $_SESSION['id'];
 
 		if (@count($res4) > 0) {
 			$classe = 'text-primary';
+			$texto =  'ABERTA';
 			$texto_if =  'ABERTA';
 			$id_pedido = $res4[0]['id'];
 			$obs = $res4[0]['obs'];

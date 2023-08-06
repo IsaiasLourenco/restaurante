@@ -16,6 +16,7 @@ $obs = $dados[0]['obs'];
 $comissao = $dados[0]['comissao'];
 $couvert = $dados[0]['couvert'];
 $subtotal = $dados[0]['subtotal'];
+$pago = $dados[0]['pago'];
 
 $data = implode('/', array_reverse(explode('-', $data)));
 
@@ -90,7 +91,7 @@ $nome_garcom = $dados[0]['nome'];
     </tr>
 
     <tr>
-        <th colspan="3"><?php echo $agora ?></th>
+        <th colspan="3"><?php echo $agora ?> - Pago? <strong><?php echo $pago ?></strong></th>
     </tr>
     <tr>
         <th colspan="3">
@@ -186,11 +187,12 @@ $nome_garcom = $dados[0]['nome'];
             <td align="right">R$ <?php echo $couvert ?></td>
         </tr>
 
-        <tr>
-            <td colspan="2">Taxa de Serviço</td>
-            <td align="right">R$ <?php echo $comissao ?></td>
-        </tr>
-
+        <?php if ($comissao != 0) { ?>
+            <tr>
+                <td colspan="2">Taxa de Serviço</td>
+                <td align="right">R$ <?php echo $comissao ?></td>
+            </tr>
+        <?php } ?>
         <tr>
             <td colspan="3" class="cor">
                 --------------------------------------------------------------------------------------------------------------------------------------------------------------

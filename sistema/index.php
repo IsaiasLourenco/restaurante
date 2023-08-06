@@ -4,6 +4,15 @@ $query = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '1' ");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 
+$querytela = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '7' ");
+$restela = $querytela->fetchAll(PDO::FETCH_ASSOC);
+$total_reg_tela = @count($restela);
+
+if ($total_reg_tela == 0) {
+    //INSERIR UM USUARIO/FUNCIONARIO MODO TELA NA TABELA CASO NÃO EXISTA NENHUM
+    $pdo->query("INSERT INTO funcionarios SET nome = 'Tela', cpf = '11212121211', email = 'tela@tela.com', telefone = '19990000000', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '7', datacad = curDate(), datanasc = '1977-08-08', imagem = 'sem-foto.jpg'");
+}
+
 if ($total_reg == 0) {
     //INSERIR UM USUARIO/FUNCIONARIO NA TABELA CASO NÃO EXISTA NENHUM
     $pdo->query("INSERT INTO funcionarios SET nome = 'Isaias', cpf = '24707435831', email = 'isaias.lourenco@outlook.com', telefone = '19996745466', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '1', datacad = curDate(), datanasc = '1977-08-08', imagem = 'sem-foto.jpg'");

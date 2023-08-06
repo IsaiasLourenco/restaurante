@@ -152,6 +152,9 @@ if ($total_reg > 0) {
               <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelCompras">Compras</a>
               </li>
 
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelPedidos">Pedidos</a>
+              </li>
+
             </ul>
 
           </li>
@@ -227,7 +230,7 @@ if ($total_reg > 0) {
 
 <!--  Modal Rel Reservas-->
 <div class="modal fade" tabindex="-1" id="ModalRelReservas" data-bs-backdrop="static">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Relatório de Reservas</h5>
@@ -353,7 +356,7 @@ if ($total_reg > 0) {
 
             <div class="col-md-4">
 
-            <div class="form-group mb-3">
+              <div class="form-group mb-3">
                 <label>Pago</label>
                 <select class="form-select mt-1" name="status">
                   <option value="">Todas</option>
@@ -409,7 +412,7 @@ if ($total_reg > 0) {
 
             <div class="col-md-4">
 
-            <div class="form-group mb-3">
+              <div class="form-group mb-3">
                 <label>Pago</label>
                 <select class="form-select mt-1" name="status">
                   <option value="">Todas</option>
@@ -490,6 +493,48 @@ if ($total_reg > 0) {
   </div>
 </div>
 <!-- Fim do  Modal Rel Compras-->
+
+<!--  Modal Rel Pedidos-->
+<div class="modal fade" tabindex="-1" id="ModalRelPedidos" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Relatório de Pedidos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="../rel/rel_pedidos_class.php" method="POST" target="_blank">
+
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label>Data Inicial</label>
+                <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataInicial">
+              </div>
+            </div>
+            <div class="col-md-6">
+
+              <div class="form-group mb-3">
+                <label>Data Final</label>
+                <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataFinal">
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Gerar Relatório</button>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<!-- Fim do  Modal Rel Pedidos-->
 
 <!-- Mascaras JS -->
 <script type="text/javascript" src="../../assets/js/mascaras.js"></script>

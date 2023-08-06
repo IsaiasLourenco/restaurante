@@ -25,7 +25,7 @@ if ($total_reg > 0) {
 
 
 
-$query = $pdo->query("UPDATE pedidos SET valor = '$total_venda', status_pedido = 'Fechada', pago = 'Sim', comissao = '$valor_comissao', couvert = '$couvert', subtotal = '$subtotal' WHERE id = '$id_pedido'");
+$query = $pdo->query("UPDATE pedidos SET valor = '$total_venda', status_pedido = 'Fechada', comissao = '$valor_comissao', couvert = '$couvert', subtotal = '$subtotal' WHERE id = '$id_pedido'");
 
 $query2 = $pdo->prepare("INSERT INTO movimentacoes SET tipo = 'Entrada', descricao = 'Venda em Estabelecimento', valor = '$total_venda', funcionario = '$id_usuario', data_mov = curDate(), id_movim = '$id_pedido'");
 

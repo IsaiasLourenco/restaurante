@@ -2,11 +2,10 @@
 
 @session_start();
 require_once("../../conexao.php");
-require_once("verificar.php");
 
 //MENUS PARA O PAINEL
 $menu1 = 'pedidos';
-$menu2 = 'conissoes';
+$menu2 = 'comissoes';
 
 if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
   $classeMenu = 'text-dark';
@@ -99,6 +98,10 @@ if ($total_reg > 0) {
             <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu2 ?>">Comissões</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link text-light" aria-current="page" href="" data-bs-toggle="modal" data-bs-target="#ModalRelComissoes">Relatório de Comissões</a>
+          </li>
+
         </ul>
 
         <div class="d-flex mr-4">
@@ -130,11 +133,13 @@ if ($total_reg > 0) {
   <div class="container mt-4">
     <?php
     if (@$_GET['pag'] == $menu1) {
-      require_once($menu1 . '.php');
+      $pag_painel = '../painel-recep/';
+      require_once('../painel-recep/' . $menu1 . '.php');
     } else if (@$_GET['pag'] == $menu2) {
       require_once($menu2 . '.php');
-    }  else {
-      require_once($menu1 . '.php');
+    } else {
+      $pag_painel = '../painel-recep/';
+      require_once('../painel-recep/' . $menu1 . '.php');
     }
     ?>
   </div>
@@ -143,15 +148,15 @@ if ($total_reg > 0) {
 
 </html>
 
-<!--  Modal Rel Reservas-->
-<div class="modal fade" tabindex="-1" id="ModalRelReservas" data-bs-backdrop="static">
-  <div class="modal-dialog modal-lg">
+<!--  Modal Rel Comissões-->
+<div class="modal fade" tabindex="-1" id="ModalRelComissoes" data-bs-backdrop="static">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Relatório de Reservas</h5>
+        <h5 class="modal-title">Relatório de Comissões</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="../rel/rel_reservas_class.php" method="POST" target="_blank">
+      <form action="../rel/rel_comissoes_class.php" method="POST" target="_blank">
 
         <div class="modal-body">
 
@@ -163,7 +168,6 @@ if ($total_reg > 0) {
               </div>
             </div>
             <div class="col-md-6">
-
               <div class="form-group mb-3">
                 <label>Data Final</label>
                 <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataFinal">
@@ -183,308 +187,4 @@ if ($total_reg > 0) {
     </div>
   </div>
 </div>
-<!-- Fim do  Modal Rel Reservas-->
-
-<!--  Modal Rel Movimentações-->
-<div class="modal fade" tabindex="-1" id="ModalRelMovimentacoes" data-bs-backdrop="static">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Relatório de Movimentações</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="../rel/rel_movimentacoes_class.php" method="POST" target="_blank">
-
-        <div class="modal-body">
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group mb-3">
-                <label>Data Inicial</label>
-                <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataInicial">
-              </div>
-            </div>
-            <div class="col-md-4">
-
-              <div class="form-group mb-3">
-                <label>Data Final</label>
-                <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataFinal">
-              </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-              <div class="form-group mb-3">
-                <label>Tipo</label>
-                <select class="form-select mt-1" name="status">
-                  <option value="">Todas</option>
-                  <option value="Entrada">Entrada</option>
-                  <option value="Saída">Saída</option>
-
-                </select>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Gerar Relatório</button>
-
-        </div>
-      </form>
-
-    </div>
-  </div>
-</div>
-<!-- Fim do  Modal Rel Movimentações-->
-
-<!--  Modal Rel Contas a Pagar-->
-<div class="modal fade" tabindex="-1" id="ModalRelPagar" data-bs-backdrop="static">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Relatório Contas à Pagar</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="../rel/rel_pagar_class.php" method="POST" target="_blank">
-
-        <div class="modal-body">
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group mb-3">
-                <label>Data Inicial</label>
-                <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataInicial">
-              </div>
-            </div>
-            <div class="col-md-4">
-
-              <div class="form-group mb-3">
-                <label>Data Final</label>
-                <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataFinal">
-              </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-            <div class="form-group mb-3">
-                <label>Pago</label>
-                <select class="form-select mt-1" name="status">
-                  <option value="">Todas</option>
-                  <option value="Sim">Sim</option>
-                  <option value="Não">Não</option>
-
-                </select>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Gerar Relatório</button>
-
-        </div>
-      </form>
-
-    </div>
-  </div>
-</div>
-<!-- Fim do  Modal Rel Contas a Pagar-->
-
-<!--  Modal Rel Contas a Receber-->
-<div class="modal fade" tabindex="-1" id="ModalRelReceber" data-bs-backdrop="static">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Relatório Contas à Receber</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="../rel/rel_receber_class.php" method="POST" target="_blank">
-
-        <div class="modal-body">
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group mb-3">
-                <label>Data Inicial</label>
-                <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataInicial">
-              </div>
-            </div>
-            <div class="col-md-4">
-
-              <div class="form-group mb-3">
-                <label>Data Final</label>
-                <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataFinal">
-              </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-            <div class="form-group mb-3">
-                <label>Pago</label>
-                <select class="form-select mt-1" name="status">
-                  <option value="">Todas</option>
-                  <option value="Sim">Sim</option>
-                  <option value="Não">Não</option>
-
-                </select>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Gerar Relatório</button>
-
-        </div>
-      </form>
-
-    </div>
-  </div>
-</div>
-<!-- Fim do  Modal Rel Contas a Receber-->
-
-<!--  Modal Rel Compras-->
-<div class="modal fade" tabindex="-1" id="ModalRelCompras" data-bs-backdrop="static">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Relatório de Compras</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="../rel/rel_compras_class.php" method="POST" target="_blank">
-
-        <div class="modal-body">
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group mb-3">
-                <label>Data Inicial</label>
-                <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataInicial">
-              </div>
-            </div>
-            <div class="col-md-4">
-
-              <div class="form-group mb-3">
-                <label>Data Final</label>
-                <input value="<?php echo date('Y-m-d') ?>" type="date" class="form-control mt-1" name="dataFinal">
-              </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-              <div class="form-group mb-3">
-                <label>Pago</label>
-                <select class="form-select mt-1" name="status">
-                  <option value="">Todas</option>
-                  <option value="Sim">Sim</option>
-                  <option value="Não">Não</option>
-
-                </select>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Gerar Relatório</button>
-
-        </div>
-      </form>
-
-    </div>
-  </div>
-</div>
-<!-- Fim do  Modal Rel Compras-->
-
-<!-- Mascaras JS -->
-<script type="text/javascript" src="../../assets/js/mascaras.js"></script>
-
-<!-- Ajax para funcionar Mascaras JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-
-<!-- Ajax para inserir ou editar dados -->
-<script type="text/javascript">
-  $("#form-perfil").submit(function() {
-    event.preventDefault();
-    var formData = new FormData(this);
-
-    $.ajax({
-      url: "editar-perfil.php",
-      type: 'POST',
-      data: formData,
-
-      success: function(mensagem) {
-
-        $('#mensagem-perfil').removeClass()
-
-        if (mensagem.trim() == "Salvo com Sucesso!") {
-
-          //$('#nome').val('');
-          //$('#cpf').val('');
-          $('#btn-fechar-perfil').click();
-          location.reload();
-
-        } else {
-
-          $('#mensagem-perfil').addClass('text-danger')
-        }
-
-        $('#mensagem-perfil').text(mensagem)
-
-      },
-
-      cache: false,
-      contentType: false,
-      processData: false,
-
-    });
-
-  });
-</script>
-<!-- Fim do Ajax para inserir ou editar dados -->
-
-<!--SCRIPT PARA CARREGAR IMAGEM -->
-<script type="text/javascript">
-  function carregarImgPerfil() {
-
-    var target = document.getElementById('target-perfil');
-    var file = document.querySelector("#imagem-perfil").files[0];
-
-    var arquivo = file['name'];
-    resultado = arquivo.split(".", 2);
-    //console.log(resultado[1]);
-
-    if (resultado[1] === 'pdf') {
-      $('#target-perfil').attr('src', "../img/pdf.png");
-      return;
-    }
-
-    var reader = new FileReader();
-
-    reader.onloadend = function() {
-      target.src = reader.result;
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-
-
-    } else {
-      target.src = "";
-    }
-  }
-</script>
-<!-- FIM DO SCRIPT PARA CARREGAR IMAGEM -->
+<!-- Fim do  Modal Rel Comissões-->
