@@ -23,16 +23,16 @@ $youtube ='https://www.youtube.com/channel/UCucCsiVk4zycu4CwVxY5WTw';
 $instagram ='https://instagram.com/isaiaslourenco3?igshid=MzNlNGNkZWQ4Mg==';
 
 //VARIÁVEIS PARA BANCO DE DADOS
-//$servidor = 'localhost';
-//$usuario = 'root';
-//$senha = '';
-//$banco = 'restaurante';
+$servidor = 'localhost';
+$usuario = 'root';
+$senha = '';
+$banco = 'restaurante';
 
 //VARIÁVEIS PARA BANCO DE DADOS HOSPEDADO
-$servidor = 'restaurantelor.mysql.dbaas.com.br';
-$usuario = 'restaurantelor';
-$senha = 'Mandalor45@';
-$banco = 'restaurantelor';
+//$servidor = 'restaurantelor.mysql.dbaas.com.br';
+//$usuario = 'restaurantelor';
+//$senha = 'Mandalor45@';
+//$banco = 'restaurantelor';
 
 //NÍVEL MÍNIMO DO ESTOQUE DE PRODUTOS PARA CÁLCULO DO SISTEMA
 $nivel_estoque = 10;    
@@ -51,6 +51,19 @@ $comissao = 0.1;
 
 //VALOR REAL DA TAXA DE COUVERT
 $couvert = 10;
+
+//VARIÁVEL PARA DEFINIR QUANTOS ITENS POR PÁGINA SERÃO MOSTRADOS NO PAINEL DA TELA DA COZINHA
+$itens_tela = 7;
+
+//SEGUNDOS PARA MUDAR DE TELA
+$tempo_atualizacao_tela = 5;
+
+//TEMPO DE CHAMADA DE UM NOVO ITEM
+$tempo_atualizacao_tela_chamada = 5;
+
+$itens_tela_chamada = 12;
+
+$card_coluna = 4;
 
 ?>
 

@@ -6,7 +6,7 @@ $query = $pdo->query("SELECT * FROM cargos WHERE id = '$id_cargo'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $nome_cargo = $res[0]['nome'];
 
-if($nome_cargo != 'Chef'){
+if($nome_cargo != 'Tela' AND $nome_cargo != 'Administrador'){
     echo "<script language='javascript'>window.location='../'</script>";
     exit();
 }

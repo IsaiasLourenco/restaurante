@@ -98,13 +98,13 @@ if ($total_reg > 0) {
 
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#ModalEditar">Editar</a>
+              <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#ModalEditar"><i class="bi bi-person-fill"></i> Editar Perfil</a>
 
               <li>
                 <hr class="dropdown-divider">
               </li>
 
-              <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php">Sair</a></li>
+              <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
 
             </ul>
           </li>

@@ -5,7 +5,7 @@ require_once("../../conexao.php");
 require_once("verificar.php");
 
 //MENUS PARA O PAINEL
-$menu1 = 'blog';
+$menu1 = 'pedidos';
 
 //recuperar os dados do usuário
 $id_usuario = $_SESSION['id'];
@@ -38,25 +38,13 @@ if ($total_reg > 0) {
   }
 }
 
-// Usa o ID do funcionário em questão para buscar os dados na tabela do Chef
-$query = $pdo->query("SELECT * FROM chef WHERE funcionario = '$id_usuario'");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-$total_reg = @count($res);
-if ($total_reg > 0) {
-  $especialidade = $res[0]['especialidade'];
-  $facebook = $res[0]['facebook'];
-  $youtube = $res[0]['youtube'];
-  $linkedin = $res[0]['linkedin'];
-  $instagram = $res[0]['instagram'];
-}
-
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-  <title>PAINEL DO CHEFE</title>
+  <title>PAINEL DA TELA</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
   <link rel="shortcut icon" href="../../assets/imagens/ico.ico" type="image/x-icon">
@@ -72,7 +60,6 @@ if ($total_reg > 0) {
 
   <link rel="stylesheet" type="text/css" href="../../sistema/vendor/DataTables/datatables.min.css" />
   <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
-  <!--<script src="../../assets/js/buscaCep.js" type="module" defer></script>-->
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../../assets/css/index_p_adm.css">
@@ -96,7 +83,11 @@ if ($total_reg > 0) {
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>">Blog</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>">Pedidos</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-light" aria-current="page" href="tela.php" target="_blank">Tela</a>
           </li>
 
         </ul>
@@ -107,18 +98,18 @@ if ($total_reg > 0) {
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <?php echo $nome ?>
+              Usuário <?php echo $nome ?>
             </a>
 
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#ModalEditar">Editar</a>
+              <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalPerfil"><i class="bi bi-person-fill"></i> Editar Perfil</a>
 
               <li>
                 <hr class="dropdown-divider">
               </li>
 
-              <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php">Sair</a></li>
+              <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
 
             </ul>
           </li>
@@ -145,91 +136,67 @@ if ($total_reg > 0) {
 
 </html>
 
-<!--  Modal Editar-->
-<div class="modal fade" tabindex="-1" id="ModalEditar" data-bs-backdrop="static">
+<!-- Modal Perfil -->
+<div class="modal fade" id="modalPerfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <?php
-
-        $query = $pdo->query("SELECT * FROM chef WHERE funcionario = '$id_usuario'");
-        $res = $query->fetchAll(PDO::FETCH_ASSOC);
-        $facebook = @$res[0]['facebook'];
-        $instagram = @$res[0]['instagram'];
-        $youtube = @$res[0]['youtube'];
-        $linkedin = @$res[0]['linkedin'];
-        $especialidade = @$res[0]['especialidade'];
-
-        $titulo_modal = 'Editar Registro';
-
-        ?>
-
-        <h5 class="modal-title"><?php echo $titulo_modal ?></h5>
+        <h5 class="modal-title" id="exampleModalLabel">Editar Perfil</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="post" id="form-chef">
+      <form method="post" id="form-perfil">
         <div class="modal-body">
 
-          <div class="row">
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Facebook </label>
-                <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" autofocus value="<?php echo @$facebook ?>" required>
-              </div>
-            </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nome </label>
+            <input type="text" class="form-control" id="nome_perfil" name="nome_perfil" placeholder="Nome" value="<?php echo $nome ?>" required>
+          </div>
 
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Instagram </label>
-                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Instagram" value="<?php echo @$instagram ?>" required>
-              </div>
-            </div>
-
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email </label>
+            <input type="email" class="form-control" id="email_perfil" name="email_perfil" placeholder="nome@exemplo.com" required value="<?php echo $email_usu ?>">
           </div>
 
           <div class="row">
-
             <div class="col-6">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Youtube </label>
-                <input type="youtube" class="form-control" id="youtube" name="youtube" placeholder="Youtube" value="<?php echo @$youtube ?>" required>
+                <label for="exampleFormControlInput1" class="form-label">CPF </label>
+                <input type="text" class="form-control" id="cpf" name="cpf_perfil" placeholder="CPF" required value="<?php echo $cpf_usu ?>">
               </div>
             </div>
-
             <div class="col-6">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Linkedin </label>
-                <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="Linkedin" value="<?php echo @$linkedin ?>" required>
+                <label for="exampleFormControlInput1" class="form-label">Senha </label>
+                <input type="text" class="form-control" id="senha_perfil" name="senha_perfil" placeholder="senha" required value="<?php echo $senha_usu ?>">
               </div>
-            </div>
-
-          </div>
-
-          <div class="col-12">
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Especialidade </label>
-              <input type="text" class="form-control" id="especialidade" name="especialidade" placeholder="Especialidade" value="<?php echo @$especialidade ?>" required>
             </div>
           </div>
 
-          <input type="hidden" name="id_perfil" value="<?php echo @$id_usuario ?>">
+          <input type="hidden" name="id_perfil" value="<?php echo $id_usuario ?>">
+
 
           <small>
             <div align="center" id="mensagem-perfil">
             </div>
           </small>
 
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-faded" data-bs-dismiss="modal" id="btn-fechar-perfil" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">Fechar</button>
-          <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Salvar</button>
+          <button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-perfil">Fechar</button>
+          <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Editar</button>
         </div>
       </form>
-
     </div>
   </div>
 </div>
-<!-- Fim Modal Editar-->
+<!-- Fim Modal Perfil -->
+
+<!-- Mascaras JS -->
+<script type="text/javascript" src="../../assets/js/mascaras.js"></script>
+
+<!-- Ajax para funcionar Mascaras JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
 <!-- Ajax para editar dados -->
 <script type="text/javascript">

@@ -78,7 +78,6 @@ if ($total_reg > 0) {
 
   <link rel="stylesheet" type="text/css" href="../../sistema/vendor/DataTables/datatables.min.css" />
   <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
-  <!--<script src="../../assets/js/buscaCep.js" type="module" defer></script>-->
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../../assets/css/index_p_adm.css">
@@ -210,7 +209,7 @@ if ($total_reg > 0) {
 
 
           </li>
-          <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php">Sair</a></li>
+          <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
 
           </ul>
           </li>

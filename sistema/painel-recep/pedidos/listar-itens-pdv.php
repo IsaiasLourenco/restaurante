@@ -50,15 +50,17 @@ if ($total_reg > 0) {
 
         if($status == 'Preparando'){
             $classeStatus = 'text-danger';
+            $titulo = 'Preparando';
         }else{
             $classeStatus = 'text-success';
+            $titulo = 'Pronto';
         }
         
         echo '<li class="mb-1"><img src="../../assets/imagens/' . $pasta . '/' . $imagem . '"><h4 class="cabH4">';
         if($tipo == 'Prato'){
-            echo '<i class="bi bi-square-fill ' . $classeStatus . ' mr-2" style="font-size:8px" title="Preparando"></i>';
+            echo '<i class="bi bi-square-fill ' . $classeStatus . ' mr-2" style="font-size:8px" title="'.$titulo.'"></i>';
         }else{
-            echo '<i class="bi bi-square-fill ' . $classeStatus . ' mr-2" style="font-size:8px" title="Pronto"></i></small>';
+            echo '<i class="bi bi-square-fill ' . $classeStatus . ' mr-2" style="font-size:8px" title="'.$titulo.'"></i></small>';
         }
          echo $quantidade . 'x ' . mb_strtoupper($nome_item) . ' <a href="#" onclick="excluirItem(' . $id_ped . ')" title="Excluir Item" style="text-decoration: none">
         <i class="bi bi-x text-danger mx-1"></i>
