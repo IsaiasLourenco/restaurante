@@ -219,292 +219,10 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
         </div>
 
         <hr>
-
-
-        <!--PERIODO DE APURAÇÃO
-		<div class="row margem-superior">
-			<div class="col-md-12">
-				<div class="esquerda_float margem-direita50">
-					<span class=""> <b> Período da Apuração </b> </span>
-				</div>
-				<div class="esquerda_float margem-direita50">
-					<span class=""> <?php //echo $apuracao
-                                    ?> </span>
-				</div>
-
-			</div>
-		</div>
-
-		<hr>
-	-->
+        
         <!-- Início das categorias -->
         <small>
             <div class="titulo-cardapio">Nosso Cardápio</div>
-
-
-            <!-- Categoria de Pratos -->
-            <?php
-            $query_cat = $pdo->query("SELECT * FROM categorias where nome = 'Pratos'");
-            $res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
-            $Itens = @count($res_cat);
-
-            if ($Itens > 0) {
-                $id_pratos = $res_cat[0]['id'];
-            ?>
-                <br><br>
-                <div class="subtitulo-cardapio">Pratos</div>
-                <section class="area-tab">
-
-                    <div class="linha-cab">
-                        <div class="coluna" style="width:25%"><b>Nome</b></div>
-                        <div class="coluna" style="width:15%"><b>Valor</b></div>
-                        <div class="coluna" style="width:50%"><b>Descrição</b></div>
-                        <div class="coluna" style="width:10%"><b>Foto</b></div>
-
-                    </div>
-
-                </section>
-
-                <hr class="hr-table">
-
-                <?php
-                $query = $pdo->query("SELECT * FROM pratos where categoria = '$id_pratos' ORDER BY id ASC");
-                $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                $totalItens = @count($res);
-                for ($i = 0; $i < @count($res); $i++) {
-                    foreach ($res[$i] as $key => $value) {
-                    }
-                    $nome = $res[$i]['nome'];
-                    $valor_venda = $res[$i]['valor'];
-                    $descricao = $res[$i]['descricao'];
-                    $foto = $res[$i]['imagem'];
-                    $id = $res[$i]['id'];
-                    $valor_venda = number_format($valor_venda, 2, ',', '.');
-                ?>
-
-                    <section class="area-tab">
-
-                        <div class="linha-cab">
-                            <div class="coluna" style="width:25%"><?php echo $nome ?> </div>
-                            <div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?> </div>
-                            <div class="coluna" style="width:50%"> <?php echo $descricao ?> </div>
-                            <div class="coluna" style="width:10%"><img src="<?php echo $url_local ?>assets/imagens/pratos/<?php echo $foto ?>" width="30px"> </div>
-                        </div>
-
-                    </section>
-
-                    <hr class="hr-table">
-
-                <?php } ?>
-
-                <?php
-                $query = $pdo->query("SELECT * FROM produtos where categoria = '$id_pratos' ORDER BY id ASC");
-                $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                $totalItens = @count($res);
-                for ($i = 0; $i < @count($res); $i++) {
-                    foreach ($res[$i] as $key => $value) {
-                    }
-                    $nome = $res[$i]['nome'];
-                    $valor_venda = $res[$i]['valor_venda'];
-                    $descricao = $res[$i]['descricao'];
-                    $foto = $res[$i]['imagem'];
-                    $id = $res[$i]['id'];
-                    $valor_venda = number_format($valor_venda, 2, ',', '.');
-                ?>
-
-                    <section class="area-tab">
-
-                        <div class="linha-cab">
-                            <div class="coluna" style="width:25%"><?php echo $nome ?> </div>
-                            <div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?> </div>
-                            <div class="coluna" style="width:50%"> <?php echo $descricao ?> </div>
-                            <div class="coluna" style="width:10%"><img src="<?php echo $url_local ?>assets/imagens/produtos/<?php echo $foto ?>" width="30px"> </div>
-                        </div>
-
-                    </section>
-
-                    <hr class="hr-table">
-
-                <?php } ?>
-
-            <?php } ?>
-            <!-- Fim da Categoria de Pratos -->
-
-            <!-- Categoria de Drinks -->
-            <?php
-            $query_cat = $pdo->query("SELECT * FROM categorias where nome = 'Drinks'");
-            $res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
-            $Itens = @count($res_cat);
-
-            if ($Itens > 0) {
-                $id_drinks = $res_cat[0]['id'];
-            ?>
-                <br><br>
-                <div class="subtitulo-cardapio">Drinks</div>
-                <section class="area-tab">
-
-                    <div class="linha-cab">
-                        <div class="coluna" style="width:25%"><b>Nome</b></div>
-                        <div class="coluna" style="width:15%"><b>Valor</b></div>
-                        <div class="coluna" style="width:50%"><b>Descrição</b></div>
-                        <div class="coluna" style="width:10%"><b>Foto</b></div>
-
-                    </div>
-
-                </section>
-
-                <hr class="hr-table">
-
-                <?php
-                $query = $pdo->query("SELECT * FROM pratos where categoria = '$id_drinks' ORDER BY id ASC");
-                $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                $totalItens = @count($res);
-                for ($i = 0; $i < @count($res); $i++) {
-                    foreach ($res[$i] as $key => $value) {
-                    }
-                    $nome = $res[$i]['nome'];
-                    $valor_venda = $res[$i]['valor'];
-                    $descricao = $res[$i]['descricao'];
-                    $foto = $res[$i]['imagem'];
-                    $id = $res[$i]['id'];
-                    $valor_venda = number_format($valor_venda, 2, ',', '.');
-                ?>
-
-                    <section class="area-tab">
-
-                        <div class="linha-cab">
-                            <div class="coluna" style="width:25%"><?php echo $nome ?> </div>
-                            <div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?> </div>
-                            <div class="coluna" style="width:50%"> <?php echo $descricao ?> </div>
-                            <div class="coluna" style="width:10%"><img src="<?php echo $url_local ?>assets/imagens/pratos/<?php echo $foto ?>" width="30px"> </div>
-                        </div>
-
-                    </section>
-
-                    <hr class="hr-table">
-
-                <?php } ?>
-
-                <?php
-                $query = $pdo->query("SELECT * FROM produtos where categoria = '$id_drinks' ORDER BY id ASC");
-                $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                $totalItens = @count($res);
-                for ($i = 0; $i < @count($res); $i++) {
-                    foreach ($res[$i] as $key => $value) {
-                    }
-                    $nome = $res[$i]['nome'];
-                    $valor_venda = $res[$i]['valor_venda'];
-                    $descricao = $res[$i]['descricao'];
-                    $foto = $res[$i]['imagem'];
-                    $id = $res[$i]['id'];
-                    $valor_venda = number_format($valor_venda, 2, ',', '.');
-                ?>
-
-                    <section class="area-tab">
-
-                        <div class="linha-cab">
-                            <div class="coluna" style="width:25%"><?php echo $nome ?> </div>
-                            <div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?> </div>
-                            <div class="coluna" style="width:50%"> <?php echo $descricao ?> </div>
-                            <div class="coluna" style="width:10%"><img src="<?php echo $url_local ?>assets/imagens/produtos/<?php echo $foto ?>" width="30px"> </div>
-                        </div>
-
-                    </section>
-
-                    <hr class="hr-table">
-
-                <?php } ?>
-
-            <?php } ?>
-            <!-- Fim da Categoria de Drinks -->
-
-            <!-- Categoria de Sobremesas -->
-            <?php
-            $query_cat = $pdo->query("SELECT * FROM categorias where nome = 'Sobremesas'");
-            $res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
-            $Itens = @count($res_cat);
-
-            if ($Itens > 0) {
-                $id_sobremesas = $res_cat[0]['id'];
-            ?>
-                <br><br>
-                <div class="subtitulo-cardapio">Sobremesas</div>
-                <section class="area-tab">
-
-                    <div class="linha-cab">
-                        <div class="coluna" style="width:25%"><b>Nome</b></div>
-                        <div class="coluna" style="width:15%"><b>Valor</b></div>
-                        <div class="coluna" style="width:50%"><b>Descrição</b></div>
-                        <div class="coluna" style="width:10%"><b>Foto</b></div>
-
-                    </div>
-
-                </section>
-
-                <hr class="hr-table">
-
-                <?php
-                $query = $pdo->query("SELECT * FROM pratos where categoria = '$id_sobremesas' order by id desc");
-                $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                $totalItens = @count($res);
-                for ($i = 0; $i < @count($res); $i++) {
-                    foreach ($res[$i] as $key => $value) {
-                    }
-                    $nome = $res[$i]['nome'];
-                    $valor_venda = $res[$i]['valor'];
-                    $descricao = $res[$i]['descricao'];
-                    $foto = $res[$i]['imagem'];
-                    $id = $res[$i]['id'];
-                    $valor_venda = number_format($valor_venda, 2, ',', '.');
-                ?>
-
-                    <section class="area-tab">
-
-                        <div class="linha-cab">
-                            <div class="coluna" style="width:25%"><?php echo $nome ?> </div>
-                            <div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?> </div>
-                            <div class="coluna" style="width:50%"> <?php echo $descricao ?> </div>
-                            <div class="coluna" style="width:10%"><img src="<?php echo $url_local ?>assets/imagens/pratos/<?php echo $foto ?>" width="30px"> </div>
-                        </div>
-
-                    </section>
-
-                    <hr class="hr-table">
-
-                <?php } ?>
-
-                <?php
-                $query = $pdo->query("SELECT * FROM produtos where categoria = '$id_sobremesas' order by id desc");
-                $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                $totalItens = @count($res);
-                for ($i = 0; $i < @count($res); $i++) {
-                    foreach ($res[$i] as $key => $value) {
-                    }
-                    $nome = $res[$i]['nome'];
-                    $valor_venda = $res[$i]['valor_venda'];
-                    $descricao = $res[$i]['descricao'];
-                    $foto = $res[$i]['imagem'];
-                    $id = $res[$i]['id'];
-                    $valor_venda = number_format($valor_venda, 2, ',', '.');
-                ?>
-
-                    <section class="area-tab">
-
-                        <div class="linha-cab">
-                            <div class="coluna" style="width:25%"><?php echo $nome ?> </div>
-                            <div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?> </div>
-                            <div class="coluna" style="width:50%"> <?php echo $descricao ?> </div>
-                            <div class="coluna" style="width:10%"><img src="<?php echo $url_local ?>assets/imagens/produtos/<?php echo $foto ?>" width="30px"> </div>
-                        </div>
-
-                    </section>
-
-                    <hr class="hr-table">
-
-                <?php } ?>
-
-            <?php } ?>
-            <!-- Fim da Categoria de Sobremesas -->
 
             <!-- Categoria de Carnes -->
             <?php
@@ -1298,7 +1016,181 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
             <?php } ?>
             <!-- Fim da Categoria de Bebidas -->
 
+            <!-- Categoria de Drinks -->
+            <?php
+            $query_cat = $pdo->query("SELECT * FROM categorias where nome = 'Drinks'");
+            $res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
+            $Itens = @count($res_cat);
 
+            if ($Itens > 0) {
+                $id_drinks = $res_cat[0]['id'];
+            ?>
+                <br><br>
+                <div class="subtitulo-cardapio">Drinks</div>
+                <section class="area-tab">
+
+                    <div class="linha-cab">
+                        <div class="coluna" style="width:25%"><b>Nome</b></div>
+                        <div class="coluna" style="width:15%"><b>Valor</b></div>
+                        <div class="coluna" style="width:50%"><b>Descrição</b></div>
+                        <div class="coluna" style="width:10%"><b>Foto</b></div>
+
+                    </div>
+
+                </section>
+
+                <hr class="hr-table">
+
+                <?php
+                $query = $pdo->query("SELECT * FROM pratos where categoria = '$id_drinks' ORDER BY id ASC");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                $totalItens = @count($res);
+                for ($i = 0; $i < @count($res); $i++) {
+                    foreach ($res[$i] as $key => $value) {
+                    }
+                    $nome = $res[$i]['nome'];
+                    $valor_venda = $res[$i]['valor'];
+                    $descricao = $res[$i]['descricao'];
+                    $foto = $res[$i]['imagem'];
+                    $id = $res[$i]['id'];
+                    $valor_venda = number_format($valor_venda, 2, ',', '.');
+                ?>
+
+                    <section class="area-tab">
+
+                        <div class="linha-cab">
+                            <div class="coluna" style="width:25%"><?php echo $nome ?> </div>
+                            <div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?> </div>
+                            <div class="coluna" style="width:50%"> <?php echo $descricao ?> </div>
+                            <div class="coluna" style="width:10%"><img src="<?php echo $url_local ?>assets/imagens/pratos/<?php echo $foto ?>" width="30px"> </div>
+                        </div>
+
+                    </section>
+
+                    <hr class="hr-table">
+
+                <?php } ?>
+
+                <?php
+                $query = $pdo->query("SELECT * FROM produtos where categoria = '$id_drinks' ORDER BY id ASC");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                $totalItens = @count($res);
+                for ($i = 0; $i < @count($res); $i++) {
+                    foreach ($res[$i] as $key => $value) {
+                    }
+                    $nome = $res[$i]['nome'];
+                    $valor_venda = $res[$i]['valor_venda'];
+                    $descricao = $res[$i]['descricao'];
+                    $foto = $res[$i]['imagem'];
+                    $id = $res[$i]['id'];
+                    $valor_venda = number_format($valor_venda, 2, ',', '.');
+                ?>
+
+                    <section class="area-tab">
+
+                        <div class="linha-cab">
+                            <div class="coluna" style="width:25%"><?php echo $nome ?> </div>
+                            <div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?> </div>
+                            <div class="coluna" style="width:50%"> <?php echo $descricao ?> </div>
+                            <div class="coluna" style="width:10%"><img src="<?php echo $url_local ?>assets/imagens/produtos/<?php echo $foto ?>" width="30px"> </div>
+                        </div>
+
+                    </section>
+
+                    <hr class="hr-table">
+
+                <?php } ?>
+
+            <?php } ?>
+            <!-- Fim da Categoria de Drinks -->
+
+            <!-- Categoria de Sobremesas -->
+            <?php
+            $query_cat = $pdo->query("SELECT * FROM categorias where nome = 'Sobremesas'");
+            $res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
+            $Itens = @count($res_cat);
+
+            if ($Itens > 0) {
+                $id_sobremesas = $res_cat[0]['id'];
+            ?>
+                <br><br>
+                <div class="subtitulo-cardapio">Sobremesas</div>
+                <section class="area-tab">
+
+                    <div class="linha-cab">
+                        <div class="coluna" style="width:25%"><b>Nome</b></div>
+                        <div class="coluna" style="width:15%"><b>Valor</b></div>
+                        <div class="coluna" style="width:50%"><b>Descrição</b></div>
+                        <div class="coluna" style="width:10%"><b>Foto</b></div>
+
+                    </div>
+
+                </section>
+
+                <hr class="hr-table">
+
+                <?php
+                $query = $pdo->query("SELECT * FROM pratos where categoria = '$id_sobremesas' order by id desc");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                $totalItens = @count($res);
+                for ($i = 0; $i < @count($res); $i++) {
+                    foreach ($res[$i] as $key => $value) {
+                    }
+                    $nome = $res[$i]['nome'];
+                    $valor_venda = $res[$i]['valor'];
+                    $descricao = $res[$i]['descricao'];
+                    $foto = $res[$i]['imagem'];
+                    $id = $res[$i]['id'];
+                    $valor_venda = number_format($valor_venda, 2, ',', '.');
+                ?>
+
+                    <section class="area-tab">
+
+                        <div class="linha-cab">
+                            <div class="coluna" style="width:25%"><?php echo $nome ?> </div>
+                            <div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?> </div>
+                            <div class="coluna" style="width:50%"> <?php echo $descricao ?> </div>
+                            <div class="coluna" style="width:10%"><img src="<?php echo $url_local ?>assets/imagens/pratos/<?php echo $foto ?>" width="30px"> </div>
+                        </div>
+
+                    </section>
+
+                    <hr class="hr-table">
+
+                <?php } ?>
+
+                <?php
+                $query = $pdo->query("SELECT * FROM produtos where categoria = '$id_sobremesas' order by id desc");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                $totalItens = @count($res);
+                for ($i = 0; $i < @count($res); $i++) {
+                    foreach ($res[$i] as $key => $value) {
+                    }
+                    $nome = $res[$i]['nome'];
+                    $valor_venda = $res[$i]['valor_venda'];
+                    $descricao = $res[$i]['descricao'];
+                    $foto = $res[$i]['imagem'];
+                    $id = $res[$i]['id'];
+                    $valor_venda = number_format($valor_venda, 2, ',', '.');
+                ?>
+
+                    <section class="area-tab">
+
+                        <div class="linha-cab">
+                            <div class="coluna" style="width:25%"><?php echo $nome ?> </div>
+                            <div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?> </div>
+                            <div class="coluna" style="width:50%"> <?php echo $descricao ?> </div>
+                            <div class="coluna" style="width:10%"><img src="<?php echo $url_local ?>assets/imagens/produtos/<?php echo $foto ?>" width="30px"> </div>
+                        </div>
+
+                    </section>
+
+                    <hr class="hr-table">
+
+                <?php } ?>
+
+            <?php } ?>
+            <!-- Fim da Categoria de Sobremesas -->
 
         </small>
 

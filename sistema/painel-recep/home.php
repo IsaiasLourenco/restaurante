@@ -410,7 +410,7 @@ $total_reser = @count($res);
                             <div class="card-body cleartfix">
                                 <div class="row media align-items-stretch">
                                     <div class="align-self-center col-1">
-                                        <i class="bi bi-bag-check-fill text-success fs-1 mr-2"></i>
+                                        <i class="bi bi-bookmarks-fill text-success fs-1 mr-2"></i>
                                     </div>
                                     <div class="media-body col-6">
                                         <h4>Reservas</h4>

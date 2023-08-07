@@ -1,8 +1,8 @@
 <?php
 
 //VARIÁVEIS DO PROJETO
-$url_local = 'http://localhost/restaurantesite/';
-//$url_local = 'http://lorenzos.sitepessoal.com/';
+//$url_local = 'http://localhost/restaurantesite/';
+$url_local = 'http://lorenzos.sitepessoal.com/';
 $nome_site ="LORENZO'S";
 $email_adm ='adm@vetor256.com';
 $email_adm_gm ='isaiaslourenco2020@gmail.com';
@@ -59,7 +59,7 @@ $itens_tela = 7;
 $tempo_atualizacao_tela = 5;
 
 //TEMPO DE CHAMADA DE UM NOVO ITEM
-$tempo_atualizacao_tela_chamada = 5;
+$tempo_atualizacao_tela_chamada = 10;
 
 $itens_tela_chamada = 12;
 

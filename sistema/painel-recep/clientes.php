@@ -10,7 +10,7 @@ require_once("verificar.php");
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../vendor/css/h2.css">
-
+	<link rel="stylesheet" href="../../assets/css/font-awesome.css">
 </head>
 
 <body>

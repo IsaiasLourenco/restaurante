@@ -1,15 +1,13 @@
 <?php
 $pagina = 'tela';
 require_once("../../conexao.php");
-require_once("verificar.php");
-
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-	<title><?php echo $nome_site ?>-TELA DE ITENS</title>
+	<title>PAINEL COZINHA-TELA DE ITENS</title>
 	<link rel="shortcut icon" href="../../assets/imagens/ico.ico" type="image/x-icon">
 
 	<meta charset="utf-8">

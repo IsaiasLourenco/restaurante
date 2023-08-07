@@ -8,13 +8,6 @@ if (@$pag_painel != "") {
 require_once("verificar.php");
 $agora = date('Y-m-d');
 ?>
-
-<!-- Custom fonts for this template-->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-
-<!-- Custom styles for this template-->
-<link href="vendor/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="../vendor/css/h2.css" rel="stylesheet">
 
 
@@ -24,7 +17,15 @@ $agora = date('Y-m-d');
         <div class="row mx-2">
             <h2>RESERVAS</h2>
             <div class="col-mb-6 col-lg-6 col-sm-12">
-                <span>Data da Reserva</span>
+                <span>Data da Reserva
+                    <?php
+                    $query = $pdo->query("SELECT * FROM reservas_email WHERE reservado = 'Não'");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    if (@count($res) > 0) {
+                    ?>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalReservaEmail" title="Reservas Pendentes">
+                            <i class="bi bi-info-circle-fill text-danger"></i></a></span>
+            <?php } ?>
             </div>
             <div class="col-mb-6 col-lg-6 col-sm-12">
                 <div class="mb-3">
@@ -47,7 +48,7 @@ $agora = date('Y-m-d');
 
     <div class="col-lg-8 col-md-7 col-sm-12">
         <div id='listar-reservas'>
-            
+
         </div>
     </div>
 </div>
@@ -180,9 +181,71 @@ $agora = date('Y-m-d');
 </div>
 <!-- Fim do Modal Excluir Reserva-->
 
+<!-- Modal Reserva Email-->
+<div class="modal fade" id="modalReservaEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reservas Pendentes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" id="form-reservas">
+                <div class="modal-body">
+
+                    <small>
+                        <table id="reservas-email" class="table table-hover table-sm my-4" style="width:98%;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; width:20%">Nome</th>
+                                    <th style="text-align: center; width:20%">Email</th>
+                                    <th style="text-align: center; width:20%">Telefone</th>
+                                    <th style="text-align: center; width:5%">Pessoas</th>
+                                    <th style="text-align: center; width:10%">Data</th>
+                                    <th style="text-align: center; width:20%">Mensagem</th>
+                                    <th style="text-align: center; width:5%">Confirmar</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $query = $pdo->query("SELECT * FROM reservas_email WHERE reservado = 'Não' ORDER BY id ASC");
+                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                for ($i = 0; $i < @count($res); $i++) {
+                                    foreach ($res[$i] as $key => $value) {
+                                    }
+                                    $id_reg = $res[$i]['id'];
+                                ?>
+                                    <tr>
+                                        <td style="text-align: center; width:20%"><?php echo $res[$i]['nome'] ?></td>
+                                        <td style="text-align: center; width:20%"><?php echo $res[$i]['email'] ?></td>
+                                        <td style="text-align: center; width:20%"><?php echo $res[$i]['telefone'] ?></td>
+                                        <td style="text-align: center; width:5%"><?php echo $res[$i]['pessoas'] ?></td>
+                                        <td style="text-align: center; width:10%"><?php echo implode('/', array_reverse(explode('-', $res[$i]['data_reserva']))) ?></td>;
+                                        <td style="text-align: center; width:20%"><?php echo $res[$i]['mensagem'] ?></td>
+                                        <td style="text-align: center; width:5%">
+                                            <a href="#" onclick="reservaEmail('<?php echo $res[$i]['id'] ?>', '<?php echo $res[$i]['email'] ?>', '<?php echo $res[$i]['pessoas'] ?>', '<?php echo $res[$i]['data_reserva'] ?>', '<?php echo $res[$i]['mensagem'] ?>')" title="Confirmar Reserva" style="text-decoration: none">
+                                                <i class="bi bi-check-square-fill text-success mx-1"></i>
+
+                                        </td>
+                                    </tr>
+
+                                <?php } ?>
+
+                            </tbody>
+                        </table>
+                    </small>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Fim Modal Reserva Email-->
+
 <!-- Ajax para limitar nº de itens no Datable e listar produtos -->
 <script type="text/javascript">
     $(document).ready(function() {
+
         $('#example').DataTable({
             "ordering": false,
             "lengthMenu": [
@@ -190,6 +253,11 @@ $agora = date('Y-m-d');
                 [2, 3, 4, "Todos"]
             ]
         });
+
+        $('#reservas-email').DataTable({
+            "ordering": false,
+        });
+
         mostrarMesas();
         mostrarReservas();
     });
@@ -280,15 +348,15 @@ $agora = date('Y-m-d');
                     //window.location = "index.php?pag=" + pag;
                     var data = $('#data-reserva').val(data);
                     mudarData(data);
-                    
+
                 } else {
 
                     $('#mensagem-reservas').addClass('text-danger')
                     $('#mensagem-reservas').text(mensagem)
                 }
-                
+
             },
-            
+
             cache: false,
             contentType: false,
             processData: false,
@@ -378,3 +446,55 @@ $agora = date('Y-m-d');
     }
 </script>
 <!-- Fim do Ajax para Mostrar Reservas -->
+
+<!-- Ajax para buscar Clientes -->
+<script type="text/javascript">
+    var pag = "<?= $pagina ?>";
+
+    function pegarCliente(id_cli, nome_cli) {
+        event.preventDefault();
+        $('#id_cli').val(id_cli);
+        $('#nome_cli').val(nome_cli);
+    }
+</script>
+<!-- Fim do Ajax para buscar Clientes -->
+
+<!-- Ajax para buscar Clientes -->
+<script type="text/javascript">
+    var pag = "<?= $pagina ?>";
+
+    function reservaEmail(id_res_email, email, pessoas, data, mensagem) {
+        event.preventDefault();
+
+        $.ajax({
+            url: pag + "/inserir.php",
+            method: 'POST',
+            data: {
+                id_res_email,
+                email,
+                pessoas,
+                data,
+                mensagem
+            },
+            dataType: "text",
+
+            success: function(mensagem) {
+
+                $('#mensagem-tab-reserva').removeClass()
+                $('#mensagem-tab-reserva').text('');
+                if (mensagem.trim() == "Salvo com Sucesso!") {
+
+                    window.location = "index.php?pag=" + pag;
+
+                } else {
+                    $('#mensagem-tab-reserva').addClass('text-danger')
+
+                }
+                $('#mensagem-tab-reserva').text(mensagem)
+            },
+
+        });
+
+    }
+</script>
+<!-- Fim do Ajax para buscar Clientes -->

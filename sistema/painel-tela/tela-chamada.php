@@ -1,16 +1,13 @@
 <?php
-
 $pagina = 'tela-chamada';
-
 require_once("../../conexao.php");
-
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-	<title><?php echo $nome_site ?></title>
+	<title>PAINEL COZINHA-ÚLITMOS ITENS</title>
 
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
@@ -61,7 +58,6 @@ require_once("../../conexao.php");
 			$id_ult = $res_ult[0]['id'];
 
 			if ($id_ult != @$_GET['id']) {
-				echo $_GET['id'];
 				echo '<audio autoplay="true">
 						<source src="../../assets/audio.mp3" type="audio/mpeg" />
 						</audio>';
@@ -99,7 +95,7 @@ require_once("../../conexao.php");
 
 	</div>
 
-</body>
+	</bodyss=>
 
 </html>
 

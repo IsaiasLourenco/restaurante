@@ -44,7 +44,7 @@ if ($total_reg > 0) {
 <html>
 
 <head>
-  <title>PAINEL DA TELA</title>
+  <title>PAINEL COZINHA</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
   <link rel="shortcut icon" href="../../assets/imagens/ico.ico" type="image/x-icon">
@@ -89,7 +89,9 @@ if ($total_reg > 0) {
           <li class="nav-item">
             <a class="nav-link text-light" aria-current="page" href="tela.php" target="_blank">Tela</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link text-light" aria-current="page" href="tela-chamada.php" target="_blank">Tela Chamada</a>
+          </li>
         </ul>
 
         <div class="d-flex mr-4">
