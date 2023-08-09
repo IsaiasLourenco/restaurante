@@ -1,4 +1,63 @@
-<?php require_once("config.php") ?>
+<?php
+require_once("conexao.php");
+
+//TOTAIS
+$query_prat = $pdo->query("SELECT * FROM pratos ");
+$res_prat = $query_prat->fetchAll(PDO::FETCH_ASSOC);
+$total_pratos = @count($res_prat);
+
+$query_cli = $pdo->query("SELECT * FROM clientes ");
+$res_cli = $query_cli->fetchAll(PDO::FETCH_ASSOC);
+$total_cli = @count($res_cli);
+
+$query_prod = $pdo->query("SELECT * FROM produtos ");
+$res_prod = $query_prod->fetchAll(PDO::FETCH_ASSOC);
+$total_prod = @count($res_prod);
+
+$query_cat = $pdo->query("SELECT * FROM categorias ");
+$res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
+$total_cat = @count($res_cat);
+
+$query_beb = $pdo->query("SELECT * FROM categorias WHERE nome = 'Bebidas' ");
+$res_beb = $query_beb->fetchAll(PDO::FETCH_ASSOC);
+$total_bebidas = @count($res_beb);
+if ($total_bebidas > 0) {
+  $id_cat_beb = $res_beb[0]['id'];
+  $query_beb = $pdo->query("SELECT * FROM produtos WHERE categoria = '$id_cat_beb'");
+  $res_beb = $query_beb->fetchAll(PDO::FETCH_ASSOC);
+  $total_bebidas = @count($res_beb);
+}
+
+$query_assa = $pdo->query("SELECT * FROM categorias WHERE nome = 'Assados' ");
+$res_assa = $query_assa->fetchAll(PDO::FETCH_ASSOC);
+$total_assados = @count($res_assa);
+if ($total_assados > 0) {
+  $id_cat_assa = $res_assa[0]['id'];
+  $query_assa = $pdo->query("SELECT * FROM pratos WHERE categoria = '$id_cat_assa'");
+  $res_assa = $query_assa->fetchAll(PDO::FETCH_ASSOC);
+  $total_assados = @count($res_assa);
+}
+
+$query_px = $pdo->query("SELECT * FROM categorias WHERE nome = 'Peixes' ");
+$res_px = $query_px->fetchAll(PDO::FETCH_ASSOC);
+$total_peixes = @count($res_px);
+if ($total_peixes > 0) {
+  $id_cat_px = $res_px[0]['id'];
+  $query_px = $pdo->query("SELECT * FROM pratos WHERE categoria = '$id_cat_px'");
+  $res_px = $query_px->fetchAll(PDO::FETCH_ASSOC);
+  $total_peixes = @count($res_px);
+}
+
+$query_pizz = $pdo->query("SELECT * FROM categorias WHERE nome = 'Pizzas' ");
+$res_pizz = $query_pizz->fetchAll(PDO::FETCH_ASSOC);
+$total_pizza = @count($res_pizz);
+if ($total_pizza > 0) {
+  $id_cat_pizza = $res_pizz[0]['id'];
+  $query_pizz = $pdo->query("SELECT * FROM pratos WHERE categoria = '$id_cat_pizza'");
+  $res_pizz = $query_pizz->fetchAll(PDO::FETCH_ASSOC);
+  $total_pizza = @count($res_pizz);
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -19,6 +78,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
   <!-- Date Picker -->
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.css">
+
   <!-- Fancybox slider -->
   <link rel="stylesheet" href="assets/css/jquery.fancybox.css" type="text/css" media="screen" />
   <!-- Theme color -->
@@ -26,7 +86,6 @@
 
   <!-- Main style sheet -->
   <link href="style.css" rel="stylesheet">
-
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
@@ -36,12 +95,81 @@
 </head>
 
 <body>
+
+  <!-- LEI DE ACEITAÇÃO DE COOKIES -->
+  <style type="text/css">
+    .alerta {
+      background-color: #c1a35f;
+      color: aliceblue;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      opacity: 80%;
+      z-index: 1;
+    }
+
+    .alerta.hide {
+      display: none !important;
+    }
+
+    .link-politica {
+      color: aliceblue;
+    }
+
+    .link-politica:hover {
+      text-decoration: underline;
+      color: aliceblue;
+    }
+
+    .link-politica:visited {
+      color: aliceblue;
+    }
+
+    .botao-aceitar {
+      background-color: antiquewhite;
+      color: chocolate;
+      padding: 7px;
+      margin-left: 15px;
+      border-radius: 5px;
+      border: none
+    }
+
+    .botao-aceitar:hover {
+      background-color: white;
+      color: gray;
+    }
+  </style>
+
+  <div class="alerta hide">
+    Guardamos estatísticas de visitas para melhorar sua experiência de navegação, saiba mais em nossa <a class="link-politica" title="Saiba mais sobre..." target="_blank" href="politica.php"><strong>política de privacidade.</strong></a>
+    <a class="botao-aceitar" href="#"><strong>Aceitar</strong></a>
+  </div>
+
+  <script>
+    if (!localStorage.loreCookie) {
+      document.querySelector(".alerta").classList.remove('hide');
+    }
+
+    const acceptCookies = () => {
+      document.querySelector(".alerta").classList.add('hide');
+      localStorage.setItem("loreCookie", "accept");
+    };
+
+    const btnCookies = document.querySelector(".botao-aceitar");
+
+    btnCookies.addEventListener('click', acceptCookies);
+  </script>
+  <!-- FIM LEI DE ACEITAÇÃO DE COOKIES -->
+
   <!-- Pre Loader -->
-  <div id="aa-preloader-area">
+  <!-- <div id="aa-preloader-area">
     <div class="mu-preloader">
       <img src="assets/imagens/preloader1.gif" alt=" loader img">
     </div>
-  </div>
+  </div> -->
   <!--START SCROLL TOP BUTTON -->
   <a class="scrollToTop" href="#">
     <i class="fa fa-angle-up"></i>
@@ -74,14 +202,7 @@
             <li><a href="#mu-client-testimonial">ÁREA DOS CLIENTES</a></li>
             <li><a href="#mu-chef">NOSSA EQUIPE</a></li>
             <li><a href="#mu-contact">CONTATO</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="blog.php">BLOG<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#mu-latest-news">ÚLTIMAS NOTÍCIAS</a></li>
-                <li><a href="blog.php">BLOG</a></li>
-                <li><a href="blog-post.php">DETALHES</a></li>
-              </ul>
-            </li>
+            <li><a href="#mu-latest-news">BLOG</a></li>
             <li><a href="sistema" target="_blank">LOGIN</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -93,50 +214,38 @@
   <!-- Start slider  -->
   <section id="mu-slider">
     <div class="mu-slider-area">
-      <!-- Top slider -->
-      <div class="mu-top-slider">
-        <!-- Top slider single slide -->
-        <div class="mu-top-slider-single">
-          <img src="assets/imagens/slider/slider1.jpg" alt="img">
-          <!-- Top slider content -->
-          <div class="mu-top-slider-content">
-            <span class="mu-slider-small-title">Bem vindo</span>
-            <h2 class="mu-slider-title"><?php echo $nome_site ?> RESTAURANTE</h2>
-            <p>Um lugar familiar com hospitalidade caseira e requinte para você, sua família e amigos passarem momentos inesquecíveis.</p>
-            <a href="#" class="mu-readmore-btn">SAIBA MAIS</a>
-          </div>
-          <!-- / Top slider content -->
-        </div>
-        <!-- / Top slider single slide -->
 
-        <!-- Top slider single slide -->
-        <div class="mu-top-slider-single">
-          <img src="assets/imagens/slider/slider2.jpg" alt="img">
-          <!-- Top slider content -->
-          <div class="mu-top-slider-content">
-            <span class="mu-slider-small-title">A verdadeira</span>
-            <h2 class="mu-slider-title">COZINHA VEGANA</h2>
-            <p>Tenha certeza das suas escolhas conhecendo a melhor cozinha vegana da região, com experiência trazida da distante Oceania.</p>
-            <a href="#" class="mu-readmore-btn">SAIBA MAIS</a>
+      <div class="mu-top-slider">
+
+        <?php
+        $query = $pdo->query("SELECT * FROM banners ORDER BY id ASC");
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        for ($i = 0; $i < @count($res); $i++) {
+          foreach ($res[$i] as $key => $value) {
+          }
+          $id_reg = $res[$i]['id'];
+
+        ?>
+          <div class="mu-top-slider-single">
+            <img src="assets/imagens/banners/<?php echo $res[$i]['imagem'] ?>" alt="img">
+
+            <!-- Top slider content -->
+            <div class="mu-top-slider-content">
+
+              <span class="mu-slider-small-title"><?php echo $res[$i]['titulo'] ?></span>
+              <h2 class="mu-slider-title"><?php echo $res[$i]['subtitulo'] ?></h2>
+              <p><?php echo $res[$i]['descricao'] ?></p>
+              <?php if ($res[$i]['link'] != "") { ?>
+                <a href="<?php echo $res[$i]['link'] ?>" target="_blank" class="mu-readmore-btn">SAIBA MAIS</a>
+              <?php } ?>
+            </div>
+            <!-- / Top slider content -->
           </div>
-          <!-- / Top slider content -->
-        </div>
-        <!-- / Top slider single slide -->
-        <!-- Top slider single slide -->
-        <div class="mu-top-slider-single">
-          <img src="assets/imagens/slider/slider3.jpg" alt="img">
-          <!-- Top slider content -->
-          <div class="mu-top-slider-content">
-            <span class="mu-slider-small-title">Deliciosas</span>
-            <h2 class="mu-slider-title">MASSAS ESPECIAIS</h2>
-            <p>Se sinta em um pedacinho da Itália com nosso cardápio de massas especializadas e todo o talento trazido por chefs com experiência Européia.</p>
-            <a href="#" class="mu-readmore-btn">SAIBA MAIS</a>
-          </div>
-          <!-- / Top slider content -->
-        </div>
-        <!-- / Top slider single slide -->
+        <?php } ?>
       </div>
+
     </div>
+
   </section>
   <!-- End slider  -->
 
@@ -194,36 +303,69 @@
         <div class="row">
           <div class="col-md-12">
             <div class="mu-counter-area">
+
               <ul class="mu-counter-nav">
                 <li class="col-md-3 col-sm-3 col-xs-12">
                   <div class="mu-single-counter">
-                    <span>Café da Manhã</span>
-                    <h3><span class="counter">55</span><sup>+</sup></h3>
-                    <p>Itens Fresquinhos</p>
+                    <span>Pratos</span>
+                    <h3><span class="counter"><?php echo $total_pratos ?></span><sup>+</sup></h3>
+                    <p>Especiais</p>
                   </div>
                 </li>
                 <li class="col-md-3 col-sm-3 col-xs-12">
                   <div class="mu-single-counter">
-                    <span>Lanches</span>
-                    <h3><span class="counter">130</span><sup>+</sup></h3>
-                    <p>Opções Deliciosas</p>
+                    <span>Categprias</span>
+                    <h3><span class="counter"><?php echo $total_cat ?></span><sup>+</sup></h3>
+                    <p>Vasta Experiência</p>
                   </div>
                 </li>
                 <li class="col-md-3 col-sm-3 col-xs-12">
                   <div class="mu-single-counter">
-                    <span>Cafeteria</span>
-                    <h3><span class="counter">35</span><sup>+</sup></h3>
+                    <span>Produtos</span>
+                    <h3><span class="counter"><?php echo $total_prod ?></span><sup>+</sup></h3>
                     <p>Muitas Opções</p>
                   </div>
                 </li>
                 <li class="col-md-3 col-sm-3 col-xs-12">
                   <div class="mu-single-counter">
                     <span>Clientela</span>
-                    <h3><span class="counter">3562</span><sup>+</sup></h3>
+                    <h3><span class="counter"><?php echo $total_cli ?></span><sup>+</sup></h3>
                     <p>Sempre Satisfeita</p>
                   </div>
                 </li>
               </ul>
+
+              <ul class="mu-counter-nav">
+                <li class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="mu-single-counter">
+                    <span>Bebidas</span>
+                    <h3><span class="counter"><?php echo $total_bebidas ?></span><sup>+</sup></h3>
+                    <p>Refrescantes</p>
+                  </div>
+                </li>
+                <li class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="mu-single-counter">
+                    <span>Assados</span>
+                    <h3><span class="counter"><?php echo $total_assados ?></span><sup>+</sup></h3>
+                    <p>Crocantes e saborosos</p>
+                  </div>
+                </li>
+                <li class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="mu-single-counter">
+                    <span>Peixes</span>
+                    <h3><span class="counter"><?php echo $total_peixes ?></span><sup>+</sup></h3>
+                    <p>Especialidades</p>
+                  </div>
+                </li>
+                <li class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="mu-single-counter">
+                    <span>Pizzas</span>
+                    <h3><span class="counter"><?php echo $total_pizza ?></span><sup>+</sup></h3>
+                    <p>Sabor e Alegria</p>
+                  </div>
+                </li>
+              </ul>
+
             </div>
           </div>
         </div>
@@ -1090,111 +1232,52 @@
               <span class="mu-title-bar"></span>
             </div>
             <div class="mu-chef-content">
-              <ul class="mu-chef-nav">
-                <li>
-                  <div class="mu-single-chef">
-                    <figure class="mu-single-chef-img">
-                      <img src="assets/imagens/chef/1.jpg" alt="chef img">
-                    </figure>
-                    <div class="mu-single-chef-info">
-                      <h4>Simon Jonson</h4>
-                      <span>Chef Líder</span>
-                    </div>
-                    <div class="mu-single-chef-social">
-                      <a href="#"><i class="fa fa-facebook"></i></a>
-                      <a href="#"><i class="fa fa-twitter"></i></a>
-                      <a href="#"><i class="fa fa-google-plus"></i></a>
-                      <a href="#"><i class="fa fa-linkedin"></i></a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="mu-single-chef">
-                    <figure class="mu-single-chef-img">
-                      <img src="assets/imagens/chef/2.jpg" alt="chef img">
-                    </figure>
-                    <div class="mu-single-chef-info">
-                      <h4>Kelly Wenzel</h4>
-                      <span>Chef Pizzaiolo</span>
-                    </div>
-                    <div class="mu-single-chef-social">
-                      <a href="#"><i class="fa fa-facebook"></i></a>
-                      <a href="#"><i class="fa fa-twitter"></i></a>
-                      <a href="#"><i class="fa fa-google-plus"></i></a>
-                      <a href="#"><i class="fa fa-linkedin"></i></a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="mu-single-chef">
-                    <figure class="mu-single-chef-img">
-                      <img src="assets/imagens/chef/3.jpg" alt="chef img">
-                    </figure>
-                    <div class="mu-single-chef-info">
-                      <h4>Greg Hong</h4>
-                      <span>Chef Carnes</span>
-                    </div>
-                    <div class="mu-single-chef-social">
-                      <a href="#"><i class="fa fa-facebook"></i></a>
-                      <a href="#"><i class="fa fa-twitter"></i></a>
-                      <a href="#"><i class="fa fa-google-plus"></i></a>
-                      <a href="#"><i class="fa fa-linkedin"></i></a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="mu-single-chef">
-                    <figure class="mu-single-chef-img">
-                      <img src="assets/imagens/chef/4.jpg" alt="chef img">
-                    </figure>
-                    <div class="mu-single-chef-info">
-                      <h4>Marty Fukuda</h4>
-                      <span>Chef Lancheteria</span>
-                    </div>
-                    <div class="mu-single-chef-social">
-                      <a href="#"><i class="fa fa-facebook"></i></a>
-                      <a href="#"><i class="fa fa-twitter"></i></a>
-                      <a href="#"><i class="fa fa-google-plus"></i></a>
-                      <a href="#"><i class="fa fa-linkedin"></i></a>
-                    </div>
-                  </div>
-                </li>
 
-                <li>
-                  <div class="mu-single-chef">
-                    <figure class="mu-single-chef-img">
-                      <img src="assets/imagens/chef/5.jpg" alt="chef img">
-                    </figure>
-                    <div class="mu-single-chef-info">
-                      <h4>Ana Gregório</h4>
-                      <span>Chef Sênior</span>
+              <ul class="mu-chef-nav">
+                <?php
+                $query = $pdo->query("SELECT * FROM chef ORDER BY id ASC");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                for ($i = 0; $i < @count($res); $i++) {
+                  foreach ($res[$i] as $key => $value) {
+                  }
+                  $id_chef = $res[$i]['id'];
+                  $id_func = $res[$i]['funcionario'];
+                  $especialidade = $res[$i]['especialidade'];
+
+                  $query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_func'");
+                  $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+                  $nome_func = $res2[0]['nome'];
+                  $imagem_func = $res2[0]['imagem'];
+                ?>
+
+                  <li>
+                    <div class="mu-single-chef">
+                      <figure class="mu-single-chef-img">
+                        <img src="assets/imagens/funcionarios/<?php echo $imagem_func ?>" height="350px" width="350px" alt="chef img">
+                      </figure>
+                      <div class="mu-single-chef-info">
+                        <h4><?php echo $nome_func ?></h4>
+                        <span><?php echo $especialidade ?></span>
+                      </div>
+                      <div class="mu-single-chef-social">
+                        <?php if ($res[$i]['facebook']) { ?>
+                          <a href="<?php echo $res[$i]['facebook'] ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <?php } ?>
+                        <?php if ($res[$i]['instagram']) { ?>
+                          <a href="<?php echo $res[$i]['instagram'] ?>" target="_blank"><i class="fa fa-instagram"></i></a>
+                        <?php } ?>
+                        <?php if ($res[$i]['youtube']) { ?>
+                          <a href="<?php echo $res[$i]['youtube'] ?>" target="_blank"><i class="fa fa-youtube"></i></a>
+                        <?php } ?>
+                        <?php if ($res[$i]['linkedin']) { ?>
+                          <a href="<?php echo $res[$i]['linkedin'] ?>" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        <?php } ?>
+                      </div>
                     </div>
-                    <div class="mu-single-chef-social">
-                      <a href="#"><i class="fa fa-facebook"></i></a>
-                      <a href="#"><i class="fa fa-twitter"></i></a>
-                      <a href="#"><i class="fa fa-google-plus"></i></a>
-                      <a href="#"><i class="fa fa-linkedin"></i></a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="mu-single-chef">
-                    <figure class="mu-single-chef-img">
-                      <img src="assets/imagens/chef/6.jpg" alt="chef img">
-                    </figure>
-                    <div class="mu-single-chef-info">
-                      <h4>Maria Rezende</h4>
-                      <span>Chef Massas</span>
-                    </div>
-                    <div class="mu-single-chef-social">
-                      <a href="#"><i class="fa fa-facebook"></i></a>
-                      <a href="#"><i class="fa fa-twitter"></i></a>
-                      <a href="#"><i class="fa fa-google-plus"></i></a>
-                      <a href="#"><i class="fa fa-linkedin"></i></a>
-                    </div>
-                  </div>
-                </li>
+                  </li>
+                <?php } ?>
               </ul>
+
             </div>
           </div>
         </div>
@@ -1217,51 +1300,49 @@
             </div>
             <div class="mu-latest-news-content">
               <div class="row">
-                <!-- start single blog -->
-                <div class="col-md-6">
-                  <article class="mu-news-single">
-                    <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, distinctio!</a></h3>
-                    <figure class="mu-news-img">
-                      <a href="#"><img src="assets/imagens/news/1.jpg" alt="img"></a>
-                    </figure>
-                    <div class="mu-news-single-content">
-                      <ul class="mu-meta-nav">
-                        <li>Por Admin</li>
-                        <li>Date: 10 Maio 2016</li>
-                      </ul>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                      <div class="mu-news-single-bottom">
-                        <a href="blog.php" class="mu-readmore-btn">Leia Mais</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <!-- start single blog -->
-                <div class="col-md-6">
-                  <article class="mu-news-single">
-                    <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, distinctio!</a></h3>
-                    <figure class="mu-news-img">
-                      <a href="#"><img src="assets/imagens/news/2.jpg" alt="img"></a>
-                    </figure>
-                    <div class="mu-news-single-content">
-                      <ul class="mu-meta-nav">
-                        <li>By Admin</li>
-                        <li>Date: May 10 2016</li>
-                      </ul>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                      <div class="mu-news-single-bottom">
-                        <a href="blog.php" class="mu-readmore-btn">Leia Mais</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              </div>
 
+                <?php
+                $query = $pdo->query("SELECT * FROM blog ORDER BY id ASC LIMIT 2");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                for ($i = 0; $i < @count($res); $i++) {
+                  foreach ($res[$i] as $key => $value) {
+                  }
+                  $id_usuario = $res[$i]['autor'];
+                  $data_post = implode('/', array_reverse(explode('-', $res[$i]['data_postagem'])));
+                  $titulo = $res[$i]['titulo'];
+                  $imagem = $res[$i]['imagem'];
+                  $descricao = $res[$i]['descricao_1'];
+
+                  $query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = $id_usuario");
+                  $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+                  $nome_usuario = $res2[0]['nome'];
+
+                ?>
+                <!-- start single blog -->
+                <div class="col-md-6">
+                  <article class="mu-news-single">
+                    <h3><a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo']?>"><?php echo $titulo ?></a></h3>
+                    <figure class="mu-news-img">
+                      <a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo']?>"><img src="assets/imagens/blog/<?php echo $imagem ?>" alt="img" width="700px" height="350px"></a>
+                    </figure>
+                    <div class="mu-news-single-content">
+                      <ul class="mu-meta-nav">
+                        <li>Por: <?php echo $nome_usuario ?></li>
+                        <li>Data: <?php echo $data_post ?></li>
+                      </ul>
+                      <p style="height: 80px; overflow:auto"><?php echo $descricao ?></p>
+                      <div class="mu-news-single-bottom">
+                        <a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo']?>" class="mu-readmore-btn">Leia Mais</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <?php } ?>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
   <!-- End Latest News -->
 

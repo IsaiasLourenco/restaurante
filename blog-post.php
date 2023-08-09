@@ -1,4 +1,30 @@
-<?php require_once("config.php") ?>
+<?php
+require_once("conexao.php");
+
+@session_start();
+$id_user = @$_SESSION['id'];
+$cargo_user = @$_SESSION['cargo'];
+
+$titulo = $_GET['titulo'];
+
+$query = $pdo->query("SELECT * FROM blog WHERE url_titulo = '$titulo'");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$id_reg = $res[0]['id'];
+$autor = $res[0]['autor'];
+$data_post = implode('/', array_reverse(explode('-', $res[0]['data_postagem'])));
+$imagem = $res[0]['imagem'];
+$descricao_1 = $res[0]['descricao_1'];
+
+$query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = '$autor'");
+$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+$nome_usuario = $res2[0]['nome'];
+
+//TOTAL DE COMENTÁRIOS
+$query3 = $pdo->query("SELECT * FROM comentarios WHERE post = '$id_reg'");
+$res3 = $query3->fetchAll(PDO::FETCH_ASSOC);
+$total_comentarios = @count($res3);
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -69,8 +95,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
             <li><a href="index.php">HOME</a></li>
-            <li><a href="blog.php">BLOG</a></li>
-            <li class="active"><a href="blog-post.php">DETALHES</a></li>
+            <li class="active"><a href="blog-post.php">BLOG</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -82,11 +107,10 @@
   <section id="mu-blog-banner">
     <div class="container">
       <div class="mu-blog-banner-area">
-        <h2>Detalhes</h2>
+        <h2>BLOG</h2>
         <ol class="breadcrumb">
           <li><a href="index.php">Home</a></li>
-          <li><a href="blog.php">Blog</a></li>
-          <li class="active">Detalhes</li>
+          <li class="active">Blog</li>
         </ol>
       </div>
     </div>
@@ -104,60 +128,34 @@
                 <div class="mu-blog-content mu-blog-details">
                   <!-- Start Single blog item -->
                   <article class="mu-news-single">
-                    <h2><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, distinctio!</a></h2>
+                    <h2><?php echo $res[0]['titulo'] ?></h2>
                     <figure class="mu-news-img">
-                      <a href="#"><img src="assets/imagens/news/1.jpg" alt="img"></a>
+                      <img src="assets/imagens/blog/<?php echo $imagem ?>" alt="img">
                     </figure>
                     <div class="mu-news-single-content">
                       <ul class="mu-meta-nav">
-                        <li>Por Admin</li>
-                        <li>Data: 10 Maio 2016</li>
+                        <li>Por <?php echo $nome_usuario ?></li>
+                        <li>Data: <?php echo $data_post ?></li>
                       </ul>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
+                      <p><?php echo $descricao_1 ?></p>
                       <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore tempore ipsam, harum, quae amet fugiat nostrum quam error quis illum id ratione explicabo repellat laboriosam architecto, rerum vel velit necessitatibus?</p>
-                        <cite> - Mr. Jhon</cite>
+                        <p><?php echo $res[0]['descricao_2'] ?></p>
                       </blockquote>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, itaque perspiciatis a fugiat cupiditate eveniet.</p>
-                      <ul>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                        <li>Illum officiis porro earum dolor pariatur ipsum, nostrum!</li>
-                        <li>Impedit molestiae esse repellat incidunt deserunt dolorem natus.</li>
-                        <li>Sunt fuga repellendus inventore iste atque mollitia, nemo!</li>
-                        <li>Alias quia et accusamus doloribus, repudiandae illo odio!</li>
-                      </ul>
-                      <h1>Receitas Online</h1>
-                      <h2>Receitas Online</h2>
-                      <h3>Receitas Online</h3>
-                      <h4>Receitas Online</h4>
-                      <h5>Receitas Online</h5>
+                      <p><?php echo $res[0]['descricao_3'] ?></p>
+                      <cite><?php echo $nome_usuario ?></cite>
                     </div>
+
                     <div class="mu-news-single-bottom">
                       <div class="row">
                         <div class="col-md-6">
                           <div class="mu-news-single-tag">
                             <ul class="mu-news-single-tagnav">
                               <li>TAGS :</li>
-                              <li><a href="#">Cofee,</a></li>
-                              <li><a href="#">Snacks,</a></li>
-                              <li><a href="#">Drinks,</a></li>
-                              <li><a href="#">Dessert</a></li>
+                              <li><a href="#"><?php echo $res[0]['tag'] ?></a></li>
                             </ul>
                           </div>
                         </div>
-                        <div class="col-md-6">
-                          <div class="mu-news-single-social">
-                            <ul class="mu-news-single-socialnav">
-                              <li>SHARE :</li>
-                              <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                              <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                              <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                              <li><a href="#"><span class="fa fa-youtube"></span></a></li>
-                              <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
-                            </ul>
-                          </div>
-                        </div>
+
                       </div>
                     </div>
                   </article>
@@ -173,6 +171,7 @@
                   </div>
                 </div>
                 <!-- End Blog navigation -->
+
                 <!-- Start related news -->
                 <div class="row">
                   <div class="col-md-12">
@@ -182,127 +181,94 @@
                         <i class="fa fa-spoon"></i>
                         <span class="mu-title-bar"></span>
                       </div>
+
                       <div class="mu-blog-related-post-area">
+
                         <div class="row">
-                          <div class="col-md-6 col-sm-6">
-                            <article class="mu-news-single">
-                              <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, distinctio!</a></h3>
-                              <figure class="mu-news-img">
-                                <a href="#"><img alt="img" src="assets/imagens/news/1.jpg"></a>
-                              </figure>
-                              <div class="mu-news-single-content">
-                                <ul class="mu-meta-nav">
-                                  <li>Por Admin</li>
-                                  <li>10 Maio 2016</li>
-                                </ul>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                                <div class="mu-news-single-bottom">
-                                  <a class="mu-readmore-btn" href="#">Saiba Mais</a>
+
+                          <?php
+                          $query = $pdo->query("SELECT * FROM blog ORDER BY id ASC LIMIT 2");
+                          $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                          for ($i = 0; $i < @count($res); $i++) {
+                            foreach ($res[$i] as $key => $value) {
+                            }
+                            $id_usuario = $res[$i]['autor'];
+                            $data_post = implode('/', array_reverse(explode('-', $res[$i]['data_postagem'])));
+                            $titulo = $res[$i]['titulo'];
+                            $imagem = $res[$i]['imagem'];
+                            $descricao = $res[$i]['descricao_1'];
+
+                            $query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = $id_usuario");
+                            $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+                            $nome_usuario = $res2[0]['nome'];
+
+                          ?>
+
+                            <div class="col-md-6 col-sm-6">
+                              <article class="mu-news-single">
+                                <h3><a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><?php echo $res[$i]['titulo'] ?></a></h3>
+                                <figure class="mu-news-img">
+                                  <a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><img alt="img" width="700px" height="250px" src="assets/imagens/blog/<?php echo $imagem ?>"></a>
+                                </figure>
+                                <div class="mu-news-single-content">
+                                  <ul class="mu-meta-nav">
+                                    <li>Por <?php echo $nome_usuario ?></li>
+                                    <li><?php echo $data_post ?></li>
+                                  </ul>
+                                  <p style="height: 80px; overflow:auto"><?php echo $descricao ?></p>
+                                  <div class="mu-news-single-bottom">
+                                    <a class="mu-readmore-btn" href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>">Saiba Mais</a>
+                                  </div>
                                 </div>
-                              </div>
-                            </article>
-                          </div>
-                          <div class="col-md-6 col-sm-6">
-                            <article class="mu-news-single">
-                              <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, distinctio!</a></h3>
-                              <figure class="mu-news-img">
-                                <a href="#"><img alt="img" src="assets/imagens/news/2.jpg"></a>
-                              </figure>
-                              <div class="mu-news-single-content">
-                                <ul class="mu-meta-nav">
-                                  <li>Por Admin</li>
-                                  <li>10 Maio 2016</li>
-                                </ul>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                                <div class="mu-news-single-bottom">
-                                  <a class="mu-readmore-btn" href="#">Saiba Mais</a>
-                                </div>
-                              </div>
-                            </article>
-                          </div>
+                              </article>
+                            </div>
+                          <?php } ?>
                         </div>
+
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- End related news -->
+
                 <!-- Start Blog comments thread -->
                 <div class="row">
                   <div class="col-md-12">
                     <div class="mu-comments-area">
-                      <h3>5 Comentários</h3>
+                      <h3><?php echo $total_comentarios ?> Comentários</h3>
                       <div class="comments">
+
                         <ul class="commentlist">
-                          <li>
-                            <div class="media">
-                              <div class="media-left">
-                                <img class="media-object news-img" src="assets/imagens/testimonial-11.png" alt="img">
-                              </div>
-                              <div class="media-body">
-                                <h4 class="author-name">David Muller</h4>
-                                <span class="comments-date"> Postado em 12 de Maio de 2016</span>
-                                <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                <a href="#" class="reply-btn">Resposta</a>
-                              </div>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="media">
-                              <div class="media-left">
-                                <img class="media-object news-img" src="assets/imagens/testimonial-11.png" alt="img">
-                              </div>
-                              <div class="media-body">
-                                <h4 class="author-name">John Doe</h4>
-                                <span class="comments-date"> Postado em 12 de Maio de 2016</span>
-                                <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                <a href="#" class="reply-btn">Resposta</a>
-                              </div>
-                            </div>
-                          </li>
-                          <ul class="children">
-                            <li class="author-comments">
+                          <?php
+                          $query = $pdo->query("SELECT * FROM comentarios WHERE post = '$id_reg' ORDER BY id DESC");
+                          $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                          for ($i = 0; $i < @count($res); $i++) {
+                            foreach ($res[$i] as $key => $value) {
+                            }
+                            $data_post = implode('/', array_reverse(explode('-', $res[$i]['data_post'])));
+                            $id_comentario = $res[$i]['id'];
+
+                          ?>
+                            <li>
                               <div class="media">
                                 <div class="media-left">
                                   <img class="media-object news-img" src="assets/imagens/testimonial-11.png" alt="img">
                                 </div>
                                 <div class="media-body">
-                                  <h4 class="author-name">Admin</h4>
-                                  <span class="comments-date"> Postado em 12 de Maio de 2016</span>
-                                  <span class="author-tag">Author</span>
-                                  <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                  <a href="#" class="reply-btn">Resposta</a>
+                                  <h4 class="author-name"><?php echo $res[$i]['nome'] ?>
+                                    <?php if ($cargo_user == '1' || $id_user = '$autor') { ?>
+                                      <a href="blog-post.php?titulo=<?php echo $titulo ?>&funcao=excluir&id=<?php echo $id_coment ?>" title="Excluir Comentário">
+                                        <i class="fa fa-trash text-danger ml-4"></i></a>
+                                      
+                                    <?php } ?>
+                                  </h4>
+                                  <span class="comments-date"> Postado em <?php echo $data_post ?></span>
+                                  <p><?php echo $res[$i]['comentario'] ?></p>
                                 </div>
                               </div>
                             </li>
-                            <ul class="children">
-                              <li>
-                                <div class="media">
-                                  <div class="media-left">
-                                    <img class="media-object news-img" src="assets/imagens/testimonial-11.png" alt="img">
-                                  </div>
-                                  <div class="media-body">
-                                    <h4 class="author-name">David Muller</h4>
-                                    <span class="comments-date"> Postado em 12 de Maio de 2016</span>
-                                    <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                    <a href="#" class="reply-btn">Resposta</a>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </ul>
-                          <li>
-                            <div class="media">
-                              <div class="media-left">
-                                <img class="media-object news-img" src="assets/imagens/testimonial-11.png" alt="img">
-                              </div>
-                              <div class="media-body">
-                                <h4 class="author-name">Jhon Doe</h4>
-                                <span class="comments-date"> Postado em 12 de Maio de 2016</span>
-                                <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                <a href="#" class="reply-btn">Resposta</a>
-                              </div>
-                            </div>
-                          </li>
+
+                          <?php } ?>
                         </ul>
                         <!-- comments pagination -->
                         <nav>
@@ -329,42 +295,7 @@
                   </div>
                 </div>
                 <!-- Start Blog comments thread -->
-                <!-- Start comments box -->
-                <div class="row">
-                  <div class="col-md-12">
-                    <div id="respond">
-                      <h3 class="reply-title">Deixe o seu Comentário</h3>
-                      <form id="commentform">
-                        <p class="comment-notes">
-                          Seu e-mail não será publicado. Campos requeridos estão identificados com <span class="required">*</span>
-                        </p>
-                        <p class="comment-form-author">
-                          <label for="author">Nome <span class="required">*</span></label>
-                          <input type="text" name="nome" value="" size="30" required="required">
-                        </p>
-                        <p class="comment-form-email">
-                          <label for="email">Email <span class="required">*</span></label>
-                          <input type="email" name="email" value="" aria-required="true" required="required">
-                        </p>
-                        <p class="comment-form-url">
-                          <label for="url">Website</label>
-                          <input type="url" name="url" value="">
-                        </p>
-                        <p class="comment-form-comment">
-                          <label for="comment">Comentário</label>
-                          <textarea name="comentario" cols="45" rows="8" aria-required="true" required="required"></textarea>
-                        </p>
-                        <!--<p class="form-allowed-tags">
-                          You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </code>
-                        </p>-->
-                        <p class="form-submit">
-                          <input type="submit" name="submit" class="mu-send-btn" value="Enviar">
-                        </p>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <!-- End comments box -->
+
               </div>
               <!-- Start Blog Sidebar -->
               <div class="col-md-4 col-sm-4">
@@ -373,13 +304,16 @@
                   <div class="mu-blog-sidebar-single">
                     <h3>Categorias</h3>
                     <ul class="mu-catg-nav">
-                      <li><a href="#">Cake</a></li>
-                      <li><a href="#">Pizza</a></li>
-                      <li><a href="#">Drinks</a></li>
-                      <li><a href="#">Dessert</a></li>
-                      <li><a href="#">Chicken</a></li>
-                      <li><a href="#">Beef</a></li>
-                      <li><a href="#">Mutton</a></li>
+                      <?php
+                      $query = $pdo->query("SELECT * FROM categorias ORDER BY nome ASC");
+                      $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                      for ($i = 0; $i < @count($res); $i++) {
+                        foreach ($res[$i] as $key => $value) {
+                        }
+                      ?>
+                        <li><a href="index.php#mu-restaurant-menu"><?php echo $res[$i]['nome'] ?></a></li>
+                      <?php } ?>
+
                     </ul>
                   </div>
                   <!-- End Blog Sidebar Single -->
@@ -387,11 +321,15 @@
                   <div class="mu-blog-sidebar-single">
                     <h3>Últimas Notícias</h3>
                     <ul class="mu-recent-news-nav">
-                      <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsum!</a></li>
-                      <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsum!</a></li>
-                      <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsum!</a></li>
-                      <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsum!</a></li>
-                      <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsum!</a></li>
+                      <?php
+                      $query = $pdo->query("SELECT * FROM blog ORDER BY id DESC");
+                      $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                      for ($i = 0; $i < @count($res); $i++) {
+                        foreach ($res[$i] as $key => $value) {
+                        }
+                      ?>
+                        <li><a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><?php echo $res[$i]['titulo'] ?></a></li>
+                      <?php } ?>
                     </ul>
                   </div>
                   <!-- End Blog Sidebar Single -->
@@ -410,19 +348,57 @@
                   </div>
                   <!-- End Blog Sidebar Single -->
                   <!-- Blog Sidebar Single -->
-                  <div class="mu-blog-sidebar-single">
-                    <a href="#" class="mu-sidebar-add">
-                      <img src="assets/imagens/banner-ads1.jpg" alt="img">
-                    </a>
-                  </div>
+                  <?php
+                  $query = $pdo->query("SELECT * FROM blog ORDER BY id DESC LIMIT 4");
+                  $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                  for ($i = 0; $i < @count($res); $i++) {
+                    foreach ($res[$i] as $key => $value) {
+                    }
+                    $imagem = $res[$i]['imagem'];
+
+                  ?>
+                    <div class="mu-blog-sidebar-single">
+                      <a class="mu-sidebar-add">
+                        <a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><img src="assets/imagens/blog/<?php echo $imagem ?>" title="Visitar: <?php echo $res[$i]['titulo'] ?>" alt="img" width="350px" height="200px"></a>
+                      </a>
+                    </div>
+                  <?php } ?>
                   <!-- End Blog Sidebar Single -->
-                </aside>
+                  <!-- Start comments box -->
+                  <div class="col-md-12">
+                    <div id="respond">
+                      <h3 class="reply-title">Faça seu Comentário</h3>
+                      <form id="commentform" method="post">
+
+                        <p class="comment-form-author">
+                          <label for="author">Nome <span class="required">*</span></label>
+                          <input class="form-control" type="text" name="nome" value="" size="30" required="required">
+                        </p>
+                        <p class="comment-form-email">
+                          <label for="email">Email <span class="required">*</span></label>
+                          <input type="email" name="email" value="" aria-required="true" required="required">
+                        </p>
+
+                        <p class="comment-form-comment">
+                          <label for="comment">Comment</label>
+                          <textarea maxlength="500" name="comentario" cols="45" rows="8" aria-required="true" required="required"></textarea>
+                        </p>
+
+                        <p class="form-submit">
+                          <input type="submit" name="submit" class="mu-send-btn" value="Comentar">
+                        </p>
+                      </form>
+                    </div>
+                  </div>
               </div>
-              <!-- End Blog Sidebar -->
+              <!-- End comments box -->
+              </aside>
             </div>
+            <!-- End Blog Sidebar -->
           </div>
         </div>
       </div>
+    </div>
     </div>
   </section>
   <!-- End Blog -->
@@ -452,3 +428,23 @@
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['submit'])) {
+
+  $nome = $_POST['nome'];
+  $email = $_POST['email'];
+  $comentario = $_POST['comentario'];
+  $post = $id_reg;
+
+  $query = $pdo->prepare("INSERT INTO comentarios SET nome = :nome, email = :email, comentario = :comentario, post = :post, data_post = curDate(), hora = curTime()");
+  $query->bindValue(":nome", "$nome");
+  $query->bindValue(":email", "$email");
+  $query->bindValue(":comentario", "$comentario");
+  $query->bindValue(":post", "$post");
+  $query->execute();
+
+  echo 'Salvo com Sucesso!';
+  echo "<script language='javascript'> window.location='blog-post.php?titulo=<?php echo $res[0]['titulo'] ?>' </script>";
+}
+?>

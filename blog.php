@@ -1,4 +1,20 @@
-<?php require_once("config.php")  ?>
+<?php
+require_once("conexao.php");
+
+$titulo = $_GET['titulo'];
+
+$query = $pdo->query("SELECT * FROM blog WHERE url_titulo = '$titulo'");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$id_reg = $res[0]['id'];
+$autor = $res[0]['autor'];
+$data_post = implode('/', array_reverse(explode('-', $res[0]['data_postagem'])));
+$imagem = $res[0]['imagem'];
+$descricao_1 = $res[0]['descricao_1'];
+
+$query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = '$autor'");
+$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+$nome_usuario = $res2[0]['nome'];
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -71,7 +87,6 @@
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
             <li><a href="index.php">HOME</a></li>
             <li class="active"><a href="blog.php">BLOG</a></li>
-            <li><a href="blog-post.php">DETALHES</a></liass=>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -87,7 +102,6 @@
         <ol class="breadcrumb">
           <li><a href="index.php">Home</a></li>
           <li class="active">Blog</li>
-          <li><a href="blog-post.php">Detalhes</a></li>
         </ol>
       </div>
     </div>
@@ -105,16 +119,16 @@
                 <div class="mu-blog-content">
                   <!-- Start Single blog item -->
                   <article class="mu-news-single">
-                    <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, distinctio!</a></h3>
+                    <h3><a href="blog-post.php"><?php echo $res[0]['titulo'] ?></a></h3>
                     <figure class="mu-news-img">
-                      <a href="#"><img src="assets/imagens/news/1.jpg" alt="img"></a>
+                      <a href="blog-post.php"><img src="assets/imagens/blog/<?php echo $imagem ?>" alt="img"></a>
                     </figure>
                     <div class="mu-news-single-content">
                       <ul class="mu-meta-nav">
-                        <li>Por Admin</li>
-                        <li>Data: 10 Maio 2016</li>
+                        <li>Por <?php echo $nome_usuario ?></li>
+                        <li>Data: <?php echo $data_post ?></li>
                       </ul>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
+                      <p><?php echo $descricao_1 ?></p>
                       <div class="mu-news-single-bottom">
                         <a href="blog-post.php" class="mu-readmore-btn">Saiba Mais</a>
                       </div>

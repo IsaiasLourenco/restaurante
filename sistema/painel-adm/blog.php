@@ -120,17 +120,17 @@ require_once("verificar.php");
 
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label">Descrição 1 </label>
-							<textarea maxlength="2000" type="text" class="form-control" id="descricao_1" name="descricao_1"><?php echo @$descricao_1 ?> </textarea>
+							<textarea type="text" class="form-control" id="descricao_1" name="descricao_1"><?php echo @$descricao_1 ?> </textarea>
 						</div>
 
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label">Descrição 2 </label>
-							<textarea maxlength="2000" type="text" class="form-control" id="descricao_2" name="descricao_2"><?php echo @$descricao_2 ?> </textarea>
+							<textarea type="text" class="form-control" id="descricao_2" name="descricao_2"><?php echo @$descricao_2 ?> </textarea>
 						</div>
 
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label">Descrição 3 </label>
-							<textarea maxlength="2000" type="text" class="form-control" id="descricao_3" name="descricao_3"><?php echo @$descricao_3 ?> </textarea>
+							<textarea type="text" class="form-control" id="descricao_3" name="descricao_3"><?php echo @$descricao_3 ?> </textarea>
 						</div>
 
 						<div class="form-group">

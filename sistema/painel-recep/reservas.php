@@ -220,7 +220,7 @@ $agora = date('Y-m-d');
                                         <td style="text-align: center; width:20%"><?php echo $res[$i]['email'] ?></td>
                                         <td style="text-align: center; width:20%"><?php echo $res[$i]['telefone'] ?></td>
                                         <td style="text-align: center; width:5%"><?php echo $res[$i]['pessoas'] ?></td>
-                                        <td style="text-align: center; width:10%"><?php echo implode('/', array_reverse(explode('-', $res[$i]['data_reserva']))) ?></td>;
+                                        <td style="text-align: center; width:10%"><?php echo implode('/', array_reverse(explode('-', $res[$i]['data_reserva']))) ?></td>
                                         <td style="text-align: center; width:20%"><?php echo $res[$i]['mensagem'] ?></td>
                                         <td style="text-align: center; width:5%">
                                             <a href="#" onclick="reservaEmail('<?php echo $res[$i]['id'] ?>', '<?php echo $res[$i]['email'] ?>', '<?php echo $res[$i]['pessoas'] ?>', '<?php echo $res[$i]['data_reserva'] ?>', '<?php echo $res[$i]['mensagem'] ?>')" title="Confirmar Reserva" style="text-decoration: none">
@@ -228,13 +228,13 @@ $agora = date('Y-m-d');
 
                                         </td>
                                     </tr>
-
+                                    
                                 <?php } ?>
 
                             </tbody>
                         </table>
                     </small>
-
+                    <div align="center" id="mensagem-tab-reserva"></div>
                 </div>
             </form>
         </div>
@@ -484,7 +484,7 @@ $agora = date('Y-m-d');
                 $('#mensagem-tab-reserva').text('');
                 if (mensagem.trim() == "Salvo com Sucesso!") {
 
-                    window.location = "index.php?pag=" + pag;
+                    window.location="index.php?pag="+pag;
 
                 } else {
                     $('#mensagem-tab-reserva').addClass('text-danger')
@@ -494,6 +494,7 @@ $agora = date('Y-m-d');
             },
 
         });
+
 
     }
 </script>

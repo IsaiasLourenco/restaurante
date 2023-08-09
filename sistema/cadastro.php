@@ -15,15 +15,8 @@ require_once("../conexao.php");
     <link rel="shortcut icon" href="../../assets/imagens/ico.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="../vendor/DataTables/datatables.min.css" />
-    <script type="text/javascript" src="../vendor/DataTables/datatables.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="vendor/css//cadastro.css" rel="stylesheet">
@@ -50,7 +43,28 @@ require_once("../conexao.php");
     </nav>
     <h2>CADASTRO DE CLIENTES</h2>
 
-    <span id="msgAlerta" style="text-align: center;"></span>
+    <?php
+    if (@$_GET['funcao'] == 'novo') {
+        $titulo_modal = 'Inserir Registro';
+    } else {
+        $titulo_modal = 'Editar Registro';
+        $id = @$_GET['id'];
+        $query = $pdo->query("SELECT * FROM funcionarios WHERE  id = '$id'");
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        $nome = @$res[0]['nome'];
+        $email = @$res[0]['email'];
+        $telefone = @$res[0]['telefone'];
+        $cep = @$res[0]['cep'];
+        $rua = @$res[0]['rua'];
+        $numero = @$res[0]['numero'];
+        $bairro = @$res[0]['bairro'];
+        $cidade = @$res[0]['cidade'];
+        $estado = @$res[0]['estado'];
+        $senha = @$res[0]['senha'];
+    }
+    ?>
+
+    <span id="cadCli" style="text-align: center;"></span>
     <!-- <form method="post" id="form"> -->
     <form class="form-horizontal" method="post" id="form-cliente">
 
@@ -81,7 +95,7 @@ require_once("../conexao.php");
                     <div class="col-md-2">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input id="prependedtext" name="telefone" class="form-control" placeholder="XX XXXXX-XXXX" type="text" maxlength="13" pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$" OnKeyPress="formatar('## #####-####', this)">
+                            <input id="telefone" name="telefone" class="form-control" placeholder="XX XXXXX-XXXX" type="text" maxlength="13" pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$" OnKeyPress="formatar('## #####-####', this)">
                         </div>
                     </div>
 
@@ -93,7 +107,7 @@ require_once("../conexao.php");
                     <div class="col-md-5">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="prependedtext" name="email" class="form-control" placeholder="email@email.com" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                            <input id="email" name="email" class="form-control" placeholder="email@email.com" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                         </div>
                     </div>
                 </div>
@@ -156,18 +170,9 @@ require_once("../conexao.php");
                 </div>
 
                 <!-- Button (Double) -->
-                <div class="form-group">
-                    <label class="col-md-2 control-label" for="Cadastrar"></label>
-
-                    <input type="submit" name="cadCli" id="cadCli" value="Cancelar" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">
-
-                    <input onclick="" type="submit" name="cadCli" id="cadCli" value="Cadastrar" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">
-
-					<!-- <div class="col-md-8">
-						<button type="button" class="btn btn-faded" data-bs-dismiss="modal" id="btn-fechar" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">Cancelar</button>
-						<button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Cadastrar</button>
-					</div> -->
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-faded" data-bs-dismiss="modal" id="btn-fechar" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">Fechar</button>
+                    <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Salvar</button>
                 </div>
 
             </div>
@@ -176,9 +181,47 @@ require_once("../conexao.php");
 
     </form>
 
-    <script src="vendor/js/cadastro.js"></script>
-    <script src="vendor/js/cadCli.js"></script>
-    
 </body>
 
 </html>
+
+<!-- Ajax para inserir ou editar dados -->
+<script type="text/javascript">
+	$("#form-cliente").submit(function() {
+		event.preventDefault();
+		var formData = new FormData(this);
+
+		$.ajax({
+			url: pag + "/inserir.php",
+			type: 'POST',
+			data: formData,
+
+			success: function(mensagem) {
+
+				$('#mensagem').removeClass()
+
+				if (mensagem.trim() == "Salvo com Sucesso!") {
+
+					//$('#nome').val('');
+					//$('#cpf').val('');
+					$('#btn-fechar').click();
+					window.location = "index.php?pag=" + pag;
+
+				} else {
+
+					$('#mensagem').addClass('text-danger')
+				}
+
+				$('#mensagem').text(mensagem)
+
+			},
+
+			cache: false,
+			contentType: false,
+			processData: false,
+
+		});
+
+	});
+</script>
+<!--Fim Ajax para inserir ou editar dados -->

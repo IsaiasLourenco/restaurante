@@ -30,7 +30,7 @@ for($i=0; $i < @count($res); $i++){
 							echo "<div class='text-xs text-primary' style='font-size: 12px'>".$obs." </div>";
 						echo "</div>";
 						echo "<div class='col-auto' align='center'>
-							<i class='bi-aspect-ratio text-success' style='font-size: 32px'></i><br><span class='text-xs text-primary' style='font-size: 12px''>Mesa ".$nome_mesa."</span>";
+							<i class='bi-aspect-ratio-fill text-primary' style='font-size: 32px'></i><br><span class='text-xs text-primary' style='font-size: 12px''>Mesa ".$nome_mesa."</span>";
 						echo "</div>";
 					echo "</div>";
 				echo "</div>";

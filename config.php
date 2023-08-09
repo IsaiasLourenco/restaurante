@@ -1,10 +1,10 @@
 <?php
 
 //VARIÁVEIS DO PROJETO
-//$url_local = 'http://localhost/restaurantesite/';
-$url_local = 'http://lorenzos.sitepessoal.com/';
+$url_local = 'http://localhost/restaurantesite/';
+//$url_local = 'http://lorenzos.sitepessoal.com/';
 $nome_site ="LORENZO'S";
-$email_adm ='adm@vetor256.com';
+$email_adm ='isaias.lourenco2020@outlook.com';
 $email_adm_gm ='isaiaslourenco2020@gmail.com';
 $endereco ='Avenida 22 de Outubro, nº 1167, Jardim xxxx - Mogi Mirim - SP - CEP:13800-000';
 $telefone ='(19)3361-4400';
