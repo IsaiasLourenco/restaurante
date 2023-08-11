@@ -227,7 +227,7 @@ require_once("verificar.php");
 					</div>
 
 					<div class="mb-2">
-						<a target="blank" href="../../"><span id="url_titulo_registro"></span></a>
+						<a target="blank" href="../../blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><span id="url_titulo_registro"></span></a>
 					</div>
 
 					<div class="mb-2">

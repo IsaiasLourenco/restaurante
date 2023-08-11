@@ -1,19 +1,22 @@
 <?php
 require_once("conexao.php");
 
-$titulo = $_GET['titulo'];
+if (@$_GET['pagina'] != null) {
+  $pag = $_GET['pagina'];
+} else {
+  $pag = 0;
+}
 
-$query = $pdo->query("SELECT * FROM blog WHERE url_titulo = '$titulo'");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-$id_reg = $res[0]['id'];
-$autor = $res[0]['autor'];
-$data_post = implode('/', array_reverse(explode('-', $res[0]['data_postagem'])));
-$imagem = $res[0]['imagem'];
-$descricao_1 = $res[0]['descricao_1'];
+$limite = $pag * @$itens_por_pagina_blog;
+$pagina = $pag;
+$nome_pag = 'blog.php';
 
-$query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = '$autor'");
-$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-$nome_usuario = $res2[0]['nome'];
+//BUSCAR O TOTAL DE REGISTROS PARA PAGINAR
+$query3 = $pdo->query("SELECT * FROM blog ");
+$res3 = $query3->fetchAll(PDO::FETCH_ASSOC);
+$num_total = @count($res3);
+$num_paginas = ceil($num_total / $itens_por_pagina_blog);
+
 ?>
 
 <!DOCTYPE html>
@@ -117,60 +120,45 @@ $nome_usuario = $res2[0]['nome'];
             <div class="row">
               <div class="col-md-8 col-sm-8">
                 <div class="mu-blog-content">
-                  <!-- Start Single blog item -->
-                  <article class="mu-news-single">
-                    <h3><a href="blog-post.php"><?php echo $res[0]['titulo'] ?></a></h3>
-                    <figure class="mu-news-img">
-                      <a href="blog-post.php"><img src="assets/imagens/blog/<?php echo $imagem ?>" alt="img"></a>
-                    </figure>
-                    <div class="mu-news-single-content">
-                      <ul class="mu-meta-nav">
-                        <li>Por <?php echo $nome_usuario ?></li>
-                        <li>Data: <?php echo $data_post ?></li>
-                      </ul>
-                      <p><?php echo $descricao_1 ?></p>
-                      <div class="mu-news-single-bottom">
-                        <a href="blog-post.php" class="mu-readmore-btn">Saiba Mais</a>
+                  <?php
+                  $query = $pdo->query("SELECT * FROM blog order by id desc LIMIT $limite, $itens_por_pagina_blog");
+                  $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                  for ($i = 0; $i < @count($res); $i++) {
+                    foreach ($res[$i] as $key => $value) {
+                    }
+                    $id_usuario = $res[$i]['autor'];
+                    $data_post = implode('/', array_reverse(explode('-', $res[$i]['data_postagem'])));
+                    $titulo = $res[$i]['titulo'];
+                    $imagem = $res[$i]['imagem'];
+                    $descricao = $res[$i]['descricao_1'];
+                    $visitas = $res[$i]['visitas'];
+                    $visitas = $visitas + 1;
+
+                    $query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = $id_usuario");
+                    $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+                    $nome_usuario = $res2[0]['nome'];
+
+                  ?>
+                    <!-- Start Single blog item -->
+                    <article class="mu-news-single">
+                      <h3><a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><?php echo $titulo ?></a></h3>
+                      <figure class="mu-news-img">
+                        <a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><img src="assets/imagens/blog/<?php echo $imagem ?>" alt="img" width="700px" height="350px"></a>
+                      </figure>
+                      <div class="mu-news-single-content">
+                        <ul class="mu-meta-nav">
+                          <cite>Por: <?php echo $nome_usuario ?></cite>
+                          <li>Data: <?php echo $data_post ?></li>
+                          <li>Visitas: <?php echo $visitas ?></li>
+                        </ul>
+                        <p style="height: 80px; overflow:auto"><?php echo $descricao ?></p>
+                        <div class="mu-news-single-bottom">
+                          <a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>" class="mu-readmore-btn">Leia Mais</a>
+                        </div>
                       </div>
-                    </div>
-                  </article>
-                  <!-- End Single blog item -->
-                  <!-- Start Single blog item -->
-                  <article class="mu-news-single">
-                    <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, distinctio!</a></h3>
-                    <figure class="mu-news-img">
-                      <a href="#"><img src="assets/imagens/news/2.jpg" alt="img"></a>
-                    </figure>
-                    <div class="mu-news-single-content">
-                      <ul class="mu-meta-nav">
-                        <li>Por Admin</li>
-                        <li>Data: 10 Maio 2016</li>
-                      </ul>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                      <div class="mu-news-single-bottom">
-                        <a href="blog-post.php" class="mu-readmore-btn">Saiba Mais</a>
-                      </div>
-                    </div>
-                  </article>
-                  <!-- End Single blog item -->
-                  <!-- Start Single blog item -->
-                  <article class="mu-news-single">
-                    <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, distinctio!</a></h3>
-                    <figure class="mu-news-img">
-                      <a href="#"><img src="assets/imagens/news/3.jpg" alt="img"></a>
-                    </figure>
-                    <div class="mu-news-single-content">
-                      <ul class="mu-meta-nav">
-                        <li>Por Admin</li>
-                        <li>Data: 10 Maio 2016</li>
-                      </ul>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                      <div class="mu-news-single-bottom">
-                        <a href="blog-post.php" class="mu-readmore-btn">Saiba Mais</a>
-                      </div>
-                    </div>
-                  </article>
-                  <!-- End Single blog item -->
+                    </article>
+                    <!-- End Single blog item -->
+                  <?php } ?>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
@@ -178,17 +166,27 @@ $nome_usuario = $res2[0]['nome'];
                       <nav>
                         <ul class="mu-blog-pagination">
                           <li>
-                            <a href="#" aria-label="Previous">
+                            <a href="<?php echo $nome_pag ?>?pagina=0" aria-label="Previous">
                               <span class="fa fa-long-arrow-left"></span>
                             </a>
                           </li>
-                          <li><a href="#">1</a></li>
-                          <li><a href="#">2</a></li>
-                          <li class="active"><a href="#">3</a></li>
-                          <li><a href="#">4</a></li>
-                          <li><a href="#">5</a></li>
+
+                          <?php
+                          for ($i = 0; $i < @$num_paginas; $i++) {
+                            $estilo = '';
+                            if ($pagina == $i) {
+                              $estilo = 'text-danger';
+                            }
+
+                            if ($pagina >= ($i - 2) && $pagina <= ($i + 2)) { ?>
+                              <li><strong><a href="<?php echo $nome_pag ?>?pagina=<?php echo $i ?>" class="<?php echo $estilo ?>"><?php echo $i + 1 ?></a></strong></li>
+
+                          <?php }
+                          }
+                          ?>
+
                           <li>
-                            <a href="#" aria-label="Next">
+                            <a href="<?php echo $nome_pag ?>?pagina=<?php echo $num_paginas - 1 ?>" aria-label="Next">
                               <span class="fa fa-long-arrow-right"></span>
                             </a>
                           </li>
@@ -205,49 +203,37 @@ $nome_usuario = $res2[0]['nome'];
                   <div class="mu-blog-sidebar-single">
                     <h3>Categorias</h3>
                     <ul class="mu-catg-nav">
-                      <li><a href="#">Cake</a></li>
-                      <li><a href="#">Pizza</a></li>
-                      <li><a href="#">Drinks</a></li>
-                      <li><a href="#">Dessert</a></li>
-                      <li><a href="#">Chicken</a></li>
-                      <li><a href="#">Beef</a></li>
-                      <li><a href="#">Mutton</a></li>
+                      <?php
+                      $query = $pdo->query("SELECT * FROM categorias ORDER BY nome ASC");
+                      $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                      for ($i = 0; $i < @count($res); $i++) {
+                        foreach ($res[$i] as $key => $value) {
+                        }
+                      ?>
+                        <li><a href="index.php#mu-restaurant-menu"><?php echo $res[$i]['nome'] ?></a></li>
+                      <?php } ?>
+
                     </ul>
                   </div>
                   <!-- End Blog Sidebar Single -->
                   <!-- Blog Sidebar Single -->
                   <div class="mu-blog-sidebar-single">
-                    <h3>Últimas Postagens</h3>
+                    <h3>Últimas Notícias</h3>
                     <ul class="mu-recent-news-nav">
-                      <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsum!</a></li>
-                      <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsum!</a></li>
-                      <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsum!</a></li>
-                      <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsum!</a></li>
-                      <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, ipsum!</a></li>
+                      <?php
+                      $query = $pdo->query("SELECT * FROM blog ORDER BY id DESC");
+                      $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                      for ($i = 0; $i < @count($res); $i++) {
+                        foreach ($res[$i] as $key => $value) {
+                        }
+                      ?>
+                        <li><a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><?php echo $res[$i]['titulo'] ?></a></li>
+                      <?php } ?>
                     </ul>
                   </div>
                   <!-- End Blog Sidebar Single -->
-                  <!-- Blog Sidebar Single -->
-                  <div class="mu-blog-sidebar-single">
-                    <h3>Tags</h3>
-                    <div class="tag-cloud">
-                      <a href="#">Cake</a>
-                      <a href="#">Pizza</a>
-                      <a href="#">Drinks</a>
-                      <a href="#">Dessert</a>
-                      <a href="#">Chicken</a>
-                      <a href="#">Beef</a>
-                      <a href="#">Mutton</a>
-                    </div>
-                  </div>
-                  <!-- End Blog Sidebar Single -->
-                  <!-- Blog Sidebar Single -->
-                  <div class="mu-blog-sidebar-single">
-                    <a href="#" class="mu-sidebar-add">
-                      <img src="assets/imagens/banner-ads1.jpg" alt="img">
-                    </a>
-                  </div>
-                  <!-- End Blog Sidebar Single -->
+
+
                 </aside>
               </div>
               <!-- End Blog Sidebar -->

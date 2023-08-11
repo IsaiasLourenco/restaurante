@@ -1,21 +1,31 @@
 <?php
 require_once("conexao.php");
 
-@session_start();
-$id_user = @$_SESSION['id'];
-$cargo_user = @$_SESSION['cargo'];
+//BUSCAR O TOTAL DE REGISTROS PARA PAGINAR
+$query3 = $pdo->query("SELECT * FROM blog ");
+$res3 = $query3->fetchAll(PDO::FETCH_ASSOC);
+$num_total = @count($res3);
+$num_paginas = ceil($num_total / $itens_por_pagina_blog);
 
+@session_start();
+$id_usuario = @$_SESSION['id'];
+$nivel_usuario = @$_SESSION['cargo'];
 $titulo = $_GET['titulo'];
 
 $query = $pdo->query("SELECT * FROM blog WHERE url_titulo = '$titulo'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $id_reg = $res[0]['id'];
-$autor = $res[0]['autor'];
+$usuario = $res[0]['autor'];
 $data_post = implode('/', array_reverse(explode('-', $res[0]['data_postagem'])));
 $imagem = $res[0]['imagem'];
 $descricao_1 = $res[0]['descricao_1'];
+$palavras = $res[0]['tag'];
+$visitas = $res[0]['visitas'];
+$visitas = $visitas + 1;
 
-$query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = '$autor'");
+$pdo->query("UPDATE blog SET visitas = '$visitas' where url_titulo = '$titulo'");
+
+$query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = '$usuario'");
 $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 $nome_usuario = $res2[0]['nome'];
 
@@ -24,7 +34,24 @@ $query3 = $pdo->query("SELECT * FROM comentarios WHERE post = '$id_reg'");
 $res3 = $query3->fetchAll(PDO::FETCH_ASSOC);
 $total_comentarios = @count($res3);
 
+if (@$_GET['pagina'] != null) {
+  $pag = $_GET['pagina'];
+} else {
+  $pag = 0;
+}
+
+$limite = $pag * @$itens_por_pagina_comentarios;
+$pagina = $pag;
+$nome_pag = 'blog-post.php';
+
+//BUSCAR O TOTAL DE REGISTROS PARA PAGINAR
+$query4 = $pdo->query("SELECT * FROM blog ");
+$res4 = $query3->fetchAll(PDO::FETCH_ASSOC);
+$num_total = @count($res4);
+$num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,11 +59,13 @@ $total_comentarios = @count($res3);
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="description" content="<?php echo $res[0]['tag'] ?>">
   <title><?php echo $nome_site ?> | Blog</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/imagens/ico.ico" type="image/x-icon">
+
+
 
   <!-- Font awesome -->
   <link href="assets/css/font-awesome.css" rel="stylesheet">
@@ -136,6 +165,7 @@ $total_comentarios = @count($res3);
                       <ul class="mu-meta-nav">
                         <li>Por <?php echo $nome_usuario ?></li>
                         <li>Data: <?php echo $data_post ?></li>
+                        <li>Visitas: <?php echo $visitas ?></li>
                       </ul>
                       <p><?php echo $descricao_1 ?></p>
                       <blockquote>
@@ -145,91 +175,10 @@ $total_comentarios = @count($res3);
                       <cite><?php echo $nome_usuario ?></cite>
                     </div>
 
-                    <div class="mu-news-single-bottom">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="mu-news-single-tag">
-                            <ul class="mu-news-single-tagnav">
-                              <li>TAGS :</li>
-                              <li><a href="#"><?php echo $res[0]['tag'] ?></a></li>
-                            </ul>
-                          </div>
-                        </div>
 
-                      </div>
-                    </div>
                   </article>
                   <!-- End Single blog item -->
                 </div>
-                <!-- Start Blog navigation -->
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="mu-blog-single-navigation">
-                      <a href="#" class="mu-blog-prev"><span class="fa fa-long-arrow-left"></span></a>
-                      <a href="#" class="mu-blog-next"><span class="fa fa-long-arrow-right"></span></a>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Blog navigation -->
-
-                <!-- Start related news -->
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="mu-blog-related-post">
-                      <div class="mu-title">
-                        <h2>Últimas Notícias</h2>
-                        <i class="fa fa-spoon"></i>
-                        <span class="mu-title-bar"></span>
-                      </div>
-
-                      <div class="mu-blog-related-post-area">
-
-                        <div class="row">
-
-                          <?php
-                          $query = $pdo->query("SELECT * FROM blog ORDER BY id ASC LIMIT 2");
-                          $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                          for ($i = 0; $i < @count($res); $i++) {
-                            foreach ($res[$i] as $key => $value) {
-                            }
-                            $id_usuario = $res[$i]['autor'];
-                            $data_post = implode('/', array_reverse(explode('-', $res[$i]['data_postagem'])));
-                            $titulo = $res[$i]['titulo'];
-                            $imagem = $res[$i]['imagem'];
-                            $descricao = $res[$i]['descricao_1'];
-
-                            $query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = $id_usuario");
-                            $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-                            $nome_usuario = $res2[0]['nome'];
-
-                          ?>
-
-                            <div class="col-md-6 col-sm-6">
-                              <article class="mu-news-single">
-                                <h3><a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><?php echo $res[$i]['titulo'] ?></a></h3>
-                                <figure class="mu-news-img">
-                                  <a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><img alt="img" width="700px" height="250px" src="assets/imagens/blog/<?php echo $imagem ?>"></a>
-                                </figure>
-                                <div class="mu-news-single-content">
-                                  <ul class="mu-meta-nav">
-                                    <li>Por <?php echo $nome_usuario ?></li>
-                                    <li><?php echo $data_post ?></li>
-                                  </ul>
-                                  <p style="height: 80px; overflow:auto"><?php echo $descricao ?></p>
-                                  <div class="mu-news-single-bottom">
-                                    <a class="mu-readmore-btn" href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>">Saiba Mais</a>
-                                  </div>
-                                </div>
-                              </article>
-                            </div>
-                          <?php } ?>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End related news -->
 
                 <!-- Start Blog comments thread -->
                 <div class="row">
@@ -240,13 +189,15 @@ $total_comentarios = @count($res3);
 
                         <ul class="commentlist">
                           <?php
-                          $query = $pdo->query("SELECT * FROM comentarios WHERE post = '$id_reg' ORDER BY id DESC");
+                          $query = $pdo->query("SELECT * FROM comentarios ORDER BY id DESC ");
                           $res = $query->fetchAll(PDO::FETCH_ASSOC);
                           for ($i = 0; $i < @count($res); $i++) {
                             foreach ($res[$i] as $key => $value) {
                             }
                             $data_post = implode('/', array_reverse(explode('-', $res[$i]['data_post'])));
-                            $id_comentario = $res[$i]['id'];
+                            $id_coment = $res[$i]['id'];
+                            $id_blog = $res[$i]['post'];
+
 
                           ?>
                             <li>
@@ -256,10 +207,12 @@ $total_comentarios = @count($res3);
                                 </div>
                                 <div class="media-body">
                                   <h4 class="author-name"><?php echo $res[$i]['nome'] ?>
-                                    <?php if ($cargo_user == '1' || $id_user = '$autor') { ?>
+
+                                    <?php if ($nivel_usuario == '1' || $id_usuario = '$usuario') { ?>
                                       <a href="blog-post.php?titulo=<?php echo $titulo ?>&funcao=excluir&id=<?php echo $id_coment ?>" title="Excluir Comentário">
+
                                         <i class="fa fa-trash text-danger ml-4"></i></a>
-                                      
+
                                     <?php } ?>
                                   </h4>
                                   <span class="comments-date"> Postado em <?php echo $data_post ?></span>
@@ -271,25 +224,41 @@ $total_comentarios = @count($res3);
                           <?php } ?>
                         </ul>
                         <!-- comments pagination -->
-                        <nav>
-                          <ul class="pagination comments-pagination">
-                            <li>
-                              <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">«</span>
-                              </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                              <a href="#" aria-label="Next">
-                                <span aria-hidden="true">»</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </nav>
+                        <!-- <div class="row">
+                          <div class="col-md-12">
+                            <div class="mu-blog-pagination-area">
+                              <nav>
+                                <ul class="mu-blog-pagination">
+                                  <li>
+                                    <a href="<?php echo $nome_pag ?>?pagina=0" aria-label="Previous">
+                                      <span class="fa fa-long-arrow-left"></span>
+                                    </a>
+                                  </li>
+
+                                  <?php
+                                  for ($i = 0; $i < @$num_paginas; $i++) {
+                                    $estilo = '';
+                                    if ($pagina == $i) {
+                                      $estilo = 'text-danger';
+                                    }
+
+                                    if ($pagina >= ($i - 2) && $pagina <= ($i + 2)) { ?>
+                                      <li><strong><a href="<?php echo $nome_pag ?>?pagina=<?php echo $i ?>" class="<?php echo $estilo ?>"><?php echo $i + 1 ?></a></strong></li>
+
+                                  <?php }
+                                  }
+                                  ?>
+
+                                  <li>
+                                    <a href="<?php echo $nome_pag ?>?pagina=<?php echo $num_paginas - 1 ?>" aria-label="Next">
+                                      <span class="fa fa-long-arrow-right"></span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </nav>
+                            </div>
+                          </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -333,37 +302,8 @@ $total_comentarios = @count($res3);
                     </ul>
                   </div>
                   <!-- End Blog Sidebar Single -->
-                  <!-- Blog Sidebar Single -->
-                  <div class="mu-blog-sidebar-single">
-                    <h3>Tags</h3>
-                    <div class="tag-cloud">
-                      <a href="#">Cake</a>
-                      <a href="#">Pizza</a>
-                      <a href="#">Drinks</a>
-                      <a href="#">Dessert</a>
-                      <a href="#">Chicken</a>
-                      <a href="#">Beef</a>
-                      <a href="#">Mutton</a>
-                    </div>
-                  </div>
-                  <!-- End Blog Sidebar Single -->
-                  <!-- Blog Sidebar Single -->
-                  <?php
-                  $query = $pdo->query("SELECT * FROM blog ORDER BY id DESC LIMIT 4");
-                  $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                  for ($i = 0; $i < @count($res); $i++) {
-                    foreach ($res[$i] as $key => $value) {
-                    }
-                    $imagem = $res[$i]['imagem'];
 
-                  ?>
-                    <div class="mu-blog-sidebar-single">
-                      <a class="mu-sidebar-add">
-                        <a href="blog-post.php?titulo=<?php echo $res[$i]['url_titulo'] ?>"><img src="assets/imagens/blog/<?php echo $imagem ?>" title="Visitar: <?php echo $res[$i]['titulo'] ?>" alt="img" width="350px" height="200px"></a>
-                      </a>
-                    </div>
-                  <?php } ?>
-                  <!-- End Blog Sidebar Single -->
+
                   <!-- Start comments box -->
                   <div class="col-md-12">
                     <div id="respond">
@@ -444,7 +384,17 @@ if (isset($_POST['submit'])) {
   $query->bindValue(":post", "$post");
   $query->execute();
 
-  echo 'Salvo com Sucesso!';
-  echo "<script language='javascript'> window.location='blog-post.php?titulo=<?php echo $res[0]['titulo'] ?>' </script>";
+  echo "<script language='javascript'>window.location='blog-post.php?titulo=$titulo'</script>";
+}
+?>
+
+<?php if (@$_GET['funcao'] == 'excluir') {
+
+  $id_com = @$_GET['id'];
+
+  $pdo->query("DELETE from comentarios where id = '$id_com'");
+
+
+  echo "<script language='javascript'>window.location='blog-post.php?titulo=$titulo'</script>";
 }
 ?>

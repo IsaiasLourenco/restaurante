@@ -18,6 +18,7 @@ $menu10 = 'banners';
 $menu11 = 'blog';
 $menu12 = 'estoque';
 $menu13 = 'reservas';
+$menu14 = 'imagens';
 
 if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
   $classeMenu = 'text-dark';
@@ -82,6 +83,7 @@ if ($total_reg > 0) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../../assets/css/index_p_adm.css">
   <script src="../../assets/js/buscaCep.js" type="module" defer></script>
+  <link rel="stylesheet" href="../../assets/css/h2.css">
 </head>
 
 <body>
@@ -127,6 +129,7 @@ if ($total_reg > 0) {
 
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu10 ?>">Banners</a></li>
 
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu14 ?>">Imagens</a></li>
 
             </ul>
 
@@ -251,6 +254,8 @@ if ($total_reg > 0) {
     }else if (@$_GET['pag'] == $menu13) {
       $pag_painel = '../painel-recep/';
       require_once('../painel-recep/' .$menu13 . '.php');
+    }else if (@$_GET['pag'] == $menu14) {
+      require_once($menu14 . '.php');
     }else {
       require_once($menu1 . '.php');
     }

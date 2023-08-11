@@ -1,8 +1,8 @@
 <?php
 
 //VARIÁVEIS DO PROJETO
-$url_local = 'http://localhost/restaurantesite/';
-//$url_local = 'http://lorenzos.sitepessoal.com/';
+//$url_local = 'http://localhost/restaurantesite/';
+$url_local = 'http://www.lorenzos.sitepessoal.com/';
 $nome_site ="LORENZO'S";
 $email_adm ='isaias.lourenco2020@outlook.com';
 $email_adm_gm ='isaiaslourenco2020@gmail.com';
@@ -23,22 +23,22 @@ $youtube ='https://www.youtube.com/channel/UCucCsiVk4zycu4CwVxY5WTw';
 $instagram ='https://instagram.com/isaiaslourenco3?igshid=MzNlNGNkZWQ4Mg==';
 
 //VARIÁVEIS PARA BANCO DE DADOS
-$servidor = 'localhost';
-$usuario = 'root';
-$senha = '';
-$banco = 'restaurante';
+//$servidor = 'localhost';
+//$usuario = 'root';
+//$senha = '';////
+//$banco = 'restaurante';
 
 //VARIÁVEIS PARA BANCO DE DADOS HOSPEDADO
-//$servidor = 'restaurantelor.mysql.dbaas.com.br';
-//$usuario = 'restaurantelor';
-//$senha = 'Mandalor45@';
-//$banco = 'restaurantelor';
+$servidor = 'restaurantelor.mysql.dbaas.com.br';
+$usuario = 'restaurantelor';
+$senha = 'Mandalor45@';
+$banco = 'restaurantelor';
 
 //NÍVEL MÍNIMO DO ESTOQUE DE PRODUTOS PARA CÁLCULO DO SISTEMA
 $nivel_estoque = 10;    
 
 //SIM PARA RELATÓRIOS EM PDF, NÃO PARA RELATÓRIOS EM HTML
-$relatorio_pdf = 'Sim';
+$relatorio_pdf = 'Não';
 
 //VARIÁVEL QUE RECEBE OS RODAPÉS DE TODOS OS RELATÓRIOS
 $rodape_relatorios = "Sistema desenvolvido por ®Vetor256. http://vetor256.com. Fone:(19)99674-5466";
@@ -64,6 +64,14 @@ $tempo_atualizacao_tela_chamada = 10;
 $itens_tela_chamada = 12;
 
 $card_coluna = 4;
+
+$itens_por_pagina_blog = 2;
+
+$itens_por_pagina_comentarios = 2;
+
+$imagens_max_gall_index = 9;
+
+$produtos_por_linha_index = 3;
 
 ?>
 
