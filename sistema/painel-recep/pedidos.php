@@ -25,9 +25,9 @@ if($nome_cargo != 'Garçom' AND $nome_cargo != 'Administrador' AND $nome_cargo !
 <!-- Custom fonts for this template-->
 <link href="../../assets/css/font-awesome.css" rel="stylesheet" type="text/css">
 <link href="../../assets/fonts/fontawesome-webfont.woff2" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="../vendor/css/h2.css">
-<link rel="stylesheet" href="../vendor/css/pdv.css">
-
+<link rel="stylesheet" href="../../assets/css/h2.css">
+<link rel="stylesheet" href="../../assets/css/pdv.css">
+<link rel="stylesheet" href="../../assets/css/botoes.css">
 
 <h2>MESAS</h2>
 
@@ -153,8 +153,8 @@ if($nome_cargo != 'Garçom' AND $nome_cargo != 'Administrador' AND $nome_cargo !
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-reservas">Fechar</button>
-					<button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Abrir</button>
+					<button type="button" class="btn cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-reservas">Fechar</button>
+					<button type="submit" class="btn cores-button-confirmar">Abrir</button>
 				</div>
 			</form>
 		</div>
@@ -357,8 +357,8 @@ if($nome_cargo != 'Garçom' AND $nome_cargo != 'Administrador' AND $nome_cargo !
 
 				</div>
 				<div class="modal-footer bg-light">
-					<button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-obs">Fechar</button>
-					<button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Editar</button>
+					<button type="button" class="btn cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-obs">Fechar</button>
+					<button type="submit" class="btn cores-button-confirmar">Editar</button>
 				</div>
 			</form>
 		</div>
@@ -383,8 +383,8 @@ if($nome_cargo != 'Garçom' AND $nome_cargo != 'Administrador' AND $nome_cargo !
 
 			</div>
 			<div class="modal-footer bg-light">
-				<a href="index.php?pag=pedidos" type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" id="btn-fechar-fechar">Sair</a>
-				<a href="#" onclick="fecharMesa()" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Fechar Mesa</a>
+				<a href="index.php?pag=pedidos" type="button" class="btn cores-button-recusar" id="btn-fechar-fechar">Sair</a>
+				<a href="#" onclick="fecharMesa()" class="btn cores-button-confirmar">Fechar Mesa</a>
 			</div>
 
 		</div>

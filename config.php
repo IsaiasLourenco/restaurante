@@ -38,7 +38,7 @@ $banco = 'restaurantelor';
 $nivel_estoque = 10;    
 
 //SIM PARA RELATÓRIOS EM PDF, NÃO PARA RELATÓRIOS EM HTML
-$relatorio_pdf = 'Não';
+$relatorio_pdf = 'Sim';
 
 //VARIÁVEL QUE RECEBE OS RODAPÉS DE TODOS OS RELATÓRIOS
 $rodape_relatorios = "Sistema desenvolvido por ®Vetor256. http://vetor256.com. Fone:(19)99674-5466";

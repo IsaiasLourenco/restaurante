@@ -9,13 +9,13 @@ require_once("verificar.php");
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../vendor/css/h2.css">
-
+	<link rel="stylesheet" href="../../assets/css/h2.css">
+	<link rel="stylesheet" href="../../assets/css/botoes.css">
 </head>
 
 <body>
 	<h2>FUNCIONÁRIOS</h2>
-	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Novo Funcionario</a>
+	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded cores-button-confirmar-novo">Novo Funcionario</a>
 	<!-- Cabeçalho e corpo da tabela Dataset -->
 	<small>
 		<table id="example" class="table table-hover">
@@ -256,8 +256,8 @@ require_once("verificar.php");
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-faded" data-bs-dismiss="modal" id="btn-fechar" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">Fechar</button>
-						<button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Salvar</button>
+						<button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar">Fechar</button>
+						<button type="submit" class="btn btn-faded cores-button-confirmar" >Salvar</button>
 					</div>
 				</form>
 			</div>
@@ -288,13 +288,14 @@ require_once("verificar.php");
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
-						<button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Excluir</button>
+						<button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
+						<button type="submit" class="btn btn-faded cores-button-confirmar">Excluir</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<!-- Fim Modal Exclusão-->
 
 	<!-- Modal Dados -->
 	<div class="modal fade" id="modal-dados" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -345,7 +346,7 @@ require_once("verificar.php");
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
+					<button type="button" class="btn btn-faded cores-button-confirmar" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
 				</div>
 			</div>
 		</div>

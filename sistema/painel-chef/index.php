@@ -76,7 +76,7 @@ if ($total_reg > 0) {
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../../assets/css/index_p_adm.css">
-  <script src="../../assets/js/buscaCep.js" type="module" defer></script>
+  <link rel="stylesheet" href="../../assets/css/botoes.css">
 </head>
 
 <body>
@@ -221,8 +221,8 @@ if ($total_reg > 0) {
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-faded" data-bs-dismiss="modal" id="btn-fechar-perfil" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0">Fechar</button>
-          <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Salvar</button>
+          <button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-perfil">Fechar</button>
+          <button type="submit" class="btn btn-faded cores-button-confirmar">Salvar</button>
         </div>
       </form>
 

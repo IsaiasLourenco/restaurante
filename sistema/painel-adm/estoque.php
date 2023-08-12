@@ -114,8 +114,8 @@ require_once("verificar.php");
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
-						<button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Excluir</button>
+						<button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
+						<button type="submit" class="btn btn-faded cores-button-confirmar">Excluir</button>
 					</div>
 				</form>
 			</div>
@@ -163,7 +163,7 @@ require_once("verificar.php");
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar">Fechar</button>
+						<button type="button" class="btn btn-faded cores-button-confirmar" data-bs-dismiss="modal" id="btn-fechar">Fechar</button>
 					</div>
 
 				</div>
@@ -224,8 +224,8 @@ require_once("verificar.php");
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-comprar">Fechar</button>
-						<button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Comprar</button>
+						<button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-comprar">Fechar</button>
+						<button type="submit" class="btn btn-faded cores-button-confirmar">Comprar</button>
 					</div>
 				</form>
 

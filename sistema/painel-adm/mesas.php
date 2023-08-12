@@ -14,7 +14,7 @@ require_once("verificar.php");
 
 <body>
     <h2>MESAS</h2>
-    <a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Nova Mesa</a>
+    <a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded cores-button-confirmar-novo">Nova Mesa</a>
 
     <small>
         <table id="example" class="table table-hover table-sm my-4" style="width:98%;">
@@ -94,8 +94,8 @@ require_once("verificar.php");
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar">Fechar</button>
-                        <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Salvar</button>
+                        <button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar">Fechar</button>
+                        <button type="submit" class="btn btn-faded cores-button-confirmar">Salvar</button>
                     </div>
                 </form>
             </div>
@@ -124,8 +124,8 @@ require_once("verificar.php");
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
-                        <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Excluir</button>
+                        <button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
+                        <button type="submit" class="btn btn-faded cores-button-confirmar">Excluir</button>
                     </div>
                 </form>
             </div>

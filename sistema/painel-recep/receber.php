@@ -15,7 +15,7 @@ $vencimento = date('Y-m-d');
 
 <body>
 	<h2>CONTAS À RECEBER</h2>
-	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded mt-2 mb-4" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Nova Conta</a>
+	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded cores-button-confirmar-novo">Nova Conta</a>
 
 	<div class="mt-4" style="margin-right:25px">
 		<?php
@@ -193,8 +193,8 @@ $vencimento = date('Y-m-d');
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" id="btn-fechar" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal">Fechar</button>
-						<button name="btn-salvar" id="btn-salvar" type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Salvar</button>
+						<button type="button" id="btn-fechar" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal">Fechar</button>
+						<button name="btn-salvar" id="btn-salvar" type="submit" class="btn btn-faded cores-button-confirmar">Salvar</button>
 
 						<input name="id_conta" type="hidden" value="<?php echo @$_GET['id'] ?>">
 
@@ -226,8 +226,8 @@ $vencimento = date('Y-m-d');
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" id="btn-fechar" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal">Fechar</button>
-						<button name="btn-excluir" id="btn-excluir" type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Excluir</button>
+						<button type="button" id="btn-fechar" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal">Fechar</button>
+						<button name="btn-excluir" id="btn-excluir" type="submit" class="btn btn-faded cores-button-confirmar">Excluir</button>
 
 						<input name="id_conta" type="hidden" value="<?php echo @$_GET['id'] ?>">
 
@@ -259,8 +259,8 @@ $vencimento = date('Y-m-d');
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" id="btn-fechar-baixar" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal">Fechar</button>
-						<button name="btn-baixar" id="btn-excluir" type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Baixar</button>
+						<button type="button" id="btn-fechar-baixar" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal">Fechar</button>
+						<button name="btn-baixar" id="btn-excluir" type="submit" class="btn btn-faded cores-button-confirmar">Baixar</button>
 
 						<input name="id_conta" type="hidden" value="<?php echo @$_GET['id'] ?>">
 

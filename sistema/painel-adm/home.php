@@ -215,6 +215,8 @@ if ($total_ped > 0) {
 <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
 
+
+
 <div class="container-fluid">
     <section id="minimal-statistics">
         <div class="row mb-2">

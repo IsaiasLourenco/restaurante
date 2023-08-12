@@ -71,8 +71,8 @@ require_once("verificar.php");
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
-                        <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Excluir</button>
+                        <button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
+                        <button type="submit" class="btn btn-faded cores-button-confirmar">Excluir</button>
                     </div>
                 </form>
             </div>
@@ -101,8 +101,8 @@ require_once("verificar.php");
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btn-fechar-baixar" class="btn btn-faded" style="background-color:#333333; border-color:#f5f0f0; color:#f5f0f0" data-bs-dismiss="modal">Fechar</button>
-                        <button name="btn-baixar" id="btn-excluir" type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Baixar</button>
+                        <button type="button" id="btn-fechar-baixar" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal">Fechar</button>
+                        <button name="btn-baixar" id="btn-excluir" type="submit" class="btn btn-faded cores-button-confirmar">Baixar</button>
 
                         <input name="id_conta" type="hidden" value="<?php echo @$_GET['id'] ?>">
 

@@ -71,6 +71,7 @@ if ($total_reg > 0) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../../assets/css/index_p_adm.css">
   <script src="../../assets/js/buscaCep.js" type="module" defer></script>
+  <link rel="stylesheet" href="../../assets/css/botoes.css">
 </head>
 
 <body>
@@ -179,7 +180,7 @@ if ($total_reg > 0) {
 
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-faded" style="background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0">Gerar Relatório</button>
+          <button type="submit" class="btn btn-faded cores-button-confirmar">Gerar Relatório</button>
 
         </div>
       </form>

@@ -37,6 +37,8 @@ if ($total_reg == 0) {
     <link href="vendor/css/login.css" rel="stylesheet">
     <!-- Theme color -->
     <link id="switcher" href="../assets/css/theme-color/default-theme.css" rel="stylesheet">
+
+    
     
 </head>
 

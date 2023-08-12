@@ -21,9 +21,9 @@ for ($i = 0; $i < @count($res); $i++) {
 
     if (@count($res2) > 0) {
         $id_reserva = $res2[0]['id'];
-        echo "<a href='#' onclick='modalExcluirReservas($id_reserva)' type='button' class='btn btn-faded' style='width:auto; height:auto; background-color:#333333; border-color:#f5f0f0; color:#f5f0f0' title='" . $descricao_mesa . "' >Mesa " . $nome_mesa . "</a>";
+        echo "<a href='#' onclick='modalExcluirReservas($id_reserva)' type='button' class='btn cores-button-recusar' style='width:auto; height:auto;' title='" . $descricao_mesa . "' >Mesa " . $nome_mesa . "</a>";
             }else {
-            echo "<a href='#' onclick='modalReservas($id_mesa)' type='button' class='btn btn-faded' style='width:auto; height:auto; background-color:#c1a35f; border-color:#f5f0f0; color:#f5f0f0' title='" . $descricao_mesa . "' >Mesa " . $nome_mesa . "</a>";
+            echo "<a href='#' onclick='modalReservas($id_mesa)' type='button' class='btn cores-button-confirmar' style='width:auto; height:auto;' title='" . $descricao_mesa . "' >Mesa " . $nome_mesa . "</a>";
         }
         echo "</div>";
     }
