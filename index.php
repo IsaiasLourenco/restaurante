@@ -464,7 +464,7 @@ if ($total_pizza > 0) {
             </div>
             <div class="mu-reservation-content">
               <p>Pedimos que as reservas sejam feitas com no mínimo três horas de antecedência. Para algo urgente, favor entrar em contato.</p>
-              <form class="mu-reservation-form" method="post" action="reservas.php">
+              <form class="mu-reservation-form" method="POST" action="reservas.php">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">

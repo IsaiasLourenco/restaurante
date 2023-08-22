@@ -51,6 +51,7 @@ if ($total_reg > 0) {
 
 <head>
   <title>PAINEL DO GARÇOM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
   <link rel="shortcut icon" href="../../assets/imagens/ico.ico" type="image/x-icon">
@@ -66,12 +67,14 @@ if ($total_reg > 0) {
 
   <link rel="stylesheet" type="text/css" href="../../sistema/vendor/DataTables/datatables.min.css" />
   <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
-  <!--<script src="../../assets/js/buscaCep.js" type="module" defer></script>-->
+  
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../../assets/css/index_p_adm.css">
   <script src="../../assets/js/buscaCep.js" type="module" defer></script>
-  <link rel="stylesheet" href="../../assets/css/botoes.css">
+  <link rel="stylesheet" href="../../assets/src/css/fontawesome.css">
+  <link rel="stylesheet" href="../../assets/src/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/meucss.css">
 </head>
 
 <body>
@@ -89,28 +92,28 @@ if ($total_reg > 0) {
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-index-recep">
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>">Pedidos</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>"><i class="fas fa-utensils"></i> Pedidos</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu2 ?>">Comissões</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu2 ?>"><i class="fa-solid fa-dollar-sign"></i> Comissões</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="" data-bs-toggle="modal" data-bs-target="#ModalRelComissoes">Relatório de Comissões</a>
+            <a class="nav-link text-light" aria-current="page" href="" data-bs-toggle="modal" data-bs-target="#ModalRelComissoes"><i class="fa-solid fa-file-invoice-dollar"></i> Relatório de Comissões</a>
           </li>
 
         </ul>
 
         <div class="d-flex mr-4">
 
-          <img class="img-profile rounded-circle mt-4" src="../../assets/imagens/funcionarios/<?php echo $imagem_perfil ?>" width="40px" height="40px">
+          <img class="img-profile rounded-circle mt-4" src="../../assets/imagens/funcionarios/<?php echo $imagem_perfil ?>" width="38px" height="38px">
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
               <?php echo $nome ?>
             </a>
 
@@ -144,6 +147,8 @@ if ($total_reg > 0) {
     }
     ?>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 

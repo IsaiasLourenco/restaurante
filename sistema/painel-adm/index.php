@@ -64,7 +64,7 @@ if ($total_reg > 0) {
 
 <head>
   <title>PAINEL ADMINISTRATIVO</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
 
   <link rel="shortcut icon" href="../../assets/imagens/ico.ico" type="image/x-icon">
 
@@ -72,8 +72,12 @@ if ($total_reg > 0) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
   </script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -81,11 +85,11 @@ if ($total_reg > 0) {
   <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="../../assets/css/index_p_adm.css">
-  <script src="../../assets/js/buscaCep.js" type="module" defer></script>
-  <link rel="stylesheet" href="../../assets/css/h2.css">
 
-  <link rel="stylesheet" href="../../assets/css/botoes.css ">
+  <script src="../../assets/js/buscaCep.js" type="module" defer></script>
+  <link rel="stylesheet" href="../../assets/css/meucss.css">
+  <link rel="stylesheet" href="../../assets/src/css/style.css">
+  <link rel="stylesheet" href="../../assets/src/css/fontawesome.css">
 </head>
 
 <body>
@@ -102,86 +106,86 @@ if ($total_reg > 0) {
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-index-recep">
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>">Home</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>"><i class="fas fa-home"></i> Home</a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i> 
               Pessoas
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu2 ?>">Funcionários</a></li>
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu3 ?>">Fornecedores</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu2 ?>"><i class="fa-solid fa-image-portrait"></i> Funcionários</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu3 ?>"><i class="fa-solid fa-user-plus"></i> Fornecedores</a></li>
 
             </ul>
           </li>
 
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-folder-plus"></i>
               Cadastros
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu4 ?>">Cargos</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu4 ?>"><i class="fa-solid fa-boxes-stacked"></i> Cargos</a></li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu5 ?>">Mesas</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu5 ?>"><i class="fa-solid fa-utensils"></i> Mesas</a></li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu10 ?>">Banners</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu10 ?>"><i class="fa-regular fa-window-maximize"></i> Banners</a></li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu14 ?>">Imagens</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu14 ?>"><i class="bi bi-image"></i> Imagens</a></li>
 
             </ul>
 
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-cubes-stacked"></i>
               Estoque
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>">Produtos</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>"><i class="fa-solid fa-cart-shopping"></i> Produtos</a></li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu8 ?>">Pratos</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu8 ?>"><i class="fa-solid fa-bowl-food"></i> Pratos</a></li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu6 ?>">Categorias</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu6 ?>"><i class="fa-solid fa-layer-group"></i> Categorias</a></li>
 
               <li>
                 <hr class="dropdown-divider">
               </li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu9 ?>">Compras</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu9 ?>"><i class="fa-solid fa-bag-shopping"></i> Compras</a></li>
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu12 ?>">Estoque Baixo</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu12 ?>"><i class="fa-solid fa-arrow-trend-down"></i> Estoque Baixo</a></li>
 
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu11 ?>">Blog</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu11 ?>"><i class="fa-solid fa-blog"></i> Blog</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu13 ?>">Reservas</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu13 ?>"><i class="fa fa-pizza-slice"></i> Reservas</a>
           </li>
 
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-receipt"></i>
               Relatórios
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" target="_blank" href="../rel/rel_produtos_class.php">Produtos</a></li>
+              <li><a class="dropdown-item" target="_blank" href="../rel/rel_produtos_class.php"><i class="fa-solid fa-cart-shopping"></i> Produtos</a></li>
 
-              <li><a target="_blank" class="dropdown-item" href="../rel/rel_pratos_class.php">Pratos</a></li>
+              <li><a target="_blank" class="dropdown-item" href="../rel/rel_pratos_class.php"><i class="fa-solid fa-bowl-food"></i> Pratos</a></li>
 
-              <li><a target="_blank" class="dropdown-item" href="../rel/rel_cardapio_class.php">Cardápio</a></li>
+              <li><a target="_blank" class="dropdown-item" href="../rel/rel_cardapio_class.php"><i class="fa-solid fa-book-open-reader"></i> Cardápio</a></li>
 
-              <li><a target="_blank" class="dropdown-item" href="../rel/rel_estoque_class.php">Estoque Baixo</a></li>
+              <li><a target="_blank" class="dropdown-item" href="../rel/rel_estoque_class.php"><i class="fa-solid fa-arrow-trend-down"></i> Estoque Baixo</a></li>
 
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelCompras">Compras</a>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelCompras"><i class="fa-solid fa-bag-shopping"></i> Compras</a>
               </li>
 
             </ul>
@@ -189,13 +193,13 @@ if ($total_reg > 0) {
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-tv"></i>
               Telas
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" target="_blank" href="../painel-tela/tela.php">Tela de Pedidos</a></li>
+              <li><a class="dropdown-item" target="_blank" href="../painel-tela/tela.php"><i class="fa-solid fa-desktop"></i> Tela de Pedidos</a></li>
 
-              <li><a target="_blank" class="dropdown-item" href="../painel-tela/tela-chamada.php">Tela de Chamadas</a></li>
+              <li><a target="_blank" class="dropdown-item" href="../painel-tela/tela-chamada.php"><i class="fa-solid fa-display"></i> Tela de Chamadas</a></li>
             </ul>
           </li>
 
@@ -203,10 +207,10 @@ if ($total_reg > 0) {
 
         <div class="d-flex mr-4">
 
-          <img class="img-profile rounded-circle mt-4" src="../../assets/imagens/funcionarios/<?php echo $imagem_perfil ?>" width="40px" height="40px">
+          <img class="img-profile rounded-circle mt-4" src="../../assets/imagens/funcionarios/<?php echo $imagem_perfil ?>" width="38px" height="38px">
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
               <?php echo $nome ?>
             </a>
 
@@ -249,20 +253,22 @@ if ($total_reg > 0) {
       require_once($menu9 . '.php');
     } else if (@$_GET['pag'] == $menu10) {
       require_once($menu10 . '.php');
-    }else if (@$_GET['pag'] == $menu11) {
+    } else if (@$_GET['pag'] == $menu11) {
       require_once($menu11 . '.php');
-    }else if (@$_GET['pag'] == $menu12) {
+    } else if (@$_GET['pag'] == $menu12) {
       require_once($menu12 . '.php');
-    }else if (@$_GET['pag'] == $menu13) {
+    } else if (@$_GET['pag'] == $menu13) {
       $pag_painel = '../painel-recep/';
-      require_once('../painel-recep/' .$menu13 . '.php');
-    }else if (@$_GET['pag'] == $menu14) {
+      require_once('../painel-recep/' . $menu13 . '.php');
+    } else if (@$_GET['pag'] == $menu14) {
       require_once($menu14 . '.php');
-    }else {
+    } else {
       require_once($menu1 . '.php');
     }
     ?>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 

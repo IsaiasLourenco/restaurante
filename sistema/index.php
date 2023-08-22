@@ -33,13 +33,14 @@ if ($total_reg == 0) {
     <link rel="shortcut icon" href="../assets/imagens/ico.ico" type="image/x-icon">
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <!-- -->
+
     <link href="vendor/css/login.css" rel="stylesheet">
     <!-- Theme color -->
     <link id="switcher" href="../assets/css/theme-color/default-theme.css" rel="stylesheet">
 
-    
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 </head>
 
 <body>
@@ -79,6 +80,8 @@ if ($total_reg == 0) {
         </div>
     </div>
     <!-- End Login section -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 

@@ -94,7 +94,7 @@ if($nome_cargo != 'Garçom' AND $nome_cargo != 'Administrador' AND $nome_cargo !
 									<div style="font-size: 12px;" class='text-secondary'><?php echo $texto ?> <?php echo $nome_cliente ?></div>
 								</div>
 								<div class='col-auto' align='center'>
-									<i class='bi bi-archive-fill <?php echo $classe ?>' style="font-size: 32px;"></i><br>
+									<i class='fas fa-utensils <?php echo $classe ?>' style="font-size: 32px;"></i><br>
 
 								</div>
 							</div>

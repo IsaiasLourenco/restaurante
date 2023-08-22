@@ -74,12 +74,17 @@ if ($total_reg > 0) {
 
   <link rel="stylesheet" type="text/css" href="../../sistema/vendor/DataTables/datatables.min.css" />
   <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
-  <!--<script src="../../assets/js/buscaCep.js" type="module" defer></script>-->
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="../../assets/css/index_p_adm.css">
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <script src="../../assets/js/buscaCep.js" type="module" defer></script>
-  <link rel="stylesheet" href="../../assets/css/botoes.css">
+
+  <link rel="stylesheet" href="../../assets/css/meucss.css">
+  <link rel="stylesheet" href="../../assets/src/css/fontawesome.css">
+  <link rel="stylesheet" href="../../assets/src/css/style.css">
 </head>
 
 <body>
@@ -95,65 +100,65 @@ if ($total_reg > 0) {
 
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse nav-index-recep" id="navbarSupportedContent">
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>">Home</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>"><i class="fa-solid fa-house-chimney"></i> Home</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu2 ?>">Reservas</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu2 ?>"><i class="fas fa-pizza-slice"></i> Reservas</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu3 ?>">Clientes</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu3 ?>"><i class="bi bi-person-fill"></i> Clientes</a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-dollar-sign"></i>
               Financeiro
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu4 ?>">Contas a Pagar</a></li>
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu5 ?>">Contas a Receber</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu4 ?>"><i class="fa-solid fa-money-bill-trend-up"></i> Contas a Pagar</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu5 ?>"><i class="fa-solid fa-hand-holding-dollar"></i> Contas a Receber</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu6 ?>">Compras</a></li>
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>">Movimentações</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu6 ?>"><i class="fa-solid fa-bag-shopping"></i> Compras</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>"><i class="fa-solid fa-money-bill-transfer"></i> Movimentações</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu9 ?>">Consultar Pedidos</a></li>
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu9 ?>"><i class="fas fa-utensils"></i> Consultar Pedidos</a></li>
 
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu8 ?>">Pedidos</a>
+            <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu8 ?>"><i class="fas fa-utensils"></i> Pedidos</a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid bi bi-receipt-cutoff"></i>
               Relatórios
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelReservas">Reservas</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelReservas"><i class="fas fa-pizza-slice"></i> Reservas</a></li>
 
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelMovimentacoes">Movimentações</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelMovimentacoes"><i class="fa-solid fa-money-bill-transfer"></i> Movimentações</a></li>
 
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelPagar">Contas a Pagar</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelPagar"><i class="fa-solid fa-money-bill-trend-up"></i> Contas a Pagar</a></li>
 
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelReceber">Contas a Receber</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelReceber"><i class="fa-solid fa-hand-holding-dollar"></i> Contas a Receber</a></li>
 
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelCompras">Compras</a>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelCompras"><i class="fa-solid fa-bag-shopping"></i> Compras</a>
               </li>
 
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelPedidos">Pedidos</a>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalRelPedidos"><i class="fas fa-utensils"></i> Pedidos</a>
               </li>
 
             </ul>
@@ -161,13 +166,13 @@ if ($total_reg > 0) {
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-tv"></i>
               Telas
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" target="_blank" href="../painel-tela/tela.php">Tela de Pedidos</a></li>
+              <li><a class="dropdown-item" target="_blank" href="../painel-tela/tela.php"><i class="fa-solid fa-desktop"></i> Tela de Pedidos</a></li>
 
-              <li><a target="_blank" class="dropdown-item" href="../painel-tela/tela-chamada.php">Tela de Chamadas</a></li>
+              <li><a target="_blank" class="dropdown-item" href="../painel-tela/tela-chamada.php"><i class="fa-solid fa-display"></i> Tela de Chamadas</a></li>
             </ul>
           </li>
 
@@ -224,6 +229,8 @@ if ($total_reg > 0) {
     }
     ?>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 

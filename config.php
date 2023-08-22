@@ -1,10 +1,10 @@
 <?php
 
 //VARIÁVEIS DO PROJETO
-//$url_local = 'http://localhost/restaurantesite/';
-$url_local = 'http://www.lorenzos.sitepessoal.com/';
+$url_local = 'http://localhost/restaurante/';
+//$url_local = 'http://www.lorenzos.sitepessoal.com/';
 $nome_site ="LORENZO'S";
-$email_adm ='isaias.lourenco2020@outlook.com';
+$email_adm ='isaiaslourenco2020@gmail.com';
 $email_adm_gm ='isaiaslourenco2020@gmail.com';
 $endereco ='Avenida 22 de Outubro, nº 1167, Jardim xxxx - Mogi Mirim - SP - CEP:13800-000';
 $telefone ='(19)3361-4400';
@@ -23,16 +23,16 @@ $youtube ='https://www.youtube.com/channel/UCucCsiVk4zycu4CwVxY5WTw';
 $instagram ='https://instagram.com/isaiaslourenco3?igshid=MzNlNGNkZWQ4Mg==';
 
 //VARIÁVEIS PARA BANCO DE DADOS
-//$servidor = 'localhost';
-//$usuario = 'root';
-//$senha = '';////
-//$banco = 'restaurante';
+$servidor = 'localhost';
+$usuario = 'root';
+$senha = '';////
+$banco = 'restaurante';
 
 //VARIÁVEIS PARA BANCO DE DADOS HOSPEDADO
-$servidor = 'restaurantelor.mysql.dbaas.com.br';
-$usuario = 'restaurantelor';
-$senha = 'Mandalor45@';
-$banco = 'restaurantelor';
+//$servidor = 'restaurantelor.mysql.dbaas.com.br';
+//$usuario = 'restaurantelor';
+//$senha = 'Mandalor45@';
+//$banco = 'restaurantelor';
 
 //NÍVEL MÍNIMO DO ESTOQUE DE PRODUTOS PARA CÁLCULO DO SISTEMA
 $nivel_estoque = 10;    
