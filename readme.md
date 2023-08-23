@@ -4,12 +4,12 @@ Projeto criado para atender o nicho de Restaurantes e Lanchonetes com todo o pro
 
 ## Funcionalidades
 
-1 - O site apresenta link para todas suas seções, além de ter duas páginas a mais para postagens no  blog;
-2 - O site é totalmente responsivo, indicando que você pode criar seus banners e fotos direto dentro do banco de dados do sistema e ele vai trocar os banner automaticamwente. Clientes que fazem cadastro para receber mais informações do restaurante também podem entrar com usuário e senha e fazer, por exemmplo, upload das fotos da sua visita/refeição se eles assim quiserem;
-3 - Através dos menus do site você pode fazer o login para o sistema, e ter controle total do seu negócio;
-4 - Relatórios de todos os controles necessários;
-5 - Tela de chamados para a cozinha iniciar o preparo do pedido;
-6 - Pedidos feitos remotamente para entrega ou retirada no balcão, ou pedidos feitos na mesa vão direto para a cozinha.
+- O site apresenta link para todas suas seções, além de ter duas páginas a mais para postagens no  blog;
+- O site é totalmente responsivo, indicando que você pode criar seus banners e fotos direto dentro do banco de dados do sistema e ele vai trocar os banner automaticamwente. Clientes que fazem cadastro para receber mais informações do restaurante também podem entrar com usuário e senha e fazer, por exemmplo, upload das fotos da sua visita/refeição se eles assim quiserem, assim com postar comentários que serão lidos no blog e no site, no setor de testimonials de clientes;
+- Através dos menus do site você pode fazer o login para o sistema, e ter controle total do seu negócio;
+- Relatórios de todos os controles necessários;
+- Tela de chamados para a cozinha iniciar o preparo do pedido;
+- Pedidos feitos remotamente para entrega ou retirada no balcão, ou pedidos feitos na mesa vão direto para a cozinha.
 
 ## Tecnologias utilizadas
 
@@ -31,4 +31,4 @@ Colaboradores
 - Projeto iniciado pelo propósito de um curso adquirido no portal Hugo Cursos 'https://hugocursos.com.br/sistema/index.php';
 - Iniciativa levada adiante pela empresa de tecnologia ®Vetor256. 'http://vetor256.com'.
 
-[<img src="./gifcode.gif" alt="Delivering">](http://www.lorenzos.sitepessoal.com)
+[<img src="./gifRest.gif" alt="Delivering">](http://www.lorenzos.sitepessoal.com)
