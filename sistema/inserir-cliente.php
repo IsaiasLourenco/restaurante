@@ -14,27 +14,13 @@ $estado = $_POST['estado'];
 $senha = $_POST['senha'];
 
 //BUSCAR O REGISTRO JÁ CADASTRADO NO BANCO
-$query = $pdo->query("SELECT * FROM clientes WHERE email = '$email'");
+$query = $pdo->query("SELECT * FROM funcionarios WHERE email = '$email'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if ($total_reg > 0) {
     echo 'Usuário já Cadastrado!';
     exit();
 }
-
-$query = $pdo->prepare("INSERT INTO clientes SET nome = :nome, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha");
-
-$query->bindValue(":nome", "$nome");
-$query->bindValue(":email", "$email");
-$query->bindValue(":telefone", "$telefone");
-$query->bindValue(":cep", "$cep");
-$query->bindValue(":rua", "$rua");
-$query->bindValue(":numero", "$numero");
-$query->bindValue(":bairro", "$bairro");
-$query->bindValue(":cidade", "$cidade");
-$query->bindValue(":estado", "$estado");
-$query->bindValue(":senha", "$senha");
-$query->execute();
 
 $res = $pdo->prepare("INSERT INTO funcionarios SET nome = :nome, cpf = '000.000.000-00', email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha, cargo='13', datacad = curDate(), imagem = 'sem-foto.jpg'");
 
@@ -49,4 +35,9 @@ $res->bindValue(":cidade", "$cidade");
 $res->bindValue(":estado", "$estado");
 $res->bindValue(":senha", "$senha");
 $res->execute();
+$id_funcionario = $pdo->lastInsertId();
+
+$query1 = $pdo->prepare("INSERT INTO clientes SET funcionario = '$id_funcionario'");
+$query1->execute();
+
 echo 'Salvo com Sucesso!';

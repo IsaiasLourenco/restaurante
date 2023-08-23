@@ -104,5 +104,9 @@ if($cargo == '3'){
 	$query = $pdo->prepare("INSERT INTO chef SET funcionario = $id_funcionario");
 }
 
+if($cargo == '13'){
+	$query = $pdo->prepare("INSERT INTO clientes SET funcionario = $id_funcionario");
+}
+
 $query->execute();
 echo 'Salvo com Sucesso!';

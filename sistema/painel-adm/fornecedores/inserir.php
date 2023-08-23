@@ -1,6 +1,6 @@
 <?php
 require_once("../../../conexao.php");
-require_once("../verificar.php");
+require_once("../../painel-adm/verificar.php");
 
 $nome = $_POST['nome'];
 $cnpj = $_POST['cnpj'];

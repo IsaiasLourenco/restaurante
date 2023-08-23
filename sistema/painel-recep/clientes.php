@@ -31,12 +31,18 @@ require_once("verificar.php");
 			</thead>
 			<tbody>
 				<?php
-				$query = $pdo->query("SELECT * FROM clientes ORDER BY id ASC");
+				$query = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '13' ORDER BY id ASC");
 				$res = $query->fetchAll(PDO::FETCH_ASSOC);
 				for ($i = 0; $i < @count($res); $i++) {
 					foreach ($res[$i] as $key => $value) {
 					}
 					$id_reg = $res[$i]['id'];
+
+					$query1 = $pdo->query("SELECT * FROM clientes WHERE funcionario = '$id_reg'");
+					$res1 = $query1->fetchAll(PDO::FETCH_ASSOC);
+					$id_cli = $res1[0]['id'];
+					$id_func = $res1[0]['funcionario'];
+
 				?>
 					<tr>
 						<td><?php echo $res[$i]['nome'] ?></td>
@@ -51,7 +57,7 @@ require_once("verificar.php");
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Excluir Registro">
 								<i class="bi bi-trash text-danger"></i></a>
 
-							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $res[$i]["cep"] ?>', '<?php echo $res[$i]["rua"] ?>', '<?php echo $res[$i]["numero"] ?>', '<?php echo $res[$i]["bairro"] ?>', '<?php echo $res[$i]["cidade"] ?>', '<?php echo $res[$i]["estado"] ?>', '<?php echo $res[$i]["comentario"] ?>')" title="Ver Dados">
+							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $res[$i]["cep"] ?>', '<?php echo $res[$i]["rua"] ?>', '<?php echo $res[$i]["numero"] ?>', '<?php echo $res[$i]["bairro"] ?>', '<?php echo $res[$i]["cidade"] ?>', '<?php echo $res[$i]["estado"] ?>', '<?php echo $res1[0]['comentario'] ?>')" title="Ver Dados">
 								<i class="bi bi-info-circle-fill text-secondary"></i></a>
 
 						</td>
@@ -74,19 +80,22 @@ require_once("verificar.php");
 					} else {
 						$titulo_modal = 'Editar Registro';
 						$id = @$_GET['id'];
-						$query = $pdo->query("SELECT * FROM clientes WHERE  id = '$id'");
+						$query = $pdo->query("SELECT * FROM clientes WHERE  funcionario = '$id'");
 						$res = $query->fetchAll(PDO::FETCH_ASSOC);
-						$nome_cli = @$res[0]['nome'];
-						$email = @$res[0]['email'];
-						$telefone_forn = @$res[0]['telefone'];
 						$comentario = @$res[0]['comentario'];
-						$cep = @$res[0]['cep'];
-						$rua = @$res[0]['rua'];
-						$numero = @$res[0]['numero'];
-						$bairro = @$res[0]['bairro'];
-						$cidade = @$res[0]['cidade'];
-						$estado = @$res[0]['estado'];
-						$senha = @$res[0]['senha'];
+
+						$query1 = $pdo->query("SELECT * FROM funcionarios WHERE  id = '$id'");
+						$res1 = $query1->fetchAll(PDO::FETCH_ASSOC);
+						$nome_cli = @$res1[0]['nome'];
+						$email = @$res1[0]['email'];
+						$telefone_forn = @$res1[0]['telefone'];
+						$cep = @$res1[0]['cep'];
+						$rua = @$res1[0]['rua'];
+						$numero = @$res1[0]['numero'];
+						$bairro = @$res1[0]['bairro'];
+						$cidade = @$res1[0]['cidade'];
+						$estado = @$res1[0]['estado'];
+						$senha = @$res1[0]['senha'];
 					}
 					?>
 					<h5 class="modal-title" id="exampleModalLabel"><?php echo $titulo_modal ?></h5>
@@ -121,7 +130,7 @@ require_once("verificar.php");
 
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label">Comentário </label>
-							<textarea class="form-control" type="text" name="comentario" id="comentario" maxlength="2000"><?php echo $comentario ?></textarea>
+							<textarea class="form-control" type="text" name="comentario" id="comentario" maxlength="2000"><?php echo @$comentario ?></textarea>
 						</div>
 
 						<div class="row">

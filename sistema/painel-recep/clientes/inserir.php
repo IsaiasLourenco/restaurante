@@ -1,6 +1,6 @@
 <?php
+
 require_once("../../../conexao.php");
-require_once("../verificar.php");
 
 $nome = $_POST['nome'];
 $email = $_POST['email'];
@@ -16,12 +16,12 @@ $senha = $_POST['senha'];
 $id = $_POST['id'];
 
 //BUSCAR O REGISTRO JÁ CADASTRADO NO BANCO
-$query = $pdo->query("SELECT * FROM clientes WHERE  id = '$id'");
+$query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $email_banco = @$res[0]['email'];
 
 if ($email != $email_banco) {
-	$query = $pdo->prepare("SELECT * FROM clientes WHERE  email = :email");
+	$query = $pdo->prepare("SELECT * FROM funcionarios WHERE  email = :email");
 	$query->bindValue(":email", "$email");
 	$query->execute();
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -32,24 +32,23 @@ if ($email != $email_banco) {
 	}
 }
 
-if ($id == "") {
-	$query = $pdo->prepare("INSERT INTO clientes SET nome = :nome, email = :email, telefone = :telefone, comentario = :comentario, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha");
-} else {
-	$query = $pdo->prepare("UPDATE clientes SET nome = :nome, email = :email, telefone = :telefone, comentario = :comentario, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha WHERE id = '$id'");
-}
+$res = $pdo->prepare("INSERT INTO funcionarios SET nome = :nome, cpf = '000.000.000-00', email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha, cargo='13', datacad = curDate(), imagem = 'sem-foto.jpg'");
 
-$query->bindValue(":nome", "$nome");
-$query->bindValue(":email", "$email");
-$query->bindValue(":telefone", "$telefone");
-$query->bindValue(":comentario", "$comentario");
-$query->bindValue(":cep", "$cep");
-$query->bindValue(":rua", "$rua");
-$query->bindValue(":numero", "$numero");
-$query->bindValue(":bairro", "$bairro");
-$query->bindValue(":cidade", "$cidade");
-$query->bindValue(":estado", "$estado");
-$query->bindValue(":senha", "$senha");
+$res->bindValue(":nome", "$nome");
+$res->bindValue(":email", "$email");
+$res->bindValue(":telefone", "$telefone");
+$res->bindValue(":cep", "$cep");
+$res->bindValue(":rua", "$rua");
+$res->bindValue(":numero", "$numero");
+$res->bindValue(":bairro", "$bairro");
+$res->bindValue(":cidade", "$cidade");
+$res->bindValue(":estado", "$estado");
+$res->bindValue(":senha", "$senha");
+$res->execute();
+$id_funcionario = $pdo->lastInsertId();
 
-$query->execute();
+$query1 = $pdo->prepare("INSERT INTO clientes SET funcionario = '$id_funcionario', comentario = :comentario");
+$query1->bindValue(":comentario", "$comentario");
+$query1->execute();
 
 echo 'Salvo com Sucesso!';

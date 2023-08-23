@@ -131,11 +131,11 @@ if ($total_pizza > 0) {
   <!-- FIM LEI DE ACEITAÇÃO DE COOKIES -->
 
   <!-- Pre Loader -->
-  <div id="aa-preloader-area">
+  <!-- <div id="aa-preloader-area">
     <div class="mu-preloader">
       <img src="assets/imagens/preloader1.gif" alt=" loader img">
     </div>
-  </div>
+  </div> -->
   <!--START SCROLL TOP BUTTON -->
   <a class="scrollToTop" href="#">
     <i class="fa fa-angle-up"></i>
@@ -561,14 +561,18 @@ if ($total_pizza > 0) {
                 <ul class="mu-testimonial-slider">
 
                   <?php
-                  $query = $pdo->query("SELECT * FROM clientes order by id asc");
+                  $query = $pdo->query("SELECT * FROM clientes ORDER BY id ASC LIMIT 6");
                   $res = $query->fetchAll(PDO::FETCH_ASSOC);
                   for ($i = 0; $i < @count($res); $i++) {
                     foreach ($res[$i] as $key => $value) {
                     }
                     $id_cli = $res[$i]['id'];
-                    $nome_cli = $res[$i]['nome'];
+                    $id_func = $res[$i]['funcionario'];
                     $comentario_cli = $res[$i]['comentario'];
+
+                    $query1 = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_func' ORDER BY id ASC");
+                    $res1 = $query1->fetchAll(PDO::FETCH_ASSOC);
+                    $nome_cli = $res1[0]['nome'];
                   ?>
 
                     <li>
