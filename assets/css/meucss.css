@@ -1,8 +1,115 @@
 /*----------------------------------*/
+/*-----CADASTRO DE CLIENTES---------*/
+/*----------------------------------*/
+.frm-cli{
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+}
+
+.frm-cliente-nome{
+  width: 233px;
+  margin-right: 10px;
+}
+
+.frm-cliente-email{
+  width: 233px;
+  margin-right: 10px;
+}
+
+.frm-cliente-telefone{
+  width: 110px;
+  margin-right: 10px;
+}
+
+.frm-cliente-cep{
+  width: 110px;
+  margin-right: 10px;
+}
+
+.frm-cliente-rua{
+  width: 233px;
+  margin-right: 10px;
+}
+
+.frm-cliente-numero{
+  width: 110px;
+  margin-right: 10px;
+}
+
+.frm-cliente-bairro{
+  width: 350px;
+  margin-right: 10px;
+}
+
+.frm-cliente-cidade{
+  width: 200px;
+  margin-right: 10px;
+}
+
+.frm-cliente-estado{
+  width: 140px;
+  margin-right: 10px; 
+
+}
+
+.frm-cliente-senha{
+  width: 120px;
+  margin-right: 10px;
+}
+
+.frm-cliente-botao-fecha{
+  position: absolute;
+  top: 300px;
+  left: 500px;
+}
+
+.frm-cliente-botao-salva{
+  position: absolute;
+  top: 300px;
+  left: 450px;
+}
+
+/*----------------------------------*/
+/*--LEI DE ACEITAÇÃO DE COOKIES-----*/
+/*----------------------------------*/
+/*----------LEI LGPD PAGINA----------*/
+
+.leiLgpd{
+  text-transform: capitalize;
+  font-size: 10px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.ulLgpd{
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.nav-leiLgpd{
+  background-color: #333333;
+  display: flex;
+}
+
+.realoca-logo-nav{
+  text-align: left;
+}
+
+
+/*----------------------------------*/
 /*--PADRONIZAÇÃO FONTES DA NAV------*/
 /*----------------------------------*/
 .nav-index-recep{
     font-size: 12px;
+}
+
+/*----------------------------------*/
+/*--PADRONIZAÇÃO NAV INDEX ---------*/
+/*----------------------------------*/
+
+.index-navbar-padrao{
+    font-size: 10px;
 }
 
 /*----------------------------------*/
@@ -61,3 +168,53 @@ h2{
     color: #f5f0f0;
     font-weight: bold
 }
+
+/*----------------------------------*/
+/*--LEI DE ACEITAÇÃO DE COOKIES-----*/
+/*----------------------------------*/
+/*----------LEI LGPD INDEX----------*/
+
+.alerta {
+    background-color: #c1a35f;
+    color: aliceblue;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    opacity: 80%;
+    z-index: 1;
+  }
+
+  .alerta.hide {
+    display: none !important;
+  }
+
+  .link-politica {
+    color: aliceblue;
+  }
+
+  .link-politica:hover {
+    text-decoration: underline;
+    color: aliceblue;
+  }
+
+  .link-politica:visited {
+    color: aliceblue;
+  }
+
+  .botao-aceitar {
+    background-color: antiquewhite;
+    color: chocolate;
+    padding: 7px;
+    margin-left: 15px;
+    border-radius: 5px;
+    border: none
+  }
+
+  .botao-aceitar:hover {
+    background-color: white;
+    color: gray;
+  }
+

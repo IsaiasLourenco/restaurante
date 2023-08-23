@@ -81,15 +81,18 @@ if ($total_reg > 0) {
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="../../sistema/vendor/DataTables/datatables.min.css" />
-  <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../assets/DataTables/datatables.min.css" />
+  <script type="text/javascript" src="../../assets//DataTables/datatables.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
   <script src="../../assets/js/buscaCep.js" type="module" defer></script>
+  
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/fontawesome.css">
+
   <link rel="stylesheet" href="../../assets/css/meucss.css">
-  <link rel="stylesheet" href="../../assets/src/css/style.css">
-  <link rel="stylesheet" href="../../assets/src/css/fontawesome.css">
+
 </head>
 
 <body>

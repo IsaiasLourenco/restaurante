@@ -4,8 +4,7 @@
 $url_local = 'http://localhost/restaurante/';
 //$url_local = 'http://www.lorenzos.sitepessoal.com/';
 $nome_site ="LORENZO'S";
-$email_adm ='isaiaslourenco2020@gmail.com';
-$email_adm_gm ='isaiaslourenco2020@gmail.com';
+$email_adm ='adm@vetor256.com';
 $endereco ='Avenida 22 de Outubro, nº 1167, Jardim xxxx - Mogi Mirim - SP - CEP:13800-000';
 $telefone ='(19)3361-4400';
 $whatsapp ='(19)99674-5466';

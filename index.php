@@ -78,9 +78,9 @@ if ($total_pizza > 0) {
   <!-- Bootstrap -->
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <!-- Slick slider -->
-  <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
+  <link href="assets/css/slick.css" rel="stylesheet" type="text/css">
   <!-- Date Picker -->
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.css">
+  <link href="assets/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css">
 
   <!-- Fancybox slider -->
   <link rel="stylesheet" href="assets/css/jquery.fancybox.css" type="text/css" media="screen" />
@@ -88,66 +88,29 @@ if ($total_pizza > 0) {
   <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">
 
   <!-- Main style sheet -->
-  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <link rel="stylesheet" href="assets/css/meucss.css">
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/mystyle.css">
+  <link rel="stylesheet" href="assets/css/meucss.css">
+
 </head>
 
 <body>
-
-  <!-- LEI DE ACEITAÇÃO DE COOKIES -->
-  <style type="text/css">
-    .alerta {
-      background-color: #c1a35f;
-      color: aliceblue;
-      text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      opacity: 80%;
-      z-index: 1;
-    }
-
-    .alerta.hide {
-      display: none !important;
-    }
-
-    .link-politica {
-      color: aliceblue;
-    }
-
-    .link-politica:hover {
-      text-decoration: underline;
-      color: aliceblue;
-    }
-
-    .link-politica:visited {
-      color: aliceblue;
-    }
-
-    .botao-aceitar {
-      background-color: antiquewhite;
-      color: chocolate;
-      padding: 7px;
-      margin-left: 15px;
-      border-radius: 5px;
-      border: none
-    }
-
-    .botao-aceitar:hover {
-      background-color: white;
-      color: gray;
-    }
-  </style>
-
+  <!------ LEI DE ACEITAÇÃO DE COOKIES -->
   <div class="alerta hide">
-    Guardamos estatísticas de visitas para melhorar sua experiência de navegação, saiba mais em nossa <a class="link-politica" title="Saiba mais sobre..." target="_blank" href="politica.php"><strong>política de privacidade.</strong></a>
+    Guardamos estatísticas de visitas para melhorar sua experiência de navegação, saiba mais em nossa <a class="link-politica" title="Saiba mais sobre..." href="politica.php"><strong>política de privacidade.</strong></a>
     <a class="botao-aceitar" href="#"><strong>Aceitar</strong></a>
   </div>
 
@@ -168,11 +131,11 @@ if ($total_pizza > 0) {
   <!-- FIM LEI DE ACEITAÇÃO DE COOKIES -->
 
   <!-- Pre Loader -->
-  <!-- <div id="aa-preloader-area">
+  <div id="aa-preloader-area">
     <div class="mu-preloader">
       <img src="assets/imagens/preloader1.gif" alt=" loader img">
     </div>
-  </div> -->
+  </div>
   <!--START SCROLL TOP BUTTON -->
   <a class="scrollToTop" href="#">
     <i class="fa fa-angle-up"></i>
@@ -195,18 +158,18 @@ if ($total_pizza > 0) {
           <!-- LOGO -->
           <a class="navbar-brand" href="index.php"><img src="assets/imagens/logo1.png" alt="Logo img"></a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse collapse index-navbar-padrao">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-            <li><a href="#mu-slider">HOME</a></li>
-            <li><a href="#mu-about-us">SOBRE</a></li>
-            <li><a href="#mu-restaurant-menu">CARDÁPIO</a></li>
-            <li><a href="#mu-reservation">RESERVAS</a></li>
-            <li><a href="#mu-gallery">FOTOS</a></li>
-            <li><a href="#mu-client-testimonial">ÁREA DOS CLIENTES</a></li>
-            <li><a href="#mu-chef">NOSSA EQUIPE</a></li>
-            <li><a href="#mu-contact">CONTATO</a></li>
-            <li><a href="#mu-latest-news">BLOG</a></li>
-            <li><a href="sistema" target="_blank">LOGIN</a></li>
+            <li><a href="#mu-slider"><i class="fa-solid fa-house-chimney"></i> HOME</a></li>
+            <li><a href="#mu-about-us"><i class="fa-solid fa-address-card"></i> SOBRE</a></li>
+            <li><a href="#mu-restaurant-menu"><i class="fa-solid fa-book-open-reader"></i> CARDÁPIO</a></li>
+            <li><a href="#mu-reservation"><i class="fa fa-pizza-slice"></i> RESERVAS</a></li>
+            <li><a href="#mu-gallery"><i class="fa fa-image"></i> FOTOS</a></li>
+            <li><a href="#mu-client-testimonial"><i class="fa-solid fa-user-plus"></i> ÁREA DOS CLIENTES</a></li>
+            <li><a href="#mu-chef"><i class="fa-solid fa-people-group"></i> NOSSA EQUIPE</a></li>
+            <li><a href="#mu-contact"><i class="fa-solid fa-address-book"></i> CONTATO</a></li>
+            <li><a href="#mu-latest-news"><i class="fa-solid fa-blog"></i> BLOG</a></li>
+            <li><a href="sistema" target="_blank"><i class="fa-solid fa-unlock-keyhole"></i> LOGIN</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -665,7 +628,7 @@ if ($total_pizza > 0) {
             <form class="mu-subscription-form">
               <h4>É nosso cliente? Cadastre-se para postar as fotos de sua visita!</h4>
               <input type="text" placeholder="Entre com   seu e-mail para cadastro">
-              <a href="sistema/cadastro.php" target="_blank" class="mu-readmore-btn">CADASTRO</a>
+              <a href="sistema/cadastro.php" class="mu-readmore-btn">CADASTRO</a>
             </form>
           </div>
         </div>
@@ -900,6 +863,8 @@ if ($total_pizza > 0) {
 
   <!-- Ajax para mascaras -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 

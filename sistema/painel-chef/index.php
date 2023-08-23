@@ -71,14 +71,14 @@ if ($total_reg > 0) {
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="../../sistema/vendor/DataTables/datatables.min.css" />
-  <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../assets/DataTables/datatables.min.css" />
+  <script type="text/javascript" src="../../assets/DataTables/datatables.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+  
+  <link rel="stylesheet" href="../../assets/css/fontawesome.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/meucss.css">
-  <link rel="stylesheet" href="../../assets/src/css/fontawesome.css">
-  <link rel="stylesheet" href="../../assets/src/css/style.css">
-
 </head>
 
 <body>
@@ -114,13 +114,13 @@ if ($total_reg > 0) {
 
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#ModalEditar"><i class="bi bi-person-fill"></i> Editar Perfil</a>
+              <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#ModalEditar"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
 
               <li>
                 <hr class="dropdown-divider">
               </li>
 
-              <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+              <li><a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
 
             </ul>
           </li>

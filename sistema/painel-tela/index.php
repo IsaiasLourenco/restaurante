@@ -58,18 +58,20 @@ if ($total_reg > 0) {
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="../../sistema/vendor/DataTables/datatables.min.css" />
-  <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../assets/DataTables/datatables.min.css">
+  <script type="text/javascript" src="../../assets/DataTables/datatables.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
   
   <script src="../../assets/js/buscaCep.js" type="module" defer></script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   <link rel="stylesheet" href="../../assets/css/meucss.css">
-  <link rel="stylesheet" href="../../assets/src/css/fontawesome.css">
-  <link rel="stylesheet" href="../../assets/src/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/fontawesome.css">
+  <link rel="stylesheet" href="../../assets/css/font-awesome.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/mystyle.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
