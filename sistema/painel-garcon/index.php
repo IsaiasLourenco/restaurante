@@ -7,10 +7,6 @@ require_once("../../conexao.php");
 $menu1 = 'pedidos';
 $menu2 = 'comissoes';
 
-if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
-  $classeMenu = 'text-dark';
-}
-
 
 //recuperar os dados do usuário
 $id_usuario = $_SESSION['id'];
@@ -50,30 +46,32 @@ if ($total_reg > 0) {
 <html>
 
 <head>
-  <title>PAINEL DO GARÇOM</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-  <link rel="shortcut icon" href="../../assets/imagens/ico.ico" type="image/x-icon">
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PAINEL DO GARÇOM</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+  <link rel="shortcut icon" href="../../assets/imagens/ico.ico" type="image/x-icon">
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
   </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="../../sistema/vendor/DataTables/datatables.min.css" />
-  <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
-  
+  <link rel="stylesheet" type="text/css" href="../../assets/DataTables/datatables.min.css">
+  <script type="text/javascript" src="../../assets/DataTables/datatables.min.js"></script>
+
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="../../assets/css/index_p_adm.css">
+  
   <script src="../../assets/js/buscaCep.js" type="module" defer></script>
-  <link rel="stylesheet" href="../../assets/src/css/fontawesome.css">
-  <link rel="stylesheet" href="../../assets/src/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/fontawesome.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/meucss.css">
 </head>
 
@@ -121,7 +119,7 @@ if ($total_reg > 0) {
 
 
           </li>
-          <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+          <li><a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
 
           </ul>
           </li>

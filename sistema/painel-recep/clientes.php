@@ -9,7 +9,7 @@ require_once("verificar.php");
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../vendor/css/h2.css">
+	<link rel="stylesheet" href="../../assets/css/meucss.css">
 	<link rel="stylesheet" href="../../assets/css/font-awesome.css">
 </head>
 
@@ -51,7 +51,7 @@ require_once("verificar.php");
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Excluir Registro">
 								<i class="bi bi-trash text-danger"></i></a>
 
-							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $res[$i]["cep"] ?>', '<?php echo $res[$i]["rua"] ?>', '<?php echo $res[$i]["numero"] ?>', '<?php echo $res[$i]["bairro"] ?>', '<?php echo $res[$i]["cidade"] ?>', '<?php echo $res[$i]["estado"] ?>')" title="Ver Dados">
+							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $res[$i]["cep"] ?>', '<?php echo $res[$i]["rua"] ?>', '<?php echo $res[$i]["numero"] ?>', '<?php echo $res[$i]["bairro"] ?>', '<?php echo $res[$i]["cidade"] ?>', '<?php echo $res[$i]["estado"] ?>', '<?php echo $res[$i]["comentario"] ?>')" title="Ver Dados">
 								<i class="bi bi-info-circle-fill text-secondary"></i></a>
 
 						</td>
@@ -79,6 +79,7 @@ require_once("verificar.php");
 						$nome_cli = @$res[0]['nome'];
 						$email = @$res[0]['email'];
 						$telefone_forn = @$res[0]['telefone'];
+						$comentario = @$res[0]['comentario'];
 						$cep = @$res[0]['cep'];
 						$rua = @$res[0]['rua'];
 						$numero = @$res[0]['numero'];
@@ -116,6 +117,11 @@ require_once("verificar.php");
 								</div>
 							</div>
 
+						</div>
+
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Comentário </label>
+							<textarea class="form-control" type="text" name="comentario" id="comentario" maxlength="2000"><?php echo $comentario ?></textarea>
 						</div>
 
 						<div class="row">
@@ -260,6 +266,10 @@ require_once("verificar.php");
 						<span><b>Estado : </b></span><span id="estado_registro"></span>
 					</div>
 
+					<div class="mb-2">
+						<span><b>Comentário : </b></span><span id="comentario_registro"></span>
+					</div>
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn cores-button-confirmar" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
@@ -271,7 +281,6 @@ require_once("verificar.php");
 </body>
 
 </html>
-
 
 <!-- Ajax chama Inclusão e Edição -->
 <?php
@@ -400,7 +409,7 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 
 <!-- Ajax chama Modal Dados -->
 <script type="text/javascript">
-	function dados(nome, cep, rua, numero, bairro, cidade, estado) {
+	function dados(nome, cep, rua, numero, bairro, cidade, estado, comentario) {
 		event.preventDefault();
 		var myModal = new bootstrap.Modal(document.getElementById('modal-dados'), {
 
@@ -414,5 +423,6 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		$('#bairro_registro').text(bairro);
 		$('#cidade_registro').text(cidade);
 		$('#estado_registro').text(estado);
+		$('#comentario_registro').text(comentario);
 	}
 </script>

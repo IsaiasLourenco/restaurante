@@ -8,7 +8,8 @@ if (@$pag_painel != "") {
 require_once("verificar.php");
 $agora = date('Y-m-d');
 ?>
-<link href="../vendor/css/h2.css" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/meucss.css">
 
 
 <!-- Cabeçalho -->

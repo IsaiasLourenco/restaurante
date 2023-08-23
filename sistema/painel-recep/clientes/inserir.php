@@ -5,6 +5,7 @@ require_once("../verificar.php");
 $nome = $_POST['nome'];
 $email = $_POST['email'];
 $telefone = $_POST['telefone'];
+$comentario = $_POST['comentario'];
 $cep = $_POST['cep'];
 $rua = $_POST['rua'];
 $numero = $_POST['numero'];
@@ -32,14 +33,15 @@ if ($email != $email_banco) {
 }
 
 if ($id == "") {
-	$query = $pdo->prepare("INSERT INTO clientes SET nome = :nome, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha");
+	$query = $pdo->prepare("INSERT INTO clientes SET nome = :nome, email = :email, telefone = :telefone, comentario = :comentario, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha");
 } else {
-	$query = $pdo->prepare("UPDATE clientes SET nome = :nome, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha WHERE id = '$id'");
+	$query = $pdo->prepare("UPDATE clientes SET nome = :nome, email = :email, telefone = :telefone, comentario = :comentario, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha WHERE id = '$id'");
 }
 
 $query->bindValue(":nome", "$nome");
 $query->bindValue(":email", "$email");
 $query->bindValue(":telefone", "$telefone");
+$query->bindValue(":comentario", "$comentario");
 $query->bindValue(":cep", "$cep");
 $query->bindValue(":rua", "$rua");
 $query->bindValue(":numero", "$numero");

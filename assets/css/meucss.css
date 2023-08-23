@@ -1,6 +1,11 @@
 /*----------------------------------*/
 /*-----CADASTRO DE CLIENTES---------*/
 /*----------------------------------*/
+.botaoCadastro{
+  position: absolute;
+  text-align: center;
+}
+
 .frm-cli{
   padding: 10px;
   margin: 10px;

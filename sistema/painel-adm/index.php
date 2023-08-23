@@ -20,10 +20,6 @@ $menu12 = 'estoque';
 $menu13 = 'reservas';
 $menu14 = 'imagens';
 
-if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
-  $classeMenu = 'text-dark';
-}
-
 
 //recuperar os dados do usuário
 $id_usuario = $_SESSION['id'];
@@ -221,7 +217,7 @@ if ($total_reg > 0) {
 
 
           </li>
-          <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+          <li><a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
 
           </ul>
           </li>

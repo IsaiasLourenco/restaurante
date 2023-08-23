@@ -65,11 +65,12 @@ if ($total_reg > 0) {
   
   <script src="../../assets/js/buscaCep.js" type="module" defer></script>
 
-  <link rel="stylesheet" href="../../assets/css/meucss.css">
+  
   <link rel="stylesheet" href="../../assets/css/fontawesome.css">
   <link rel="stylesheet" href="../../assets/css/font-awesome.css">
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/mystyle.css">
+  <link rel="stylesheet" href="../../assets/css/meucss.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -98,7 +99,7 @@ if ($total_reg > 0) {
             <a class="nav-link text-light" aria-current="page" href="tela.php" target="_blank"><i class="fa-solid fa-desktop"></i> Tela</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="tela-chamada.php" target="_blank"><i class="fa-solid fa-tablet-screen-button"></i> Tela Chamada</a>
+            <a class="nav-link text-light" aria-current="page" href="tela-chamada.php" target="_blank"><i class="fa-solid fa-tv"></i> Tela Chamada</a>
           </li>
         </ul>
 
@@ -113,13 +114,13 @@ if ($total_reg > 0) {
 
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalPerfil"><i class="bi bi-person-fill"></i> Editar Perfil</a>
+              <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalPerfil"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
 
               <li>
                 <hr class="dropdown-divider">
               </li>
 
-              <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+              <li><a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
 
             </ul>
           </li>

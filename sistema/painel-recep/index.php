@@ -15,10 +15,6 @@ $menu7 = 'movimentacoes';
 $menu8 = 'pedidos';
 $menu9 = 'consultar-pedido';
 
-if (@$_GET['pag'] == 'reservas' || @$_GET['pag'] == 'pedidos') {
-  $classeMenu = 'text-dark';
-}
-
 
 //recuperar os dados do usuário
 $id_usuario = $_SESSION['id'];
@@ -83,8 +79,8 @@ if ($total_reg > 0) {
   <script src="../../assets/js/buscaCep.js" type="module" defer></script>
 
   <link rel="stylesheet" href="../../assets/css/meucss.css">
-  <link rel="stylesheet" href="../../assets/src/css/fontawesome.css">
-  <link rel="stylesheet" href="../../assets/src/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/fontawesome.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 
 <body>
@@ -186,12 +182,10 @@ if ($total_reg > 0) {
             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <?php echo $nome ?>
             </a>
-
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-
           </li>
-          <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+
+          <li><a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
 
           </ul>
           </li>

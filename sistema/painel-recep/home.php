@@ -3,7 +3,6 @@
 require_once('../../conexao.php');
 require_once('verificar.php');
 
-
 $hoje = date('Y-m-d');
 $mes_atual = Date('m');
 $ano_atual = Date('Y');
@@ -147,7 +146,6 @@ $query = $pdo->query("SELECT * from reservas where data_reser = curDate()");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reser = @count($res);
 
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -155,8 +153,22 @@ $total_reser = @count($res);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../vendor/css/h2.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
+
+    <link rel="stylesheet" href="../../assets/css/barras-home.css">
+
+    <link rel="stylesheet" href="../../assets/css/font-awesome.css">
+    <link rel="stylesheet" href="../../assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/mystyle.css">
+    <link rel="stylesheet" href="../../assets/css/meucss.css">
+</head>
 </head>
 
 <body>
@@ -177,7 +189,7 @@ $total_reser = @count($res);
                             <div class="card-body">
                                 <div class="row">
                                     <div class="align-self-center col-3">
-                                        <i class="bi bi-cash-stack text-success fs-1 float-start"></i>
+                                        <i class="fa-solid fa-hand-holding-dollar text-success fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
                                         <h3> <span class="text-success">R$ <?php echo @$entradasF ?></span></h3>
@@ -195,7 +207,7 @@ $total_reser = @count($res);
                             <div class="card-body">
                                 <div class="row">
                                     <div class="align-self-center col-3">
-                                        <i class="bi bi-cash-stack text-danger fs-1 float-start"></i>
+                                        <i class="fa-solid fa-dollar-sign text-danger fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
                                         <h3> <span class="">R$ <?php echo @$saidasF ?></span></h3>
@@ -214,7 +226,7 @@ $total_reser = @count($res);
                             <div class="card-body">
                                 <div class="row">
                                     <div class="align-self-center col-3">
-                                        <i class="bi bi-cash <?php echo $classeSaldo ?> fs-1 float-start"></i>
+                                        <i class="fa-solid fa-sack-dollar <?php echo $classeSaldo ?> fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
                                         <h3> <span class="<?php echo $classeSaldo ?>">R$ <?php echo @$saldoF ?></span></h3>
@@ -233,11 +245,11 @@ $total_reser = @count($res);
                             <div class="card-body">
                                 <div class="row">
                                     <div class="align-self-center col-3">
-                                        <i class="bi bi-info-circle-fill <?php echo $classeMov ?> fs-1 float-start"></i>
+                                        <i class="fa-solid fa-laptop-file <?php echo $classeMov ?> fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
                                         <h3>R$ <?php echo @$valorMov ?></h3>
-                                        <span><?php echo $descricaoMov ?></span>
+                                        <span>Última movimentação - <?php echo $descricaoMov ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +267,7 @@ $total_reser = @count($res);
                             <div class="card-body">
                                 <div class="row">
                                     <div class="align-self-center col-3">
-                                        <i class="bi bi-receipt text-warning fs-1 float-start"></i>
+                                        <i class="fa-solid fa-file-invoice-dollar text-warning fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
                                         <h3> <span class=""><?php echo @$contas_pagar_hoje ?></span></h3>
@@ -274,7 +286,7 @@ $total_reser = @count($res);
                             <div class="card-body">
                                 <div class="row">
                                     <div class="align-self-center col-3">
-                                        <i class="bi bi-receipt-cutoff text-danger fs-1 float-start"></i>
+                                        <i class="fa-solid fa-file-invoice-dollar text-danger fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
                                         <h3> <span class="">
@@ -293,7 +305,7 @@ $total_reser = @count($res);
                             <div class="card-body">
                                 <div class="row">
                                     <div class="align-self-center col-3">
-                                        <i class="bi bi-wallet-fill text-warning fs-1 float-start"></i>
+                                        <i class="fa-solid fa-hand-holding-dollar text-warning fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
                                         <h3> <span class=""><?php echo @$contas_receber_hoje ?></span></h3>
@@ -311,7 +323,7 @@ $total_reser = @count($res);
                             <div class="card-body">
                                 <div class="row">
                                     <div class="align-self-center col-3">
-                                        <i class="bi bi-wallet2 text-danger fs-1 float-start"></i>
+                                        <i class="fa-solid fa-hand-holding-dollar text-danger fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
                                         <h3><?php echo @$contas_receber_vencidas ?></h3>
@@ -343,7 +355,7 @@ $total_reser = @count($res);
                             <div class="card-body cleartfix">
                                 <div class="row media align-items-stretch">
                                     <div class="align-self-center col-1">
-                                        <i class="bi-wallet-fill text-primary fs-1 mr-2"></i>
+                                        <i class="fa-solid fa-money-bill-trend-up text-primary fs-1 mr-2"></i>
                                     </div>
                                     <div class="media-body col-6">
                                         <h4>Saldo Total</h4>
@@ -364,7 +376,7 @@ $total_reser = @count($res);
                             <div class="card-body cleartfix">
                                 <div class="row media align-items-stretch">
                                     <div class="align-self-center col-1">
-                                        <i class="bi bi-wallet text-danger fs-1 mr-2"></i>
+                                        <i class="fa-solid fa-receipt text-danger fs-1 mr-2"></i>
                                     </div>
                                     <div class="media-body col-6">
                                         <h4>Contas à Pagar</h4>
@@ -389,7 +401,7 @@ $total_reser = @count($res);
                             <div class="card-body cleartfix">
                                 <div class="row media align-items-stretch">
                                     <div class="align-self-center col-1">
-                                        <i class="bi bi-cash-stack text-success fs-1 mr-2"></i>
+                                        <i class="fa-solid fa-hand-holding-dollar text-success fs-1 mr-2"></i>
                                     </div>
                                     <div class="media-body col-6">
                                         <h4>Contas à Receber</h4>
@@ -410,7 +422,7 @@ $total_reser = @count($res);
                             <div class="card-body cleartfix">
                                 <div class="row media align-items-stretch">
                                     <div class="align-self-center col-1">
-                                        <i class="bi bi-bookmarks-fill text-success fs-1 mr-2"></i>
+                                        <i class="fa-solid fa-location-dot text-success fs-1 mr-2"></i>
                                     </div>
                                     <div class="media-body col-6">
                                         <h4>Reservas</h4>
@@ -437,90 +449,6 @@ $total_reser = @count($res);
 
                 </div>
             </div>
-
-            <style type="text/css">
-                #principal {
-                    width: 100%;
-                    height: 100%;
-                    margin-left: 10px;
-                    font-family: Verdana, Helvetica, sans-serif;
-                    font-size: 14px;
-
-                }
-
-                #barra {
-                    margin: 0 2px;
-                    vertical-align: bottom;
-                    display: inline-block;
-                    padding: 5px;
-                    text-align: center;
-
-                }
-
-                .cor1,
-                .cor2,
-                .cor3,
-                .cor4,
-                .cor5,
-                .cor6,
-                .cor7,
-                .cor8,
-                .cor9,
-                .cor10,
-                .cor11,
-                .cor12 {
-                    color: #FFF;
-                    padding: 5px;
-                }
-
-                .cor1 {
-                    background-color: #FF0000;
-                }
-
-                .cor2 {
-                    background-color: #0000FF;
-                }
-
-                .cor3 {
-                    background-color: #FF6600;
-                }
-
-                .cor4 {
-                    background-color: #009933;
-                }
-
-                .cor5 {
-                    background-color: #FF0000;
-                }
-
-                .cor6 {
-                    background-color: #0000FF;
-                }
-
-                .cor7 {
-                    background-color: #FF6600;
-                }
-
-                .cor8 {
-                    background-color: #009933;
-                }
-
-                .cor9 {
-                    background-color: #FF0000;
-                }
-
-                .cor10 {
-                    background-color: #0000FF;
-                }
-
-                .cor11 {
-                    background-color: #FF6600;
-                }
-
-                .cor12 {
-                    background-color: #009933;
-                }
-            </style>
 
             <div id="principal">
                 <h2>Reservas de Mesas feitas no Ano de <?php echo $ano_atual ?></h2>
@@ -562,6 +490,9 @@ $total_reser = @count($res);
         </section>
 
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
 
 </html>

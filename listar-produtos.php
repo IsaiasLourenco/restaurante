@@ -5,7 +5,7 @@ $id_reg = $_POST['idcat'];
 if ($id_reg == 0) {
 	$query = $pdo->query("SELECT * FROM categorias order by id asc limit 1");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
-	$id_primeira_cat = $res[0]['id'];
+	$id_primeira_cat = $res[0]['id'];	
 	$id_reg = $id_primeira_cat;
 }
 
@@ -14,7 +14,7 @@ $res = $query->fetchAll(PDO::FETCH_ASSOC);
 for ($i = 0; $i < @count($res); $i++) {
 	foreach ($res[$i] as $key => $value) {
 	}
-	$id_reg = $res[$i]['id'];
+	$id_prod = $res[$i]['id'];
 	$categoria = $res[$i]['categoria'];
 	$valor_venda = $res[$i]['valor_venda'];
 	$valor_venda = number_format($res[$i]['valor_venda'], 2, ',', '.');
@@ -27,6 +27,7 @@ for ($i = 0; $i < @count($res); $i++) {
 	$nome_categ =  $res2[0]['nome'];
 
 	$total_de_colunas = 12 / $produtos_por_linha_index;
+	
 ?>
 
 	<?php echo <<<HTML
@@ -57,7 +58,7 @@ $res = $query->fetchAll(PDO::FETCH_ASSOC);
 for ($i = 0; $i < @count($res); $i++) {
 	foreach ($res[$i] as $key => $value) {
 	}
-	$id_reg = $res[$i]['id'];
+	$id_prt = $res[$i]['id'];
 	$categoria = $res[$i]['categoria'];
 
 	$valor = number_format($res[$i]['valor'], 2, ',', '.');

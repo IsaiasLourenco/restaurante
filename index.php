@@ -101,10 +101,10 @@ if ($total_pizza > 0) {
 
   <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/font-awesome.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+
   <link rel="stylesheet" href="assets/css/mystyle.css">
   <link rel="stylesheet" href="assets/css/meucss.css">
-
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -381,25 +381,15 @@ if ($total_pizza > 0) {
                 <div class="tab-pane fade in active" id="breakfast">
                   <div class="mu-tab-content-area">
 
-
                     <div class="row">
 
                       <ul class="mu-menu-item-nav">
                         <div id="listar-produtos">
 
-
-
-
-
                         </div>
                       </ul>
 
-
-
-
                     </div>
-
-
 
                   </div>
                 </div>
@@ -569,46 +559,29 @@ if ($total_pizza > 0) {
               <div class="mu-testimonial-content">
                 <!-- testimonial slider -->
                 <ul class="mu-testimonial-slider">
-                  <li>
-                    <div class="mu-testimonial-single">
-                      <div class="mu-testimonial-info">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate consequuntur ducimus cumque iure modi nesciunt recusandae eligendi vitae voluptatibus, voluptatum tempore, ipsum nisi perspiciatis. Rerum nesciunt fuga ab natus, dolorem?</p>
+
+                  <?php
+                  $query = $pdo->query("SELECT * FROM clientes order by id asc");
+                  $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                  for ($i = 0; $i < @count($res); $i++) {
+                    foreach ($res[$i] as $key => $value) {
+                    }
+                    $id_cli = $res[$i]['id'];
+                    $nome_cli = $res[$i]['nome'];
+                    $comentario_cli = $res[$i]['comentario'];
+                  ?>
+
+                    <li>
+                      <div class="mu-testimonial-single">
+                        <div class="mu-testimonial-info">
+                          <p><?php echo $comentario_cli ?></p>
+                        </div>
+                        <div class="mu-testimonial-bio">
+                          <p>- <?php echo $nome_cli ?></p>
+                        </div>
                       </div>
-                      <div class="mu-testimonial-bio">
-                        <p>- David Muller</p>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="mu-testimonial-single">
-                      <div class="mu-testimonial-info">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate consequuntur ducimus cumque iure modi nesciunt recusandae eligendi vitae voluptatibus, voluptatum tempore, ipsum nisi perspiciatis. Rerum nesciunt fuga ab natus, dolorem?</p>
-                      </div>
-                      <div class="mu-testimonial-bio">
-                        <p>- David Muller</p>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="mu-testimonial-single">
-                      <div class="mu-testimonial-info">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate consequuntur ducimus cumque iure modi nesciunt recusandae eligendi vitae voluptatibus, voluptatum tempore, ipsum nisi perspiciatis. Rerum nesciunt fuga ab natus, dolorem?</p>
-                      </div>
-                      <div class="mu-testimonial-bio">
-                        <p>- David Muller</p>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="mu-testimonial-single">
-                      <div class="mu-testimonial-info">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate consequuntur ducimus cumque iure modi nesciunt recusandae eligendi vitae voluptatibus, voluptatum tempore, ipsum nisi perspiciatis. Rerum nesciunt fuga ab natus, dolorem?</p>
-                      </div>
-                      <div class="mu-testimonial-bio">
-                        <p>- David Muller</p>
-                      </div>
-                    </div>
-                  </li>
+                    </li>
+                  <?php } ?>
                 </ul>
               </div>
             </div>
@@ -620,15 +593,15 @@ if ($total_pizza > 0) {
   <!-- End Client Testimonial section -->
 
   <!-- Start Subscription section -->
-  <section id="mu-subscription">
+  <section id="mu-subscription" style="background-color: black;">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="mu-subscription-area">
             <form class="mu-subscription-form">
-              <h4>É nosso cliente? Cadastre-se para postar as fotos de sua visita!</h4>
-              <input type="text" placeholder="Entre com   seu e-mail para cadastro">
-              <a href="sistema/cadastro.php" class="mu-readmore-btn">CADASTRO</a>
+              <h4 style="color: white;">É nosso cliente? Cadastre-se para postar as fotos de sua visita e fazer seu comentário!</h4>
+              <input type="text" style="background-color:black; width:300px" readonly>
+              <a href="sistema/cadastro.php" class="mu-readmore-btn botaoCadastro">CADASTRO</a>
             </form>
           </div>
         </div>
@@ -871,23 +844,25 @@ if ($total_pizza > 0) {
 </html>
 
 <script type="text/javascript">
-          $(document).ready(function() {
-          mostrarProdutos(0);
-        } );
-      </script>
+  $(document).ready(function() {
+    mostrarProdutos(0);
+  });
+</script>
 
 
 <script type="text/javascript">
-  function mostrarProdutos(idcat){
+  function mostrarProdutos(idcat) {
     $.ajax({
-            url: "listar-produtos.php",
-            method: 'POST',
-            data: {idcat},
-            dataType: "html",
+      url: "listar-produtos.php",
+      method: 'POST',
+      data: {
+        idcat
+      },
+      dataType: "html",
 
-            success:function(result){
-              $("#listar-produtos").html(result);
-            }
-          });
+      success: function(result) {
+        $("#listar-produtos").html(result);
+      }
+    });
   }
 </script>
