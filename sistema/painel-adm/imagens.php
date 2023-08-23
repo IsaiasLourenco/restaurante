@@ -34,7 +34,7 @@ require_once("verificar.php");
 				<tr>
 
 
-					<td><img src="../../assets/imagens/imagens/<?php echo $res[$i]['imagem'] ?>" width="40"></td>
+					<td><img src="../../assets/imagens/gallery/<?php echo $res[$i]['imagem'] ?>" width="40"></td>
 					<td><?php echo $nome_cat ?></td>
 					<td>
 						<a href="index.php?pag=<?php echo $pagina ?>&funcao=editar&id=<?php echo $id_reg ?>" title="Editar Registro">
@@ -102,9 +102,9 @@ require_once("verificar.php");
 
 					<div id="divImgConta" class="mt-4">
 						<?php if (@$imagem != "") { ?>
-							<img src="../../assets/imagens/imagens/<?php echo @$imagem ?>" width="170px" id="target">
+							<img src="../../assets/imagens/gallery/<?php echo @$imagem ?>" width="170px" id="target">
 						<?php  } else { ?>
-							<img src="../../assets/imagens/imagens/sem-foto.jpg" width="170px" id="target">
+							<img src="../../assets/imagens/gallery/sem-foto.jpg" width="170px" id="target">
 						<?php } ?>
 					</div>
 

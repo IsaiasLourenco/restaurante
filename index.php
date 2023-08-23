@@ -501,7 +501,7 @@ if ($total_pizza > 0) {
 
 
                 <?php
-                $query = $pdo->query("SELECT * FROM imagens order by id desc");
+                $query = $pdo->query("SELECT * FROM imagens ORDER BY id DESC LIMIT 9");
                 $res = $query->fetchAll(PDO::FETCH_ASSOC);
                 for ($i = 0; $i < @count($res); $i++) {
                   foreach ($res[$i] as $key => $value) {
@@ -519,10 +519,10 @@ if ($total_pizza > 0) {
                   <div class="mu-single-gallery col-md-4 mix <?php echo $nome_cat_img ?>">
                     <div class="mu-single-gallery-item">
                       <figure class="mu-single-gallery-img">
-                        <a href="#"><img alt="img" src="assets/imagens/imagens/<?php echo $res[$i]['imagem'] ?>"></a>
+                        <a href="#"><img alt="img" src="assets/imagens/gallery/<?php echo $res[$i]['imagem'] ?>"></a>
                       </figure>
                       <div class="mu-single-gallery-info">
-                        <a href="assets/imagens/imagens/<?php echo $res[$i]['imagem'] ?>" data-fancybox-group="gallery" class="fancybox">
+                        <a href="assets/imagens/gallery/<?php echo $res[$i]['imagem'] ?>" data-fancybox-group="gallery" class="fancybox">
                           <img src="assets/imagens/plus.png" alt="plus icon img">
                         </a>
                       </div>
@@ -774,17 +774,17 @@ if ($total_pizza > 0) {
                 <div class="col-md-6">
                   <div class="mu-contact-right">
                     <div class="mu-contact-widget">
-                      <h3>Dúvidas?</h3>
+                      <h3>Dúvidas? <i class="fa-solid fa-clipboard-question"></i></h3>
                       <p>Mande e-mail, SMS ou Whats'app</p>
                       <address>
-                        <p><i class="fa fa-phone"></i> <?php echo $telefone ?></p>
-                        <p><i class="fa fa-whatsapp"></i><a href="http://api.whatsapp.com/send?1=pt_BR&phone=<?php echo $whatsapp_link_web ?>" target="_blank"><?php echo $whatsapp ?></a></p>
-                        <p><i class="fa fa-envelope-o"></i><?php echo $email_site ?></p>
-                        <p><i class="fa fa-map-marker"></i><?php echo $endereco ?></p>
+                        <p><i class="fa-solid fa-phone"></i> <?php echo $telefone ?></p>
+                        <p><i class="fa-brands fa-whatsapp"></i><a href="http://api.whatsapp.com/send?1=pt_BR&phone=<?php echo $whatsapp_link_web ?>" target="_blank"><?php echo $whatsapp ?></a></p>
+                        <p><i class="fa-solid fa-envelope-open-text"></i><?php echo $email_site ?></p>
+                        <p><i class="fa-solid fa-location-dot"></i><?php echo $endereco ?></p>
                       </address>
                     </div>
                     <div class="mu-contact-widget">
-                      <h3>Funcionamento</h3>
+                      <h3>Funcionamento <i class="fa-solid fa-door-open"></i></h3>
                       <address>
                         <p><span>Segunda - Sexta</span> 11:30 - 00:00</p>
                         <p><span>Sábado</span> 11:30 - 01:00</p>

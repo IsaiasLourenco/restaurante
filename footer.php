@@ -8,33 +8,33 @@
                       <div class="mu-footer-social">
                           <?php
                             if ($facebook != "") {
-                                echo '<a href="' . $facebook . '" target="_blank"><span class="fa fa-facebook"></span></a>';
+                                echo '<a href="' . $facebook . '" target="_blank"><i class="fa-brands fa-facebook"></i></a>';
                             }
 
                             if ($twitter != "") {
-                                echo '<a href="' . $twitter . '" target="_blank"><span class="fa fa-twitter"></span></a>';
+                                echo '<a href="' . $twitter . '" target="_blank"><i class="fa-brands fa-twitter"></i></a>';
                             }
 
                             if ($twitter != "") {
-                                echo '<a href="' . $google_plus . '" target="_blank"><span class="fa fa-google-plus"></span></a>';
+                                echo '<a href="' . $google_plus . '" target="_blank"><i class="fa-brands fa-square-google-plus"></i></a>';
                             }
 
                             if ($linkedin != "") {
-                                echo '<a href="' . $linkedin . '" target="_blank"><span class="fa fa-linkedin"></span></a>';
+                                echo '<a href="' . $linkedin . '" target="_blank"><i class="fa-brands fa-linkedin"></i></a>';
                             }
 
                             if ($youtube != "") {
-                                echo '<a href="' . $youtube . '" target="_blank"><span class="fa fa-youtube"></span></a>';
+                                echo '<a href="' . $youtube . '" target="_blank"><i class="fa-brands fa-youtube"></i></a>';
                             }
 
                             if ($instagram != "") {
-                                echo '<a href="' . $instagram . '" target="_blank"><span class="fa fa-instagram"></span></a>';
+                                echo '<a href="' . $instagram . '" target="_blank"><i class="fa-brands fa-instagram"></i></a>';
                             }
                             ?>
 
                       </div>
                       <div class="mu-footer-copyright">
-                          <p><abbr title="Legal Copyright Owner →"><span class="fa fa-code"></span></abbr> <a rel="nofollow" href="<?php echo $site_desenvolvedor ?>" target="_blank">®Vetor256.®</a></p>
+                          <p><abbr title="Desenvolvido por →"><i class="fa-solid fa-code"></i></abbr> <a rel="nofollow" href="<?php echo $site_desenvolvedor ?>" target="_blank">®Vetor256.®</a></p>
                       </div>
                   </div>
               </div>

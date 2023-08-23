@@ -8,7 +8,7 @@ $categoria = $_POST['categoria'];
 $nome_img = date('d-m-Y H:i:s') . '-' . @$_FILES['imagem']['name'];
 $nome_img = preg_replace('/[ :]+/', '-', $nome_img);
 
-$caminho = '../../../assets/imagens/imagens/' . $nome_img;
+$caminho = '../../../assets/imagens/gallery/' . $nome_img;
 if (@$_FILES['imagem']['name'] == "") {
 	$imagem = "sem-foto.jpg";
 } else {
