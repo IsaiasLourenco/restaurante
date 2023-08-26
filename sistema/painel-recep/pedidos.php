@@ -1,8 +1,8 @@
 <?php
 if (@$pag_painel != "") {
-    $pagina = $pag_painel . '/pedidos';
+	$pagina = $pag_painel . '/pedidos';
 } else {
-    $pagina = 'pedidos';
+	$pagina = 'pedidos';
 }
 require_once("../../conexao.php");
 $agora = date('Y-m-d');
@@ -14,98 +14,114 @@ $query = $pdo->query("SELECT * FROM cargos WHERE id = '$id_cargo'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $nome_cargo = $res[0]['nome'];
 
-if($nome_cargo != 'Garçom' AND $nome_cargo != 'Administrador' AND $nome_cargo != 'Recepcionista'){
-    echo "<script language='javascript'>window.location='../'</script>";
-    exit();
+if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo != 'Recepcionista') {
+	echo "<script language='javascript'>window.location='../'</script>";
+	exit();
 }
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- Custom fonts for this template-->
-<link href="../../assets/css/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="../../assets/fonts/fontawesome-webfont.woff2" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="../../assets/css/h2.css">
-<link rel="stylesheet" href="../../assets/css/pdv.css">
-<link rel="stylesheet" href="../../assets/css/botoes.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom fonts for this template-->
+	<link href="../../assets/css/font-awesome.css" rel="stylesheet" type="text/css">
+	<link href="../../assets/fonts/fontawesome-webfont.woff2" rel="stylesheet" type="text/css">
 
-<h2>MESAS</h2>
+	<link rel="stylesheet" href="../../assets/css/pdv.css">
+	<link rel="stylesheet" href="../../assets/css/botoes.css">
+	<link rel="stylesheet" href="../../assets/css/meucss.css">
+</head>
 
-<div class="row mr-2">
+<body>
+	<h2 style="color: black;">MESAS</h2>
+	<div class="row mr-2">
 
-	<?php
-	$query = $pdo->query("SELECT * FROM mesas order by id asc");
-	$res = $query->fetchAll(PDO::FETCH_ASSOC);
-	for ($i = 0; $i < @count($res); $i++) {
-		foreach ($res[$i] as $key => $value) {
-		}
-		$id_mesa = $res[$i]['id'];
-		$nome_mesa = $res[$i]['nome'];
+		<?php
+		$query = $pdo->query("SELECT * FROM mesas order by id asc");
+		$res = $query->fetchAll(PDO::FETCH_ASSOC);
+		for ($i = 0; $i < @count($res); $i++) {
+			foreach ($res[$i] as $key => $value) {
+			}
+			$id_mesa = $res[$i]['id'];
+			$nome_mesa = $res[$i]['nome'];
 
-		$query2 = $pdo->query("SELECT * FROM reservas where mesa = '$nome_mesa' and data_reser = curDate()");
-		$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+			
 
-		$query4 = $pdo->query("SELECT * FROM pedidos where mesa = '$nome_mesa' and data_pedido = curDate() and valor = '0.00' and status_pedido = 'Aberta'");
-		$res4 = $query4->fetchAll(PDO::FETCH_ASSOC);
+			$query4 = $pdo->query("SELECT * FROM pedidos where mesa = '$nome_mesa' and data_pedido = curDate() and valor = '0.00' and status_pedido = 'Aberta'");
+			$res4 = $query4->fetchAll(PDO::FETCH_ASSOC);
 
-		$classe = 'text-success';
-		$texto = 'DISPONÍVEL';
-		$texto_if =  'DISPONÍVEL';
-		$nome_cliente = '';
+			$classe = 'text-success';
+			$texto = 'DISPONÍVEL';
+			$texto_if =  'DISPONÍVEL';
+			$nome_cliente = '';
 
 
-		if (@count($res4) > 0) {
-			$classe = 'text-primary';
-			$texto =  'ABERTA';
-			$texto_if =  'ABERTA';
-			$id_pedido = $res4[0]['id'];
-			$obs = $res4[0]['obs'];
+			if (@count($res4) > 0) {
+				$classe = 'text-primary';
+				$texto =  'ABERTA';
+				$texto_if =  'ABERTA';
+				$id_pedido = $res4[0]['id'];
+				$obs = $res4[0]['obs'];
 
-			$query5 = $pdo->query("SELECT * FROM itens_pedido where pedido = '$id_pedido'");
-			$res5 = $query5->fetchAll(PDO::FETCH_ASSOC);
-			$texto =  'ABERTA (' . @count($res5) . ')';
-		}
+				$query5 = $pdo->query("SELECT * FROM itens_pedido where pedido = '$id_pedido'");
+				$res5 = $query5->fetchAll(PDO::FETCH_ASSOC);
+				$texto =  'ABERTA (' . @count($res5) . ')';
+			}
 
-		if (@count($res2) > 0) {
-			$classe = 'text-danger';
-			$texto_if =  'RESERVADA';
-			$texto = 'RESERVADA';
-			$id_cliente = $res2[0]['cliente'];
+			$query2 = $pdo->query("SELECT * FROM reservas WHERE mesa = '$nome_mesa' AND data_reser = curDate() AND checkin = 'Não'");
+			$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
-			$query3 = $pdo->query("SELECT * FROM clientes where id = '$id_cliente'");
-			$res3 = $query3->fetchAll(PDO::FETCH_ASSOC);
-			$nome_cliente = ' - ' . $res3[0]['nome'];
-		}
+			if (@count($res2) > 0) {
+				$classe = 'text-danger';
+				$texto_if =  'RESERVADA';
+				$texto = 'RESERVADA';
+				$id_cliente = $res2[0]['cliente'];
 
-	?>
+				$query3 = $pdo->query("SELECT * FROM funcionarios where id = '$id_cliente'");
+				$res3 = $query3->fetchAll(PDO::FETCH_ASSOC);
+				$nome_cliente = ' - ' . $res3[0]['nome'];
+			}
 
-		<div class='col-lg-3 col-md-4 col-sm-12 mb-4'>
-			<?php if ($texto_if == 'ABERTA') { ?>
-				<a href="#" onclick="modalPDV(<?php echo $nome_mesa ?>, <?php echo $id_pedido ?>, '<?php echo $obs ?>')" style="text-decoration: none">
-				<?php } else { ?>
-					<a href="#" onclick="modalReservas(<?php echo $nome_mesa ?>)" style="text-decoration: none">
+		?>
 
-					<?php } ?>
-					<div class='card shadow h-100'>
-						<div class='card-body'>
-							<div class='row no-gutters align-items-center'>
-								<div class='col mr-2'>
-									<div class='<?php echo $classe ?> text-uppercase'>Mesa <?php echo $nome_mesa ?></div>
-									<div style="font-size: 12px;" class='text-secondary'><?php echo $texto ?> <?php echo $nome_cliente ?></div>
-								</div>
-								<div class='col-auto' align='center'>
-									<i class='fas fa-utensils <?php echo $classe ?>' style="font-size: 32px;"></i><br>
+			<div class='col-lg-3 col-md-4 col-sm-12 mb-4'>
+				<?php if ($texto_if == 'ABERTA') { ?>
+					<a href="#" onclick="modalPDV(<?php echo $nome_mesa ?>, <?php echo $id_pedido ?>, '<?php echo $obs ?>')" style="text-decoration: none">
+					<?php } else { ?>
+						<a href="#" onclick="modalReservas(<?php echo $nome_mesa ?>)" style="text-decoration: none">
 
+						<?php } ?>
+						<div class='card shadow h-100'>
+							<div class='card-body'>
+								<div class='row no-gutters align-items-center'>
+									<div class='col mr-2'>
+										<div class='<?php echo $classe ?> text-uppercase'>Mesa <?php echo $nome_mesa ?></div>
+										<div style="font-size: 12px;" class='text-secondary'><?php echo $texto ?> <?php echo $nome_cliente ?></div>
+									</div>
+									<div class='col-auto' align='center'>
+										<i class='fas fa-utensils <?php echo $classe ?>' style="font-size: 32px;"></i><br>
+
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					</a>
-		</div>
+						</a>
+			</div>
 
-	<?php } ?>
+		<?php } ?>
 
-</div>
+	</div>
+</body>
+
+</html>
+
+
+
+
 
 <!-- Modal Reservas-->
 <div class="modal fade" id="modalReservas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

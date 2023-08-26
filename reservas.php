@@ -12,10 +12,10 @@ $data = implode('/', array_reverse(explode('-', $dataReserva)));
 
 $destinatario = $email_adm;
 
-$assunto = $nome_site . 'Nova Reserva';
+$assunto = $nome_site . ' Nova Reserva ';
 
 
-$mensagem = 'Nome: ' . $nome . 'Telefone: ' . $telefone . 'Email: ' . $email . 'Data Reserva: ' . $dataReserva . 'Nº Pessoas: ' . $pessoas . 'Mensagem: ' . $mensagem;
+$mensagem = ' Nome: ' . $nome . ' Telefone: ' . $telefone . ' Email: ' . $email . ' Data Reserva: ' . $dataReserva . ' Nº Pessoas: ' . $pessoas . ' Mensagem: ' . $mensagem_reserva;
 
 $cabecalhos = "From: " . $email;
 
@@ -33,22 +33,42 @@ $query->bindValue(":data_reserva", "$dataReserva");
 $query->bindValue(":mensagem", "$mensagem_reserva");
 $query->execute();
 
-$query2 = $pdo->query("SELECT * FROM clientes WHERE email = '$email'");
-$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-if (@count($res2) == 0){ 
-    //SALVAR NA TABELA DE CLIENTES QUEM FEZ A RESERVA
-    $query = $pdo->prepare("INSERT INTO clientes SET nome = :nome, email = :email, telefone = :telefone, senha = '0808'");
 
-    $query->bindValue(":nome", "$nome");
-    $query->bindValue(":email", "$email");
-    $query->bindValue(":telefone", "$telefone");
-    $query->execute();
+//BUSCAR O REGISTRO JÁ CADASTRADO NO BANCO
+$query = $pdo->query("SELECT * FROM funcionarios");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$email_banco = @$res[0]['email'];
+$id_func = @$res[0]['id'];
+
+if ($email != $email_banco) {
+    $query1 = $pdo->prepare("SELECT * FROM funcionarios WHERE  email = :email");
+    $query1->bindValue(":email", "$email");
+    $query1->execute();
+    $res1 = $query1->fetchAll(PDO::FETCH_ASSOC);
+    
+    $total_reg = @count($res1);
+    if ($total_reg > 0) {
+        echo '<script laguage="javascript">window.alert ("E-mail já cadastrado")</script>';
+        echo '<meta http-equiv="refresh" content="0; url=index.php#mu-reservation">';
+        
+    } else {
+        //SALVAR NA TABELA DE CLIENTES QUEM FEZ A RESERVA
+        $query2 = $pdo->prepare("INSERT INTO funcionarios SET nome = :nome, cpf = '000.000.000-00', email = :email, telefone = :telefone, cep = '00000-000', rua = 'Nono', numero = '00', bairro = 'Jimcobiloba', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '13', datanasc = '', datacad = curDate(), imagem = 'sem-foto.jpg'");
+         $query2->bindValue(":nome", "$nome");
+         $query2->bindValue(":email", "$email");
+         $query2->bindValue(":telefone", "$telefone");
+         $query2->execute();
+         $id_funcionario = $pdo->lastInsertId();
+
+        
+         $query3 = $pdo->prepare("INSERT INTO clientes SET funcionario = '$id_funcionario', comentario = 'Alguma coisa que será editada depois.'");
+         $query3->execute();
+
+        
+
+        echo '<script>alert("Enviado com Sucesso.");</script>';
+        echo '<meta http-equiv="refresh" content="0; url=index.php#mu-reservation">';
+    }
+
+  
 }
-
-?>
-
-<script>
-    alert('Enviado com Sucesso.');
-</script>
-
-<meta http-equiv="refresh" content="0; url=index.php#mu-reservation">

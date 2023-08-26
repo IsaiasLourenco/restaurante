@@ -1,10 +1,10 @@
 <?php
 
 //VARIÁVEIS DO PROJETO
-$url_local = 'http://localhost/restaurante/';
-//$url_local = 'http://www.lorenzos.sitepessoal.com/';
+//$url_local = 'http://localhost/restaurante/';
+$url_local = 'http://www.lorenzos.sitepessoal.com/';
 $nome_site ="LORENZO'S";
-$email_adm ='adm@vetor256.com';
+$email_adm ='isaias.lourenco2020@outlook.com';
 $endereco ='Avenida 22 de Outubro, nº 1167, Jardim xxxx - Mogi Mirim - SP - CEP:13800-000';
 $telefone ='(19)3361-4400';
 $whatsapp ='(19)99674-5466';
@@ -24,7 +24,7 @@ $instagram ='https://instagram.com/isaiaslourenco3?igshid=MzNlNGNkZWQ4Mg==';
 //VARIÁVEIS PARA BANCO DE DADOS
 $servidor = 'localhost';
 $usuario = 'root';
-$senha = '';////
+$senha = '';
 $banco = 'restaurante';
 
 //VARIÁVEIS PARA BANCO DE DADOS HOSPEDADO

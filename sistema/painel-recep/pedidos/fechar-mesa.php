@@ -4,8 +4,6 @@ require_once("../../../conexao.php");
 $id_usuario = $_SESSION['id'];
 $id_pedido = $_POST['pedido'];
 
-if($comissao    )
-
 $query_con = $pdo->query("SELECT * FROM itens_pedido WHERE pedido = '$id_pedido' ORDER BY id ASC");
 $res = $query_con->fetchAll(PDO::FETCH_ASSOC);
 $total_venda=0;

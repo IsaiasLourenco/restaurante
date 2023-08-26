@@ -9,50 +9,68 @@ require_once("verificar.php");
 $agora = date('Y-m-d');
 ?>
 
-<link rel="stylesheet" href="../../assets/css/meucss.css">
+<!DOCTYPE html>
+<html lang="pt-br">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Cabeçalho -->
-<div class="row">
-    <div class="col-lg-4 col-md-5 col-sm-12">
-        <div class="row mx-2">
-            <h2>RESERVAS</h2>
-            <div class="col-mb-6 col-lg-6 col-sm-12">
-                <span>Data da Reserva
-                    <?php
-                    $query = $pdo->query("SELECT * FROM reservas_email WHERE reservado = 'Não'");
-                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                    if (@count($res) > 0) {
-                    ?>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalReservaEmail" title="Reservas Pendentes">
-                            <i class="bi bi-info-circle-fill text-danger"></i></a></span>
-            <?php } ?>
-            </div>
-            <div class="col-mb-6 col-lg-6 col-sm-12">
-                <div class="mb-3">
-                    <form id="form-data">
-                        <input onchange="mudarData(this.value)" type="date" class="form-control" id="data" name="data" placeholder="Data" value="<?php echo @$agora ?>">
-                    </form>
+    <link rel="stylesheet" href="../../assets/css/style_recep.css">
+    <link rel="stylesheet" href="../../assets/css/meucss.css">
+    <link rel="stylesheet" href="../../assets/DataTables/datatables.min.js">
+    <link rel="stylesheet" href="../../assets/DataTables/datatables.min.css">
+    
+</head>
 
+<body>
+    <!-- Cabeçalho -->
+    <div class="row">
+        <div class="col-lg-4 col-md-5 col-sm-12">
+            <div class="row mx-2">
+                <h2>MESAS</h2>
+                <div class="col-mb-4 col-lg-4 col-sm-12">
+                    <span>Data
+                        <?php
+                        $query = $pdo->query("SELECT * FROM reservas_email WHERE reservado = 'Não'");
+                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                        if (@count($res) > 0) {
+                        ?>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalReservaEmail" title="Reservas Pendentes">
+                                <i class="bi bi-info-circle-fill text-danger"></i></a></span>
+                <?php } ?>
+                </div>
+                <div class="col-mb-8 col-lg-8 col-sm-12">
+                    <div class="mb-3">
+                        <form id="form-data">
+                            <input onchange="mudarData(this.value)" type="date" class="form-control" id="data" name="data" placeholder="Data" value="<?php echo @$agora ?>">
+                        </form>
+
+                    </div>
                 </div>
             </div>
+            <!-- Fim do Cabeçalho -->
+
+            <!-- Chamada das mesas por função -->
+            <div id="listar">
+
+            </div>
+            <!-- Fim do Chamada das mesas por função -->
+
         </div>
-        <!-- Fim do Cabeçalho -->
 
-        <!-- Chamada das mesas por função -->
-        <div id="listar">
+        <div class="col-lg-8 col-md-7 col-sm-12">
+            <div id='listar-reservas'>
 
+            </div>
         </div>
-        <!-- Fim do Chamada das mesas por função -->
-
     </div>
 
-    <div class="col-lg-8 col-md-7 col-sm-12">
-        <div id='listar-reservas'>
+    
 
-        </div>
-    </div>
-</div>
+</body>
+
+</html>
 
 <!-- Modal Reservas-->
 <div class="modal fade" id="modalReservas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,7 +80,9 @@ $agora = date('Y-m-d');
                 <h5 class="modal-title" id="exampleModalLabel">Nova Reserva - Mesa <span id="nome_mesa"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <form method="post" id="form-reservas">
+
                 <div class="modal-body">
 
                     <small>
@@ -77,25 +97,28 @@ $agora = date('Y-m-d');
                             </thead>
 
                             <tbody>
+
                                 <?php
-                                $query = $pdo->query("SELECT * FROM clientes ORDER BY id ASC");
-                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                                for ($i = 0; $i < @count($res); $i++) {
-                                    foreach ($res[$i] as $key => $value) {
-                                    }
-                                    $id_cli = $res[$i]['id'];
-                                    $nome_cli = $res[$i]['nome'];
-                                ?>
+                                        $query = $pdo->query("SELECT * FROM clientes");
+                                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                        for ($i = 0; $i < @count($res); $i++) {
+                                            foreach ($res[$i] as $key => $value) {
+                                            }
+                                            $id_cli = $res[$i]['funcionario'];
+
+                                            $queryF = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_cli'");
+                                            $resF = $queryF->fetchAll(PDO::FETCH_ASSOC);
+                                        ?>
+                                        
                                     <tr>
-                                        <td><?php echo $nome_cli ?></td>
-                                        <td><?php echo $res[$i]['email'] ?></td>
-                                        <td><?php echo $res[$i]['telefone'] ?></td>
+                                        <td><?php echo $resF[0]['nome'] ?></td>
+                                        <td><?php echo $resF[0]['email'] ?></td>
+                                        <td><?php echo $resF[0]['telefone'] ?></td>
                                         <td style="text-align:center">
-                                            <a href="" onclick="pegarCliente('<?php echo $id_cli ?>', '<?php echo $nome_cli ?>')" title="Add Cliente"><i class="bi bi-person-plus-fill mr-1 text-primary"></i>
+                                            <a href="" onclick="pegarCliente('<?php echo $id_cli ?>', '<?php echo $resF[0]['nome'] ?>')" title="Add Cliente"><i class="bi bi-person-plus-fill mr-1 text-primary"></i>
                                             </a>
                                         </td>
                                     </tr>
-
 
                                 <?php } ?>
 
@@ -229,7 +252,7 @@ $agora = date('Y-m-d');
 
                                         </td>
                                     </tr>
-                                    
+
                                 <?php } ?>
 
                             </tbody>
@@ -485,7 +508,7 @@ $agora = date('Y-m-d');
                 $('#mensagem-tab-reserva').text('');
                 if (mensagem.trim() == "Salvo com Sucesso!") {
 
-                    window.location="index.php?pag="+pag;
+                    window.location = "index.php?pag=" + pag;
 
                 } else {
                     $('#mensagem-tab-reserva').addClass('text-danger')

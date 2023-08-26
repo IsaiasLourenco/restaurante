@@ -24,7 +24,7 @@
 #LATEST NEWS SECTION
 #CONTACT SECTION
 #MAP SECTION
-#BLOG PAGE
+#C
 #ERROR  PAGE
 #FOOTER SECTION
 #RESPONSIVE DESIGN
@@ -1398,7 +1398,7 @@ RESERVATION SECTION
 ====================*/
 #mu-blog-banner {
   background-attachment: fixed;
-  background-image: url("assets/imagens/blog-banner1.jpg");
+  background-image: url("../assets/imagens/blog-banner1.jpg");
   background-position: center center;
   background-size: cover;
   display: inline;
@@ -1430,7 +1430,7 @@ RESERVATION SECTION
   color: #fff;
 }
 #mu-blog-banner .mu-blog-banner-area .breadcrumb {
-  background-color: transparent;
+  background-color: #fff;
   border-radius: 0;
   margin-bottom: 0px;
 }

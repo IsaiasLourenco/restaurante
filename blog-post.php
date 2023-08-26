@@ -62,27 +62,25 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
   <meta name="description" content="<?php echo $res[0]['tag'] ?>">
   <title><?php echo $nome_site ?> | Blog</title>
 
+  <meta name="description" content="Site administrável com sistema de gerenciamento de estoque para Restaurantes, lanchonetes e afins, feito pela Vetor256.">
+  <meta name="author" content="Vetor256.">
+
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/imagens/ico.ico" type="image/x-icon">
 
-
-
-  <!-- Font awesome -->
-  <link href="assets/css/font-awesome.css" rel="stylesheet">
   <!-- Bootstrap -->
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <!-- Slick slider -->
-  <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
-  <!-- Date Picker -->
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.css">
+  <link href="assets/css/slick.css" rel="stylesheet" type="text/css">
+
   <!-- Fancybox slider -->
   <link rel="stylesheet" href="assets/css/jquery.fancybox.css" type="text/css" media="screen" />
   <!-- Theme color -->
   <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">
 
-  <!-- Main style sheet -->
-  <link href="style.css" rel="stylesheet">
 
+
+  <link rel="stylesheet" href="assets/css/meucss.css">
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
@@ -90,6 +88,10 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
   <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
 
 
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.css">
+  <!-- Main style sheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -108,7 +110,8 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
 
   <!-- Start header section -->
   <header id="mu-header">
-    <nav class="navbar navbar-default mu-main-navbar" role="navigation">
+
+    <nav class="mu-main-navbar" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
@@ -124,7 +127,7 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
             <li><a href="index.php">HOME</a></li>
-            <li class="active"><a href="blog-post.php">BLOG</a></li>
+            <li class="active">BLOG</li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -133,7 +136,7 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
   <!-- End header section -->
 
   <!-- Start Blog banner  -->
-  <section id="mu-blog-banner">
+  <section style="background-attachment: fixed; background-image:url(assets/imagens/blog-banner1.jpg);background-position: center center;background-size: cover;display: inline;float: left;width: 100%;position: relative;" id="mu-blog-banner">
     <div class="container">
       <div class="mu-blog-banner-area">
         <h2>BLOG</h2>

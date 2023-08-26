@@ -9,7 +9,7 @@ if(@$_POST['id_res_email'] != ""){
     $data_reser = $_POST['data'];
     $obs = $_POST['mensagem'];
 
-    $query = $pdo->query("SELECT * FROM clientes WHERE email = '$email'");    
+    $query = $pdo->query("SELECT * FROM funcionarios WHERE email = '$email'");    
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
     $id_cli = $res[0]['id'];
     $mesa = "";
@@ -55,7 +55,7 @@ if($mesa==""){
 
 $id_usuario = $_SESSION['id'];
 
-$query = $pdo->prepare("INSERT INTO reservas SET cliente = :id_cli, mesa = :id_mesa, pessoas = :pessoas, obs = :obs, funcionario = :funcionario, data_reser = :data_reser");
+$query = $pdo->prepare("INSERT INTO reservas SET cliente = :id_cli, mesa = :id_mesa, pessoas = :pessoas, obs = :obs, funcionario = :funcionario, data_reser = :data_reser, checkin = 'Não'");
 
 
 $query->bindValue(":id_cli", "$id_cli");
@@ -67,10 +67,13 @@ $query->bindValue(":data_reser", "$data_reser");
 $query->execute();
 
 
-$query = $pdo->query("SELECT * FROM clientes WHERE id = '$id_cli '");
+$query = $pdo->query("SELECT * FROM clientes WHERE funcionario = '$id_cli' ");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
-$email_cliente = $res[0]['email'];
-$nome_cliente = $res[0]['nome'];
+$id_cli_func = $res[0]['id'];
+
+$queryF = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_cli_func' ");
+$resF = $queryF->fetchAll(PDO::FETCH_ASSOC);
+$nome_cliente = $resF[0]['nome'];
 
 $data_reser = implode('/', array_reverse(explode('-', $data_reser)));
 

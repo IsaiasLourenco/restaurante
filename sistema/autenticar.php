@@ -41,16 +41,16 @@ if ($total_reg > 0) {
     } else if ($nome_cargo == 'Tela') {
 
         echo "<script language='javascript'> window.location='painel-tela' </script>";
-    } else if ($nome_cargo != "Administrador" || $nome_cargo != "Recepcionista" || $nome_cargo != "Cliente" || $nome_cargo != "Garçom" || $nome_cargo != "Tela" and $senha != '0808') {
-
-        echo "<script language='javascript'> window.alert ('Você não tem permissão de acesso!')</script>";
-
-        echo "<script language='javascript'> window.location='index.php' </script>";
     } else {
 
         echo "<script language='javascript'> window.alert ('Dados incorretos!')</script>";
+
         echo "<script language='javascript'> window.location='index.php' </script>";
+        exit();
     }
-    echo "<script language='javascript'> window.alert ('Dados incorretos!')</script>";
+    exit();
+} else {
+    echo "<script language='javascript'> window.alert ('Você não tem permissão de acesso!')</script>";
     echo "<script language='javascript'> window.location='index.php' </script>";
+    echo "<script language='javascript'>nome.focus()</script>";
 };

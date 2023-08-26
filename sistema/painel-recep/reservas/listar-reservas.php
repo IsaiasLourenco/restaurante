@@ -1,13 +1,13 @@
 <?php
 require_once("../../../conexao.php");
 
-echo "<h2>MESAS RESERVADAS</h2>";
+echo "<h2>RESERVAS</h2>";
 
-$data = $_POST['data'];
+$data_reser_reservas = $_POST['data'];
 
 echo "<div class='row mx-1'>";
 
-$query = $pdo->query("SELECT * FROM reservas where data_reser = '$data' order by mesa asc");
+$query = $pdo->query("SELECT * FROM reservas WHERE data_reser = '$data_reser_reservas' AND checkin = 'Não' order by mesa asc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 for($i=0; $i < @count($res); $i++){
 	foreach ($res[$i] as $key => $value){	}
@@ -17,8 +17,12 @@ for($i=0; $i < @count($res); $i++){
 
 		$query2 = $pdo->query("SELECT * FROM clientes where id = '$id_cliente'");
 		$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-		$nome_cli = $res2[0]['nome'];
-		$telefone_cli = $res2[0]['telefone'];
+
+		$queryFu = $pdo->query("SELECT * FROM funcionarios where id = '$id_cliente'");
+		$resFu = $queryFu->fetchAll(PDO::FETCH_ASSOC);
+
+		$nome_cli = $resFu[0]['nome'];
+		$telefone_cli = $resFu[0]['telefone'];
 
 		echo "<div class='col-lg-4 col-md-6 col-md-12 mb-3'>";
 			echo "<div class='card shadow h-100'>";

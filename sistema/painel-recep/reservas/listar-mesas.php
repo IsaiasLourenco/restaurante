@@ -1,22 +1,22 @@
 <?php
 require_once("../../../conexao.php");
 
-$data_reser = $_POST['data'];
+$data_reser_mesas = $_POST['data'];
 
 echo "<div class='col-md-12 mt-2'>";
 
-$query = $pdo->query("SELECT * FROM mesas ORDER BY id ASC");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-for ($i = 0; $i < @count($res); $i++) {
-    foreach ($res[$i] as $key => $value) {
+$queryMesa = $pdo->query("SELECT * FROM mesas ORDER BY id ASC");
+$resMesa = $queryMesa->fetchAll(PDO::FETCH_ASSOC);
+for ($i = 0; $i < @count($resMesa); $i++) {
+    foreach ($resMesa[$i] as $key => $value) {
     }
-    $id_mesa = $res[$i]['id'];
-    $nome_mesa = $res[$i]['nome'];
-    $descricao_mesa = $res[$i]['descricao'];
+    $id_mesa = $resMesa[$i]['id'];
+    $nome_mesa = $resMesa[$i]['nome'];
+    $descricao_mesa = $resMesa[$i]['descricao'];
 
     echo "<div class='mx-2 mb-4' style='float:left'>";
 
-    $query2 = $pdo->query("SELECT * FROM reservas WHERE mesa = '$id_mesa' AND data_reser = '$data_reser'");
+    $query2 = $pdo->query("SELECT * FROM reservas WHERE mesa = '$id_mesa' AND data_reser = '$data_reser_mesas' AND checkin = 'Não'");
     $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
     if (@count($res2) > 0) {

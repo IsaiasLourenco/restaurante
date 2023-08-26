@@ -100,11 +100,16 @@ $query->bindValue(":datanasc", "$datanasc");
 $query->execute();
 $id_funcionario = $pdo->lastInsertId();
 
-if($cargo == '3'){
+//BUSCAR O NOME DO CARGO
+$query = $pdo->query("SELECT * FROM cargos WHERE  id = '$cargo'");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$nome_cargo = @$res[0]['nome'];
+
+if($nome_cargo == 'Chef'){
 	$query = $pdo->prepare("INSERT INTO chef SET funcionario = $id_funcionario");
 }
 
-if($cargo == '13'){
+if($nome_cargo == 'Cliente'){
 	$query = $pdo->prepare("INSERT INTO clientes SET funcionario = $id_funcionario");
 }
 

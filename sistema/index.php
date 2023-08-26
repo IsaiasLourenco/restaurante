@@ -1,24 +1,40 @@
 <?php require_once("../conexao.php");
 
-$query = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '1' ");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-$total_reg = @count($res);
+$queryTela = $pdo->query("SELECT * FROM cargos WHERE nome = 'Tela' ");
+$resTela = $queryTela->fetchAll(PDO::FETCH_ASSOC);
+$id_cargoTela = @$resTela[0]['id'];
 
-$querytela = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '7' ");
-$restela = $querytela->fetchAll(PDO::FETCH_ASSOC);
-$total_reg_tela = @count($restela);
+echo $id_cargoTela;
+
+$queryFuncTela = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '$id_cargoTela' ");
+$resFuncTela = $queryFuncTela->fetchAll(PDO::FETCH_ASSOC);
+$total_reg_tela = @count($resFuncTela);
 
 if ($total_reg_tela == 0) {
+    //INSERIR OS CARGOS NECESSÁRIOS PARA A VALIDAÇÃO NA TABELA CARGOS
+    $pdo->query("INSERT INTO cargos SET nome = 'Tela'");
+    $id_cargoNovaTela = $pdo->lastInsertId();
+
     //INSERIR UM USUARIO/FUNCIONARIO MODO TELA NA TABELA CASO NÃO EXISTA NENHUM
-    $pdo->query("INSERT INTO funcionarios SET nome = 'Tela', cpf = '11212121211', email = 'tela@tela.com', telefone = '19990000000', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '7', datacad = curDate(), datanasc = '1977-08-08', imagem = 'sem-foto.jpg'");
+    $pdo->query("INSERT INTO funcionarios SET nome = 'Tela', cpf = '11212121211', email = 'tela@tela.com', telefone = '19990000000', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '$id_cargoNovaTela', datacad = curDate(), datanasc = '1977-08-08', imagem = 'sem-foto.jpg'");
 }
 
-if ($total_reg == 0) {
+$queryAdm = $pdo->query("SELECT * FROM cargos WHERE nome = 'Administrador' ");
+$resAdm = $queryAdm->fetchAll(PDO::FETCH_ASSOC);
+$id_cargoAdm = @$resAdm[0]['id'];
+
+$queryFuncAdm = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '$id_cargoAdm' ");
+$resAdm = $queryFuncAdm->fetchAll(PDO::FETCH_ASSOC);
+$total_reg_adm = @count($resAdm);
+
+if ($total_reg_adm == 0) {
+    //INSERIR OS CARGOS NECESSÁRIOS PARA A VALIDAÇÃO NA TABELA CARGOS
+    $pdo->query("INSERT INTO cargos SET nome = 'Administrador'");
+    $id_cargoNovoAdm = $pdo->lastInsertId();
+
     //INSERIR UM USUARIO/FUNCIONARIO NA TABELA CASO NÃO EXISTA NENHUM
-    $pdo->query("INSERT INTO funcionarios SET nome = 'Isaias', cpf = '24707435831', email = 'isaias.lourenco@outlook.com', telefone = '19996745466', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '1', datacad = curDate(), datanasc = '1977-08-08', imagem = 'sem-foto.jpg'");
+    $pdo->query("INSERT INTO funcionarios SET nome = 'Isaias', cpf = '24707435831', email = 'isaias.lourenco@outlook.com', telefone = '19996745466', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '$id_cargoNovoAdm', datacad = curDate(), datanasc = '1977-08-08', imagem = 'sem-foto.jpg'");
 }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -30,11 +46,13 @@ if ($total_reg == 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LOGIN - <?php echo $nome_site ?></title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../assets/imagens/ico.ico" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="../assets/imagens/ico.ico" type="image/x-icon"> -->
+    <link rel="shortcut icon" href="../assets/imagens/ico.ico">
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-    <link href="vendor/css/login.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/login.css">
     <!-- Theme color -->
     <link id="switcher" href="../assets/css/theme-color/default-theme.css" rel="stylesheet">
 

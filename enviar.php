@@ -9,7 +9,8 @@ $destinatario = $email_adm;
 $assunto = '$email_contato - ' .$nome_site;
 $mensagem = 'Nome: '.$nome. "\r\n"."\r\n" . 'Email: '.$email. "\r\n"."\r\n" .'Mensagem: '.$mensagem;
 $cabecalhos = "From: ".$email;
-mail($destinatario, $assunto, $mensagem, $cabecalhos);
+
+@mail($destinatario, $assunto, $mensagem, $cabecalhos);
 
  ?>
 

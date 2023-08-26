@@ -1,6 +1,7 @@
 <?php
 
 require_once("../../conexao.php");
+
 $agora = date('d/m/Y H:i');
 
 $id = $_GET['id'];
@@ -26,72 +27,23 @@ $nome_garcom = $dados[0]['nome'];
 
 ?>
 
-<style type="text/css">
-    * {
-        margin: 0px;
-        padding: 5px;
-        background-color: #f7fccc;
-
-    }
-
-    .text {
-
-        text-align: center;
-    }
-
-    .ttu {
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 1.2em;
-    }
-
-    .printer-ticket {
-        display: table !important;
-        width: 100%;
-        max-width: 400px;
-        font-weight: light;
-        line-height: 1.3em;
-        padding: 5px;
-        font-family: Tahoma, Geneva, sans-serif;
-        font-size: 12px;
-    }
-
-    th {
-        font-weight: inherit;
-        padding: 5px;
-        text-align: center;
-        border-bottom: 1px dashed #BCBCBC;
-    }
-
-    .cor {
-        color: #BCBCBC;
-    }
-
-
-    .title {
-        font-size: 1.5em;
-    }
-
-    .margem-superior {
-        padding-top: 25px;
-    }
-</style>
+<link rel="stylesheet" href="../../assets/css/rel_comp.css">
 
 
 
 <table class="printer-ticket">
 
     <tr>
-        <th class="title" colspan="3"><?php echo $nome_site ?></th>
-
-    </tr>
-
-    <tr>
+        <th class="title" colspan="3"><?php echo $nome_garcom ?></th>
         <th colspan="3">Fechamento Mesa <?php echo $mesa ?> - Garçom: <?php echo $nome_garcom ?></th>
     </tr>
 
     <tr>
-        <th colspan="3"><?php echo $agora ?> - Pago? <strong><?php echo $pago ?></strong></th>
+        <th colspan="3">Filhadaputa <?php echo $mesa ?> - Garçom: <?php echo $nome_garcom ?></th>
+    </tr>
+
+    <tr>
+        <th colspan="3"><?php echo $agora ?> - Pago- <strong><?php echo $pago ?></strong></th>
     </tr>
     <tr>
         <th colspan="3">
@@ -224,7 +176,7 @@ $nome_garcom = $dados[0]['nome'];
         </tr>
 
         <tr>
-            <td colspan="3" style="text-align:center">
+            <td colspan="3" style="text-align:center" target="_blank">
                 https://www.vetor256.com
             </td>
         </tr>

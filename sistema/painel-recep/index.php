@@ -15,7 +15,6 @@ $menu7 = 'movimentacoes';
 $menu8 = 'pedidos';
 $menu9 = 'consultar-pedido';
 
-
 //recuperar os dados do usuário
 $id_usuario = $_SESSION['id'];
 $query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_usuario'");
@@ -68,15 +67,13 @@ if ($total_reg > 0) {
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="../../sistema/vendor/DataTables/datatables.min.css" />
-  <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../assets/DataTables/datatables.min.css" />
+  <script type="text/javascript" src="../../assets/DataTables/datatables.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
   
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <script src="../../assets/js/buscaCep.js" type="module" defer></script>
 
   <link rel="stylesheet" href="../../assets/css/meucss.css">
   <link rel="stylesheet" href="../../assets/css/fontawesome.css">
@@ -225,6 +222,8 @@ if ($total_reg > 0) {
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="../../assets/js/buscaCep.js"></script>
 
 </body>
 

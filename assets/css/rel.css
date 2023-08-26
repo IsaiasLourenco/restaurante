@@ -1,0 +1,179 @@
+@page {
+    margin: 0px;
+}
+
+body {
+    margin-top: 15px;
+}
+
+.footer {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #ebebeb;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+.cabecalho {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto
+}
+
+.titulo {
+    margin: 0;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #6e6d6d;
+
+}
+
+.subtitulo {
+    margin: 0;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #6e6d6d;
+}
+
+.areaTotais {
+    border: 0.5px solid #bcbcbc;
+    padding: 15px;
+    border-radius: 5px;
+    margin-right: 25px;
+    margin-left: 25px;
+    position: absolute;
+    right: 20;
+}
+
+.areaTotal {
+    border: 0.5px solid #bcbcbc;
+    padding: 15px;
+    border-radius: 5px;
+    margin-right: 25px;
+    margin-left: 25px;
+    background-color: #f9f9f9;
+    margin-top: 2px;
+}
+
+.pgto {
+    margin: 1px;
+}
+
+.fonte13 {
+    font-size: 13px;
+}
+
+.esquerda {
+    display: inline;
+    width: 50%;
+    float: left;
+}
+
+.direita {
+    display: inline;
+    width: 50%;
+    float: right;
+}
+
+.table {
+    padding: 15px;
+    font-family: Verdana, sans-serif;
+    margin-top: 20px;
+}
+
+.texto-tabela {
+    font-size: 12px;
+}
+
+.esquerda_float {
+
+    margin-bottom: 10px;
+    float: left;
+    display: inline;
+}
+
+.titulos {
+    margin-top: 10px;
+}
+
+.image {
+    margin-top: -10px;
+}
+
+.margem-direita {
+    margin-right: 80px;
+}
+
+.margem-direita50 {
+    margin-right: 50px;
+}
+
+hr {
+    margin: 8px;
+    padding: 1px;
+}
+
+.titulorel {
+    margin: 0;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #6e6d6d;
+
+}
+
+.margem-superior {
+    margin-top: 30px;
+}
+
+.areaSubtituloCab {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.area-tab {
+
+    display: block;
+    width: 100%;
+    height: 30px;
+
+}
+
+.coluna {
+    margin: 0px;
+    float: left;
+    height: 30px;
+}
+
+hr .hr-table {
+
+    padding: 2px;
+    margin: 0px;
+}
+
+.titulo-cardapio {
+    width: 100%;
+    background-color: #bcbcbc;
+    color: #333333;
+    padding: 3px;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.subtitulo-cardapio {
+    width: 100%;
+    background-color: #f7f7f7;
+    padding: 3px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
