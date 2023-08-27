@@ -28,7 +28,7 @@ $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 
 if ($total_reg > 0) {
-  $nome = $res[0]['nome'];
+  $nome_usu = $res[0]['nome'];
   $email_usu = $res[0]['email'];
   $cpf_usu = $res[0]['cpf'];
   $telefone_usu = $res[0]['telefone'];
@@ -42,14 +42,9 @@ if ($total_reg > 0) {
   $datacad_usu = $res[0]['datacad'];
   $senha_usu = $res[0]['senha'];
   $nivel_usu = $res[0]['cargo'];
-}
-
-if ($total_reg > 0) {
-  $imagem_perfil = $res[0]['imagem'];
-
-  if ($imagem_perfil == "") {
-    $imagem_perfil = 'sem-foto.jpg';
-  }
+  $foto_perfil = $res[0]['imagem'];
+} else {
+  $foto_perfil = 'sem-foto.jpg';
 }
 
 
@@ -83,7 +78,7 @@ if ($total_reg > 0) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
   <script src="../../assets/js/buscaCep.js" type="module" defer></script>
-  
+
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/fontawesome.css">
 
@@ -111,7 +106,7 @@ if ($total_reg > 0) {
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i> 
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i>
               Pessoas
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -204,25 +199,27 @@ if ($total_reg > 0) {
 
         </ul>
 
+
+
         <div class="d-flex mr-4">
 
-          <img class="img-profile rounded-circle mt-4" src="../../assets/imagens/funcionarios/<?php echo $imagem_perfil ?>" width="38px" height="38px">
+          <img class="img-profile rounded-circle mt-4" src="../../assets/imagens/funcionarios/<?php echo $foto_perfil ?>" width="40px" height="40px">
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px;">
-              <?php echo $nome ?>
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <?php echo $nome_usu ?>
             </a>
-
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-
           </li>
-          <li><a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+
+          <li><a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
 
           </ul>
           </li>
 
         </div>
+
+
 
       </div>
 
@@ -352,8 +349,6 @@ if ($total_reg > 0) {
 
         if (mensagem.trim() == "Salvo com Sucesso!") {
 
-          //$('#nome').val('');
-          //$('#cpf').val('');
           $('#btn-fechar-perfil').click();
           location.reload();
 

@@ -4,8 +4,6 @@ $queryTela = $pdo->query("SELECT * FROM cargos WHERE nome = 'Tela' ");
 $resTela = $queryTela->fetchAll(PDO::FETCH_ASSOC);
 $id_cargoTela = @$resTela[0]['id'];
 
-echo $id_cargoTela;
-
 $queryFuncTela = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '$id_cargoTela' ");
 $resFuncTela = $queryFuncTela->fetchAll(PDO::FETCH_ASSOC);
 $total_reg_tela = @count($resFuncTela);
@@ -19,22 +17,22 @@ if ($total_reg_tela == 0) {
     $pdo->query("INSERT INTO funcionarios SET nome = 'Tela', cpf = '11212121211', email = 'tela@tela.com', telefone = '19990000000', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '$id_cargoNovaTela', datacad = curDate(), datanasc = '1977-08-08', imagem = 'sem-foto.jpg'");
 }
 
-$queryAdm = $pdo->query("SELECT * FROM cargos WHERE nome = 'Administrador' ");
-$resAdm = $queryAdm->fetchAll(PDO::FETCH_ASSOC);
-$id_cargoAdm = @$resAdm[0]['id'];
+    $queryAdm = $pdo->query("SELECT * FROM cargos WHERE nome = 'Administrador' ");
+    $resAdm = $queryAdm->fetchAll(PDO::FETCH_ASSOC);
+    $id_cargoAdm = @$resAdm[0]['id'];
 
-$queryFuncAdm = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '$id_cargoAdm' ");
-$resAdm = $queryFuncAdm->fetchAll(PDO::FETCH_ASSOC);
-$total_reg_adm = @count($resAdm);
+    $queryFuncAdm = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '$id_cargoAdm' ");
+    $resAdm = $queryFuncAdm->fetchAll(PDO::FETCH_ASSOC);
+    $total_reg_adm = @count($resAdm);
 
-if ($total_reg_adm == 0) {
-    //INSERIR OS CARGOS NECESSÁRIOS PARA A VALIDAÇÃO NA TABELA CARGOS
-    $pdo->query("INSERT INTO cargos SET nome = 'Administrador'");
-    $id_cargoNovoAdm = $pdo->lastInsertId();
+    if ($total_reg_adm == 0) {
+        //INSERIR OS CARGOS NECESSÁRIOS PARA A VALIDAÇÃO NA TABELA CARGOS
+        $pdo->query("INSERT INTO cargos SET nome = 'Administrador'");
+        $id_cargoNovoAdm = $pdo->lastInsertId();
 
-    //INSERIR UM USUARIO/FUNCIONARIO NA TABELA CASO NÃO EXISTA NENHUM
-    $pdo->query("INSERT INTO funcionarios SET nome = 'Isaias', cpf = '24707435831', email = 'isaias.lourenco@outlook.com', telefone = '19996745466', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '$id_cargoNovoAdm', datacad = curDate(), datanasc = '1977-08-08', imagem = 'sem-foto.jpg'");
-}
+        //INSERIR UM USUARIO/FUNCIONARIO NA TABELA CASO NÃO EXISTA NENHUM
+        $pdo->query("INSERT INTO funcionarios SET nome = 'Isaias', cpf = '24707435831', email = 'isaias.lourenco@outlook.com', telefone = '19996745466', cep = '13843184', rua = 'Mococa', numero = '880', bairro = 'Lot Parque Itacolomy', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '$id_cargoNovoAdm', datacad = curDate(), datanasc = '1977-08-08', imagem = 'sem-foto.jpg'");
+    }
 
 ?>
 <!DOCTYPE html>

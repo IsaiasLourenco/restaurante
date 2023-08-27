@@ -34,16 +34,15 @@ $nome_garcom = $dados[0]['nome'];
 <table class="printer-ticket">
 
     <tr>
-        <th class="title" colspan="3"><?php echo $nome_garcom ?></th>
+        <th class="title" colspan="3"><?php echo $nome_site ?></th>
+    </tr>
+
+    <tr>
         <th colspan="3">Fechamento Mesa <?php echo $mesa ?> - Garçom: <?php echo $nome_garcom ?></th>
     </tr>
 
     <tr>
-        <th colspan="3">Filhadaputa <?php echo $mesa ?> - Garçom: <?php echo $nome_garcom ?></th>
-    </tr>
-
-    <tr>
-        <th colspan="3"><?php echo $agora ?> - Pago- <strong><?php echo $pago ?></strong></th>
+        <th colspan="3"><?php echo $agora ?> - Pago? - <strong><?php echo $pago ?></strong></th>
     </tr>
     <tr>
         <th colspan="3">

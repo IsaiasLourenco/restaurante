@@ -27,7 +27,6 @@ require_once("verificar.php");
 					<th>Cargo</th>
 					<th>Data Cadastro</thstyle=>
 					<th>Ações</th>
-
 				</tr>
 			</thead>
 			<tbody>
@@ -78,7 +77,7 @@ require_once("verificar.php");
 	<!-- Fim do Cabeçalho e corpo da tabela Dataset -->
 
 	<!-- Modal Inserção e Edição -->
-	<div class="modal fade" id="cadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div onload="document.frmFunc.nome.focus();" class="modal fade" id="cadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -110,7 +109,7 @@ require_once("verificar.php");
 					<h5 class="modal-title" id="exampleModalLabel"><?php echo $titulo_modal ?></h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<form method="post" id="form">
+				<form method="post" id="form" name="frmFunc">
 					<div class="modal-body">
 
 						<div class="row">

@@ -110,7 +110,7 @@ if ($total_reg > 0) {
                 <hr class="dropdown-divider">
               </li>
 
-              <li><a class="dropdown-item <?php echo $classeMenu ?>" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+              <li><a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
 
             </ul>
           </li>

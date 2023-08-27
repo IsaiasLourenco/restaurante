@@ -24,33 +24,33 @@ if ($total_reg > 0) {
 
     //REDIRECIONAR CONFORME CARGO
     if ($nome_cargo == 'Administrador') {
-
         echo "<script language='javascript'> window.location='painel-adm' </script>";
+
     } else if ($nome_cargo == 'Chef') {
-
         echo "<script language='javascript'> window.location='painel-chef' </script>";
+
     } else if ($nome_cargo == 'Recepcionista') {
-
         echo "<script language='javascript'> window.location='painel-recep' </script>";
+
     } else if ($nome_cargo == 'Cliente') {
-
         echo "<script language='javascript'> window.location='painel-cliente' </script>";
+
     } else if ($nome_cargo == 'Garçom') {
-
         echo "<script language='javascript'> window.location='painel-garcon' </script>";
-    } else if ($nome_cargo == 'Tela') {
 
+    } else if ($nome_cargo == 'Tela') {
         echo "<script language='javascript'> window.location='painel-tela' </script>";
+
     } else {
 
         echo "<script language='javascript'> window.alert ('Dados incorretos!')</script>";
 
         echo "<script language='javascript'> window.location='index.php' </script>";
-        exit();
+        
     }
-    exit();
+    
 } else {
-    echo "<script language='javascript'> window.alert ('Você não tem permissão de acesso!')</script>";
+    echo "<script language='javascript'> window.alert ('Dados incorretos!')</script>";
     echo "<script language='javascript'> window.location='index.php' </script>";
     echo "<script language='javascript'>nome.focus()</script>";
 };

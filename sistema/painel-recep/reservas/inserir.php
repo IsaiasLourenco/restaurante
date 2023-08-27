@@ -67,22 +67,22 @@ $query->bindValue(":data_reser", "$data_reser");
 $query->execute();
 
 
-$query = $pdo->query("SELECT * FROM clientes WHERE funcionario = '$id_cli' ");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-$id_cli_func = $res[0]['id'];
+// $query = $pdo->query("SELECT * FROM clientes WHERE funcionario = '$id_cli' ");
+// $res = $query->fetchAll(PDO::FETCH_ASSOC);
+// $id_cli_func = $res[0]['id'];
 
-$queryF = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_cli_func' ");
-$resF = $queryF->fetchAll(PDO::FETCH_ASSOC);
-$nome_cliente = $resF[0]['nome'];
+// $queryF = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_cli_func' ");
+// $resF = $queryF->fetchAll(PDO::FETCH_ASSOC);
+// $nome_cliente = $resF[0]['nome'];
 
-$data_reser = implode('/', array_reverse(explode('-', $data_reser)));
+// $data_reser = implode('/', array_reverse(explode('-', $data_reser)));
 
 
-$destinatario = $email_cliente;
-$assunto = $nome_site . utf8_decode(' - Confirmação de Reserva');
-$mensagem = utf8_decode('Olá ' . $nome_cliente . ', sua reserva foi confirmada para a data ' . $data_reser . "\r\n" . "\r\n" . 'Observações: ' . $obs . '!');
+// $destinatario = $email_cliente;
+// $assunto = $nome_site . utf8_decode(' - Confirmação de Reserva');
+// $mensagem = utf8_decode('Olá ' . $nome_cliente . ', sua reserva foi confirmada para a data ' . $data_reser . "\r\n" . "\r\n" . 'Observações: ' . $obs . '!');
 
-$cabecalhos = "From: " . $email_adm;
-@mail($destinatario, $assunto, $mensagem, $cabecalhos);
+// $cabecalhos = "From: " . $email_adm;
+// @mail($destinatario, $assunto, $mensagem, $cabecalhos);
 
 echo 'Salvo com Sucesso!';
