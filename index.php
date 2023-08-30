@@ -103,8 +103,9 @@ if ($total_pizza > 0) {
   <link rel="stylesheet" href="assets/css/font-awesome.css">
 
   <link rel="stylesheet" href="assets/css/mystyle.css">
-  <link rel="stylesheet" href="assets/css/meucss.css">
+  
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/meucss.css">
 </head>
 
 <body>
@@ -561,7 +562,7 @@ if ($total_pizza > 0) {
                 <ul class="mu-testimonial-slider">
 
                   <?php
-                  $query = $pdo->query("SELECT * FROM clientes ORDER BY id ASC LIMIT 6");
+                  $query = $pdo->query("SELECT * FROM clientes ORDER BY id DESC LIMIT 6");
                   $res = $query->fetchAll(PDO::FETCH_ASSOC);
                   for ($i = 0; $i < @count($res); $i++) {
                     foreach ($res[$i] as $key => $value) {
@@ -605,7 +606,7 @@ if ($total_pizza > 0) {
             <form class="mu-subscription-form">
               <h4 style="color: white;">É nosso cliente? Cadastre-se para postar as fotos de sua visita e fazer seu comentário!</h4>
               <input type="text" style="background-color:black; width:300px" readonly>
-              <a href="sistema/cadastro.php" class="mu-readmore-btn botaoCadastro">CADASTRO</a>
+              <a href="" data-toggle="modal" data-target="#modalCadastro" class="mu-readmore-btn botaoCadastro">CADASTRO</a>
             </form>
           </div>
         </div>
@@ -846,6 +847,114 @@ if ($total_pizza > 0) {
 </body>
 
 </html>
+
+<!-- Modal Cadastro Cliente -->
+<div class="modal fade" id="modalCadastro" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Cadastre-se <?php echo $nome_site ?> </h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label for="nomeCad">Nome</label>
+            <input type="text" class="form-control" id="nomeCad" name="nomeCad" aria-describedby="emailHelp" required>
+
+          </div>
+
+          <div class="form-group">
+            <label for="emailCad">Email </label>
+            <input type="email" class="form-control" id="emailCad" name="emailCad" aria-describedby="emailHelp" required>
+          </div>
+
+          <div class="form-group">
+            <label for="senhaCad">Senha</label>
+            <input type="text" class="form-control" name="senhaCad" id="senhaCad" required>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn cores-button-recusar" data-dismiss="modal">Cancelar</button>
+
+          <button type="submit" class="btn cores-button-confirmar" name="btn-cadastrar">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Fim Modal Cadastro Cliente -->
+
+<!-- Ajax Cadastro Cliente -->
+<?php
+
+if (isset($_POST['btn-cadastrar'])) {
+  $hoje = date('Y-m-d');
+  $email_novo = $_POST['emailCad'];
+
+  //BUSCAR O REGISTRO JÁ CADASTRADO NO BANCO
+  $query = $pdo->query("SELECT * FROM funcionarios WHERE email = '$email_novo'");
+  $res = $query->fetchAll(PDO::FETCH_ASSOC);
+  $total_reg = @count($res);
+  if ($total_reg > 0) {
+    echo "<script language='javascript'>window.alert('E-mail já cadastrado!')</script>";
+    echo "<script language='javascript'>window.location='index.php'</script>";
+    exit();
+  }
+
+  $queryCargo = $pdo->query("SELECT * FROM cargos WHERE nome = 'Cliente' ");
+  $resCargo = $queryCargo->fetchAll(PDO::FETCH_ASSOC);
+  $total_reg_cli = @count($resCargo);
+  if ($total_reg_cli == 0) {
+
+    //INSERIR OS CARGOS NECESSÁRIOS PARA A VALIDAÇÃO NA TABELA CARGOS
+    $pdo->query("INSERT INTO cargos SET nome = 'Cliente'");
+    $id_cargoNovoCli = $pdo->lastInsertId();
+
+    $query = $pdo->prepare("INSERT INTO funcionarios (nome, email, senha, cargo, datacad) VALUES (:nome, :email, :senha, :cargo, :datacad)");
+    $query->bindValue(":nome", $_POST['nomeCad']);
+    $query->bindValue(":email", $_POST['emailCad']);
+    $query->bindValue(":senha", $_POST['senhaCad']);
+    $query->bindValue(":cargo", $id_cargoNovoCli);
+    $query->bindValue(":datacad", $hoje);
+    $query->execute();
+    $id_NovoFunc = $pdo->lastInsertId();
+    $comentario = 'Alguma coisa a ser editada depois!!';
+
+    $queryCli = $pdo->prepare("INSERT INTO clientes (funcionario, comentario) VALUES (:funcionario, :comentario)");
+    $queryCli->bindValue(":funcionario", $id_NovoFunc);
+    $queryCli->bindValue(":comentario", $comentario);
+    $queryCli->execute();
+
+    echo "<script language='javascript'>window.alert('Cadastrado com Sucess!!')</script>";
+    echo "<script language='javascript'>window.location='index.php'</script>";
+    exit();
+  }
+  $id_cargo = $resCargo[0]['id'];
+  $query = $pdo->prepare("INSERT INTO funcionarios (nome, email, senha, cargo, datacad) VALUES (:nome, :email, :senha, :cargo, :datacad)");
+  $query->bindValue(":nome", $_POST['nomeCad']);
+  $query->bindValue(":email", $_POST['emailCad']);
+  $query->bindValue(":senha", $_POST['senhaCad']);
+  $query->bindValue(":datacad", $hoje);
+  $query->bindValue(":cargo", $id_cargo);
+  $query->execute();
+  $id_NovoFunc = $pdo->lastInsertId();
+  $comentario = 'Alguma coisa a ser editada depois!!';
+  $queryCli = $pdo->prepare("INSERT INTO clientes (funcionario, comentario) VALUES (:funcionario, :comentario)");
+  $queryCli->bindValue(":funcionario", $id_NovoFunc);
+  $queryCli->bindValue(":comentario", $comentario);
+  $queryCli->execute();
+
+  echo "<script language='javascript'>window.alert('Cadastrado com Sucesso!!')</script>";
+  exit();
+}
+?>
+<!-- Fim Ajax Cadastro Cliente -->
 
 <script type="text/javascript">
   $(document).ready(function() {

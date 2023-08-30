@@ -42,6 +42,8 @@ require_once("verificar.php");
 					//BUSCAR O NOME DO CARGO RELACIONADO AO ID NA TABELA CARGOS
 					$query2 = $pdo->query("SELECT * FROM cargos where id = '$id_cargo'");
 					$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+					@
+					
 					$nome_cargo = $res2[0]['nome'];
 
 					$datacad = implode('/', array_reverse(explode('-', $res[$i]['datacad'])));

@@ -323,7 +323,7 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
                         </p>
 
                         <p class="comment-form-comment">
-                          <label for="comment">Comment</label>
+                          <label for="comment">Comentário</label>
                           <textarea maxlength="500" name="comentario" cols="45" rows="8" aria-required="true" required="required"></textarea>
                         </p>
 

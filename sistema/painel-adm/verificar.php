@@ -1,5 +1,6 @@
 <?php 
-require_once("../../conexao.php");
+require_once("C:/xampp/htdocs/restaurante/conexao.php");
+
 @session_start();
 
 $id_cargo = @$_SESSION['cargo'];
@@ -9,7 +10,7 @@ $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $nome_cargo = $res[0]['nome'];
 
 if($nome_cargo != 'Administrador'){
-    echo "<script language='javascript'>window.location='../'</script>";
+    echo "<script language='javascript'>window.location='../index.php'</script>";
     exit();
 }
 

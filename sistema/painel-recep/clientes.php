@@ -31,7 +31,12 @@ require_once("verificar.php");
 			</thead>
 			<tbody>
 				<?php
-				$query = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '13' ORDER BY id ASC");
+
+				$query1 = $pdo->query("SELECT * FROM cargos WHERE nome = 'Cliente'");
+				$res1 = $query1->fetchAll(PDO::FETCH_ASSOC);
+				$id_cargo = $res1[0]['id'];
+
+				$query = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '$id_cargo' ORDER BY id ASC");
 				$res = $query->fetchAll(PDO::FETCH_ASSOC);
 				for ($i = 0; $i < @count($res); $i++) {
 					foreach ($res[$i] as $key => $value) {
@@ -40,8 +45,8 @@ require_once("verificar.php");
 
 					$query1 = $pdo->query("SELECT * FROM clientes WHERE funcionario = '$id_reg'");
 					$res1 = $query1->fetchAll(PDO::FETCH_ASSOC);
-					$id_cli = $res1[0]['id'];
-					$id_func = $res1[0]['funcionario'];
+					@$id_cli = $res1[0]['id'];
+					@$id_func = $res1[0]['funcionario'];
 
 				?>
 					<tr>
@@ -77,8 +82,10 @@ require_once("verificar.php");
 					<?php
 					if (@$_GET['funcao'] == 'novo') {
 						$titulo_modal = 'Inserir Registro';
+						$botao_modal = "btn-cadastrar";
 					} else {
 						$titulo_modal = 'Editar Registro';
+						$botao_modal = "btn-editar";
 						$id = @$_GET['id'];
 						$query = $pdo->query("SELECT * FROM clientes WHERE  funcionario = '$id'");
 						$res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -199,8 +206,11 @@ require_once("verificar.php");
 
 					</div>
 					<div class="modal-footer">
+
 						<button type="button" class="btn cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar">Fechar</button>
-						<button type="submit" class="btn cores-button-confirmar">Salvar</button>
+
+						<button type="submit" class="btn cores-button-confirmar" name="<?php echo $botao_modal ?>">Salvar</button>
+
 					</div>
 				</form>
 			</div>
@@ -231,8 +241,11 @@ require_once("verificar.php");
 
 					</div>
 					<div class="modal-footer">
+
 						<button type="button" class="btn cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-excluir">Fechar</button>
-						<button type="submit" class="btn cores-button-confirmar">Excluir</button>
+
+						<button type="submit" class="btn cores-button-confirmar" name="btn-excluir">Excluir</button>
+
 					</div>
 				</form>
 			</div>
@@ -291,21 +304,24 @@ require_once("verificar.php");
 
 </html>
 
-<!-- Ajax chama Inclusão e Edição -->
+<!-- CHAMA MODAL NOVO -->
 <?php
 if (@$_GET['funcao'] == 'novo') { ?>
-	<script type="text/javascript">
-		var myModal = new bootstrap.Modal(document.getElementById('cadastro'), {
+	<script>
+		var myModal = new bootstrap.Modal(document.getElementById('cadastro'));
+		{
 			backdrop: 'static'
-		})
-
+		}
 		myModal.show();
 	</script>
-<?php } ?>
+<?php }
+?>
+<!-- FIM CHAMA MODAL NOVO -->
 
+<!-- Ajax chama Inclusão e Edição -->
 <?php
 if (@$_GET['funcao'] == 'editar') { ?>
-	<script type="text/javascript">
+	<script>
 		var myModal = new bootstrap.Modal(document.getElementById('cadastro'), {
 			backdrop: 'static'
 		})
@@ -313,6 +329,7 @@ if (@$_GET['funcao'] == 'editar') { ?>
 		myModal.show();
 	</script>
 <?php } ?>
+<!-- Ajax chama Inclusão e Edição -->
 
 <!-- Ajax chama Exclusão -->
 <?php
@@ -325,7 +342,9 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		myModal.show();
 	</script>
 <?php } ?>
+<!-- Ajax chama Exclusão -->
 
+<!-- Ordena -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#example').DataTable({
@@ -333,50 +352,109 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		});
 	});
 </script>
+<!-- Ordena -->
 
-<!-- Ajax para inserir ou editar dados -->
-<script type="text/javascript">
-	$("#form").submit(function() {
-		event.preventDefault();
-		var formData = new FormData(this);
-		var pag = "<?= $pagina ?>";
+<!-- Script Cadastro Cliente -->
+<?php
+if (isset($_POST['btn-cadastrar'])) {
 
-		$.ajax({
-			url: pag + "/inserir.php",
-			type: 'POST',
-			data: formData,
+	$email_novo = $_POST['email'];
+	@$cpf_novo = $_POST['cpf'];
 
-			success: function(mensagem) {
+	//BUSCAR O REGISTRO JÁ CADASTRADO NO BANCO
+	$queryC = $pdo->query("SELECT * FROM funcionarios WHERE email = '$email_novo' OR cpf = '$cpf_novo'");
+	$res = $queryC->fetchAll(PDO::FETCH_ASSOC);
+	$total_reg = @count($res);
+	if ($total_reg > 0) {
+		echo "<script language='javascript'>window.alert('Esse registro já está existe!')</script>";
+		echo "<script language='javascript'>window.location='index.php'</script>";
+		exit();
+	}
 
-				$('#mensagem').removeClass()
+	$hoje = date('Y-m-d');
+	$cpf = '000.000.000-00';
+	$query1 = $pdo->query("SELECT * FROM cargos WHERE nome = 'Cliente'");
+	$res1 = $query1->fetchAll(PDO::FETCH_ASSOC);
+	$id_cg = $res1[0]['id'];
+	$imagem = 'Sem-foto.jpg';
+	$query = $pdo->prepare("INSERT INTO funcionarios (nome, cpf, email, telefone, cep, rua, numero, bairro, cidade, estado, senha, cargo, datanasc, datacad, imagem) VALUES (:nome, :cpf, :email, :telefone, :cep, :rua, :numero, :bairro, :cidade, :estado, :senha, :cargo, :datanasc, :datacad, :imagem)");
+	$query->bindValue(":nome", $_POST['nome']);
+	$query->bindValue(":cpf", $cpf);
+	$query->bindValue(":email", $_POST['email']);
+	$query->bindValue(":telefone", $_POST['telefone']);
+	$query->bindValue(":cep", $_POST['cep']);
+	$query->bindValue(":rua", $_POST['rua']);
+	$query->bindValue(":numero", $_POST['numero']);
+	$query->bindValue(":bairro", $_POST['bairro']);
+	$query->bindValue(":cidade", $_POST['cidade']);
+	$query->bindValue(":estado", $_POST['estado']);
+	$query->bindValue(":senha", $_POST['senha']);
+	$query->bindValue(":cargo", $id_cg);
+	$query->bindValue(":datanasc", $hoje);
+	$query->bindValue(":datacad", $hoje);
+	$query->bindValue(":imagem", $imagem);
+	$query->execute();
+	$id_funcionario = $pdo->lastInsertId();
 
-				if (mensagem.trim() == "Salvo com Sucesso!") {
+	$queryCli = $pdo->prepare("INSERT INTO clientes (funcionario, comentario) VALUES (:funcionario, :comentario)");
+	$queryCli->bindValue(":funcionario", $id_funcionario);
+	$queryCli->bindValue(":comentario", $_POST['comentario']);
+	$queryCli->execute();
 
-					//$('#nome').val('');
-					//$('#cpf').val('');
-					$('#btn-fechar').click();
-					window.location = "index.php?pag=" + pag;
+	echo "<script language='javascript'>window.alert('Cadastrado com Sucess!!')</script>";
+	echo "<script language='javascript'>window.location='index.php?pag=clientes'</script>";
+	exit();
+}
+?>
+<!-- Fim Script Cadastro Cliente -->
 
-				} else {
+<!-- Script Edição Cliente -->
+<?php
+if (isset($_POST['btn-editar'])) {
 
-					$('#mensagem').addClass('text-danger')
-				}
+	$query = $pdo->prepare("UPDATE funcionarios SET nome = :nome, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha WHERE id = :id");
+	$query->bindValue(":nome", $_POST['nome']);
+	$query->bindValue(":email", $_POST['email']);
+	$query->bindValue(":telefone", $_POST['telefone']);
+	$query->bindValue(":cep", $_POST['cep']);
+	$query->bindValue(":rua", $_POST['rua']);
+	$query->bindValue(":numero", $_POST['numero']);
+	$query->bindValue(":bairro", $_POST['bairro']);
+	$query->bindValue(":cidade", $_POST['cidade']);
+	$query->bindValue(":estado", $_POST['estado']);
+	$query->bindValue(":senha", $_POST['senha']);
+	$query->bindValue(":id", $_GET['id']);
+	$query->execute();
 
-				$('#mensagem').text(mensagem)
+	$queryCli = $pdo->prepare("UPDATE clientes SET comentario = :comentario WHERE funcionario = :id");
+	$queryCli->bindValue(":comentario", $_POST['comentario']);
+	$queryCli->bindValue(":id", $_GET['id']);
+	$queryCli->execute();
 
-			},
+	echo "<script language='javascript'>window.alert('Editado com Sucesso!!')</script>";
+	echo "<script language='javascript'>window.location='index.php?pag=clientes'</script>";
+	exit();
+}
 
-			cache: false,
-			contentType: false,
-			processData: false,
+?>
+<!-- Fim Script Edição Cliente -->
 
-		});
+<!-- Script Excluir Cliente -->
+<?php
+if (isset($_POST['btn-excluir'])) {
 
-	});
-</script>
+	$query = $pdo->query("DELETE FROM funcionarios WHERE id = '$_GET[id]'");
+	$queryCli = $pdo->query("DELETE FROM clientes WHERE funcionario = '$_GET[id]'");
+	echo "<script language='javascript'>window.alert('Será?')</script>";
+	echo "<script language='javascript'>window.location='index.php?pag=clientes'</script>";
+	exit();
+}
+
+?>
+<!-- Fim Script Excluir Cliente -->
 
 <!-- Ajax para excluir dados -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$("#form-excluir").submit(function() {
 		event.preventDefault();
 		var formData = new FormData(this);
@@ -414,7 +492,8 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		});
 
 	});
-</script>
+</script> -->
+<!-- Ajax para excluir dados -->
 
 <!-- Ajax chama Modal Dados -->
 <script type="text/javascript">
@@ -435,3 +514,4 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		$('#comentario_registro').text(comentario);
 	}
 </script>
+<!-- Ajax chama Modal Dados -->

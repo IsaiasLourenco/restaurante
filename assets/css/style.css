@@ -648,11 +648,13 @@ img {
 RESERVATION SECTION
 ====================*/
 #mu-reservation {
+  background-image: url("../imagens/reserva-de-restaurantes.jpg");
   background-color: #222;
   display: inline;
   float: left;
   padding: 100px 0;
   width: 100%;
+  opacity: 0.7;
 }
 #mu-reservation .mu-reservation-area {
   display: inline;
@@ -661,6 +663,7 @@ RESERVATION SECTION
 }
 #mu-reservation .mu-reservation-area .mu-title h2 {
   color: #fff;
+  font-weight: bolder;
 }
 #mu-reservation .mu-reservation-area .mu-reservation-content {
   display: inline;
@@ -924,7 +927,7 @@ RESERVATION SECTION
   TESTIMONIAL SECTION
 ====================*/
 #mu-client-testimonial {
-  background-image: url("assets/imagens/testimonial-bg1.jpg");
+  background-image: url("../imagens/testimonial-bg1.jpg");
   background-size: cover;
   background-attachment: fixed;
   display: inline;

@@ -56,16 +56,16 @@ if ($total_reg > 0) {
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="../../sistema/vendor/DataTables/datatables.min.css" />
-  <script type="text/javascript" src="../../sistema/vendor/DataTables/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../assets/DataTables/datatables.min.css" />
+  <script type="text/javascript" src="../../assets/DataTables/datatables.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-  
-  <script src="../../assets/js/buscaCep.js" type="module" defer></script>  
+
+  <script src="../../assets/js/buscaCep.js" type="module" defer></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  
+
   <link rel="stylesheet" href="../../assets/css/fontawesome.css">
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/meucss.css">
@@ -89,6 +89,10 @@ if ($total_reg > 0) {
 
           <li class="nav-item">
             <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>"><i class="fa-solid fa-blog"></i> Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-light" aria-current="page" href="" data-bs-toggle="modal" data-bs-target="#modalComentario"><i class="fa-solid fa-comments"></i> Comentário</a>
           </li>
 
         </ul>
@@ -280,6 +284,57 @@ if ($total_reg > 0) {
 </div>
 <!-- Fim Modal Editar-->
 
+<!--  Modal Comentário-->
+<div class="modal fade" tabindex="-1" id="modalComentario" data-bs-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <?php
+
+        $query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_usuario'");
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        $nome_cli = $res[0]['nome'];
+        $cargo = $res[0]['cargo'];
+
+        $titulo_modal = 'Editar/Inserir Comentário de ' . $nome_cli;
+
+        $queryCli = $pdo->query("SELECT * FROM clientes WHERE funcionario = '$id_usuario'");
+        $resCli = $queryCli->fetchAll(PDO::FETCH_ASSOC);
+        $comentario = $resCli[0]['comentario'];
+
+        ?>
+
+        <h5 class="modal-title"><?php echo $titulo_modal ?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" id="form-com-cli">
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label for="comentario" class="form-label">Comentário </label>
+            <input name="comentario" autofocus value="<?php echo $comentario ?>" class="form-control" required id="comentario" cols="60" rows="10"></input>
+
+          </div>
+
+          <input type="hidden" name="id" value="<?php echo @$id_usuario ?>">
+
+          <small>
+            <div align="center" id="mensagem-com">
+            </div>
+          </small>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-com">Fechar</button>
+          <button type="submit" class="btn btn-faded cores-button-confirmar">Salvar</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<!-- Fim Modal Comentário-->
+
 <!-- Mascaras JS -->
 <script type="text/javascript" src="../../assets/js/mascaras.js"></script>
 
@@ -326,3 +381,44 @@ if ($total_reg > 0) {
   });
 </script>
 <!-- Fim Ajax para editar dados -->
+
+<!-- Ajax para inserir/editar comentário -->
+<script type="text/javascript">
+  $("#form-com-cli").submit(function() {
+    event.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+      url: "editar-comentario.php",
+      type: 'POST',
+      data: formData,
+
+      success: function(mensagem) {
+
+        $('#mensagem-com').removeClass()
+
+        if (mensagem.trim() == "Salvo com Sucesso!") {
+
+          //$('#nome').val('');
+          //$('#cpf').val('');
+          $('#btn-fechar-com').click();
+          location.reload();
+
+        } else {
+
+          $('#mensagem-com').addClass('text-danger')
+        }
+
+        $('#mensagem-com').text(mensagem)
+
+      },
+
+      cache: false,
+      contentType: false,
+      processData: false,
+
+    });
+
+  });
+</script>
+<!-- Fim Ajax para inserir/editar comentário -->
