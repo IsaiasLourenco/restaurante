@@ -96,11 +96,11 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
 
 <body>
   <!-- Pre Loader -->
-  <div id="aa-preloader-area">
+  <!-- <div id="aa-preloader-area">
     <div class="mu-preloader">
       <img src="assets/imagens/preloader1.gif" alt=" loader img">
     </div>
-  </div>
+  </div> -->
   <!-- SCROLL TOP BUTTON -->
   <a class="scrollToTop" href="#">
     <i class="fa fa-angle-up"></i>
@@ -127,7 +127,7 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
             <li><a href="index.php">HOME</a></li>
-            <li class="active">BLOG</li>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -140,10 +140,7 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
     <div class="container">
       <div class="mu-blog-banner-area">
         <h2>BLOG</h2>
-        <ol class="breadcrumb">
-          <li><a href="index.php">Home</a></li>
-          <li class="active">Blog</li>
-        </ol>
+
       </div>
     </div>
   </section>
@@ -192,16 +189,18 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
 
                         <ul class="commentlist">
                           <?php
-                          $query = $pdo->query("SELECT * FROM comentarios ORDER BY id DESC ");
+
+
+
+                          $query = $pdo->query("SELECT * FROM comentarios WHERE post = '$id_reg'");;
                           $res = $query->fetchAll(PDO::FETCH_ASSOC);
                           for ($i = 0; $i < @count($res); $i++) {
                             foreach ($res[$i] as $key => $value) {
                             }
-                            $data_post = implode('/', array_reverse(explode('-', $res[$i]['data_post'])));
-                            $id_coment = $res[$i]['id'];
-                            $id_blog = $res[$i]['post'];
-
-
+                            @$id_coment = $res[$i]['id'];
+                            @$id_blog = $res[$i]['post'];
+                            @$id_dono_comentario = $res[$i]['usuario'];
+                            @$data_post = implode('/', array_reverse(explode('-', $res[$i]['data_post'])));
                           ?>
                             <li>
                               <div class="media">
@@ -211,7 +210,13 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
                                 <div class="media-body">
                                   <h4 class="author-name"><?php echo $res[$i]['nome'] ?>
 
-                                    <?php if ($nivel_usuario == '1' || $id_usuario = '$usuario') { ?>
+                                    <?php
+
+                                    $queryCargo = $pdo->query("SELECT * FROM cargos WHERE id = '$nivel_usuario' ORDER BY id DESC ");
+                                    $resCargo = $queryCargo->fetchAll(PDO::FETCH_ASSOC);
+                                    @$nome_cargo = $resCargo[0]['nome'];
+
+                                    if ($nome_cargo == 'Administrador' OR $id_usuario == $id_dono_comentario ) { ?>
                                       <a href="blog-post.php?titulo=<?php echo $titulo ?>&funcao=excluir&id=<?php echo $id_coment ?>" title="Excluir Comentário">
 
                                         <i class="fa fa-trash text-danger ml-4"></i></a>

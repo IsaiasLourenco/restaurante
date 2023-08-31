@@ -698,7 +698,7 @@ if ($total_pizza > 0) {
               <div class="row">
 
                 <?php
-                $query = $pdo->query("SELECT * FROM blog ORDER BY id ASC LIMIT 2");
+                $query = $pdo->query("SELECT * FROM blog ORDER BY id DESC LIMIT 2");
                 $res = $query->fetchAll(PDO::FETCH_ASSOC);
                 for ($i = 0; $i < @count($res); $i++) {
                   foreach ($res[$i] as $key => $value) {
@@ -711,7 +711,7 @@ if ($total_pizza > 0) {
 
                   $query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = $id_usuario");
                   $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-                  $nome_usuario = $res2[0]['nome'];
+                  @$nome_usuario = $res2[0]['nome'];
 
                 ?>
                   <!-- start single blog -->
