@@ -631,7 +631,7 @@ if ($total_pizza > 0) {
 
               <ul class="mu-chef-nav">
                 <?php
-                $query = $pdo->query("SELECT * FROM chef ORDER BY id ASC");
+                $query = $pdo->query("SELECT * FROM chef ORDER BY id DESC");
                 $res = $query->fetchAll(PDO::FETCH_ASSOC);
                 for ($i = 0; $i < @count($res); $i++) {
                   foreach ($res[$i] as $key => $value) {
@@ -642,14 +642,15 @@ if ($total_pizza > 0) {
 
                   $query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_func'");
                   $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-                  $nome_func = $res2[0]['nome'];
-                  $imagem_func = $res2[0]['imagem'];
+                  @$nome_func = $res2[0]['nome'];
+                  @$imagem_func = $res2[0]['imagem'];
                 ?>
 
                   <li>
+                    
                     <div class="mu-single-chef">
                       <figure class="mu-single-chef-img">
-                        <img src="assets/imagens/funcionarios/<?php echo $imagem_func ?>" height="350px" width="350px" alt="chef img">
+                        <img src="assets/imagens/funcionarios/<?php echo $imagem_func ?>" alt="chef img">
                       </figure>
                       <div class="mu-single-chef-info">
                         <h4><?php echo $nome_func ?></h4>
@@ -657,16 +658,16 @@ if ($total_pizza > 0) {
                       </div>
                       <div class="mu-single-chef-social">
                         <?php if ($res[$i]['facebook']) { ?>
-                          <a href="<?php echo $res[$i]['facebook'] ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+                          <a href="<?php echo $res[$i]['facebook'] ?>" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                         <?php } ?>
                         <?php if ($res[$i]['instagram']) { ?>
-                          <a href="<?php echo $res[$i]['instagram'] ?>" target="_blank"><i class="fa fa-instagram"></i></a>
+                          <a href="<?php echo $res[$i]['instagram'] ?>" target="_blank"><i class="fa-brands fa-square-instagram"></i></i></a>
                         <?php } ?>
                         <?php if ($res[$i]['youtube']) { ?>
-                          <a href="<?php echo $res[$i]['youtube'] ?>" target="_blank"><i class="fa fa-youtube"></i></a>
+                          <a href="<?php echo $res[$i]['youtube'] ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                         <?php } ?>
                         <?php if ($res[$i]['linkedin']) { ?>
-                          <a href="<?php echo $res[$i]['linkedin'] ?>" target="_blank"><i class="fa fa-linkedin"></i></a>
+                          <a href="<?php echo $res[$i]['linkedin'] ?>" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                         <?php } ?>
                       </div>
                     </div>
@@ -853,7 +854,7 @@ if ($total_pizza > 0) {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Cadastre-se <?php echo $nome_site ?> </h2>
+        <h2 class="modal-title">Cadastre-se no <?php echo $nome_site ?> </h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

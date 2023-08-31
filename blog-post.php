@@ -27,7 +27,7 @@ $pdo->query("UPDATE blog SET visitas = '$visitas' where url_titulo = '$titulo'")
 
 $query2 = $pdo->query("SELECT * FROM funcionarios WHERE id = '$usuario'");
 $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-$nome_usuario = $res2[0]['nome'];
+@$nome_usuario = $res2[0]['nome'];
 
 //TOTAL DE COMENTÁRIOS
 $query3 = $pdo->query("SELECT * FROM comentarios WHERE post = '$id_reg'");
