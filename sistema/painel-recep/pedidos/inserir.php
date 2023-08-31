@@ -13,8 +13,9 @@ $query->bindValue(":mesa", "$mesa");
 $query->bindValue(":obs", "$obs");
 $query->bindValue(":funcionario", "$id_usuario");
 $query->execute();
+$id_ult_ped = $pdo->lastInsertId();
 
-$query1 = $pdo->prepare("UPDATE reservas SET checkin = 'Sim'");
+$query1 = $pdo->prepare("UPDATE reservas SET checkin = 'Sim', pedido = '$id_ult_ped' WHERE mesa = '$mesa'");
 $query1->execute();
 
 echo 'Salvo com Sucesso!';

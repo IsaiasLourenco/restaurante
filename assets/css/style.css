@@ -473,7 +473,7 @@ img {
 ====================*/
 #mu-counter {
   background-attachment: fixed;
-  background-image: url("assets/imagens/counter-bg1.jpg");
+  background-image: url("../imagens/counter-bg1.jpg");
   background-size: cover;
   display: inline;
   float: left;
@@ -644,23 +644,21 @@ img {
   font-size: 14px;
 }
 
+
 /*==================
 RESERVATION SECTION
 ====================*/
 #mu-reservation {
+  background-attachment: fixed;
   background-image: url("../imagens/reserva-de-restaurantes.jpg");
-  background-color: #222;
+  background-size: cover;
   display: inline;
-  float: left;
   padding: 100px 0;
-  width: 100%;
-  opacity: 0.7;
-}
-#mu-reservation .mu-reservation-area {
-  display: inline;
   float: left;
   width: 100%;
+  opacity: 0.9;
 }
+
 #mu-reservation .mu-reservation-area .mu-title h2 {
   color: #fff;
   font-weight: bolder;
@@ -674,6 +672,7 @@ RESERVATION SECTION
 }
 #mu-reservation .mu-reservation-area .mu-reservation-content h3 {
   color: #fff;
+  font-size: 18px;
   display: inline-block;
   padding-bottom: 10px;
   font-weight: bold;
@@ -923,6 +922,7 @@ RESERVATION SECTION
   display: none;
 }
 
+
 /*==================
   TESTIMONIAL SECTION
 ====================*/
@@ -939,7 +939,7 @@ RESERVATION SECTION
   background-color: rgba(0, 0, 0, 0.8);
   display: inline;
   float: left;
-  padding: 70px 0 100px;
+  padding: 100px 0;
   width: 100%;
 }
 #mu-client-testimonial .mu-overlay .mu-title h2 {

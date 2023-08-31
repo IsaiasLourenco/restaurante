@@ -103,7 +103,7 @@ if ($total_pizza > 0) {
   <link rel="stylesheet" href="assets/css/font-awesome.css">
 
   <link rel="stylesheet" href="assets/css/mystyle.css">
-  
+
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/meucss.css">
 </head>
@@ -407,53 +407,56 @@ if ($total_pizza > 0) {
   <!-- Start Reservation section -->
   <section id="mu-reservation">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="mu-reservation-area">
-            <div class="mu-title">
-              <span class="mu-subtitle">Faça a sua</span>
-              <h2>Reserva</h2>
-              <i class="fa fa-spoon"></i>
-              <span class="mu-title-bar"></span>
-            </div>
-            <div class="mu-reservation-content">
-              <p>Pedimos que as reservas sejam feitas com no mínimo três horas de antecedência. Para algo urgente, favor entrar em contato.</p>
-              <form class="mu-reservation-form" method="POST" action="reservas.php">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <input type="text" class="form-control" name="nome" placeholder="Nome Completo" required>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <input type="email" class="form-control" name="email" placeholder="Email" required>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <input type="number" class="form-control" name="quantidade" placeholder="Quantos Virão" required></input>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <input type="date" class="form-control" name="dataReserva" required>
-                    </div>
-                  </div>
+      <div class="mu-reservation-overlay">
 
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <textarea class="form-control" cols="30" rows="6" name="mensagem" placeholder="Sua mensagem"></textarea>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="mu-reservation-area">
+              <div class="mu-title">
+                <span class="mu-subtitle">Faça a sua</span>
+                <h2>Reserva</h2>
+                <i class="fa fa-spoon"></i>
+                <span class="mu-title-bar"></span>
+              </div>
+              <div class="mu-reservation-content">
+                <p>Pedimos que as reservas sejam feitas com no mínimo três horas de antecedência. Para algo urgente, favor entrar em contato.</p>
+                <form class="mu-reservation-form" method="POST" action="reservas.php">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="nome" placeholder="Nome Completo" required>
+                      </div>
                     </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Email" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <input type="number" class="form-control" name="quantidade" placeholder="Quantos Virão" required></input>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <input type="date" class="form-control" name="dataReserva" required>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <textarea class="form-control" cols="30" rows="6" name="mensagem" placeholder="Sua mensagem"></textarea>
+                      </div>
+                    </div>
+                    <button type="submit" class="mu-readmore-btn">Faça a Reserva</button>
                   </div>
-                  <button type="submit" class="mu-readmore-btn">Faça a Reserva</button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -647,7 +650,7 @@ if ($total_pizza > 0) {
                 ?>
 
                   <li>
-                    
+
                     <div class="mu-single-chef">
                       <figure class="mu-single-chef-img">
                         <img src="assets/imagens/funcionarios/<?php echo $imagem_func ?>" alt="chef img">

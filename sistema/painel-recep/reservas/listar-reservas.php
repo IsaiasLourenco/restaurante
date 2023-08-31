@@ -7,7 +7,7 @@ $data_reser_reservas = $_POST['data'];
 
 echo "<div class='row mx-1'>";
 
-$query = $pdo->query("SELECT * FROM reservas WHERE data_reser = '$data_reser_reservas' AND checkin = 'Não' order by mesa asc");
+$query = $pdo->query("SELECT * FROM reservas WHERE data_reser = '$data_reser_reservas' AND checkout = 'Não' order by mesa asc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 for($i=0; $i < @count($res); $i++){
 	foreach ($res[$i] as $key => $value){	}

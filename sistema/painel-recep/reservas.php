@@ -483,7 +483,7 @@ $agora = date('Y-m-d');
 </script>
 <!-- Fim do Ajax para buscar Clientes -->
 
-<!-- Ajax para buscar Clientes -->
+<!-- Ajax para reservas por email -->
 <script type="text/javascript">
     var pag = "<?= $pagina ?>";
 
@@ -522,4 +522,4 @@ $agora = date('Y-m-d');
 
     }
 </script>
-<!-- Fim do Ajax para buscar Clientes -->
+<!-- Fim Ajax para reservas por email -->

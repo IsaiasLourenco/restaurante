@@ -21,7 +21,7 @@ if ($total_reg > 0) {
     }
 }
 
-
+$query1 = $pdo->query("UPDATE reservas SET checkout = 'Sim' WHERE pedido = '$id_pedido'");
 
 $query = $pdo->query("UPDATE pedidos SET valor = '$total_venda', status_pedido = 'Fechada', comissao = '$valor_comissao', couvert = '$couvert', subtotal = '$subtotal' WHERE id = '$id_pedido'");
 

@@ -16,7 +16,7 @@ for ($i = 0; $i < @count($resMesa); $i++) {
 
     echo "<div class='mx-2 mb-4' style='float:left'>";
 
-    $query2 = $pdo->query("SELECT * FROM reservas WHERE mesa = '$id_mesa' AND data_reser = '$data_reser_mesas' AND checkin = 'Não'");
+    $query2 = $pdo->query("SELECT * FROM reservas WHERE mesa = '$id_mesa' AND data_reser = '$data_reser_mesas' AND checkout = 'Não'");
     $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
     if (@count($res2) > 0) {

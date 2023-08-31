@@ -15,11 +15,11 @@ $destinatario = $email_adm;
 $assunto = $nome_site . ' Nova Reserva ';
 
 
-$mensagem = ' Nome: ' . $nome . ' Telefone: ' . $telefone . ' Email: ' . $email . ' Data Reserva: ' . $dataReserva . ' Nº Pessoas: ' . $pessoas . ' Mensagem: ' . $mensagem_reserva;
+$conteudo = ' Nome: ' . $nome . ' Telefone: ' . $telefone . ' Email: ' . $email . ' Data Reserva: ' . $dataReserva . ' Nº Pessoas: ' . $pessoas . ' Mensagem: ' . $mensagem_reserva;
 
 $cabecalhos = "From: " . $email;
 
-@mail($destinatario, $assunto, $mensagem, $cabecalhos);
+@mail($destinatario, $assunto, $conteudo, $cabecalhos);
 
 
 //SALVAR NA TABELA DE RESERVAS POR EMAIL
@@ -72,3 +72,10 @@ if ($email != $email_banco) {
 
   
 }
+//COMUNICAR RESERVA POR WHATSAPP
+
+# Mensagem Padrão
+$mensagem = "Olá $nome, o $nome_site recebeu seu pedido de reserva e assim que concluírmos entraremos em contato connfirmando data, horário e número da mesa.%0A%0A 
+Muito obrigado por confiar no nosso trabalho.";
+#
+echo "<a href='https://api.whatsapp.com/send?phone=$fone&text=$mensagem' target='_blank' title='Enviar Mensagem Via WhatsApp Web'><h1>Enviar Mensagem Via WhatsApp Web<br />$nome - $fone</h1></a>";
