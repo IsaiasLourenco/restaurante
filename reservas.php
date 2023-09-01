@@ -48,7 +48,7 @@ if ($email != $email_banco) {
     
     $total_reg = @count($res1);
     if ($total_reg > 0) {
-        echo '<script laguage="javascript">window.alert ("E-mail já cadastrado")</script>';
+        echo '<script laguage="javascript">window.alert ("E-mail já cadastrado, sua reserva foi enviada!")</script>';
         echo '<meta http-equiv="refresh" content="0; url=index.php#mu-reservation">';
         
     } else {

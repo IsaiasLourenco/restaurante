@@ -38,7 +38,7 @@ if (@$_FILES['imagem']['name'] == ""){
 
 $imagem_temp = @$_FILES['imagem']['tmp_name'];
 $ext = pathinfo($imagem, PATHINFO_EXTENSION);
-if($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif'){
+if($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif' or $ext == 'jfif'){
 move_uploaded_file($imagem_temp, $caminho);
 }else{
 	echo 'Extensão de Imagem não permitida!';

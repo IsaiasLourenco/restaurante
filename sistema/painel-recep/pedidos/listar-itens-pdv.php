@@ -63,15 +63,17 @@ if ($total_reg > 0) {
             echo '<i class="bi bi-square-fill ' . $classeStatus . ' mr-2" style="font-size:8px" title="'.$titulo.'"></i></small>';
         }
          echo $quantidade . 'x ' . mb_strtoupper($nome_item) . ' <a href="#" onclick="excluirItem(' . $id_ped . ')" title="Excluir Item" style="text-decoration: none">
-        <i class="bi bi-x text-danger mx-1"></i>
+         <i class="fa-regular fa-trash-can text-danger"></i>
                         </a> </h4><h5 class="cabH5">' . $valor_total_itemF . '</h5></li>';
     }
 }
 
 echo '</ul>';
 echo '<h4 class="total mt-4">Total de ' . $total_reg . ' itens na mesa ' . $nome_mesa . '</h4>';
-echo '<div class="row"><div class="col-md-6"><h1>R$ <span id="sub_total">' . @$total_vendaF . '</span></h1></div>';
+echo '<div class="row"><div class="col-md-6"><h1>R$ <span id="sub_total">' . @$total_vendaF . '</span></h1
 
-echo '<div class="col-md-6" align="right"><a style="text-decoration:none" class="text-primary" href="index.php?pag=pedidos" title="Sair"><i class="bi bi-arrow-return-left"></i> <small>Sair</small> </a>';
+></div>';
 
-echo '<a style="text-decoration:none" class="text-danger ml-2" href="#" onclick="modalFecharMesa()" title="Fechar Mesa"><i class="bi bi-cash-stack"></i> <small>Fechar Mesa</small> </a></div>';
+echo '<div class="col-md-6" align="right"><a style="text-decoration:none" class="text-primary" href="index.php?pag=pedidos" title="Sair"><i class="fa-solid fa-hand-point-left"></i> <small>Sair</small> </a>';
+
+echo '<a style="text-decoration:none" class="text-danger ml-2" href="#" onclick="modalFecharMesa()" title="Fechar Mesa"><i class="fa-solid fa-cash-register"></i> <small>Fechar Mesa</small> </a></div>';

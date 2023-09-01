@@ -24,14 +24,16 @@ if (@$_POST['id_res_email'] != "") {
         $id_mesa = $res[$i]['id'];
         $nome_mesa = $res[$i]['nome'];
 
-        $query2 = $pdo->query("SELECT * FROM reservas WHERE mesa = '$id_mesa' AND data_reser = '$data_reser'");  
+        $query2 = $pdo->query("SELECT * FROM reservas WHERE mesa = '$id_mesa' AND data_reser = '$data_reser'");
         $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
         if (@count($res2) == 0) {
-            $mesa = $id_mesa;
-            //ATUALIZA O PEDIDO DE RESERVA VINDO DO EMAIL PARA RESERVADA
-            $query2 = $pdo->query("UPDATE reservas_email SET reservado = 'Sim' WHERE id = '$id_reserva_email'");
+            $queryPedido = $pdo->query("SELECT * FROM pedidos WHERE status_pedido = 'Aberta' AND mesa = '$id_mesa' ");
+            $resPedido = $queryPedido->fetchAll(PDO::FETCH_ASSOC);
+            if (@count($resPedido) == 0) {
+                $mesa = $id_mesa;
+               
+            }
         } else {
-            
         }
     }
 } else {
@@ -51,8 +53,8 @@ if (@$_POST['id_res_email'] != "") {
 
 if ($mesa == "") {
     echo 'Não existem mesas disponíveis para essa data! Quer escolher outra data?';
-    
-    exit();   
+
+    exit();
 }
 
 
@@ -68,7 +70,10 @@ $query->bindValue(":obs", "$obs");
 $query->bindValue(":funcionario", "$id_usuario");
 $query->bindValue(":data_reser", "$data_reser");
 $query->execute();
+$id_reserva = $pdo->lastInsertId();
 
+ //ATUALIZA O PEDIDO DE RESERVA VINDO DO EMAIL PARA RESERVADA
+ @$query2 = $pdo->query("UPDATE reservas_email SET reservado = 'Sim', reserva = '$id_reserva' WHERE id = '$id_reserva_email'");
 
 $query = $pdo->query("SELECT * FROM clientes WHERE funcionario = '$id_cli' ");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -89,5 +94,3 @@ $cabecalhos = "From: " . $email_adm;
 @mail($destinatario, $assunto, $conteudo, $cabecalhos);
 
 echo 'Salvo com Sucesso!';
-
-?>

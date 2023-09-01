@@ -89,7 +89,7 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 		?>
 
 			<div class='col-lg-3 col-md-4 col-sm-12 mb-4'>
-				<?php if ($texto_if == 'ABERTA') { ?>
+				<?php if ($texto_if == 'ABERTA' ) { ?>
 					<a href="#" onclick="modalPDV(<?php echo $nome_mesa ?>, <?php echo $id_pedido ?>, '<?php echo $obs ?>')" style="text-decoration: none">
 					<?php } else { ?>
 						<a href="#" onclick="modalReservas(<?php echo $nome_mesa ?>)" style="text-decoration: none">
@@ -118,9 +118,6 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 </body>
 
 </html>
-
-
-
 
 
 <!-- Modal Reservas-->
@@ -196,7 +193,7 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 
 								<p class="background">CONSUMO MESA <span id="nome_mesa_consumo"></span>
 
-									<a data-bs-toggle="modal" data-bs-target="#modalObs" style="text-decoration:none" class="text-light" href="#" data-bs-toggle="modal" data-bs-target="#modalObs" title="Ver Observações">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-exclamation-circle"></i> <small>OBSERVAÇÕES</small> </a>
+									<a data-bs-toggle="modal" data-bs-target="#modalObs" style="text-decoration:none" class="text-light" href="#" data-bs-toggle="modal" data-bs-target="#modalObs" title="Ver Observações">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-circle-info"></i> <small>OBSERVAÇÕES</small> </a>
 
 								</p>
 
@@ -209,7 +206,8 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 							<form method="post" id="form-buscar">
 								<div class="row py-2">
 									<!-- Dataset Produtos -->
-									<p class="background">PRODUTOS</p>
+									<p class="background"><i class="fa-solid fa-cart-shopping"></i> PRODUTOS</p>
+
 									<small>
 										<table id="produtos" class="table table-hover table-sm my-4" style="width:98%;">
 											<thead>
@@ -257,7 +255,7 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 														<td style="text-align: center; width: 10%;">
 
 															<a href="" onclick="addProduto(<?php echo $id_reg ?>,'Produto')" title="Adicionar Item">
-																<i class="bi bi-cart-plus text-success"></i></a>
+															<i class="fa-solid fa-cart-plus text-success"></i></i></a>
 
 														</td>
 													</tr>
@@ -271,7 +269,7 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 									<!-- Fim do Dataset Produtos -->
 
 									<!-- Dataset Pratos -->
-									<p class="background">PRATOS</p>
+									<p class="background"><i class="fa-solid fa-utensils"></i> PRATOS</p>
 									<small>
 										<table id="pratos" class="table table-hover table-sm my-4" style="width:98%;">
 											<thead>
@@ -317,7 +315,7 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 														<td style="text-align: center; width: 20%;">
 
 															<a href="" onclick="addProduto(<?php echo $id_reg ?>,'Prato')" title="Adicionar Item">
-																<i class="bi bi-cart-plus text-success"></i></a>
+															<i class="fa-solid fa-cart-plus text-success"></i></a>
 
 
 
@@ -552,9 +550,11 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 					if (tipo === 'Produto') {
 						$('#Prod-' + id).val('1');
 						listarItensPDV();
+						
 					} else {
 						$('#Prat-' + id).val('1');
 						listarItensPDV();
+						
 					}
 				} else {
 					$('#mensagem-add').addClass('text-danger')
@@ -614,6 +614,7 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 				if (mensagem.trim() == "Excluído com Sucesso!") {
 
 					listarItensPDV();
+					atualizarDataSetProdutos();
 				}
 			},
 
@@ -701,7 +702,7 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 				if (mensagem.trim() == "Salvo com Sucesso!") {
 					let a = document.createElement('a');
 					a.target = '_blank';
-					a.href = '../rel/rel_comprovante_class.php?id=' + pedido;
+					a.href = '../rel/rel_comprovante	.php?id=' + pedido;
 					a.click();
 				} else {
 					$('#mensagem-fechar-mesa').addClass('text-danger')
@@ -729,6 +730,7 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 		});
 		myModal.show();
 		listarItensPDV();
+		atualizarDataSetProdutos();
 	}
 </script>
 <!-- Fim do Ajax para chamar modalFecharNesa -->

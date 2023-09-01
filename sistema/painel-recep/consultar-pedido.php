@@ -73,7 +73,7 @@ require_once("verificar.php");
 
                         <td style="text-align:center">
 
-                            <a href="../rel/rel_comprovante_class.php?id=<?php echo $id_reg ?>" target="_blank" title="Gerar Comprovante">
+                            <a href="../rel/rel_comprovante.php?id=<?php echo $id_reg ?>" target="_blank" title="Gerar Comprovante">
                                 <i class="bi bi-printer-fill text-primary"></i></a>
 
                             <?php if ($res[$i]['pago'] != 'Sim') { ?>

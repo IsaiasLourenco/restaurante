@@ -51,9 +51,11 @@ if ($total_reg > 0) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PAINEL ADMINISTRATIVO</title>
 
 
@@ -83,11 +85,9 @@ if ($total_reg > 0) {
   <link rel="stylesheet" href="../../assets/css/fontawesome.css">
 
   <link rel="stylesheet" href="../../assets/css/meucss.css">
-
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
 
@@ -331,6 +331,9 @@ if ($total_reg > 0) {
 
 <!-- Ajax para funcionar Mascaras JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+</body>
+
+</html>
 
 <!-- Ajax para inserir ou editar dados -->
 <script type="text/javascript">

@@ -47,7 +47,7 @@ require_once("verificar.php");
                     //BUSCAR O NOME DO FUCIONÁRIO RELACIONADO AO ID NA TABELA COMPRAS
                     $query2 = $pdo->query("SELECT * FROM funcionarios where id = '$id_func'");
                     $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-                    $nome_func = $res2[0]['nome'];
+                    @$nome_func = $res2[0]['nome'];
 
                 ?>
                     <tr>
