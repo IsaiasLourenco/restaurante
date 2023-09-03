@@ -21,6 +21,15 @@ $cabecalhos = "From: " . $email;
 
 @mail($destinatario, $assunto, $conteudo, $cabecalhos);
 
+//COMUNICAR RESERVA POR WHATSAPP
+
+# Mensagem Padrão
+$msg = "Olá $nome, o $nome_site's recebeu seu pedido de reserva e assim que concluírmos entraremos em contato connfirmando data, horário e número da mesa.%0A%0A 
+Muito obrigado.";
+
+#
+echo "<script language='javascript'>window.location='https://api.whatsapp.com/send?phone=$telefone&text=$msg'</script>";
+// echo "<a href='https://api.whatsapp.com/send?phone=$fone&text=$mensagem' target='_blank' title='Enviar Mensagem Via WhatsApp Web'><h1>Enviar Mensagem Via WhatsApp Web<br />$nome - $fone</h1></a>";
 
 //SALVAR NA TABELA DE RESERVAS POR EMAIL
 $query = $pdo->prepare("INSERT INTO reservas_email SET nome = :nome, email = :email, telefone = :telefone, pessoas = :pessoas, data_reserva = :data_reserva, mensagem = :mensagem, reservado = 'Não'");
@@ -45,37 +54,27 @@ if ($email != $email_banco) {
     $query1->bindValue(":email", "$email");
     $query1->execute();
     $res1 = $query1->fetchAll(PDO::FETCH_ASSOC);
-    
+
     $total_reg = @count($res1);
     if ($total_reg > 0) {
         echo '<script laguage="javascript">window.alert ("E-mail já cadastrado, sua reserva foi enviada!")</script>';
         echo '<meta http-equiv="refresh" content="0; url=index.php#mu-reservation">';
-        
     } else {
         //SALVAR NA TABELA DE CLIENTES QUEM FEZ A RESERVA
         $query2 = $pdo->prepare("INSERT INTO funcionarios SET nome = :nome, cpf = '000.000.000-00', email = :email, telefone = :telefone, cep = '00000-000', rua = 'Nono', numero = '00', bairro = 'Jimcobiloba', cidade = 'Mogi Guaçu', estado = 'SP', senha = '0808', cargo = '13', datanasc = '', datacad = curDate(), imagem = 'sem-foto.jpg'");
-         $query2->bindValue(":nome", "$nome");
-         $query2->bindValue(":email", "$email");
-         $query2->bindValue(":telefone", "$telefone");
-         $query2->execute();
-         $id_funcionario = $pdo->lastInsertId();
+        $query2->bindValue(":nome", "$nome");
+        $query2->bindValue(":email", "$email");
+        $query2->bindValue(":telefone", "$telefone");
+        $query2->execute();
+        $id_funcionario = $pdo->lastInsertId();
 
-        
-         $query3 = $pdo->prepare("INSERT INTO clientes SET funcionario = '$id_funcionario', comentario = 'Alguma coisa que será editada depois.'");
-         $query3->execute();
 
-        
+        $query3 = $pdo->prepare("INSERT INTO clientes SET funcionario = '$id_funcionario', comentario = 'Alguma coisa que será editada depois.'");
+        $query3->execute();
+
+
 
         echo '<script>alert("Enviado com Sucesso.");</script>';
         echo '<meta http-equiv="refresh" content="0; url=index.php#mu-reservation">';
     }
-
-  
 }
-//COMUNICAR RESERVA POR WHATSAPP
-
-# Mensagem Padrão
-$mensagem = "Olá $nome, o $nome_site recebeu seu pedido de reserva e assim que concluírmos entraremos em contato connfirmando data, horário e número da mesa.%0A%0A 
-Muito obrigado por confiar no nosso trabalho.";
-#
-echo "<a href='https://api.whatsapp.com/send?phone=$fone&text=$mensagem' target='_blank' title='Enviar Mensagem Via WhatsApp Web'><h1>Enviar Mensagem Via WhatsApp Web<br />$nome - $fone</h1></a>";

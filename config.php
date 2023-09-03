@@ -22,16 +22,16 @@ $youtube ='https://www.youtube.com/channel/UCucCsiVk4zycu4CwVxY5WTw';
 $instagram ='https://instagram.com/isaiaslourenco3?igshid=MzNlNGNkZWQ4Mg==';
 
 //VARIÁVEIS PARA BANCO DE DADOS
-$servidor = 'localhost';
-$usuario = 'root';
-$senha = '';
-$banco = 'restaurante';
+//$servidor = 'localhost';
+//$usuario = 'root';
+//$senha = '';
+//$banco = 'restaurante';
 
 //VARIÁVEIS PARA BANCO DE DADOS HOSPEDADO
-//$servidor = 'restaurantelor.mysql.dbaas.com.br';
-//$usuario = 'restaurantelor';
-//$senha = 'Mandalor45@';
-//$banco = 'restaurantelor';
+$servidor = 'restaurantelor.mysql.dbaas.com.br';
+$usuario = 'restaurantelor';
+$senha = 'Mandalor45@';
+$banco = 'restaurantelor';
 
 //NÍVEL MÍNIMO DO ESTOQUE DE PRODUTOS PARA CÁLCULO DO SISTEMA
 $nivel_estoque = 10;    

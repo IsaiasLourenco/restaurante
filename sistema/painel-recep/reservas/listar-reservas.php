@@ -7,8 +7,10 @@ $data_reser_reservas = $_POST['data'];
 
 echo "<div class='row mx-1'>";
 
+
+
 //LISTA RESERVAS SEM CHECKIN
-$query = $pdo->query("SELECT * FROM reservas WHERE data_reser = '$data_reser_reservas' AND checkout = 'Não' AND pedido = 0 order by mesa asc");
+$query = $pdo->query("SELECT * FROM reservas WHERE data_reser = '$data_reser_reservas' AND checkout = 'Não' AND pedido = 0");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
 for ($i = 0; $i < @count($res); $i++) {
@@ -45,8 +47,11 @@ for ($i = 0; $i < @count($res); $i++) {
 	echo "</div>";
 }
 
+//VER SE EXISTE MESAS ABERTAS ANTES DE VERIFICAR RESERVAS,
+
+
 //LISTA RESERVAS COM CHECKIN
-$query = $pdo->query("SELECT * FROM reservas WHERE data_reser = '$data_reser_reservas' AND checkout = 'Não' AND pedido != 0 order by mesa asc");
+$query = $pdo->query("SELECT * FROM reservas WHERE data_reser = '$data_reser_reservas' AND checkout = 'Não' AND pedido != 0");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
 for ($i = 0; $i < @count($res); $i++) {
