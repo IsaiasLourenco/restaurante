@@ -88,10 +88,10 @@ if ($total_reg > 0) {
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-size: 12px;">
     <div class="container-fluid">
 
-      <a class="navbar-brand" href="index.php"><img src="../../assets/imagens/logo1.png" width="150"></a>
+      <a class="navbar-brand" href="index.php"><img class="img-index" src="../../assets/imagens/logo1.png" alt="Logo"></a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -101,6 +101,7 @@ if ($total_reg > 0) {
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-index-recep">
+          
           <li class="nav-item">
             <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>"><i class="fas fa-home"></i> Home</a>
           </li>
@@ -116,7 +117,6 @@ if ($total_reg > 0) {
 
             </ul>
           </li>
-
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-folder-plus"></i>
@@ -165,7 +165,6 @@ if ($total_reg > 0) {
             <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu13 ?>"><i class="fa fa-pizza-slice"></i> Reservas</a>
           </li>
 
-
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-receipt"></i>
               Relatórios
@@ -198,30 +197,23 @@ if ($total_reg > 0) {
           </li>
 
         </ul>
-
-
-
-        <div class="d-flex mr-4">
-
-          <img class="img-profile rounded-circle mt-4" src="../../assets/imagens/funcionarios/<?php echo $foto_perfil ?>" width="40px" height="40px">
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <?php echo $nome_usu ?>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          </li>
-
-          <li><a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
-
-          </ul>
-          </li>
-
-        </div>
-
-
-
       </div>
+
+      <img class="img-profile rounded-circle mt-1" src="../../assets/imagens/funcionarios/<?php echo $foto_perfil ?>" width="40px" height="40px">
+
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo $nome_usu ?>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#"><i class="fa-solid fa-truck-ramp-box"></i> Editar Perfil</a>
+            <a class="dropdown-item" href="../logout.php">Sair</a>
+
+          </div>
+        </li>
+      </ul>
 
     </div>
 

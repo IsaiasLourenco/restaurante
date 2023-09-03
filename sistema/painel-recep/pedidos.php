@@ -570,10 +570,24 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 </script>
 <!-- Fim do Ajax para adicoinar item -->
 
+<!--AJAX PARA ATUALIZAR ESTOQUE -->
+<script type="text/javascript">
+	var pag = "<?= $pagina ?>";
+
+	function atualizarEstoque(){
+
+
+		
+	}
+
+</script>
+<!--FIM AJAX PARA ATUALIZAR ESTOQUE -->
+
 <!--AJAX PARA MOSTRAR OS PRODUTOS DO ITEM DA VENDA -->
 <script type="text/javascript">
 	var pag = "<?= $pagina ?>";
 
+	atualizarEstoque();
 	function listarItensPDV() {
 		var idpedido = $('#pedido-consumo').val();
 		$.ajax({
@@ -614,7 +628,7 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 				if (mensagem.trim() == "Excluído com Sucesso!") {
 
 					listarItensPDV();
-					atualizarDataSetProdutos();
+					atualizarEstoque();
 				}
 			},
 

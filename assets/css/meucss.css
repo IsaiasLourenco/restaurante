@@ -151,3 +151,7 @@ h2{
     background-color: white;
     color: gray;
   }
+
+  .size-txt-nav{
+    text-size-adjust: 12px;
+  }

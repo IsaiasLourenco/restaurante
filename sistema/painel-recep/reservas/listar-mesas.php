@@ -14,8 +14,6 @@ for ($i = 0; $i < @count($resMesa); $i++) {
     $nome_mesa = $resMesa[$i]['nome'];
     $descricao_mesa = $resMesa[$i]['descricao'];
 
-
-
     echo "<div class='mx-2 mb-4' style='float:left'>";
 
     $query2 = $pdo->query("SELECT * FROM reservas WHERE mesa = '$id_mesa' AND data_reser = '$data_reser_mesas' AND checkout = 'Não' AND pedido = 0");
@@ -24,7 +22,7 @@ for ($i = 0; $i < @count($resMesa); $i++) {
         $id_reserva = $res2[0]['id'];
         echo "<a href='#' onclick='modalExcluirReservas($id_reserva)' type='button' class='btn cores-button-recusar' style='width:auto; height:auto;' title='" . $descricao_mesa . "' >Mesa " . $nome_mesa . "</a>";
     } else {
-        $queryPedido = $pdo->query("SELECT * FROM pedidos WHERE status_pedido = 'Aberta' AND mesa = '$id_mesa' ");
+        $queryPedido = $pdo->query("SELECT * FROM pedidos WHERE status_pedido = 'Aberta' AND mesa = '$id_mesa' AND data_pedido = '$data_reser_mesas'");
         $resPedido = $queryPedido->fetchAll(PDO::FETCH_ASSOC);
         if (@count($resPedido) > 0){
             echo "<a type='button' class='btn btn-danger' style='width:auto; height:auto;' title='" . $descricao_mesa . "' >Mesa " . $nome_mesa . "</a>";
