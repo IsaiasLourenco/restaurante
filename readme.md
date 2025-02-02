@@ -19,7 +19,8 @@ Projeto criado para atender o nicho de Restaurantes e Lanchonetes com todo o pro
     - JavaScript;
     - Bootstrap.
 - Acesso a variáveis e banco de dados
-    - PHP;
+    - PHP;.
+    - JavaScript;
     - Ajax.
 
 ## Inicialização
@@ -29,6 +30,6 @@ Não há necessidade de nennhum npm ao fazer o git.clone.
 Colaboradores
 
 - Projeto iniciado pelo propósito de um curso adquirido no portal Hugo Cursos 'https://hugocursos.com.br/sistema/index.php';
-- Iniciativa levada adiante pela empresa de tecnologia ®Vetor256. 'http://vetor256.com'.
+- Iniciativa levada adiante pela empresa de tecnologia ®Vetor256. 'https://isaiaslourenco.github.io/vetor256/'.
 
-[<img src="./gifRest.gif" alt="Delivering">](http://www.lorenzos.sitepessoal.com)
+[<img src="./gifRest.gif" alt="Delivering">](http://www.vetor256/restaurante)
