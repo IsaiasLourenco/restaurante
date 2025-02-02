@@ -15,7 +15,7 @@ $estado = $_POST['estado'];
 $cargo = $_POST['cargo'];
 $senha = $_POST['senha'];
 $datanasc = $_POST['datanasc'];
-$id = $_POST['id'];
+$id = $_POST['id'];	
 
 //BUSCAR O REGISTRO JÁ CADASTRADO NO BANCO
 $query = $pdo->query("SELECT * FROM funcionarios WHERE  id = '$id'");

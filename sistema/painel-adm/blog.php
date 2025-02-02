@@ -9,14 +9,15 @@ require_once("verificar.php");
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../vendor/css/h2.css">
+	
+	<link rel="stylesheet" href="../../assets/css/meucss.css">
 </head>
 
 <body>
 	<h2>BLOG</h2>
 	<a href="index.php?pag=<?php echo $pagina ?>&funcao=novo" type="button" class="btn btn-faded cores-button-confirmar-novo">Nova Postagem</a>
 
-	<!-- Dataset Produtos -->
+	<!-- Dataset Blog -->
 	<small>
 		<table id="example" class="table table-hover table-sm my-4" style="width:98%;">
 			<thead>
@@ -58,8 +59,16 @@ require_once("verificar.php");
 								<i class="bi bi-trash text-danger"></i></a>
 							</a>
 
-							<a href="" onclick="dados('<?php echo $res[$i]['titulo'] ?>', '<?php echo $res[$i]['descricao_1'] ?>', '<?php echo $res[$i]['descricao_2'] ?>', '<?php echo $res[$i]['descricao_3'] ?>', '<?php echo $res[$i]['tag'] ?>', '<?php echo $res[$i]['visitas'] ?>', '<?php echo $res[$i]['url_titulo'] ?>','<?php echo $res[$i]['imagem'] ?>')" title="Ver Dados">
-								<i class="bi bi-info-circle-fill text-secondary"></i></a>
+							<a href="" onclick="dados('<?php echo $res[$i]["titulo"] ?>', 
+													  '<?php echo $res[$i]["descricao_1"] ?>', 
+													  '<?php echo $res[$i]["descricao_2"] ?>', 
+													  '<?php echo $res[$i]["descricao_3"] ?>', 
+													  '<?php echo $res[$i]["tag"] ?>', 
+													  '<?php echo $res[$i]["visitas"] ?>', 
+													  '<?php echo $res[$i]["url_titulo"] ?>',
+													  '<?php echo $res[$i]["imagem"] ?>')" title="Ver Dados">
+													  <i class="bi bi-info-circle-fill text-secondary"></i>
+							</a>
 
 						</td>
 					</tr>
@@ -399,6 +408,18 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		$('#visitas_registro').text(visitas);
 		$('#url_titulo_registro').text(url_titulo);
 		$('#imagem_registro').attr('src', '../../assets/imagens/blog/' + imagem);
+
+		var verModal = "Sem erro";
+		//console.error(verModal);
+
+		try{
+			console.error(verModal);
+			myModal.show();
+		}catch(error) {
+			console.error("Erro ao chamar Modal. O erro foi:" + error);
+		}finally{
+			console.error("Erro ao chamar Modal. O erro foi:" + error);
+		}
 	}
 </script>
 <!-- Ajax para visualizar dados adicionais -->

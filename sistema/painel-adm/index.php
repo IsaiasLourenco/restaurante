@@ -1,5 +1,4 @@
 <?php
-
 @session_start();
 require_once("../../conexao.php");
 require_once("verificar.php");
@@ -19,7 +18,7 @@ $menu11 = 'blog';
 $menu12 = 'estoque';
 $menu13 = 'reservas';
 $menu14 = 'imagens';
-
+$menu15 = 'categorias_img';
 
 //recuperar os dados do usuário
 $id_usuario = $_SESSION['id'];
@@ -51,7 +50,7 @@ if ($total_reg > 0) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -101,7 +100,7 @@ if ($total_reg > 0) {
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-index-recep">
-          
+
           <li class="nav-item">
             <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>"><i class="fas fa-home"></i> Home</a>
           </li>
@@ -130,6 +129,12 @@ if ($total_reg > 0) {
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu10 ?>"><i class="fa-regular fa-window-maximize"></i> Banners</a></li>
 
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu14 ?>"><i class="bi bi-image"></i> Imagens</a></li>
+
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+
+              <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu15 ?>"><i class="fa-solid fa-layer-group"></i> Categorias das Imagens</a></li>
 
             </ul>
 
@@ -208,8 +213,8 @@ if ($total_reg > 0) {
           </a>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#"><i class="fa-solid fa-truck-ramp-box"></i> Editar Perfil</a>
-            <a class="dropdown-item" href="../logout.php">Sair</a>
+            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#cadastro"><i class="fas fa-edit"></i> Editar Perfil<a>
+                <a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-sign-out"></i> Sair</a>
 
           </div>
         </li>
@@ -250,6 +255,8 @@ if ($total_reg > 0) {
       require_once('../painel-recep/' . $menu13 . '.php');
     } else if (@$_GET['pag'] == $menu14) {
       require_once($menu14 . '.php');
+    } else if (@$_GET['pag'] == $menu15) {
+      require_once($menu15 . '.php');
     } else {
       require_once($menu1 . '.php');
     }
@@ -260,7 +267,189 @@ if ($total_reg > 0) {
 
 </body>
 
-</html>
+<!-- Modal Inserção e Edição -->
+<div onload="document.frmFunc.nome.focus();" class="modal fade" id="cadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <?php
+        $titulo_modal = 'Editar Registro';
+        $id = @$_GET['id'];
+        $query = $pdo->query("SELECT * FROM funcionarios WHERE  id = '$id'");
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        $nome_func = @$res[0]['nome'];
+        $cpf = @$res[0]['cpf'];
+        $email = @$res[0]['email'];
+        $telefone_func = @$res[0]['telefone'];
+        $cep = @$res[0]['cep'];
+        $rua = @$res[0]['rua'];
+        $numero = @$res[0]['numero'];
+        $bairro = @$res[0]['bairro'];
+        $cidade = @$res[0]['cidade'];
+        $estado = @$res[0]['estado'];
+        $senha = @$res[0]['senha'];
+        $datanasc = @$res[0]['datanasc'];
+        $datacad = @$res[0]['datacad'];
+        $cargo = @$res[0]['cargo'];
+        $imagem = @$res[0]['imagem'];
+
+        ?>
+        <h5 class="modal-title" id="exampleModalLabel"><?php echo $titulo_modal ?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" id="form-perfil" name="frmFunc">
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nome </label>
+                <input type="text" class="form-control" id="nome_perfil" name="nome_perfil" placeholder="Nome" autofocus value="<?php echo @$nome_func ?>" required>
+              </div>
+            </div>
+
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">CPF </label>
+                <input type="text" class="form-control" id="cpf_perfil" name="cpf_perfil" placeholder="CPF" value="<?php echo @$cpf ?>" required>
+              </div>
+            </div>
+
+            <div class="col-5">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email </label>
+                <input type="email" class="form-control" id="email_perfil" name="email_perfil" placeholder="nome@exemplo.com" value="<?php echo @$email ?>" required>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Telefone </label>
+                <input type="text" class="form-control" id="telefone_perfil" name="telefone_perfil" placeholder="(xx)xxxx-xxxx" value="<?php echo @$telefone_func ?>" required>
+              </div>
+            </div>
+
+            <div class="col-2">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">CEP </label>
+                <input type="text" class="form-control" id="cep_perfil" name="cep_perfil" placeholder="CEP" value="<?php echo @$cep ?>">
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Rua </label>
+                <input type="text" class="form-control" id="rua_perfil" name="rua_perfil" placeholder="Rua" value="<?php echo @$rua ?>" readonly>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-2">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Número </label>
+                <input type="text" class="form-control" id="numero_perfil" name="numero_perfil" placeholder="Número" value="<?php echo @$numero ?>">
+              </div>
+            </div>
+
+            <div class="col-5">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Bairro </label>
+                <input type="text" class="form-control" id="bairro_perfil" name="bairro_perfil" placeholder="Bairro" value="<?php echo @$bairro ?>" readonly>
+              </div>
+            </div>
+
+            <div class="col-5">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Cidade </label>
+                <input type="text" class="form-control" id="cidade_perfil" name="cidade_perfil" placeholder="Cidade" value="<?php echo @$cidade ?>" readonly>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-1">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Estado </label>
+                <input type="text" class="form-control" id="estado_perfil" name="estado_perfil" placeholder="UF" value="<?php echo @$estado ?>" readonly>
+              </div>
+            </div>
+
+            <div class="col-2">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Senha </label>
+                <input type="text" class="form-control" id="senha_perfil" name="senha_perfil" placeholder="Senha" value="<?php echo @$senha ?>" required>
+              </div>
+            </div>
+
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Data Nascimento </label>
+                <input type="date" class="form-control" id="datanasc_perfil" name="datanasc_perfil" placeholder="Nascimento" value="<?php echo @$datanasc ?>" required>
+              </div>
+            </div>
+
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Cargo </label>
+                <select class="form-select" aria-label="Default select example" name="cargo">
+                  <?php
+                  $query = $pdo->query("SELECT * FROM cargos ORDER BY nome ASC");
+                  $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                  for ($i = 0; $i < @count($res); $i++) {
+                    foreach ($res[$i] as $key => $value) {
+                    }
+                    $id_cargo = $res[$i]['id'];
+                    $nome_cargo = $res[$i]['nome'];
+                  ?>
+                    <option <?php if (@$id_cargo == @$cargo) { ?> selected <?php } ?> value="<?php echo $id_cargo ?>"><?php echo $nome_cargo ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label>Imagem</label>
+              <input type="file" value="<?php echo @$imagem ?>" class="form-control-file" id="imagem" name="imagem" onChange="carregarImg();">
+            </div>
+
+            <div id="divImgConta" class="mt-4">
+              <?php if (@$imagem != "") { ?>
+                <img src="../../assets/imagens/<?php echo $pagina ?>/<?php echo @$imagem ?>" width="170px" id="target">
+              <?php  } else { ?>
+                <img src="../../assets/imagens/<?php echo $pagina ?>/sem-foto.jpg" width="170px" id="target">
+
+              <?php } ?>
+            </div>
+
+          </div>
+
+          <input type="hidden" name="id" value="<?php echo @$id ?>">
+
+          <small>
+            <div align="center" id="mensagem">
+            </div>
+          </small>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar">Fechar</button>
+          <button type="submit" class="btn btn-faded cores-button-confirmar">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--Fim Modal Inserção e Edição -->
 
 <!--  Modal Rel Compras-->
 <div class="modal fade" tabindex="-1" id="ModalRelCompras" data-bs-backdrop="static">
@@ -318,14 +507,18 @@ if ($total_reg > 0) {
 </div>
 <!-- Fim do  Modal Rel Compras-->
 
+</html>
+
 <!-- Mascaras JS -->
 <script type="text/javascript" src="../../assets/js/mascaras.js"></script>
+<!-- Fim Mascaras JS -->
 
 <!-- Ajax para funcionar Mascaras JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-</body>
 
-</html>
+
+
+<!-- Fim Ajax para funcionar Mascaras JS -->
 
 <!-- Ajax para inserir ou editar dados -->
 <script type="text/javascript">

@@ -104,7 +104,7 @@ $agora = date('Y-m-d');
                                         for ($i = 0; $i < @count($res); $i++) {
                                             foreach ($res[$i] as $key => $value) {
                                             }
-                                            $id_cli = $res[$i]['funcionario'];
+                                            $id_cli = $res[$i]['nome'];
 
                                             $queryF = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_cli'");
                                             $resF = $queryF->fetchAll(PDO::FETCH_ASSOC);

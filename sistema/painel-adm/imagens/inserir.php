@@ -2,7 +2,7 @@
 require_once("../../../conexao.php");
 
 $id = $_POST['id'];
-$categoria = $_POST['categoria'];
+$categoria = $_POST['categorias_img'];
 
 //SCRIPT PARA SUBIR FOTO NO BANCO
 $nome_img = date('d-m-Y H:i:s') . '-' . @$_FILES['imagem']['name'];
@@ -27,18 +27,18 @@ if ($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif') {
 
 
 if ($id == "") {
-	$query = $pdo->prepare("INSERT INTO imagens SET categoria = :categoria, imagem = :imagem");
+	$query = $pdo->prepare("INSERT INTO imagens SET categorias_img = :categoria, imagem = :imagem");
 	$query->bindValue(":imagem", "$imagem");
 } else {
 	if ($imagem == "sem-foto.jpg") {
-		$query = $pdo->prepare("UPDATE imagens SET categoria = :categoria WHERE id = '$id'");
+		$query = $pdo->prepare("UPDATE imagens SET categorias_img = :categoria WHERE id = '$id'");
 	} else {
-		$query = $pdo->prepare("UPDATE imagens SET categoria = :categoria, imagem = :imagem WHERE id = '$id'");
+		$query = $pdo->prepare("UPDATE imagens SET categorias_img = :categoria, imagem = :imagem WHERE id = '$id'");
 		$query->bindValue(":imagem", "$imagem");
 	}
 }
 
-$query->bindValue(":categoria", "$categoria");
+$query->bindValue(":categorias_img", "$categoria");
 $query->execute();
 
 

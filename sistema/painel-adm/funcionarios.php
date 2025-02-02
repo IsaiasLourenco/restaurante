@@ -65,8 +65,18 @@ require_once("verificar.php");
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Excluir Registro">
 								<i class="bi bi-trash text-danger"></i></a>
 
-							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $res[$i]["cep"] ?>', '<?php echo $res[$i]["rua"] ?>', '<?php echo $res[$i]["numero"] ?>', '<?php echo $res[$i]["bairro"] ?>', '<?php echo $res[$i]["cidade"] ?>', '<?php echo $res[$i]["estado"] ?>', '<?php echo $res[$i]["senha"] ?>', '<?php echo $res[$i]["imagem"] ?>', '<?php echo $datanasc ?>')" title="Ver Dados">
-								<i class="bi bi-info-circle-fill text-secondary"></i></a>
+							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', 
+													  '<?php echo $res[$i]["cep"] ?>', 
+													  '<?php echo $res[$i]["rua"] ?>', 
+													  '<?php echo $res[$i]["numero"] ?>', 
+													  '<?php echo $res[$i]["bairro"] ?>', 
+													  '<?php echo $res[$i]["cidade"] ?>', 
+													  '<?php echo $res[$i]["estado"] ?>', 
+													  '<?php echo $res[$i]["senha"] ?>', 
+													  '<?php echo $res[$i]["imagem"] ?>', 
+													  '<?php echo $datanasc ?>')" title="Ver Dados">
+													  <i class="bi bi-info-circle-fill text-secondary"></i>
+								</a>
 
 						</td>
 					</tr>
@@ -511,6 +521,22 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		$('#imagem_registro').attr('src', '../../assets/imagens/funcionarios/' + imagem);
 		$('#data_nasc_registro').text(datanasc);
 
+		var verModal = "Sem erro";
+		//console.error(verModal);
+
+		try{
+			console.error(verModal);
+			myModal.show();
+		}catch(e) {
+			verModal = "Deu Pau!!";
+			event.preventDefault();
+			console.error("Erro ao chamar Modal. O erro foi:" + e);
+		} finally{
+			verModal = "Deu Pau!!";
+			event.preventDefault();
+			console.error("Erro ao chamar Modal. O erro foi:" + error);
+		}
+		
 	}
 </script>
 <!-- Ajax para visualizar dados adicionais -->

@@ -24,9 +24,9 @@ require_once("verificar.php");
 				foreach ($res[$i] as $key => $value) {
 				}
 				$id_reg = $res[$i]['id'];
-				$categoria = $res[$i]['categoria'];
+				$categoria = $res[$i]['categorias_img'];
 
-				$query2 = $pdo->query("SELECT * FROM categorias where id = '$categoria'");
+				$query2 = $pdo->query("SELECT * FROM categorias_img where id = '$categoria'");
 				$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 				@$nome_cat = $res2[0]['nome'];
 
@@ -67,7 +67,7 @@ require_once("verificar.php");
 					$query = $pdo->query("SELECT * FROM imagens WHERE  id = '$id'");
 					$res = $query->fetchAll(PDO::FETCH_ASSOC);
 					$imagem = @$res[0]['imagem'];
-					$idcat = @$res[0]['categoria'];
+					$idcat = @$res[0]['categorias_img'];
 				}
 				?>
 				<h5 class="modal-title" id="exampleModalLabel"><?php echo $titulo_modal ?></h5>
@@ -80,7 +80,7 @@ require_once("verificar.php");
 						<label for="exampleFormControlInput1" class="form-label">Categoria </label>
 						<select class="form-select" aria-label="Default select example" id="categoria" name="categoria">
 							<?php
-							$query = $pdo->query("SELECT * FROM categorias order by nome asc");
+							$query = $pdo->query("SELECT * FROM categorias_img order by nome asc");
 							$res = $query->fetchAll(PDO::FETCH_ASSOC);
 							for ($i = 0; $i < @count($res); $i++) {
 								foreach ($res[$i] as $key => $value) {
@@ -162,6 +162,7 @@ require_once("verificar.php");
 </div>
 <!-- Fim Modal exclusão -->
 
+<!-- Ajax para inserir registro -->
 <?php
 if (@$_GET['funcao'] == 'novo') { ?>
 	<script type="text/javascript">
@@ -172,8 +173,9 @@ if (@$_GET['funcao'] == 'novo') { ?>
 		myModal.show();
 	</script>
 <?php } ?>
+<!-- Fim Ajax para inserir registro -->
 
-
+<!-- Ajax para editar registro -->
 <?php
 if (@$_GET['funcao'] == 'editar') { ?>
 	<script type="text/javascript">
@@ -184,8 +186,9 @@ if (@$_GET['funcao'] == 'editar') { ?>
 		myModal.show();
 	</script>
 <?php } ?>
+<!-- Fim Ajax para editar registro -->
 
-
+<!-- Ajax para excluir registro -->
 <?php
 if (@$_GET['funcao'] == 'excluir') { ?>
 	<script type="text/javascript">
@@ -196,10 +199,9 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		myModal.show();
 	</script>
 <?php } ?>
+<!-- Fim Ajax para excluir registro -->
 
-
-
-
+<!-- Ajax para ordenar registros -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#example').DataTable({
@@ -207,9 +209,7 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		});
 	});
 </script>
-
-
-
+<!-- Fim Ajax para ordenar registros -->
 
 <!-- Ajax para inserir ou editar dados -->
 <script type="text/javascript">
@@ -251,8 +251,7 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 
 	});
 </script>
-
-
+<!-- Fim Ajax para inserir ou editar dados -->
 
 <!-- Ajax para excluir dados -->
 <script type="text/javascript">
@@ -294,13 +293,9 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 
 	});
 </script>
+<!-- Fim Ajax para excluir dados -->
 
-
-
-
-
-
-<!--SCRIPT PARA CARREGAR IMAGEM -->
+<!-- SCRIPT PARA CARREGAR IMAGEM -->
 <script type="text/javascript">
 	function carregarImg() {
 
@@ -331,3 +326,4 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		}
 	}
 </script>
+<!-- FIM SCRIPT PARA CARREGAR IMAGEM -->

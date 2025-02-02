@@ -41,7 +41,7 @@ $res->bindValue(":total", $total_compra);
 $res->execute();
 $id_compra = $pdo->lastInsertId();
 
-$res = $pdo->prepare("INSERT contas_pagar SET descricao = 'Compra de Produtos', valor = :valor, funcionario = :funcionario, pago = 'Não', data_compra = curDate(),  data_vencimento = curDate(), data_pag = '0000-00-00', arquivo = 'sem-foto.jpg', id_compra = '$id_compra'");	
+$res = $pdo->prepare("INSERT contas_pagar SET descricao = 'Compra de Produtos', valor = :valor, funcionario = :funcionario, pago = 'Não', data_compra = curDate(),  data_vencimento = curDate(), data_pag = '', arquivo = 'sem-foto.jpg', id_compra = '$id_compra'");	
 
 $res->bindValue(":valor", $total_compra);
 $res->bindValue(":funcionario", $id_funcionario);

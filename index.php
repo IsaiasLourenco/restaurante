@@ -74,7 +74,7 @@ if ($total_pizza > 0) {
   <link rel="shortcut icon" href="assets/imagens/ico.ico" type="image/x-icon">
 
   <!-- Font awesome -->
-  <link href="assets/css/font-awesome.css" rel="stylesheet">
+  <!-- <link href="assets/css/font-awesome.css" rel="stylesheet"> -->
   <!-- Bootstrap -->
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <!-- Slick slider -->
@@ -87,10 +87,10 @@ if ($total_pizza > 0) {
   <!-- Theme color -->
   <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">
 
-  <!-- Main style sheet -->
+  <!-- Main style sheet
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <link rel="stylesheet" href="assets/css/meucss.css">
+  <link rel="stylesheet" href="assets/css/meucss.css"> -->
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
@@ -99,13 +99,14 @@ if ($total_pizza > 0) {
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <link rel="stylesheet" href="assets/css/font-awesome.css">
-
   <link rel="stylesheet" href="assets/css/mystyle.css">
 
   <link rel="stylesheet" href="assets/css/style.css">
+  
   <link rel="stylesheet" href="assets/css/meucss.css">
+
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <!-- <link rel="stylesheet" href="assets/css/font-awesome.css"> -->
 </head>
 
 <body>
@@ -132,11 +133,11 @@ if ($total_pizza > 0) {
   <!-- FIM LEI DE ACEITAÇÃO DE COOKIES -->
 
   <!-- Pre Loader -->
-  <!-- <div id="aa-preloader-area">
+  <div id="aa-preloader-area">
     <div class="mu-preloader">
       <img src="assets/imagens/preloader1.gif" alt=" loader img">
     </div>
-  </div> -->
+  </div>
   <!--START SCROLL TOP BUTTON -->
   <a class="scrollToTop" href="#">
     <i class="fa fa-angle-up"></i>
@@ -223,9 +224,9 @@ if ($total_pizza > 0) {
         <div class="col-md-12">
           <div class="mu-about-us-area">
             <div class="mu-title">
-              <span class="mu-subtitle">Descubra</span>
+              <span class="mu-subtitle">Descubra mais</span>
               <h2>SOBRE NÓS</h2>
-              <i class="fa fa-spoon"></i>
+              <i class="fa-solid fa-spoon"></i>
               <span class="mu-title-bar"></span>
             </div>
             <div class="row">
@@ -350,7 +351,7 @@ if ($total_pizza > 0) {
             <div class="mu-title">
               <span class="mu-subtitle">Conheça</span>
               <h2>NOSSO CARPDÁPIO</h2>
-              <i class="fa fa-cutlery"></i>
+              <i class="fa-solid fa-spoon"></i>
               <span class="mu-title-bar"></span>
             </div>
             <div class="mu-restaurant-menu-content">
@@ -415,7 +416,7 @@ if ($total_pizza > 0) {
               <div class="mu-title">
                 <span class="mu-subtitle">Faça a sua</span>
                 <h2>Reserva</h2>
-                <i class="fa fa-spoon"></i>
+                <i class="fa-solid fa-spoon"></i>
                 <span class="mu-title-bar"></span>
               </div>
               <div class="mu-reservation-content">
@@ -474,7 +475,7 @@ if ($total_pizza > 0) {
             <div class="mu-title">
               <span class="mu-subtitle">Aprecie</span>
               <h2>Nossas Fotos</h2>
-              <i class="fa fa-spoon"></i>
+              <i class="fa-solid fa-spoon"></i>
               <span class="mu-title-bar"></span>
             </div>
             <div class="mu-gallery-content">
@@ -484,7 +485,7 @@ if ($total_pizza > 0) {
                   <li class="filter active" data-filter="all">TODAS</li>
 
                   <?php
-                  $query = $pdo->query("SELECT * FROM categorias order by id asc");
+                  $query = $pdo->query("SELECT * FROM categorias_img order by id asc");
                   $res = $query->fetchAll(PDO::FETCH_ASSOC);
                   for ($i = 0; $i < @count($res); $i++) {
                     foreach ($res[$i] as $key => $value) {
@@ -494,7 +495,7 @@ if ($total_pizza > 0) {
 
                   ?>
 
-                    <li class="filter" data-filter=".<?php echo $nome_cat ?>"><?php echo $nome_cat ?></li>
+                    <li class="filter" data-filter=".<?php echo $nome_cat ?>"><?php echo $nome_cat ?></li> 
 
                   <?php } ?>
 
@@ -505,15 +506,15 @@ if ($total_pizza > 0) {
 
 
                 <?php
-                $query = $pdo->query("SELECT * FROM imagens ORDER BY id DESC LIMIT 9");
+                $query = $pdo->query("SELECT * FROM imagens ORDER BY id DESC");
                 $res = $query->fetchAll(PDO::FETCH_ASSOC);
                 for ($i = 0; $i < @count($res); $i++) {
                   foreach ($res[$i] as $key => $value) {
                   }
                   $id_reg = $res[$i]['id'];
-                  $cat_img = $res[$i]['categoria'];
+                  $cat_img = $res[$i]['categorias_img'];
 
-                  $query2 = $pdo->query("SELECT * FROM categorias where id = '$cat_img'");
+                  $query2 = $pdo->query("SELECT * FROM categorias_img where id = '$cat_img'");
                   $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                   $nome_cat_img = $res2[0]['nome'];
 
@@ -556,7 +557,7 @@ if ($total_pizza > 0) {
               <div class="mu-title">
                 <span class="mu-subtitle">Declaração de</span>
                 <h2>Nossos Clientes</h2>
-                <i class="fa fa-spoon"></i>
+                <i class="fa-solid fa-spoon"></i>
                 <span class="mu-title-bar"></span>
               </div>
               <!-- testimonial content -->
@@ -627,7 +628,7 @@ if ($total_pizza > 0) {
             <div class="mu-title">
               <span class="mu-subtitle">Nossos Profissionais</span>
               <h2>MASTER CHEFS</h2>
-              <i class="fa fa-spoon"></i>
+              <i class="fa-solid fa-spoon"></i>
               <span class="mu-title-bar"></span>
             </div>
             <div class="mu-chef-content">
@@ -695,7 +696,7 @@ if ($total_pizza > 0) {
             <div class="mu-title">
               <span class="mu-subtitle">Últimas Notícias</span>
               <h2>DIRETO DO NOSSO BLOG</h2>
-              <i class="fa fa-spoon"></i>
+              <i class="fa-solid fa-spoon"></i>
               <span class="mu-title-bar"></span>
             </div>
             <div class="mu-latest-news-content">
@@ -755,14 +756,14 @@ if ($total_pizza > 0) {
             <div class="mu-title">
               <span class="mu-subtitle">Entre em contato</span>
               <h2>CONOSCO</h2>
-              <i class="fa fa-spoon"></i>
+              <i class="fa-solid fa-spoon"></i>
               <span class="mu-title-bar"></span>
             </div>
             <div class="mu-contact-content">
               <div class="row">
                 <div class="col-md-6">
                   <div class="mu-contact-left">
-                    <form class="mu-contact-form" action="enviar.php" method="post">
+                    <form class="mu-contact-form" action="mailto:isaiaslourenco2020@gmail.com" method="post" enctype="text/plain">
                       <div class="form-group">
                         <label for="name">Nome</label>
                         <input type="text" class="form-control" id="name" name="nome_contato" placeholder="Nome" required>
@@ -776,7 +777,8 @@ if ($total_pizza > 0) {
                         <label for="message">Mensagem</label>
                         <textarea class="form-control" id="message" name="mensagem" cols="30" rows="10" placeholder="Digite sua Mensagem" required></textarea>
                       </div>
-                      <button type="submit" class="mu-send-btn">Enviar</button>
+                      <button type="submit" value="enviar" class="mu-send-btn">Enviar Mensagem</button>
+                      <button type="reset" value="limpar" class="mu-send-btn cores-button-recusar">Limpar</button>
                     </form>
                   </div>
                 </div>
@@ -791,7 +793,7 @@ if ($total_pizza > 0) {
                         <p><i class="fa-solid fa-envelope-open-text"></i><?php echo $email_site ?></p>
                         <p><i class="fa-solid fa-location-dot"></i><?php echo $endereco ?></p>
                       </address>
-                    </div>
+                    </div>  
                     <div class="mu-contact-widget">
                       <h3>Funcionamento <i class="fa-solid fa-door-open"></i></h3>
                       <address>

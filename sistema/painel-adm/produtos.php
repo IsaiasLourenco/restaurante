@@ -493,6 +493,9 @@ if (@$_GET['funcao'] == 'excluir') { ?>
 		$('#estoque_registro').text(estoque);
 		$('#imagem_registro').attr('src', '../../assets/imagens/' + pag + '/' + imagem);
 		$('#descricao_registro').text(descricao);
+
+		var verModal = "Sim";
+		console.error(verModal);
 	}
 </script>
 <!-- Ajax para visualizar dados adicionais -->

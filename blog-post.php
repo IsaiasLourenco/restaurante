@@ -96,11 +96,11 @@ $num_paginas = ceil($num_total / $itens_por_pagina_comentarios);
 
 <body>
   <!-- Pre Loader -->
-  <!-- <div id="aa-preloader-area">
+  <div id="aa-preloader-area">
     <div class="mu-preloader">
       <img src="assets/imagens/preloader1.gif" alt=" loader img">
     </div>
-  </div> -->
+  </div>
   <!-- SCROLL TOP BUTTON -->
   <a class="scrollToTop" href="#">
     <i class="fa fa-angle-up"></i>

@@ -25,7 +25,7 @@ require_once("verificar.php");
 					<th>CNPJ</th>
 					<th>Email</th>
 					<th>Telefone</th>
-					<th>Categoria de Produto</th>
+					<th>Categoria do Produto</th>
 					<th>Ações</th>
 
 				</tr>
@@ -38,7 +38,7 @@ require_once("verificar.php");
 					foreach ($res[$i] as $key => $value) {
 					}
 					$id_reg = $res[$i]['id'];
-					$id_cat = $res[$i]['categoria'];
+					$id_cat = @$res[$i]['categoria'];
 
 					//BUSCAR O NOME DA CATEGORIA RELACIONADA AO ID NA TABELA CATEGORIAS
 					$query2 = $pdo->query("SELECT * FROM categorias where id = '$id_cat'");
