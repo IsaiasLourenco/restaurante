@@ -155,3 +155,13 @@ h2{
   .size-txt-nav{
     text-size-adjust: 12px;
   }
+
+  @media (max-width: 768px) {
+    .customNavbar {
+        height: auto; /* Ajusta a altura para telas menores */
+        background-color: #343a40; /* Garante que a cor de fundo fique correta */
+    }
+    .navbar-collapse {
+        text-align: center; /* Centraliza os itens no menu colapsado */
+    }
+}

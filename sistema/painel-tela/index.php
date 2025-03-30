@@ -69,7 +69,6 @@ if ($total_reg > 0) {
   <link rel="stylesheet" href="../../assets/css/fontawesome.css">
   <link rel="stylesheet" href="../../assets/css/font-awesome.css">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/mystyle.css">
   <link rel="stylesheet" href="../../assets/css/meucss.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -113,7 +112,7 @@ if ($total_reg > 0) {
           </a>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
+            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalPerfil"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
             <a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i>Sair</a>
 
           </div>

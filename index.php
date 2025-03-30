@@ -72,9 +72,7 @@ if ($total_pizza > 0) {
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/imagens/ico.ico" type="image/x-icon">
-
-  <!-- Font awesome -->
-  <!-- <link href="assets/css/font-awesome.css" rel="stylesheet"> -->
+  
   <!-- Bootstrap -->
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <!-- Slick slider -->
@@ -88,25 +86,16 @@ if ($total_pizza > 0) {
   <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">
 
   <!-- Main style sheet
-  <link rel="stylesheet" href="assets/css/style.css">
-
-  <link rel="stylesheet" href="assets/css/meucss.css"> -->
-
-  <!-- Google Fonts -->
+       Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="assets/css/mystyle.css">
-
-  <link rel="stylesheet" href="assets/css/style.css">
-  
+  <link rel="stylesheet" href="assets/css/style.css">  
   <link rel="stylesheet" href="assets/css/meucss.css">
-
   <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <!-- <link rel="stylesheet" href="assets/css/font-awesome.css"> -->
 </head>
 
 <body>

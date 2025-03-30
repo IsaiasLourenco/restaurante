@@ -166,7 +166,6 @@ $total_reser = @count($res);
     <link rel="stylesheet" href="../../assets/css/font-awesome.css">
     <link rel="stylesheet" href="../../assets/css/fontawesome.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/mystyle.css">
     <link rel="stylesheet" href="../../assets/css/meucss.css">
 </head>
 </head>
