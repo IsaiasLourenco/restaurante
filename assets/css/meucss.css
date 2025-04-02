@@ -1,7 +1,12 @@
 /*----------------------------------*/
-/*-----CADASTRO DE CLIENTES---------*/
+/*--Perfil do Chef navBar dropDown--*/
 
-
+.chefMenuEditarPerfil {
+  z-index: 1050; /* Um valor alto para trazer o dropdown para frente */
+  position: absolute; /* Certifique-se que está posicionado corretamente */
+  left: -50px;
+  top: 100%;
+}
 
 
 /*----------------------------------*/

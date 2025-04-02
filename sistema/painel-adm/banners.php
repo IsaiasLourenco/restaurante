@@ -42,7 +42,6 @@ require_once("verificar.php");
 					<tr>
 						<td><?php echo $res[$i]['titulo'] ?></td>
 						<td><?php echo $res[$i]['subtitulo'] ?></td>
-
 						<td><?php echo $res[$i]['link'] ?></td>
 						<td style="text-align:center"><img src="../../assets/imagens/<?php echo $pagina ?>/<?php echo $res[$i]['imagem'] ?>" width="30px"></td>
 						<td style="text-align:center">

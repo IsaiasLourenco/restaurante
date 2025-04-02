@@ -37,11 +37,16 @@ if ($total_reg > 0) {
   $bairro_usu = $res[0]['bairro'];
   $cidade_usu = $res[0]['cidade'];
   $estado_usu = $res[0]['estado'];
-  $datanasc_usu = $res[0]['datanasc'];
-  $datacad_usu = $res[0]['datacad'];
   $senha_usu = $res[0]['senha'];
   $nivel_usu = $res[0]['cargo'];
-  $foto_usu = $res[0]['imagem'];
+}
+
+if ($total_reg > 0) {
+  $imagem_perfil = $res[0]['imagem'];
+
+  if ($imagem_perfil == "") {
+    $imagem_perfil = 'sem-foto.jpg';
+  }
 }
 ?>
 
@@ -193,7 +198,7 @@ if ($total_reg > 0) {
         </ul>
       </div>
 
-      <img class="img-profile rounded-circle mt-1" src="../../assets/imagens/funcionarios/<?php echo $foto_usu ?>" width="40px" height="40px">
+      <img class="img-profile rounded-circle mt-1" src="../../assets/imagens/funcionarios/<?php echo $imagem_perfil ?>" width="40px" height="40px">
 
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
@@ -281,7 +286,7 @@ if ($total_reg > 0) {
             <div class="col-5">
               <div class="mb-3">
                 <label for="cpf" class="form-label">CPF </label>
-                <input type="text" class="form-control" id="cpf_usu" name="cpf_perfil" placeholder="CPF" value="<?php echo @$cpf_usu ?>" required>
+                <input type="text" class="form-control" id="cpf" name="cpf_perfil" placeholder="CPF" value="<?php echo @$cpf_usu ?>" required>
               </div>
             </div>
 
@@ -299,7 +304,7 @@ if ($total_reg > 0) {
             <div class="col-5">
               <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone </label>
-                <input type="text" class="form-control" id="telefone_perfil" name="telefone_perfil" placeholder="(xx)xxxx-xxxx" value="<?php echo @$telefone_usu ?>" required>
+                <input type="text" class="form-control" id="telefone" name="telefone_perfil" placeholder="(xx)xxxx-xxxx" value="<?php echo @$telefone_usu ?>" required>
               </div>
             </div>
           </div>
@@ -363,6 +368,20 @@ if ($total_reg > 0) {
               </div>
             </div>
 
+          </div>
+
+          <div class="form-group">
+            <label>Imagem</label>
+            <input type="file" value="<?php echo @$imagem ?>" class="form-control-file" id="imagem-perfil" name="imagem-perfil" onChange="carregarImgPerfil();">
+          </div>
+
+          <div id="divImgContaPerfil" class="mt-4">
+            <?php if (@$imagem_perfil != "") { ?>
+              <img src="../../assets/imagens/funcionarios/<?php echo @$imagem_perfil ?>" width="170px" id="target-perfil">
+            <?php  } else { ?>
+              <img src="../../assets/imagens/funcionarios/sem-foto.jpg" width="170px" id="target-perfil">
+
+            <?php } ?>
           </div>
 
           <input type="hidden" name="id_perfil" value="<?php echo @$id_usuario ?>">
@@ -490,33 +509,33 @@ if ($total_reg > 0) {
 
 <!--SCRIPT PARA CARREGAR IMAGEM -->
 <script type="text/javascript">
-  function carregarImg() {
+	function carregarImgPerfil() {
 
-    var target = document.getElementById('target');
-    var file = document.querySelector("input[type=file]").files[0];
+		var target = document.getElementById('target-perfil');
+		var file = document.querySelector("#imagem-perfil").files[0];
 
-    var arquivo = file['name'];
-    resultado = arquivo.split(".", 2);
-    //console.log(resultado[1]);
+		var arquivo = file['name'];
+		resultado = arquivo.split(".", 2);
+		//console.log(resultado[1]);
 
-    if (resultado[1] === 'pdf') {
-      $('#target').attr('src', "../../assets/imagens/funcionarios/pdf.png");
-      return;
-    }
+		if (resultado[1] === 'pdf') {
+			$('#target-perfil').attr('src', "../../assets/imagens/funcionarios/pdf.png");
+			return;
+		}
 
-    var reader = new FileReader();
+		var reader = new FileReader();
 
-    reader.onloadend = function() {
-      target.src = reader.result;
-    };
+		reader.onloadend = function() {
+			target.src = reader.result;
+		};
 
-    if (file) {
-      reader.readAsDataURL(file);
+		if (file) {
+			reader.readAsDataURL(file);
 
 
-    } else {
-      target.src = "";
-    }
-  }
+		} else {
+			target.src = "";
+		}
+	}
 </script>
 <!-- FIM DO SCRIPT PARA CARREGAR IMAGEM -->

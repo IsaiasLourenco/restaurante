@@ -13,7 +13,31 @@ $cidade = $_POST['cidade_perfil'];
 $estado = $_POST['estado_perfil'];
 $senha = $_POST['senha_perfil'];
 
-$query = $pdo->prepare("UPDATE funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha WHERE id = :id");
+//SCRIPT PARA SUBIR FOTO NO BANCO
+$nome_img = date('d-m-Y H:i:s') .'-'.@$_FILES['imagem']['name'];
+$nome_img = preg_replace('/[ :]+/' , '-' , $nome_img);
+
+$caminho = '../../assets/imagens/produtos/' .$nome_img;
+if (@$_FILES['imagem-perfil']['name'] == ""){
+  $imagem = "sem-foto.jpg";
+}else{
+    $imagem = $nome_img;
+}
+
+$imagem_temp = @$_FILES['imagem-perfil']['tmp_name'];
+$ext = pathinfo($imagem, PATHINFO_EXTENSION);
+if($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif'){
+move_uploaded_file($imagem_temp, $caminho);
+}else{
+	echo 'Extensão de Imagem não permitida!';
+	exit();
+}
+if ($imagem == "sem-foto.jpg") {
+    $query = $pdo->prepare("UPDATE funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha WHERE id = :id");   
+} else {
+    $query = $pdo->prepare("UPDATE funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha WHERE id = :id");
+    $query->bindValue(":imagem", "$imagem");
+}
 
 $query->bindValue(":nome", "$nome");
 $query->bindValue(":cpf", "$cpf");

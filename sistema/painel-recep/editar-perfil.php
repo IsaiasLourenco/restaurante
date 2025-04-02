@@ -1,7 +1,5 @@
 <?php
 require_once("../../conexao.php");
-require_once("verificar.php");
-
 $id = $_POST['id_perfil'];
 $nome = $_POST['nome_perfil'];
 $cpf = $_POST['cpf_perfil'];
@@ -14,24 +12,19 @@ $bairro = $_POST['bairro_perfil'];
 $cidade = $_POST['cidade_perfil'];
 $estado = $_POST['estado_perfil'];
 $senha = $_POST['senha_perfil'];
-$especialidade = $_POST['especialidade'];
-$facebook = $_POST['facebook'];
-$youtube = $_POST['youtube'];
-$instagram = $_POST['instagram'];
-$linkedin = $_POST['linkedin'];
 
 //SCRIPT PARA SUBIR FOTO NO BANCO
 $nome_img = date('d-m-Y H:i:s') .'-'.@$_FILES['imagem']['name'];
 $nome_img = preg_replace('/[ :]+/' , '-' , $nome_img);
 
-$caminho = '../../assets/imagens/produtos/' .$nome_img;
-if (@$_FILES['imagem-perfil']['name'] == ""){
+$caminho = '../../../assets/imagens/funcionarios/' .$nome_img;
+if (@$_FILES['imagem']['name'] == ""){
   $imagem = "sem-foto.jpg";
 }else{
     $imagem = $nome_img;
 }
 
-$imagem_temp = @$_FILES['imagem-perfil']['tmp_name'];
+$imagem_temp = @$_FILES['imagem']['tmp_name'];
 $ext = pathinfo($imagem, PATHINFO_EXTENSION);
 if($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif'){
 move_uploaded_file($imagem_temp, $caminho);
@@ -43,7 +36,7 @@ move_uploaded_file($imagem_temp, $caminho);
 if ($imagem == "sem-foto.jpg") {
     $query = $pdo->prepare("UPDATE funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha WHERE id = :id");
 } else {
-    $query = $pdo->prepare("UPDATE funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha, imagem = :imagem WHERE id = :id");
+    $query = $pdo->prepare("UPDATE funcionarios SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, senha = :senha WHERE id = :id");
     $query->bindValue(":imagem", "$imagem");
 }
 
@@ -60,15 +53,6 @@ $query->bindValue(":estado", "$estado");
 $query->bindValue(":senha", "$senha");
 $query->bindValue(":id", "$id");
 $query->execute();
-
-$query = $pdo->prepare("UPDATE chef SET especialidade = :especialidade, instagram = :instagram, youtube = :youtube, linkedin = :linkedin, facebook = :facebook WHERE funcionario = $id");
-
-$query->bindValue(":especialidade", "$especialidade");
-$query->bindValue(":instagram", "$instagram");
-$query->bindValue(":youtube", "$youtube");
-$query->bindValue(":linkedin", "$linkedin");
-$query->bindValue(":facebook", "$facebook");
-$query->execute();
-
-
 echo 'Salvo com Sucesso!';
+
+?>
