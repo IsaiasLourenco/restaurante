@@ -1,8 +1,7 @@
 <?php
 /**
  * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @link    https://github.com/dompdf/dompdf
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
 namespace Dompdf;
@@ -13,6 +12,7 @@ use Dompdf\FrameDecorator\ListBullet;
 use Dompdf\FrameDecorator\Page;
 use Dompdf\FrameReflower\Text as TextFrameReflower;
 use Dompdf\Positioner\Inline as InlinePositioner;
+use Iterator;
 
 /**
  * The line box class
@@ -24,7 +24,6 @@ use Dompdf\Positioner\Inline as InlinePositioner;
  */
 class LineBox
 {
-
     /**
      * @var Block
      */
@@ -48,7 +47,7 @@ class LineBox
     /**
      * @var float
      */
-    public $y = null;
+    public $y = 0.0;
 
     /**
      * @var float
@@ -93,12 +92,10 @@ class LineBox
     public $inline = false;
 
     /**
-     * Class constructor
-     *
      * @param Block $frame the Block containing this line
-     * @param int $y
+     * @param float $y
      */
-    public function __construct(Block $frame, $y = 0)
+    public function __construct(Block $frame, float $y = 0.0)
     {
         $this->_block_frame = $frame;
         $this->_frames = [];
@@ -114,7 +111,7 @@ class LineBox
      *
      * @return Frame[]
      */
-    public function get_floats_inside(Page $root)
+    public function get_floats_inside(Page $root): array
     {
         $floating_frames = $root->get_floating_frames();
 
@@ -155,7 +152,7 @@ class LineBox
         return $childs;
     }
 
-    public function get_float_offsets()
+    public function get_float_offsets(): void
     {
         static $anti_infinite_loop = 10000; // FIXME smelly hack
 
@@ -242,7 +239,7 @@ class LineBox
     /**
      * @return float
      */
-    public function get_width()
+    public function get_width(): float
     {
         return $this->left + $this->w + $this->right;
     }
@@ -250,7 +247,7 @@ class LineBox
     /**
      * @return Block
      */
-    public function get_block_frame()
+    public function get_block_frame(): Block
     {
         return $this->_block_frame;
     }
@@ -258,9 +255,17 @@ class LineBox
     /**
      * @return AbstractFrameDecorator[]
      */
-    function &get_frames()
+    public function &get_frames(): array
     {
         return $this->_frames;
+    }
+
+    /**
+     * @return bool
+     */
+    public function is_empty(): bool
+    {
+        return $this->_frames === [];
     }
 
     /**
@@ -339,9 +344,9 @@ class LineBox
      * An iterator of all list markers and inline positioned frames of the line
      * box.
      *
-     * @return \Iterator<AbstractFrameDecorator>
+     * @return Iterator<AbstractFrameDecorator>
      */
-    public function frames_to_align(): \Iterator
+    public function frames_to_align(): Iterator
     {
         yield from $this->list_markers;
 
@@ -388,9 +393,6 @@ class LineBox
         return $this->w = $width;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         $props = ["wc", "y", "w", "h", "left", "right", "br"];
@@ -403,11 +405,3 @@ class LineBox
         return $s;
     }
 }
-
-/*
-class LineBoxList implements Iterator {
-  private $_p = 0;
-  private $_lines = array();
-
-}
-*/

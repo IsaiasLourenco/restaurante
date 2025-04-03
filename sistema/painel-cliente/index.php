@@ -14,7 +14,7 @@ $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 
 if ($total_reg > 0) {
-  $nome = $res[0]['nome'];
+  $nome_usu = $res[0]['nome'];
   $email_usu = $res[0]['email'];
   $cpf_usu = $res[0]['cpf'];
   $telefone_usu = $res[0]['telefone'];
@@ -24,11 +24,10 @@ if ($total_reg > 0) {
   $bairro_usu = $res[0]['bairro'];
   $cidade_usu = $res[0]['cidade'];
   $estado_usu = $res[0]['estado'];
-  $datanasc = $res[0]['datanasc'];
-  $datacad_usu = $res[0]['datacad'];
   $senha_usu = $res[0]['senha'];
   $nivel_usu = $res[0]['cargo'];
 }
+
 if ($total_reg > 0) {
   $imagem_perfil = $res[0]['imagem'];
 
@@ -103,26 +102,20 @@ if ($total_reg > 0) {
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <?php echo $nome ?>
+            <?php echo $nome_usu ?>
           </a>
 
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: -50px;">
+            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#perfil"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
             <a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i>Sair</a>
 
           </div>
         </li>
       </ul>
 
-      
-
-
-
     </div>
 
   </nav>
-
-  
 
   <div class="container mt-4">
     <?php
@@ -140,59 +133,71 @@ if ($total_reg > 0) {
 
 </html>
 
-<!--  Modal Editar-->
-<div class="modal fade" tabindex="-1" id="ModalEditar" data-bs-backdrop="static">
+<!-- Modal Edição -->
+<div onload="document.frmFunc.nome.focus();" class="modal fade" id="perfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <?php
-
-        $query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_usuario'");
-        $res = $query->fetchAll(PDO::FETCH_ASSOC);
-        $nome_cli = $res[0]['nome'];
-        $email = $res[0]['email'];
-        $cpf = $res[0]['cpf'];
-        $telefone = $res[0]['telefone'];
-        $cep = $res[0]['cep'];
-        $rua = $res[0]['rua'];
-        $numero = $res[0]['numero'];
-        $bairro = $res[0]['bairro'];
-        $cidade = $res[0]['cidade'];
-        $estado = $res[0]['estado'];
-        $datanasc = $res[0]['datanasc'];
-        $datacad = $res[0]['datacad'];
-        $senha = $res[0]['senha'];
-        $cargo = $res[0]['cargo'];
-
         $titulo_modal = 'Editar Registro';
-
         ?>
-
-        <h5 class="modal-title"><?php echo $titulo_modal ?></h5>
+        <h5 class="modal-title" id="exampleModalLabel"><?php echo $titulo_modal ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="post" id="form-cli">
+      <form method="post" id="form-perfil" name="frmFunc">
         <div class="modal-body">
 
           <div class="row">
             <div class="col-4">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nome </label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" autofocus value="<?php echo @$nome_cli ?>" required>
+                <label for="nome" class="form-label">Nome </label>
+                <input type="text" class="form-control" id="nome_perfil" name="nome_perfil" placeholder="Nome" autofocus value="<?php echo @$nome_usu ?>" required>
               </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-3">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">CPF </label>
-                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo @$cpf ?>" required>
+                <label for="cpf" class="form-label">CPF </label>
+                <input type="text" class="form-control" id="cpf" name="cpf_perfil" placeholder="CPF" value="<?php echo @$cpf_usu ?>" required>
               </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-5">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Email </label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com" value="<?php echo @$email ?>" required>
+                <label for="email" class="form-label">Email </label>
+                <input type="email" class="form-control" id="email_perfil" name="email_perfil" placeholder="nome@exemplo.com" value="<?php echo @$email_usu ?>" required>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone </label>
+                <input type="text" class="form-control" id="telefone" name="telefone_perfil" placeholder="(xx)xxxx-xxxx" value="<?php echo @$telefone_usu ?>" required>
+              </div>
+            </div>
+
+            <div class="col-2">
+              <div class="mb-3">
+                <label for="cep" class="form-label">CEP </label>
+                <input type="text" class="form-control" id="cep" name="cep_perfil" placeholder="CEP" value="<?php echo @$cep_usu ?>">
+              </div>
+            </div>
+
+            <div class="col-5">
+              <div class="mb-3">
+                <label for="rua" class="form-label">Rua </label>
+                <input type="text" class="form-control" id="rua" name="rua_perfil" placeholder="Rua" value="<?php echo @$rua_usu ?>" readonly>
+              </div>
+            </div>
+
+            <div class="col-2">
+              <div class="mb-3">
+                <label for="numero" class="form-label">Número </label>
+                <input type="text" class="form-control" id="numero" name="numero_perfil" placeholder="Número" value="<?php echo @$numero_usu ?>">
               </div>
             </div>
 
@@ -202,70 +207,52 @@ if ($total_reg > 0) {
 
             <div class="col-4">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Telefone </label>
-                <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(xx)xxxx-xxxx" value="<?php echo @$telefone ?>" required>
+                <label for="bairro" class="form-label">Bairro </label>
+                <input type="text" class="form-control" id="bairro" name="bairro_perfil" placeholder="Bairro" value="<?php echo @$bairro_usu ?>" readonly>
               </div>
             </div>
 
             <div class="col-4">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">CEP </label>
-                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" value="<?php echo @$cep ?>">
-              </div>
-            </div>
-
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Rua </label>
-                <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" value="<?php echo @$rua ?>" readonly>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="row">
-
-            <div class="col-2">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Número </label>
-                <input type="text" class="form-control" id="numero" name="numero" placeholder="Número" value="<?php echo @$numero ?>">
-              </div>
-            </div>
-
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Bairro </label>
-                <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" value="<?php echo @$bairro ?>" readonly>
-              </div>
-            </div>
-
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Cidade </label>
-                <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" value="<?php echo @$cidade ?>" readonly>
+                <label for="cidade" class="form-label">Cidade </label>
+                <input type="text" class="form-control" id="cidade" name="cidade_perfil" placeholder="Cidade" value="<?php echo @$cidade_usu ?>" readonly>
               </div>
             </div>
 
             <div class="col-2">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Estado </label>
-                <input type="text" class="form-control" id="estado" name="estado" placeholder="UF" value="<?php echo @$estado ?>" readonly>
+                <label for="estado" class="form-label">Estado </label>
+                <input type="text" class="form-control" id="estado" name="estado_perfil" placeholder="UF" value="<?php echo @$estado_usu ?>" readonly>
               </div>
             </div>
 
             <div class="col-2">
-              <div class="mb-3">
+              <div class="mb-2">
                 <label for="exampleFormControlInput1" class="form-label">Senha </label>
-                <input type="text" class="form-control" id="senha" name="senha" placeholder="Senha" value="<?php echo @$senha ?>" required>
+                <input type="text" class="form-control" id="senha_perfil" name="senha_perfil" placeholder="Senha" value="<?php echo @$senha_usu ?>" required>
               </div>
             </div>
 
           </div>
 
-          <input type="hidden" name="id" value="<?php echo @$id_usuario ?>">
+          <div class="form-group">
+            <label>Imagem</label>
+            <input type="file" value="<?php echo @$imagem ?>" class="form-control-file" id="imagem-perfil" name="imagem-perfil" onChange="carregarImgPerfil();">
+          </div>
+
+          <div id="divImgContaPerfil" class="mt-4">
+            <?php if (@$imagem_perfil != "") { ?>
+              <img src="../../assets/imagens/funcionarios/<?php echo @$imagem_perfil ?>" width="170px" id="target-perfil">
+            <?php  } else { ?>
+              <img src="../../assets/imagens/funcionarios/sem-foto.jpg" width="170px" id="target-perfil">
+
+            <?php } ?>
+          </div>
+
+          <input type="hidden" name="id_perfil" value="<?php echo @$id_usuario ?>">
 
           <small>
-            <div align="center" id="mensagem">
+            <div align="center" id="mensagem-perfil">
             </div>
           </small>
 
@@ -275,11 +262,10 @@ if ($total_reg > 0) {
           <button type="submit" class="btn btn-faded cores-button-confirmar">Salvar</button>
         </div>
       </form>
-
     </div>
   </div>
 </div>
-<!-- Fim Modal Editar-->
+<!--Fim Modal Edição -->
 
 <!--  Modal Comentário-->
 <div class="modal fade" tabindex="-1" id="modalComentario" data-bs-backdrop="static">
@@ -332,15 +318,17 @@ if ($total_reg > 0) {
 </div>
 <!-- Fim Modal Comentário-->
 
-<!-- Mascaras JS -->
+<<!-- Mascaras JS -->
 <script type="text/javascript" src="../../assets/js/mascaras.js"></script>
+<!-- Fim Mascaras JS -->
 
 <!-- Ajax para funcionar Mascaras JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+<!-- Fim Ajax para funcionar Mascaras JS -->
 
-<!-- Ajax para editar dados -->
+<!-- Ajax para inserir ou editar dados -->
 <script type="text/javascript">
-  $("#form-cli").submit(function() {
+  $("#form-perfil").submit(function() {
     event.preventDefault();
     var formData = new FormData(this);
 
@@ -351,21 +339,19 @@ if ($total_reg > 0) {
 
       success: function(mensagem) {
 
-        $('#mensagem').removeClass()
+        $('#mensagem-perfil').removeClass()
 
         if (mensagem.trim() == "Salvo com Sucesso!") {
 
-          //$('#nome').val('');
-          //$('#cpf').val('');
-          $('#btn-fechar').click();
+          $('#btn-fechar-perfil').click();
           location.reload();
 
         } else {
 
-          $('#mensagem').addClass('text-danger')
+          $('#mensagem-perfil').addClass('text-danger')
         }
 
-        $('#mensagem').text(mensagem)
+        $('#mensagem-perfil').text(mensagem)
 
       },
 
@@ -377,45 +363,37 @@ if ($total_reg > 0) {
 
   });
 </script>
-<!-- Fim Ajax para editar dados -->
+<!-- Fim do Ajax para inserir ou editar dados -->
 
-<!-- Ajax para inserir/editar comentário -->
+<!--SCRIPT PARA CARREGAR IMAGEM -->
 <script type="text/javascript">
-  $("#form-com-cli").submit(function() {
-    event.preventDefault();
-    var formData = new FormData(this);
+  function carregarImgPerfil() {
 
-    $.ajax({
-      url: "editar-comentario.php",
-      type: 'POST',
-      data: formData,
+    var target = document.getElementById('target-perfil');
+    var file = document.querySelector("#imagem-perfil").files[0];
 
-      success: function(mensagem) {
+    var arquivo = file['name'];
+    resultado = arquivo.split(".", 2);
+    //console.log(resultado[1]);
 
-        $('#mensagem-com').removeClass()
+    if (resultado[1] === 'pdf') {
+      $('#target-perfil').attr('src', "../../assets/imagens/funcionarios/pdf.png");
+      return;
+    }
 
-        if (mensagem.trim() == "Salvo com Sucesso!") {
+    var reader = new FileReader();
 
-          //$('#nome').val('');
-          //$('#cpf').val('');
-          $('#btn-fechar-com').click();
-          location.reload();
+    reader.onloadend = function() {
+      target.src = reader.result;
+    };
 
-        } else {
+    if (file) {
+      reader.readAsDataURL(file);
 
-          $('#mensagem-com').addClass('text-danger')
-        }
 
-        $('#mensagem-com').text(mensagem)
-
-      },
-
-      cache: false,
-      contentType: false,
-      processData: false,
-
-    });
-
-  });
+    } else {
+      target.src = "";
+    }
+  }
 </script>
-<!-- Fim Ajax para inserir/editar comentário -->
+<!-- FIM DO SCRIPT PARA CARREGAR IMAGEM -->

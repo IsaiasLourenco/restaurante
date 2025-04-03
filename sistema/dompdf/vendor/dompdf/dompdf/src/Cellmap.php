@@ -1,8 +1,7 @@
 <?php
 /**
  * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @link    https://github.com/dompdf/dompdf
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
 namespace Dompdf;
@@ -592,11 +591,15 @@ class Cellmap
                     $style->set_used("border_bottom_width", $bottom["width"] / 2);
                     $style->set_used("border_left_width", $left["width"] / 2);
                     $style->set_used("border_style", "none");
-                } else {
-                    // Clear borders for rows and row groups
-                    $style->set_used("border_width", 0);
-                    $style->set_used("border_style", "none");
                 }
+            }
+
+            if ($frame !== $this->_table) {
+                // Clear borders for rows and row groups. For the collapsed
+                // model, they have been resolved and are used by the cells now.
+                // For the separated model, they are ignored per spec
+                $style->set_used("border_width", 0);
+                $style->set_used("border_style", "none");
             }
 
             if ($frame === $this->_table) {

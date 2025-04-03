@@ -345,10 +345,8 @@ if ($total_reg > 0) {
 
         if (mensagem.trim() == "Salvo com Sucesso!") {
 
-          //$('#nome').val('');
-          //$('#cpf').val('');
           $('#btn-fechar-perfil').click();
-          //location.reload();
+          location.reload();
 
         } else {
 
@@ -378,7 +376,6 @@ if ($total_reg > 0) {
 
 		var arquivo = file['name'];
 		resultado = arquivo.split(".", 2);
-		//console.log(resultado[1]);
 
 		if (resultado[1] === 'pdf') {
 			$('#target-perfil').attr('src', "../../assets/imagens/funcionarios/pdf.png");

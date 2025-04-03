@@ -869,7 +869,7 @@ if ($total_pizza > 0) {
 
           <div class="form-group">
             <label for="senhaCad">Senha</label>
-            <input type="text" class="form-control" name="senhaCad" id="senhaCad" required>
+            <input type="password" class="form-control" name="senhaCad" id="senhaCad" required>
           </div>
 
         </div>

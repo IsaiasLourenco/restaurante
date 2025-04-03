@@ -77,7 +77,7 @@ require_once("verificar.php");
 				<div class="modal-body">
 
 					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">Categoria </label>
+						<label for="categoria" class="form-label">Categoria </label>
 						<select class="form-select" aria-label="Default select example" id="categoria" name="categoria">
 							<?php
 							$query = $pdo->query("SELECT * FROM categorias_img order by nome asc");
