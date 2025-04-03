@@ -136,7 +136,11 @@ if ($nome_cargo != 'Garçom' and $nome_cargo != 'Administrador' and $nome_cargo 
 							<label for="exampleFormControlInput1" class="form-label">Garçom </label>
 							<select class="form-select" aria-label="Default select example" name="garcom" id="garcom">
 								<?php
-								$query = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '4'");
+								$query = $pdo->query("SELECT * FROM cargos WHERE nome = 'Garçom'");
+								$res = $query->fetchAll(PDO::FETCH_ASSOC);
+								$id_cargo = $res[0]['id'];
+
+								$query = $pdo->query("SELECT * FROM funcionarios WHERE cargo = '$id_cargo'");
 								$res = $query->fetchAll(PDO::FETCH_ASSOC);
 								for ($i = 0; $i < @count($res); $i++) {
 									foreach ($res[$i] as $key => $value) {

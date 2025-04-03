@@ -1,5 +1,25 @@
 'use strict';
 
+const exibirMensagemErro = (mensagem) => {
+    // Cria um elemento div para mostrar o erro
+    const mensagemErro = document.createElement('div');
+    mensagemErro.textContent = mensagem;
+    mensagemErro.style.color = 'red';
+    mensagemErro.style.marginTop = '5px';
+    mensagemErro.id = 'mensagem-erro';
+
+    // Adiciona a mensagem logo após o campo de CEP
+    const campoCep = document.getElementById('cep');
+    campoCep.parentNode.insertBefore(mensagemErro, campoCep.nextSibling);
+
+    // Remove a mensagem após 3 segundos
+    setTimeout(() => {
+        if (document.getElementById('mensagem-erro')) {
+            document.getElementById('mensagem-erro').remove();
+        }
+    }, 3000); // 3 segundos
+};
+
 const limparCampos = () => {
     document.getElementById('cep').value = "";
     document.getElementById('rua').value = "";
@@ -8,11 +28,7 @@ const limparCampos = () => {
     document.getElementById('cidade').value = "";
     document.getElementById('estado').value = "";
 
-
-    setTimeout(() => {
-        document.getElementById('cep').focus();
-    }, 100); // Atraso de 100ms
-
+    document.getElementById('cep').focus();
 };
 
 const preencherForm = (endereco) => {
@@ -33,19 +49,18 @@ const pesquisarCEP = async () => {
             const dados = await fetch(url);
             const endereco = await dados.json();
             if (endereco.hasOwnProperty('erro')) {
-                window.alert('CEP Inexistente!');
+                exibirMensagemErro('CEP Inexistente!');
                 limparCampos();
             } else {
                 preencherForm(endereco);
             }
         } catch (error) {
-            window.alert('Erro ao buscar o CEP.');
+            exibirMensagemErro('Erro ao buscar o CEP.');
             limparCampos();
         }
     } else {
-        window.alert('CEP Incorreto!');
+        exibirMensagemErro('CEP Incorreto!');
         limparCampos();
-        document.getElementById('cep').focus();
     }
 };
 

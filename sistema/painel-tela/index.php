@@ -111,7 +111,7 @@ if ($total_reg > 0) {
             <?php echo $nome ?>
           </a>
 
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: -50px;">
             <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalPerfil"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
             <a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i>Sair</a>
 
