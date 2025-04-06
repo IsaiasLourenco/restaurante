@@ -122,7 +122,7 @@ if ($total_reg > 0) {
 }
 
 
-
+$pagarMesF = 0;
 $totalPagarM = 0;
 $query = $pdo->query("SELECT * from contas_pagar where data_compra >= '$dataInicioMes' and data_compra <= curDate()");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -298,7 +298,7 @@ if ($total_ped > 0) {
                                         <i class="fa-solid fa-money-check-dollar text-warning fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
-                                        <h3> <span class=""><?php echo @$contas_pagar_hoje ?></span></h3>
+                                        <h3> <span class="">R$ <?php echo @$contas_pagar_hoje ?></span></h3>
                                         <span>Contas à Pagar (Hoje)</span>
 
                                     </div>
@@ -318,7 +318,7 @@ if ($total_ped > 0) {
                                         <i class="fa-solid fa-money-check-dollar text-danger fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
-                                        <h3> <span class="">
+                                        <h3> <span class="">R$
                                                 <?php echo @$contas_pagar_vencidas ?></span></h3>
                                         <span>Contas Vencidas</span>
                                     </div>
@@ -337,7 +337,7 @@ if ($total_ped > 0) {
                                         <i class="fa-solid fa-hand-holding-dollar text-warning fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
-                                        <h3> <span class=""><?php echo @$contas_receber_hoje ?></span></h3>
+                                        <h3> <span class="">R$ <?php echo @$contas_receber_hoje ?></span></h3>
                                         <span>Contas Receber (Hoje)</span>
                                     </div>
                                 </div>
@@ -355,7 +355,7 @@ if ($total_ped > 0) {
                                         <i class="fa-solid fa-hand-holding-dollar text-danger fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
-                                        <h3><?php echo @$contas_receber_vencidas ?></h3>
+                                        <h3>R$ <?php echo @$contas_receber_vencidas ?></h3>
                                         <span>A Receber Vencidas</span>
                                     </div>
                                 </div>
@@ -430,7 +430,7 @@ if ($total_ped > 0) {
                             <div class="card-body cleartfix">
                                 <div class="row media align-items-stretch">
                                     <div class="align-self-center col-1">
-                                        <i class="fa-solid fa-hand-holding-dollar text-success fs-1 mr-2"></i>
+                                        <i class="fa-solid fa-hand-holding-dollar text-success fs-2 mr-2"></i>
                                     </div>
                                     <div class="media-body col-6">
                                         <h4>Contas à Receber</h4>
@@ -451,7 +451,7 @@ if ($total_ped > 0) {
                             <div class="card-body cleartfix">
                                 <div class="row media align-items-stretch">
                                     <div class="align-self-center col-1">
-                                        <i class="fa-solid fa-truck-fast text-success fs-1 mr-2"></i>
+                                        <i class="fa-solid fa-truck-fast text-success fs-2 mr-2"></i>
                                     </div>
                                     <div class="media-body col-6">
                                         <h4>Total Vendido</h4>

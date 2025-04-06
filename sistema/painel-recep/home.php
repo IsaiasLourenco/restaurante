@@ -269,7 +269,7 @@ $total_reser = @count($res);
                                         <i class="fa-solid fa-file-invoice-dollar text-warning fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
-                                        <h3> <span class=""><?php echo @$contas_pagar_hoje ?></span></h3>
+                                        <h3> <span class="">R$ <?php echo @$contas_pagar_hoje ?></span></h3>
                                         <span>Contas à Pagar (Hoje)</span>
 
                                     </div>
@@ -288,7 +288,7 @@ $total_reser = @count($res);
                                         <i class="fa-solid fa-file-invoice-dollar text-danger fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
-                                        <h3> <span class="">
+                                        <h3> <span class="">R$ 
                                                 <?php echo @$contas_pagar_vencidas ?></span></h3>
                                         <span>Contas à Pagar Vencidas</span>
                                     </div>
@@ -307,7 +307,7 @@ $total_reser = @count($res);
                                         <i class="fa-solid fa-hand-holding-dollar text-warning fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
-                                        <h3> <span class=""><?php echo @$contas_receber_hoje ?></span></h3>
+                                        <h3> <span class="">R$ <?php echo @$contas_receber_hoje ?></span></h3>
                                         <span>Contas Receber (Hoje)</span>
                                     </div>
                                 </div>
@@ -325,8 +325,8 @@ $total_reser = @count($res);
                                         <i class="fa-solid fa-hand-holding-dollar text-danger fs-1 float-start"></i>
                                     </div>
                                     <div class="col-9 text-end">
-                                        <h3><?php echo @$contas_receber_vencidas ?></h3>
-                                        <span>Contas à Receber Vencidas</span>
+                                        <h3>R$ <?php echo @$contas_receber_vencidas ?></h3>
+                                        <span>À Receber Vencidas</span>
                                     </div>
                                 </div>
                             </div>
@@ -354,7 +354,7 @@ $total_reser = @count($res);
                             <div class="card-body cleartfix">
                                 <div class="row media align-items-stretch">
                                     <div class="align-self-center col-1">
-                                        <i class="fa-solid fa-money-bill-trend-up text-primary fs-1 mr-2"></i>
+                                        <i class="fa-solid fa-money-bill-trend-up text-primary fs-2 mr-2"></i>
                                     </div>
                                     <div class="media-body col-6">
                                         <h4>Saldo Total</h4>
@@ -400,7 +400,7 @@ $total_reser = @count($res);
                             <div class="card-body cleartfix">
                                 <div class="row media align-items-stretch">
                                     <div class="align-self-center col-1">
-                                        <i class="fa-solid fa-hand-holding-dollar text-success fs-1 mr-2"></i>
+                                        <i class="fa-solid fa-hand-holding-dollar text-success fs-2 mr-2"></i>
                                     </div>
                                     <div class="media-body col-6">
                                         <h4>Contas à Receber</h4>
