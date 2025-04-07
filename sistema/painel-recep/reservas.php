@@ -20,7 +20,7 @@ $agora = date('Y-m-d');
     <link rel="stylesheet" href="../../assets/css/meucss.css">
     <link rel="stylesheet" href="../../assets/DataTables/datatables.min.js">
     <link rel="stylesheet" href="../../assets/DataTables/datatables.min.css">
-    
+
 </head>
 
 <body>
@@ -66,7 +66,7 @@ $agora = date('Y-m-d');
         </div>
     </div>
 
-    
+
 
 </body>
 
@@ -99,17 +99,17 @@ $agora = date('Y-m-d');
                             <tbody>
 
                                 <?php
-                                        $query = $pdo->query("SELECT * FROM clientes");
-                                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                                        for ($i = 0; $i < @count($res); $i++) {
-                                            foreach ($res[$i] as $key => $value) {
-                                            }
-                                            $id_cli = $res[$i]['funcionario'];
+                                $query = $pdo->query("SELECT * FROM clientes");
+                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                for ($i = 0; $i < @count($res); $i++) {
+                                    foreach ($res[$i] as $key => $value) {
+                                    }
+                                    $id_cli = $res[$i]['funcionario'];
 
-                                            $queryF = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_cli'");
-                                            $resF = $queryF->fetchAll(PDO::FETCH_ASSOC);
-                                        ?>
-                                        
+                                    $queryF = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_cli'");
+                                    $resF = $queryF->fetchAll(PDO::FETCH_ASSOC);
+                                ?>
+
                                     <tr>
                                         <td><?php echo $resF[0]['nome'] ?></td>
                                         <td><?php echo $resF[0]['email'] ?></td>
@@ -166,7 +166,7 @@ $agora = date('Y-m-d');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal" id="btn-fechar-reservas">Fechar</button>
-                    <button type="submit" class="btn btn-faded cores-button-confirmar">Reservar</button>
+                    <button type="submit" id="btn-salvar" class="btn btn-faded cores-button-confirmar">Reservar</button>
                 </div>
             </form>
         </div>
@@ -204,6 +204,37 @@ $agora = date('Y-m-d');
     </div>
 </div>
 <!-- Fim do Modal Excluir Reserva-->
+
+<!-- Modal Whatsapp Reserva-->
+<div class="modal fade" id="modalWhatsApp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mensagem via WhatsApp - Reserva</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form method="post" id="form-whatsapp">
+                <div class="modal-body">
+                    Quer mandar mensagem de confirmação de reserva via WhatsApp?
+
+                    <input type="hidden" name="id" id="id-reserva">
+
+                    <small>
+                        <div align="center" id="mensagem-excluir"></div>
+                    </small>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-faded cores-button-recusar" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" id="btn-zap" class="btn btn-faded cores-button-confirmar">Enviar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!-- Fim Modal Whatsapp Reserva-->
 
 <!-- Modal Reserva Email-->
 <div class="modal fade" id="modalReservaEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -374,11 +405,30 @@ $agora = date('Y-m-d');
                     mudarData(data);
                     location.reload();
 
+
                 } else {
 
                     $('#mensagem-reservas').addClass('text-danger')
                     $('#mensagem-reservas').text(mensagem)
                 }
+
+                $("#btn-salvar").on("click", function() {
+                    $.ajax({
+                        url: pag + "/inserir.php",
+                        method: "GET",
+                        success: function(link) {
+                            console.log("Link retornado:", link); // Verifica no console o link retornado
+                            // var myModal = new bootstrap.Modal(document.getElementById('modalWhatsApp'));
+                            // myModal.show();
+
+                            // Abre o WhatsApp
+                            window.open(link.trim(), '_blank'); // Use o link retornado para abrir o WhatsApp
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Erro ao executar o AJAX:", error);
+                        }
+                    });
+                });
 
             },
 
@@ -392,7 +442,7 @@ $agora = date('Y-m-d');
 </script>
 <!-- Fim do Ajax para inserir ou editar dados na tabela reserva -->
 
-<!-- Ajax para excluir Reserva -->
+<!-- Ajax para chamar excluir Reserva -->
 <script type="text/javascript">
     var pag = "<?= $pagina ?>";
 
@@ -405,7 +455,7 @@ $agora = date('Y-m-d');
         myModal.show();
     }
 </script>
-<!-- Fim Ajax para excluir Reserva -->
+<!-- Fim Ajax para chamar excluir Reserva -->
 
 <!-- Ajax para excluir reserva -->
 <script type="text/javascript">
@@ -524,3 +574,25 @@ $agora = date('Y-m-d');
     }
 </script>
 <!-- Fim Ajax para reservas por email -->
+
+<!-- Chama Modal Whatsapp para confirmar reserva -->
+<script>
+    $("#btn-salvar").on("click", function() {
+        $.ajax({
+            url: "reservas/whatsApp.php",
+            method: "GET",
+            success: function(link) {
+                console.log("Link retornado:", link); // Verifica no console o link retornado
+                // var myModal = new bootstrap.Modal(document.getElementById('modalWhatsApp'));
+                // myModal.show();
+
+                // Abre o WhatsApp
+                window.open(link.trim(), '_blank'); // Use o link retornado para abrir o WhatsApp
+            },
+            error: function(xhr, status, error) {
+                console.error("Erro ao executar o AJAX:", error);
+            }
+        });
+    });
+</script>
+<!-- Chama Modal Whatsapp para confirmar reserva -->

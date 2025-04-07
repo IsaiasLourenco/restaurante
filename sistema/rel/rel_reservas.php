@@ -243,12 +243,12 @@ if ($dataInicial != $dataFinal) {
 
                 $data = implode('/', array_reverse(explode('-', $data)));
 
-                $query_usu = $pdo->query("SELECT * FROM clientes where id = '$id_cliente'");
-                $res_usu = $query_usu->fetchAll(PDO::FETCH_ASSOC);
-                $nome_cliente = $res_usu[0]['nome'];
-                $telefone_cliente = $res_usu[0]['telefone'];
+                $query_cli = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_cliente'");
+                $res_cli = $query_cli->fetchAll(PDO::FETCH_ASSOC);
+                $nome_cliente = $res_cli[0]['nome'];
+                $telefone_cliente = $res_cli    [0]['telefone']; 
 
-                $query_mesa = $pdo->query("SELECT * FROM mesas where id = '$id_mesa'");
+                $query_mesa = $pdo->query("SELECT * FROM mesas WHERE id = '$id_mesa'");
                 $res_mesa = $query_mesa->fetchAll(PDO::FETCH_ASSOC);
                 $nome_mesa = $res_mesa[0]['nome'];
                 $descricao_mesa = $res_mesa[0]['descricao'];
