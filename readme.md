@@ -29,7 +29,8 @@ Não há necessidade de nennhum npm ao fazer o git.clone.
 
 Colaboradores
 
-- Projeto iniciado pelo propósito de um curso adquirido no portal Hugo Cursos 'https://hugocursos.com.br/sistema/index.php';
-- Iniciativa levada adiante pela empresa de tecnologia ®Vetor256. 'https://isaiaslourenco.github.io/vetor256/'.
+https://hugocursos.com.br/sistema/index.php
 
-[<img src="./gifRest.gif" alt="Delivering">](http://www.vetor256/restaurante)
+- Iniciativa levada adiante pela empresa de tecnologia ®Vetor256. https://isaiaslourenco.github.io/vetor256/
+
+<img src="./assets/imagens/about-us/restaurante.gif" alt="Delivering">https://isaiaslourenco.github.io/restaurante/

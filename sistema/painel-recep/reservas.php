@@ -417,12 +417,16 @@ $agora = date('Y-m-d');
                         url: pag + "/inserir.php",
                         method: "GET",
                         success: function(link) {
-                            console.log("Link retornado:", link); // Verifica no console o link retornado
-                            // var myModal = new bootstrap.Modal(document.getElementById('modalWhatsApp'));
-                            // myModal.show();
+                            console.log("Link retornado:", link);
 
-                            // Abre o WhatsApp
-                            window.open(link.trim(), '_blank'); // Use o link retornado para abrir o WhatsApp
+                            if (!link || link.trim() === '' || link.trim() === 'erro: Link do WhatsApp não encontrado.') {
+                                alert('Por favor, selecione um cliente!');
+                                return false; // Impede a execução do restante do código
+                            } else {
+                                // Abre o WhatsApp
+                                window.open(link.trim(), '_blank');
+                            }
+
                         },
                         error: function(xhr, status, error) {
                             console.error("Erro ao executar o AJAX:", error);

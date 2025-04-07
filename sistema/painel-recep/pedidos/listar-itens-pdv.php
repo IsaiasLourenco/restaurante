@@ -56,7 +56,7 @@ if ($total_reg > 0) {
             $titulo = 'Pronto';
         }
         
-        echo '<li class="mb-1"><img src="../../assets/imagens/' . $pasta . '/' . $imagem . '"><h4 class="cabH4">';
+        echo '<li class="mb-1"><img src="../../assets/imagens/' . $pasta . '/' . $imagem . '" style="right: -520px;"><h4 class="cabH4">';
         if($tipo == 'Prato'){
             echo '<i class="bi bi-square-fill ' . $classeStatus . ' mr-2" style="font-size:8px" title="'.$titulo.'"></i>';
         }else{

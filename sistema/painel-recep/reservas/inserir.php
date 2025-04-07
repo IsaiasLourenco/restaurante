@@ -45,14 +45,16 @@
         $data_reser = $_POST['data-reserva'];
         $obs = $_POST['obs'];
 
-        $query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_cli'");
-        $res = $query->fetchAll(PDO::FETCH_ASSOC);
-        $tel_cli = $res[0]['telefone'];
+        // echo $nome;
+        // exit();
 
         if ($nome == "") {
             echo $id_cli, 'Selecione um cliente!';
             exit();
         }
+        $query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_cli'");
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        $tel_cli = $res[0]['telefone'];
     }
 
     if ($mesa == "") {
@@ -76,6 +78,8 @@
 
     // Limpa o número de telefone
     $tel_cli = preg_replace('/[^0-9]/', '', $tel_cli);
+    $data_reser = implode('/', array_reverse(explode('-', 'data_reser')));
+    $mesa = str_pad($mesa, 3, '0', STR_PAD_LEFT);
 
     // Codifica a mensagem para URL
     $mensagem = urlencode("Reserva da mesa $mesa confirmada para o dia $data_reser.Obrigado por escolher o $nome_site!🍕🍕");
