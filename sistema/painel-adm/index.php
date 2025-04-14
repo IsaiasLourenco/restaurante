@@ -64,6 +64,12 @@ if ($total_reg > 0) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Meta Tags para SEO -->
+  <meta name="description" content="Descubra o melhor programa de Vendas, Reservas e Atendimento para Restaurantes, Marmitarias,Pizzarias e Lanchonetes. Soluções completas para gestão eficiente e aumento de vendas.">
+  <meta name="keywords" content="Restaurantes, Marmitarias, Pizzarias e Lanchonetes, Gestão de Vendas, Software de Vendas">
+  <meta name="Isaias Lourenço" content="Vetor256.">
+  <meta name="robots" content="index, follow">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
   </script>
@@ -78,32 +84,35 @@ if ($total_reg > 0) {
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/fontawesome.css">
   <link rel="stylesheet" href="../../assets/css/meucss.css">
+
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark navCustom" style="font-size: 12px;">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-size: 12px;">
     <div class="container-fluid">
 
       <a class="navbar-brand" href="index.php"><img class="img-index" src="../../assets/imagens/logo1.png" alt="Logo"></a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
         <span class="navbar-toggler-icon"></span>
 
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-index-recep">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
           <li class="nav-item">
             <a class="nav-link text-light" aria-current="page" href="index.php?pag=<?php echo $menu1 ?>"><i class="fas fa-home"></i> Home</a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i>
+            <a class="nav-link dropdown-toggle text-light" href="#" id="dropdownPessoas" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i>
               Pessoas
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu" aria-labelledby="dropdownPessoas">
 
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu2 ?>"><i class="fa-solid fa-image-portrait"></i> Funcionários</a></li>
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu3 ?>"><i class="fa-solid fa-user-plus"></i> Fornecedores</a></li>
@@ -112,10 +121,10 @@ if ($total_reg > 0) {
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-folder-plus"></i>
+            <a class="nav-link dropdown-toggle text-light" href="#" id="dropdownCadastro" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-folder-plus"></i>
               Cadastros
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu" aria-labelledby="dropdownCadastro">
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu4 ?>"><i class="fa-solid fa-boxes-stacked"></i> Cargos</a></li>
 
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu5 ?>"><i class="fa-solid fa-utensils"></i> Mesas</a></li>
@@ -135,10 +144,10 @@ if ($total_reg > 0) {
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-cubes-stacked"></i>
+            <a class="nav-link dropdown-toggle text-light" href="#" id="dropdownEstoque" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-cubes-stacked"></i>
               Estoque
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu" aria-labelledby="dropdownEstoque">
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu7 ?>"><i class="fa-solid fa-cart-shopping"></i> Produtos</a></li>
 
               <li><a class="dropdown-item" href="index.php?pag=<?php echo $menu8 ?>"><i class="fa-solid fa-bowl-food"></i> Pratos</a></li>
@@ -165,10 +174,10 @@ if ($total_reg > 0) {
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-receipt"></i>
+            <a class="nav-link dropdown-toggle text-light" href="#" id="dropdownRel" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-receipt"></i>
               Relatórios
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu" aria-labelledby="dropdownRel">
               <li><a class="dropdown-item" target="_blank" href="../rel/rel_produtos_class.php"><i class="fa-solid fa-cart-shopping"></i> Produtos</a></li>
 
               <li><a target="_blank" class="dropdown-item" href="../rel/rel_pratos_class.php"><i class="fa-solid fa-bowl-food"></i> Pratos</a></li>
@@ -185,10 +194,10 @@ if ($total_reg > 0) {
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-tv"></i>
+            <a class="nav-link dropdown-toggle text-light" href="#" id="dropdownTela" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-tv"></i>
               Telas
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu" aria-labelledby="dropdownTela">
               <li><a class="dropdown-item" target="_blank" href="../painel-tela/tela.php"><i class="fa-solid fa-desktop"></i> Tela de Pedidos</a></li>
 
               <li><a target="_blank" class="dropdown-item" href="../painel-tela/tela-chamada.php"><i class="fa-solid fa-display"></i> Tela de Chamadas</a></li>
@@ -198,25 +207,39 @@ if ($total_reg > 0) {
         </ul>
       </div>
 
-      <img class="img-profile rounded-circle mt-1" src="../../assets/imagens/funcionarios/<?php echo $imagem_perfil ?>" width="40px" height="40px">
+      <div class="d-flex">
+        <img class="img-profile rounded-circle mt-1" src="../../assets/imagens/funcionarios/<?php echo $imagem_perfil ?>" width="40px" height="40px">
 
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <?php echo $nome_usu ?>
-          </a>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="dropdownPerfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <?php echo $nome_usu ?>
+            </a>
 
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#perfil"><i class="fas fa-edit"></i> Editar Perfil<a>
-                <a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-sign-out"></i> Sair</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownPerfil">
+              <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#perfil">
+                <i class="fas fa-edit"></i> Editar Perfil
+              </a>
 
-          </div>
-        </li>
-      </ul>
+              <a class="dropdown-item" href="../logout.php">
+                <i class="fa-solid fa-sign-out"></i> Sair
+              </a>
+            </div>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+
+
+    </div>
 
     </div>
 
   </nav>
+
 
   <div class="container mt-4">
     <?php
@@ -272,59 +295,59 @@ if ($total_reg > 0) {
         <h5 class="modal-title" id="exampleModalLabel"><?php echo $titulo_modal ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="post" id="form-perfil" name="frmFunc">
+      <form method="post" id="form-perfil" name="frmFunc" class="row g-3">
         <div class="modal-body">
 
-          <div class="row">
-            <div class="col-4">
+          
+            <div class="col-md-4">
               <div class="mb-3">
-                <label for="nome" class="form-label">Nome </label>
+                <label for="Nome" class="form-label">Nome </label>
                 <input type="text" class="form-control" id="nome_perfil" name="nome_perfil" placeholder="Nome" autofocus value="<?php echo @$nome_usu ?>" required>
               </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-md-3">
               <div class="mb-3">
-                <label for="cpf" class="form-label">CPF </label>
+                <label for="CPF" class="form-label">CPF </label>
                 <input type="text" class="form-control" id="cpf_usu" name="cpf_perfil" placeholder="CPF" value="<?php echo @$cpf_usu ?>" required>
               </div>
             </div>
 
-            <div class="col-5">
+            <div class="col-md-5">
               <div class="mb-3">
-                <label for="email" class="form-label">Email </label>
+                <label for="Email" class="form-label">Email </label>
                 <input type="email" class="form-control" id="email_perfil" name="email_perfil" placeholder="nome@exemplo.com" value="<?php echo @$email_usu ?>" required>
               </div>
             </div>
 
-          </div>
+          
 
           <div class="row">
 
             <div class="col-3">
               <div class="mb-3">
-                <label for="telefone" class="form-label">Telefone </label>
+                <label for="Telefone" class="form-label">Telefone </label>
                 <input type="text" class="form-control" id="telefone_perfil" name="telefone_perfil" placeholder="(xx)xxxx-xxxx" value="<?php echo @$telefone_usu ?>" required>
               </div>
             </div>
 
             <div class="col-2">
               <div class="mb-3">
-                <label for="cep" class="form-label">CEP </label>
+                <label for="CEP" class="form-label">CEP </label>
                 <input type="text" class="form-control" id="cep" name="cep_perfil" placeholder="CEP" value="<?php echo @$cep_usu ?>">
               </div>
             </div>
 
             <div class="col-5">
               <div class="mb-3">
-                <label for="rua" class="form-label">Rua </label>
+                <label for="Rua" class="form-label">Rua </label>
                 <input type="text" class="form-control" id="rua" name="rua_perfil" placeholder="Rua" value="<?php echo @$rua_usu ?>" readonly>
               </div>
             </div>
 
             <div class="col-2">
               <div class="mb-3">
-                <label for="numero" class="form-label">Número </label>
+                <label for="Número" class="form-label">Número </label>
                 <input type="text" class="form-control" id="numero" name="numero_perfil" placeholder="Número" value="<?php echo @$numero_usu ?>">
               </div>
             </div>
@@ -335,28 +358,28 @@ if ($total_reg > 0) {
 
             <div class="col-4">
               <div class="mb-3">
-                <label for="bairro" class="form-label">Bairro </label>
+                <label for="Bairro" class="form-label">Bairro </label>
                 <input type="text" class="form-control" id="bairro" name="bairro_perfil" placeholder="Bairro" value="<?php echo @$bairro_usu ?>" readonly>
               </div>
             </div>
 
             <div class="col-4">
               <div class="mb-3">
-                <label for="cidade" class="form-label">Cidade </label>
+                <label for="Cidade" class="form-label">Cidade </label>
                 <input type="text" class="form-control" id="cidade" name="cidade_perfil" placeholder="Cidade" value="<?php echo @$cidade_usu ?>" readonly>
               </div>
             </div>
 
             <div class="col-2">
               <div class="mb-3">
-                <label for="estado" class="form-label">Estado </label>
+                <label for="Estado" class="form-label">Estado </label>
                 <input type="text" class="form-control" id="estado" name="estado_perfil" placeholder="UF" value="<?php echo @$estado_usu ?>" readonly>
               </div>
             </div>
 
             <div class="col-2">
               <div class="mb-2">
-                <label for="exampleFormControlInput1" class="form-label">Senha </label>
+                <label for="Senha" class="form-label">Senha </label>
                 <input type="text" class="form-control" id="senha_perfil" name="senha_perfil" placeholder="Senha" value="<?php echo @$senha_usu ?>" required>
               </div>
             </div>

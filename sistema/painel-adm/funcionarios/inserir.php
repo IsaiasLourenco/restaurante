@@ -53,9 +53,7 @@ if ($cpf != $cpf_banco) {
 }
 
 //SCRIPT PARA SUBIR FOTO NO BANCO
-$nome_img = date('d-m-Y H:i:s') . '-' . @$_FILES['imagem']['name'];
-$nome_img = preg_replace('/[ :]+/', '-', $nome_img);
-
+$nome_img = preg_replace('/[ -]+/', '-', @$_FILES['imagem']['name']);
 $caminho = '../../../assets/imagens/funcionarios/' . $nome_img;
 if (@$_FILES['imagem']['name'] == "") {
 	$imagem = "sem-foto.jpg";

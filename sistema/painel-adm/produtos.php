@@ -77,7 +77,15 @@ require_once("verificar.php");
 							<a href="index.php?pag=<?php echo $pagina ?>&funcao=excluir&id=<?php echo $id_reg ?>" title="Excluir Registro">
 								<i class="bi bi-trash text-danger"></i></a>
 
-							<a href="" onclick="dados('<?php echo $res[$i]["nome"] ?>', '<?php echo $valor_compra ?>', '<?php echo $valor_venda ?>', '<?php echo $nome_cat ?>', '<?php echo $nome_forn ?>', '<?php echo $res[$i]["estoque"] ?>', '<?php echo $res[$i]["imagem"] ?>', '<?php echo $res[$i]["descricao"] ?>')" title="Ver Dados">
+							<a href="" onclick="dados(	'<?php echo $res[$i]["nome"] ?>', 
+														'<?php echo $valor_compra ?>', 
+														'<?php echo $valor_venda ?>', 
+														'<?php echo $nome_cat ?>', 
+														'<?php echo $nome_forn ?>', 
+														'<?php echo $res[$i]["estoque"] ?>', 
+														'<?php echo $res[$i]["imagem"] ?>', 
+														'<?php echo $res[$i]["descricao"] ?>')" 
+														title="Ver Dados">
 								<i class="bi bi-info-circle-fill text-secondary"></i></a>
 							<a href="#" onclick="comprarProdutos('<?php echo $res[$i]['id'] ?>')" title="Comprar Produtos" style="text-decoration: none">
 								<i class="bi bi-bag-fill text-success"></i>

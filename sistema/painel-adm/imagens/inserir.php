@@ -4,10 +4,8 @@ require_once("../../../conexao.php");
 $id = $_POST['id'];
 $categoria = $_POST['categoria'];
 
-// SCRIPT PARA SUBIR FOTO NO BANCO
-$nome_img = date('d-m-Y-H-i-s') . '-' . @$_FILES['imagem']['name'];
-$nome_img = preg_replace('/[ :]+/', '-', $nome_img);
-
+//SCRIPT PARA SUBIR FOTO NO BANCO
+$nome_img = preg_replace('/[ -]+/', '-', @$_FILES['imagem']['name']);
 $caminho = '../../../assets/imagens/gallery/' . $nome_img;
 if (@$_FILES['imagem']['name'] == "") {
     $imagem = "sem-foto.jpg";

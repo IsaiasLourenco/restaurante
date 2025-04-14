@@ -45,7 +45,8 @@ if ($total_reg > 0) {
 
         echo "<script language='javascript'> window.alert ('Dados incorretos!')</script>";
 
-        echo "<script language='javascript'> window.location='index.php' </script>";
+        
+        
         
     }
     
