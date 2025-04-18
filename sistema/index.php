@@ -1,4 +1,8 @@
-<?php require_once("../conexao.php");
+<?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+require_once("../conexao.php");
 
 $queryTela = $pdo->query("SELECT * FROM cargos WHERE nome = 'Tela' ");
 $resTela = $queryTela->fetchAll(PDO::FETCH_ASSOC);
