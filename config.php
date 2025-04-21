@@ -1,16 +1,16 @@
 <?php
 
 //VARIÁVEIS DO PROJETO
-$url_local = 'http://localhost/restaurante/';
-//$url_local = 'http://www.lorenzos.sitepessoal.com/';
+//$url_local = 'http://localhost/restaurante/';
+$url_local = 'https://restaurante.vetor256.com/';
 $nome_site ="LORENZO'S";
 $email_adm ='isaias.lourenco2020@outlook.com';
 $endereco ='Avenida 22 de Outubro, nº 1167, Jardim xxxx - Mogi Mirim - SP - CEP:13800-000';
 $telefone ='(19)3361-4400';
 $whatsapp ='(19)99674-5466';
 $whatsapp_link_web ='5519996745466';
-$email_site ='adm@rest.com.br';
-$site_desenvolvedor = 'https://isaiaslourenco.github.io/vetor256/';
+$email_site ='isaias@vetor256.com.br';
+$site_desenvolvedor = 'https://vetor256.com/';
 $cnpj = '45.057.703/0001-94';
 
 //VARIÁVEIS PARA REDES SOCIAIS
@@ -22,16 +22,16 @@ $youtube ='https://www.youtube.com/channel/UCucCsiVk4zycu4CwVxY5WTw';
 $instagram ='https://instagram.com/isaiaslourenco3?igshid=MzNlNGNkZWQ4Mg==';
 
 //VARIÁVEIS PARA BANCO DE DADOS
-// $servidor = 'localhost';
-// $usuario = 'root';
-// $senha = '';
-// $banco = 'restaurante';
+$servidor = 'localhost';
+$usuario = 'root';
+$senha = '';
+$banco = 'restaurante';
 
 //VARIÁVEIS PARA BANCO DE DADOS HOSPEDADO
-$servidor = 'localhost'; // O host correto
-$usuario = 'isaia876_restaurante'; 
-$senha = 'Mandaloriano452269'; 
-$banco = 'isaia876_restaurante';
+// $servidor = 'localhost'; // O host correto
+// $usuario = 'isaia876_restaurante'; 
+// $senha = 'Mandaloriano452269'; 
+// $banco = 'isaia876_restaurante';
 
 //NÍVEL MÍNIMO DO ESTOQUE DE PRODUTOS PARA CÁLCULO DO SISTEMA
 $nivel_estoque = 10;    
@@ -73,4 +73,3 @@ $imagens_max_gall_index = 9;
 $produtos_por_linha_index = 3;
 
 ?>
-

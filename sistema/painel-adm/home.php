@@ -6,7 +6,9 @@ $hoje = date('Y-m-d');
 $mes_atual = Date('m');
 $ano_atual = Date('Y');
 $dataInicioMes = $ano_atual . "-" . $mes_atual . "-01";
-$dataMesFinal = $ano_atual . "-" . $mes_atual . "-31";
+// $dataMesFinal = $ano_atual . "-" . $mes_atual . "-31";
+$dataMesFinal = date("Y-m-t", strtotime($dataInicioMes)); 
+
 
 $query = $pdo->query("SELECT * from produtos");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);

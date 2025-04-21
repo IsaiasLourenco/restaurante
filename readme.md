@@ -56,6 +56,9 @@ Gostou da nossa solução? Entre em contato conosco para mais informações!
 E-mail: adm.vetor256o@gmail.com 
 Site: [www.vetor256.com.br](https://isaiaslourenco.github.io/vetor256/)
 
+💻 Repositório - https://github.com/IsaiasLourenco/restaurante <br>
+🔗 Site - https://restaurante.vetor256.com
+
 <img src="./assets/imagens/logotipo-do-github.png" alt="GitHub"> [GitHub](https://github.com/IsaiasLourenco)<br> <img src="./assets/imagens/logotipo-do-linkedin.png" alt="LinkedIn"> [Linkedin](https://www.linkedin.com/in/isaias-lourenco/)
 
 <img src="./assets/imagens/about-us/restaurante.gif" alt="Delivering">https://isaiaslourenco.github.io/restaurante/
