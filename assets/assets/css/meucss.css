@@ -1,0 +1,172 @@
+/*----------------------------------*/
+/*--Perfil do Chef navBar dropDown--*/
+
+.chefMenuEditarPerfil {
+  z-index: 1050; /* Um valor alto para trazer o dropdown para frente */
+  position: absolute; /* Certifique-se que está posicionado corretamente */
+  left: -50px;
+  top: 100%;
+}
+
+
+/*----------------------------------*/
+/*--LEI DE ACEITAÇÃO DE COOKIES-----*/
+/*----------------------------------*/
+/*----------LEI LGPD PAGINA----------*/
+
+.leiLgpd{
+  text-transform: capitalize;
+  font-size: 10px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.ulLgpd{
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.nav-leiLgpd{
+  background-color: #333333;
+  display: flex;
+}
+
+.realoca-logo-nav{
+  text-align: left;
+}
+
+
+/*----------------------------------*/
+/*--PADRONIZAÇÃO FONTES DA NAV------*/
+/*----------------------------------*/
+.nav-index-recep{
+    font-size: 12px;
+}
+
+/*----------------------------------*/
+/*--PADRONIZAÇÃO NAV INDEX ---------*/
+/*----------------------------------*/
+
+.index-navbar-padrao{
+    font-size: 10px;
+}
+
+/*----------------------------------*/
+/*--PADRONIZAÇÃO TÍTULOS H2 --------*/
+/*----------------------------------*/
+
+h2{
+    text-align: center;
+    color: gray;
+    font-size: medium;
+}
+
+/*----------------------------------*/
+/*--PADRONIZAÇÃO CORES BOTÕES-------*/
+/*----------------------------------*/
+
+.cores-button-confirmar{
+    background-color: #c1a35f;
+    border-color: #f5f0f0;
+    color: #f5f0f0;
+}
+
+.cores-button-confirmar:hover{
+    background-color: #c1a35f;
+    border-color: #f5f0f0;
+    color: #f5f0f0;
+    font-weight: bold
+}
+
+.cores-button-confirmar-novo{
+    background-color: #c1a35f;
+    border-color: #f5f0f0;
+    color: #f5f0f0;
+    margin-top: 2px;
+    margin-bottom: 4px;
+}
+
+.cores-button-confirmar-novo:hover{
+    background-color: #c1a35f;
+    border-color: #f5f0f0;
+    color: #f5f0f0;
+    margin-top: 2px;
+    margin-bottom: 4px;
+    font-weight: bold
+}
+
+.cores-button-recusar{
+    background-color: #333333;
+    border-color: #f5f0f0;
+    color: #f5f0f0;
+}
+
+.cores-button-recusar:hover{
+    background-color: #333333;
+    border-color: #f5f0f0;
+    color: #f5f0f0;
+    font-weight: bold
+}
+
+/*----------------------------------*/
+/*--LEI DE ACEITAÇÃO DE COOKIES-----*/
+/*----------------------------------*/
+/*----------LEI LGPD INDEX----------*/
+
+.alerta {
+    background-color: #c1a35f;
+    color: aliceblue;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    opacity: 80%;
+    z-index: 1;
+  }
+
+  .alerta.hide {
+    display: none !important;
+  }
+
+  .link-politica {
+    color: aliceblue;
+  }
+
+  .link-politica:hover {
+    text-decoration: underline;
+    color: aliceblue;
+  }
+
+  .link-politica:visited {
+    color: aliceblue;
+  }
+
+  .botao-aceitar {
+    background-color: antiquewhite;
+    color: chocolate;
+    padding: 7px;
+    margin-left: 15px;
+    border-radius: 5px;
+    border: none
+  }
+
+  .botao-aceitar:hover {
+    background-color: white;
+    color: gray;
+  }
+
+  .size-txt-nav{
+    text-size-adjust: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .customNavbar {
+        height: auto; /* Ajusta a altura para telas menores */
+        background-color: #343a40; /* Garante que a cor de fundo fique correta */
+    }
+    .navbar-collapse {
+        text-align: center; /* Centraliza os itens no menu colapsado */
+    }
+}

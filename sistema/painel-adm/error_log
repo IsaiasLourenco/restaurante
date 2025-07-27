@@ -1,0 +1,213 @@
+[18-Apr-2025 02:56:13 America/Sao_Paulo] PHP Warning:  require_once(C:/xampp/htdocs/restaurante/conexao.php): Failed to open stream: No such file or directory in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[18-Apr-2025 02:56:13 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/restaurante/conexao.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:2
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(7): require_once()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[18-Apr-2025 03:01:05 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 10
+[18-Apr-2025 03:01:05 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 10
+[18-Apr-2025 03:01:09 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 10
+[18-Apr-2025 03:01:09 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 10
+[18-Apr-2025 03:03:20 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 10
+[18-Apr-2025 03:03:20 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 10
+[18-Apr-2025 03:49:27 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-04-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:161
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(161): PDO->query('SELECT * from r...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 161
+[18-Apr-2025 04:01:24 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 114
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 114
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 115
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 115
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 116
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 116
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 114
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 114
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 115
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 115
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 116
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 116
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[18-Apr-2025 04:03:04 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[18-Apr-2025 04:04:12 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[18-Apr-2025 04:27:47 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[18-Apr-2025 04:39:21 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[18-Apr-2025 08:20:09 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[18-Apr-2025 17:02:55 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[19-Apr-2025 10:59:21 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[21-Apr-2025 02:48:08 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[21-Apr-2025 02:48:08 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[21-Apr-2025 02:48:08 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:9) in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 12
+[21-Apr-2025 17:20:59 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[29-Apr-2025 10:57:21 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[29-Apr-2025 10:57:21 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[29-Apr-2025 10:57:21 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:9) in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 12
+[29-Apr-2025 14:25:25 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[29-Apr-2025 14:25:25 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[29-Apr-2025 14:25:25 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:9) in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 12
+[29-Apr-2025 14:26:23 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[29-Apr-2025 14:26:23 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[29-Apr-2025 14:26:23 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:9) in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 12
+[01-May-2025 10:26:06 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[09-May-2025 15:54:38 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[12-May-2025 01:56:12 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[12-May-2025 01:58:49 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 01:58:49 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 01:58:49 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 01:58:49 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:22:35 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[12-May-2025 16:22:40 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:22:40 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:22:40 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:22:40 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:23:17 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:23:17 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:23:17 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:23:17 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:23:25 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:23:25 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:23:25 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[12-May-2025 16:23:25 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:17:59 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[13-May-2025 11:20:50 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:20:50 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:20:50 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:20:50 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:21:52 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:21:52 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:21:52 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:21:52 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:35:07 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:35:07 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:35:07 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:35:07 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:37:55 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:37:55 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:37:55 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:37:55 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:38:29 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:38:29 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:38:29 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:38:29 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:41:00 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:41:00 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:41:00 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:41:00 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:43:52 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:43:52 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:43:52 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:43:52 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/reservas.php on line 118
+[13-May-2025 11:44:19 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[13-May-2025 11:44:19 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[13-May-2025 11:44:19 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:9) in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 12
+[13-May-2025 11:51:35 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[13-May-2025 11:51:35 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[13-May-2025 11:51:35 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:9) in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 12
+[13-May-2025 11:52:19 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[13-May-2025 14:37:21 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[14-May-2025 00:56:23 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[06-Jun-2025 22:23:06 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495
+[06-Jun-2025 22:23:11 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[06-Jun-2025 22:23:11 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[06-Jun-2025 22:23:11 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:9) in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 12
+[06-Jun-2025 22:23:11 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[06-Jun-2025 22:23:11 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[06-Jun-2025 22:23:11 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:9) in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 12
+[06-Jun-2025 22:23:11 America/Sao_Paulo] PHP Warning:  Undefined array key 0 in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[06-Jun-2025 22:23:11 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 9
+[06-Jun-2025 22:23:11 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:9) in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 12
+[06-Jul-2025 19:19:11 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1525 Incorrect DATE value: '2025-2-31' in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php:495
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php(495): PDO->query('SELECT * from p...')
+#1 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/index.php(281): require_once('/home1/isaia876...')
+#2 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/home.php on line 495

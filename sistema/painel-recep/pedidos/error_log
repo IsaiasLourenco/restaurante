@@ -1,0 +1,10 @@
+[06-Jul-2025 19:25:23 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'valor' doesn't have a default value in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/pedidos/inserir.php:15
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/pedidos/inserir.php(15): PDOStatement->execute()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/pedidos/inserir.php on line 15
+[06-Jul-2025 19:25:25 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'valor' doesn't have a default value in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/pedidos/inserir.php:15
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/pedidos/inserir.php(15): PDOStatement->execute()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-recep/pedidos/inserir.php on line 15

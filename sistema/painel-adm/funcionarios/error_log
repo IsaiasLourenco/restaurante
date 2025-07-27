@@ -1,0 +1,35 @@
+[12-May-2025 01:57:56 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'comentario' doesn't have a default value in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php:114
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php(114): PDOStatement->execute()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php on line 114
+[13-May-2025 11:19:36 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'comentario' doesn't have a default value in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php:114
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php(114): PDOStatement->execute()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php on line 114
+[13-May-2025 14:37:48 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'comentario' doesn't have a default value in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php:114
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php(114): PDOStatement->execute()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php on line 114
+[13-May-2025 14:37:51 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'comentario' doesn't have a default value in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php:114
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php(114): PDOStatement->execute()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php on line 114
+[13-May-2025 14:37:51 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'comentario' doesn't have a default value in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php:114
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php(114): PDOStatement->execute()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php on line 114
+[13-May-2025 14:37:59 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'comentario' doesn't have a default value in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php:114
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php(114): PDOStatement->execute()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php on line 114
+[13-May-2025 14:38:00 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'comentario' doesn't have a default value in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php:114
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php(114): PDOStatement->execute()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/funcionarios/inserir.php on line 114

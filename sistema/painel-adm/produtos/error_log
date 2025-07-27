@@ -1,0 +1,42 @@
+[18-Apr-2025 04:13:04 America/Sao_Paulo] PHP Warning:  require_once(../../conexao.php): Failed to open stream: No such file or directory in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[18-Apr-2025 04:13:04 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '../../conexao.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:2
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/produtos/excluir.php(3): require_once()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[18-Apr-2025 04:13:11 America/Sao_Paulo] PHP Warning:  require_once(../../conexao.php): Failed to open stream: No such file or directory in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[18-Apr-2025 04:13:11 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '../../conexao.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:2
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/produtos/excluir.php(3): require_once()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[18-Apr-2025 04:13:12 America/Sao_Paulo] PHP Warning:  require_once(../../conexao.php): Failed to open stream: No such file or directory in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[18-Apr-2025 04:13:12 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '../../conexao.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:2
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/produtos/excluir.php(3): require_once()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[18-Apr-2025 04:13:20 America/Sao_Paulo] PHP Warning:  require_once(../../conexao.php): Failed to open stream: No such file or directory in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[18-Apr-2025 04:13:20 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '../../conexao.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:2
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/produtos/excluir.php(3): require_once()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[19-Apr-2025 10:59:32 America/Sao_Paulo] PHP Warning:  require_once(../../conexao.php): Failed to open stream: No such file or directory in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[19-Apr-2025 10:59:32 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '../../conexao.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:2
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/produtos/excluir.php(3): require_once()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[19-Apr-2025 10:59:34 America/Sao_Paulo] PHP Warning:  require_once(../../conexao.php): Failed to open stream: No such file or directory in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[19-Apr-2025 10:59:34 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '../../conexao.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:2
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/produtos/excluir.php(3): require_once()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[19-Apr-2025 10:59:34 America/Sao_Paulo] PHP Warning:  require_once(../../conexao.php): Failed to open stream: No such file or directory in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2
+[19-Apr-2025 10:59:34 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Failed opening required '../../conexao.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php:2
+Stack trace:
+#0 /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/produtos/excluir.php(3): require_once()
+#1 {main}
+  thrown in /home1/isaia876/restaurante.vetor256.com/sistema/painel-adm/verificar.php on line 2

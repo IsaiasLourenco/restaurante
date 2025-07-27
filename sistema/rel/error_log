@@ -1,0 +1,6 @@
+[18-Apr-2025 04:03:50 America/Fortaleza] PHP Warning:  file_get_contents(http://localhost/restaurante/sistema/rel/rel_reservas.php?dataInicial=2025-01-01&amp;dataFinal=2025-04-18): Failed to open stream: HTTP request failed! HTTP/1.1 403 Forbidden
+ in /home1/isaia876/restaurante.vetor256.com/sistema/rel/rel_reservas_class.php on line 9
+[18-Apr-2025 04:04:17 America/Fortaleza] PHP Warning:  file_get_contents(http://localhost/restaurante/sistema/rel/rel_produtos.php): Failed to open stream: HTTP request failed! HTTP/1.1 403 Forbidden
+ in /home1/isaia876/restaurante.vetor256.com/sistema/rel/rel_produtos_class.php on line 6
+[18-Apr-2025 04:04:18 America/Fortaleza] PHP Warning:  file_get_contents(http://localhost/restaurante/sistema/rel/rel_produtos.php): Failed to open stream: HTTP request failed! HTTP/1.1 403 Forbidden
+ in /home1/isaia876/restaurante.vetor256.com/sistema/rel/rel_produtos_class.php on line 6
