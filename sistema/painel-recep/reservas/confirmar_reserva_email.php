@@ -56,7 +56,7 @@ foreach ($todas_mesas as $mesa_id) {
     }
 }
 
-if ($total_ocupadas >= $total_mesas_disponiveis) {
+if (is_null($mesa_disponivel)) {
     echo json_encode([
         'status' => 'erro',
         'mensagem' => 'Nenhuma mesa disponível. Deseja outra data?'

@@ -363,6 +363,9 @@ $agora = date('Y-m-d');
         var formData = new FormData(this);
         var pag = "<?= $pagina ?>";
 
+        // Abre aba vazia AGORA para evitar bloqueio do popup
+        var win = window.open('', '_blank');
+
         $.ajax({
             url: pag + "/inserir.php",
             type: 'POST',
@@ -370,7 +373,7 @@ $agora = date('Y-m-d');
             cache: false,
             contentType: false,
             processData: false,
-            dataType: 'json', // força interpretação JSON
+            dataType: 'json',
             success: function(mensagem) {
                 $('#mensagem-reservas').removeClass();
                 $('#mensagem-reservas').text('');
@@ -378,11 +381,11 @@ $agora = date('Y-m-d');
                 if (mensagem.status === 'sucesso') {
                     alert("Reserva realizada com sucesso! Será enviado um email.");
 
-                    // Abrir WhatsApp na nova aba só se link for válido
                     if (mensagem.whatsapp && mensagem.whatsapp.startsWith('https://wa.me/')) {
-                        window.open(mensagem.whatsapp, '_blank');
+                        win.location = mensagem.whatsapp; // redireciona aba aberta para o WhatsApp
                     } else {
                         console.warn('Link WhatsApp inválido ou não recebido');
+                        win.close(); // fecha aba se link inválido
                     }
 
                     $('#btn-fechar-reservas').click();
@@ -392,11 +395,13 @@ $agora = date('Y-m-d');
                 } else {
                     $('#mensagem-reservas').addClass('text-danger');
                     $('#mensagem-reservas').html(mensagem.mensagem || 'Erro desconhecido');
+                    win.close(); // fecha aba aberta porque deu erro
                 }
             },
             error: function(xhr, status, error) {
                 $('#mensagem-reservas').addClass('text-danger');
                 $('#mensagem-reservas').text('Erro na requisição: ' + error);
+                win.close(); // fecha aba aberta porque deu erro
             }
         });
     });

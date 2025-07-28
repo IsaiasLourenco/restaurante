@@ -72,7 +72,7 @@ if ($total_pizza > 0) {
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/imagens/ico.ico" type="image/x-icon">
-  
+
   <!-- Bootstrap -->
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <!-- Slick slider -->
@@ -93,7 +93,7 @@ if ($total_pizza > 0) {
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="assets/css/style.css">  
+  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/meucss.css">
   <link rel="stylesheet" href="assets/css/fontawesome.css">
 </head>
@@ -411,7 +411,7 @@ if ($total_pizza > 0) {
               <div class="mu-reservation-content">
                 <p>Pedimos que as reservas sejam feitas com no mínimo três horas de antecedência. Para algo urgente, favor entrar em contato.</p>
                 <form class="mu-reservation-form" id="formReserva">
-                <!--<form class="mu-reservation-form" method="POST" action="enviar.php">-->
+                  <!--<form class="mu-reservation-form" method="POST" action="enviar.php">-->
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -485,7 +485,7 @@ if ($total_pizza > 0) {
 
                   ?>
 
-                    <li class="filter" data-filter=".<?php echo $nome_cat ?>"><?php echo $nome_cat ?></li> 
+                    <li class="filter" data-filter=".<?php echo $nome_cat ?>"><?php echo $nome_cat ?></li>
 
                   <?php } ?>
 
@@ -782,7 +782,7 @@ if ($total_pizza > 0) {
                         <p><i class="fa-solid fa-envelope-open-text"></i><?php echo $email_site ?></p>
                         <p><i class="fa-solid fa-location-dot"></i><?php echo $endereco ?></p>
                       </address>
-                    </div>  
+                    </div>
                     <div class="mu-contact-widget">
                       <h3>Funcionamento <i class="fa-solid fa-door-open"></i></h3>
                       <address>
@@ -836,37 +836,38 @@ if ($total_pizza > 0) {
 
   <!-- Ajax para mascaras -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   
+  <!-- Ajax para envia email -->
   <script>
-document.getElementById('formReserva').addEventListener('submit', async function(e) {
-  e.preventDefault();
+    document.getElementById('formReserva').addEventListener('submit', async function(e) {
+      e.preventDefault();
 
-  const form = e.target;
-  const formData = new FormData(form);
+      const form = e.target;
+      const formData = new FormData(form);
 
-  try {
-    const response = await fetch('enviar.php', {
-      method: 'POST',
-      body: formData
+      try {
+        const response = await fetch('enviar.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          alert('Reserva feita com sucesso! Assim que for confirmada, você receberá um e-mail e uma mensagem no WhatsApp.');
+          form.reset();
+        } else {
+          alert('Erro: ' + data.message);
+        }
+      } catch (error) {
+        alert('Erro inesperado ao enviar reserva.');
+        console.error(error);
+      }
     });
-
-    const data = await response.json();
-
-    if (data.success) {
-      window.open(data.link, '_blank');
-      alert('Reserva feita com sucesso! Verifique seu WhatsApp.');
-      form.reset();
-    } else {
-      alert('Erro: ' + data.message);
-    }
-  } catch (error) {
-    alert('Erro inesperado ao enviar reserva.');
-    console.error(error);
-  }
-});
-</script>
+  </script>
+<!-- Fim Ajax para envia email -->
 
 </body>
 
@@ -1006,23 +1007,23 @@ if (isset($_POST['btn-cadastrar'])) {
 
 <!-- CONFIGURAR NÚMERO DE PESSOAS POR MESA -->
 <script>
-    document.getElementById("quantidade_reserva").addEventListener("input", function() {
-        let valor = this.value.padStart(3, "0"); // Mantém 3 dígitos
-        this.value = valor;
-    });
+  document.getElementById("quantidade_reserva").addEventListener("input", function() {
+    let valor = this.value.padStart(3, "0"); // Mantém 3 dígitos
+    this.value = valor;
+  });
 </script>
 <!-- FIM CONFIGURAR NÚMERO DE PESSOAS POR MESA -->
 
 <!--ENVIA WHATSAPP AVISANDO RESERVA-->
 <?php
-  if (isset($_GET['reserva']) && $_GET['reserva'] === 'ok' && isset($_GET['link'])) {
-    $link = urldecode($_GET['link']);
-    echo "<script>
+if (isset($_GET['reserva']) && $_GET['reserva'] === 'ok' && isset($_GET['link'])) {
+  $link = urldecode($_GET['link']);
+  echo "<script>
       window.addEventListener('DOMContentLoaded', function () {
         window.open('$link', '_blank');
         window.history.replaceState({}, document.title, window.location.pathname);
       });
     </script>";
-  }
+}
 ?>
 <!--FIM ENVIA WHATSAPP AVISANDO RESERVA-->

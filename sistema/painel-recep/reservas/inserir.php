@@ -33,6 +33,7 @@ try {
         }
 
         $id_cli = $res_cli[0]['id'];
+        $mesa = $_POST['mesa']; // opcional: pode vir do form se quiser
     } else {
         // FLUXO DE RESERVA MANUAL
         $nome = $_POST['nome'];
@@ -72,7 +73,7 @@ try {
     $telefone = preg_replace('/[^0-9]/', '', $res['telefone']);
     $telefone = '55' . $telefone; // Adiciona DDI do Brasil
 
-    // Link WhatsApp formatado corretamente
+    // Link WhatsApp formatado
     $mensagem = "Olá $nome_cli, sua reserva da mesa " . str_pad($mesa, 3, '0', STR_PAD_LEFT) .
         " foi confirmada para $data_reser. Obrigado por escolher o Lorenzo's Restaurante! 🍕🍕";
     $linkWhatsApp = "https://wa.me/$telefone?text=" . urlencode($mensagem);
@@ -81,20 +82,30 @@ try {
     $mail = new PHPMailer(true);
     $mail->CharSet = 'UTF-8';
     $mail->Encoding = 'base64';
+
     try {
-        // Configurações SMTP
         $mail->isSMTP();
+
+        // ======== CONFIGURAÇÃO LOCAL (Gmail) ========
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'isaiaslourenco2020@gmail.com'; // seu email Gmail
-        $mail->Password = 'owoh cace avmt payd'; // senha gerada no Gmail (app password)
+        $mail->Username = 'isaiaslourenco2020@gmail.com';
+        $mail->Password = 'owoh cace avmt payd'; // senha de app
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
-
-        // Remetente e destinatário
         $mail->setFrom('isaiaslourenco2020@gmail.com', 'Isaias');
-        $mail->addAddress($email_cli, $nome_cli);
 
+        // ======== CONFIGURAÇÃO PRODUÇÃO (vetor256.com) ========
+        // $mail->Host = 'mail.vetor256.com';
+        // $mail->SMTPAuth = true;
+        // $mail->Username = 'isaias@vetor256.com';
+        // $mail->Password = 'Mando452269$';
+        // $mail->SMTPSecure = 'ssl';
+        // $mail->Port = 465;
+        // $mail->setFrom('isaias@vetor256.com', "Lorenzo's Restaurante");
+
+        // Comum aos dois
+        $mail->addAddress($email_cli, $nome_cli);
         $mail->isHTML(true);
         $mail->Subject = "Confirmação de Reserva - Lorenzo's";
         $mail->Body = "
@@ -103,24 +114,23 @@ try {
             <p>Observações: $obs</p>
             <p>Obrigado por escolher o Lorenzo's Restaurante! 🍕</p>
         ";
-
         $mail->send();
     } catch (Exception $e) {
         error_log("Erro ao enviar email: " . $mail->ErrorInfo);
-        // Opcional: você pode incluir esse erro na resposta JSON, se quiser avisar no front-end
     }
     // *** ENVIO DE EMAIL - TERMINA AQUI ***
 
-    // Retorno JSON correto
-    header('Content-Type: application/json'); // Define resposta JSON
+    // Resposta JSON
+    header('Content-Type: application/json');
     echo json_encode([
         'status' => 'sucesso',
         'mensagem' => 'Reserva feita com sucesso!',
         'whatsapp' => $linkWhatsApp
     ]);
     exit;
+
 } catch (Exception $e) {
-    header('Content-Type: application/json'); // Define resposta JSON mesmo em erro
+    header('Content-Type: application/json');
     echo json_encode([
         'status' => 'erro',
         'mensagem' => $e->getMessage()
